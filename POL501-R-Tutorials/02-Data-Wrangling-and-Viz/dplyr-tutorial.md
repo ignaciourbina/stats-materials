@@ -9,7 +9,7 @@ common data operations.
 
 Here are the **main verbs** in `dplyr` and the logic behind each:
 
-### 1. **`filter()`**: Subsetting rows based on conditions
+## 1. **`filter()`**: Subsetting rows based on conditions
 
 - **Purpose**: It filters rows in a data frame by keeping only those that meet
   specified logical conditions.
@@ -27,7 +27,7 @@ df_filtered <- df %>%
   filter(age > 30)
 ```
 
-### 2. **`select()`**: Selecting columns
+## 2. **`select()`**: Selecting columns
 
 - **Purpose**: Selects a subset of columns from a data frame.
 - **Logic**: You provide the names of the columns you want to keep, and
@@ -44,7 +44,7 @@ df_selected <- df %>%
   select(name, age)
 ```
 
-### 3. **`mutate()`**: Creating new columns or modifying existing ones
+## 3. **`mutate()`**: Creating new columns or modifying existing ones
 
 - **Purpose**: Adds new columns or modifies existing ones by applying functions
   to the data.
@@ -64,7 +64,7 @@ df_mutated <- df %>%
   mutate(age_in_5_years = age + 5)
 ```
 
-### 4. **`summarise()`**: Summarizing data
+## 4. **`summarise()`**: Summarizing data
 
 - **Purpose**: Reduces multiple rows down to a single summary statistic, such as
   a mean or a total.
@@ -82,7 +82,7 @@ df_summary <- df %>%
   summarise(avg_age = mean(age))
 ```
 
-### 5. **`group_by()`**: Grouping data for summary purposes
+## 5. **`group_by()`**: Grouping data for summary purposes
 
 - **Purpose**: Groups rows by one or more columns, which is useful for
   performing grouped operations (e.g., calculating the mean for each group).
@@ -108,7 +108,7 @@ df_group_summary <- df %>%
   summarise(avg_age = mean(age))
 ```
 
-### 6. **`arrange()`**: Sorting rows
+## 6. **`arrange()`**: Sorting rows
 
 - **Purpose**: Reorders the rows of a data frame based on the values of one or
   more columns.
@@ -132,7 +132,7 @@ df_arranged_desc <- df %>%
   arrange(desc(age))
 ```
 
-### 7. **`join` functions**: Combining data frames
+## 7. **`join` functions**: Combining data frames
 
 - **Purpose**: Combines two data frames based on matching keys.
 - **Logic**: There are several `join` functions, each serving a different
@@ -155,7 +155,7 @@ There are two cases where you might want to count rows using `dplyr` verbs
 1.  **Counting rows after filtering without grouping** (using `nrow()`).
 2.  **Counting rows within groups** (using `n()` inside `summarise()`).
 
-### **Case 1: Counting Rows After Filtering Without Grouping (Using `nrow()`)**
+## **Case 1: Counting Rows After Filtering Without Grouping (Using `nrow()`)**
 
 When you simply want to count the number of rows in a data frame that meet
 certain logical conditions, but you don’t need to group the data, you can use
@@ -163,14 +163,14 @@ the base R function **`nrow()`** after a filtering operation. This approach is
 straightforward and works well if you're not trying to summarize within groups
 but just need to see how many rows meet the condition.
 
-#### **How it Works**
+### **How it Works**
 
 - **`filter()`**: First, apply a logical condition to filter the data frame
   down to the rows that meet your criteria.
 - **`nrow()`**: After the filtering step, use `nrow()` to count how many rows
   are left in the resulting data frame.
 
-#### **Example**
+### **Example**
 
 Imagine you have a data frame `df` and you want to count how many rows have
 `age > 30`:
@@ -187,7 +187,7 @@ df_filtered_count <- df %>%
     30.
 2.  `nrow()` counts how many rows remain after filtering.
 
-#### **Multiple Logical Conditions**
+### **Multiple Logical Conditions**
 
 You can also apply multiple logical conditions in the `filter()` step:
 
@@ -201,7 +201,7 @@ This filters the data frame to include only rows where both `age > 30` and
 `income > 50000` are true, and then `nrow()` counts the number of remaining
 rows.
 
-#### **Key Points for Case 1**
+### **Key Points for Case 1**
 
 - Use **`nrow()`** when you're working with the whole data frame and just want
   to count rows after filtering or applying some logical condition.
@@ -211,14 +211,14 @@ rows.
 
 ---
 
-### **Case 2: Counting Rows Within Groups (Using `n()` Inside `summarise()`)**
+## **Case 2: Counting Rows Within Groups (Using `n()` Inside `summarise()`)**
 
 When you need to count the number of rows within different groups of data, use
 **`n()`** inside `summarise()` in combination with `group_by()`. This is a
 common pattern in `dplyr` when you want to summarize data for each group (e.g.,
 counting rows per group).
 
-#### **How it Works**
+### **How it Works**
 
 - **`group_by()`**: This step groups the data by one or more columns, dividing
   the data frame into subsets (one for each group).
@@ -228,7 +228,7 @@ counting rows per group).
 - **`n()`**: Inside `summarise()`, `n()` counts the number of rows in each
   group.
 
-#### **Example**
+### **Example**
 
 Let’s say you want to count how many rows exist for each value of `gender` in
 your data frame `df`:
@@ -246,7 +246,7 @@ df_grouped_count <- df %>%
 2.  `summarise(count = n())` creates a new summary column called `count` that
     holds the number of rows for each group (i.e., for each gender).
 
-#### **Grouping with Multiple Variables**
+### **Grouping with Multiple Variables**
 
 You can group by more than one variable:
 
@@ -259,7 +259,7 @@ df_grouped_count <- df %>%
 Here, the data is grouped by both `gender` and `country`, and `n()` counts the
 number of rows for each unique combination of `gender` and `country`.
 
-#### **Key Points for Case 2**
+### **Key Points for Case 2**
 
 - Use **`n()` inside `summarise()`** to count the number of rows within groups
   of data.
@@ -272,7 +272,7 @@ number of rows for each unique combination of `gender` and `country`.
 
 ---
 
-### **Piping (`%>%`)**
+## **Piping (`%>%`)**
 
 One of the key concepts in `dplyr` is the use of the pipe operator `%>%`, which
 allows you to chain multiple operations together in a readable sequence. Instead
@@ -295,7 +295,7 @@ and finally sorted in descending order by `avg_income`.
 
 ---
 
-### Summary of the Main Verbs
+## Summary of the Main Verbs
 
 1.  **`filter()`**: Subsets rows.
 2.  **`select()`**: Subsets columns.

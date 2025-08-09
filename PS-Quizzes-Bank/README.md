@@ -47,7 +47,7 @@ organized by statistical topic.
   including a step-by-step calculation of a 95% confidence interval and a
   two-tailed hypothesis test.
 
-### Probability
+### Solved Probability Problems
 
 - **`Solved Problems - Probability.pdf`**: A set of solved problems on
   probability, covering basic set operations, conditional probability,

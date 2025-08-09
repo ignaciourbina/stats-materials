@@ -1,6 +1,6 @@
 # 📊 Stats Materials Repository
 
-**by Ignacio Urbina**
+by Ignacio Urbina
 
 Welcome! This repository contains a comprehensive set of resources for teaching
 and learning statistics, including:

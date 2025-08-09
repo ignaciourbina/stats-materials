@@ -1,7 +1,7 @@
 # Lecture Notes
 
-This directory contains a collection of LaTeX files for lecture notes, organized by
-topic and unit.
+This directory contains a collection of LaTeX files for lecture notes, organized
+by topic and unit.
 
 ## File Summaries
 
