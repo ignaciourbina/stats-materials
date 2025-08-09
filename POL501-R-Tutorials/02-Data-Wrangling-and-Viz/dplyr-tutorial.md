@@ -152,8 +152,8 @@ df_joined <- left_join(df1, df2, by = "key_column")
 There are two cases where you might want to count rows using `dplyr` verbs
 (commands):
 
-1.  **Counting rows after filtering without grouping** (using `nrow()`).
-2.  **Counting rows within groups** (using `n()` inside `summarise()`).
+1. **Counting rows after filtering without grouping** (using `nrow()`).
+2. **Counting rows within groups** (using `n()` inside `summarise()`).
 
 ## **Case 1: Counting Rows After Filtering Without Grouping (Using `nrow()`)**
 
@@ -218,7 +218,7 @@ When you need to count the number of rows within different groups of data, use
 common pattern in `dplyr` when you want to summarize data for each group (e.g.,
 counting rows per group).
 
-### **How it Works**
+- **How it Works**
 
 - **`group_by()`**: This step groups the data by one or more columns, dividing
   the data frame into subsets (one for each group).
@@ -228,7 +228,7 @@ counting rows per group).
 - **`n()`**: Inside `summarise()`, `n()` counts the number of rows in each
   group.
 
-### **Example**
+- **Example**
 
 Let’s say you want to count how many rows exist for each value of `gender` in
 your data frame `df`:
