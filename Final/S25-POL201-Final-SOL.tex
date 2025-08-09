@@ -1,0 +1,312 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{POL201 Final Exam Solutions}
+\lhead{Spring 2025}
+\rfoot{Page \thepage}
+
+% --- silence the “\headheight is too small” warning ---
+\setlength{\headheight}{15pt}        % ≥ 14.5 pt is fine
+\addtolength{\topmargin}{-3pt}       % (15 pt – 12 pt) to keep the text area tall
+
+\title{POL201.01 -- Final Exam Solutions}
+\author{Spring 2025}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent\textbf{Name:} \underline{\hspace{8cm}} \hfill \textbf{Student ID:} \underline{\hspace{4cm}}
+
+\section*{Section 1: Probability}
+
+\begin{enumerate}[label=1.\arabic*]
+    \item \textbf{Marble Draw Probability}
+
+    \textit{Answer:}   $\boxed{(B)\quad0.375}$
+
+    The two events are statistically independent because we draw marbles from two separate and unrelated bags. Hence, we use the multiplication rule for independent events:\footnote{If $A$ and $B$ are two independent events, then $P(A\cap B)=P(A)\times P(B)$.}
+\[
+    P(\text{Red from A}) = P(\text{Red}_A) = \frac{2}{4} = 0.5,\quad P(\text{Blue from B}) = P(\text{Blue}_B)  = \frac{3}{4} = 0.75
+\]
+\[
+    P(\text{Red}_A \cap \text{Blue}_B) = 0.5 \times 0.75 = \boxed{0.375}
+\]
+
+    \item \textbf{Job Training Program Employment Probability}
+
+    \textit{Answer:}  $\boxed{(D)\quad0.80}$
+
+    We are asked to compute a \textbf{conditional probability}: the probability that a participant is employed \emph{given} that they completed the program.
+
+    The formula for conditional probability is:
+    \[
+        P(\text{Employed} \mid \text{Completed}) = \frac{\text{Number of participants who completed \emph{and} are employed}}{\text{Number who completed the program}}
+    \]
+
+    From the problem, 320 participants both completed the program and became employed, out of 400 who completed the program:
+    \[
+        P(\text{Employed} \mid \text{Completed}) = \frac{320}{400} = \boxed{0.80}
+    \]
+
+
+\end{enumerate}
+
+%----------------------------------------------------------------
+\section*{Section 2: Descriptive Statistics}
+
+
+\begin{enumerate}[label=2.\arabic*]
+\item \textbf{Which company shows better overall satisfaction?}\\[2pt]
+\emph{Answer}:  Several summary statistics strongly suggest that AlphaNet shows a better overall satisfaction from its customers. 
+\begin{itemize}
+    \item \textbf{Higher averages}
+        \begin{itemize}
+            \item Mean: \(\mathbf{77.0}\) (AlphaNet) vs.\;65.5 (BetaCom) \(\;\to\) \(\approx\!\!12\)-point advantage.
+            \item Median: \(\mathbf{85.0}\) vs.\;65.5 \(\;\to\) half of AlphaNet users score 85 or above.
+        \end{itemize}
+    \item \textbf{Higher middle spread (IQR)}
+        \begin{itemize}
+            \item \(Q_1\)–\(Q_3\): 65.1–89.6 (AlphaNet) vs.\;55.6–75.2 (BetaCom).  
+            \item Every quartile cut-off for AlphaNet exceeds the corresponding one for BetaCom.
+        \end{itemize}
+    \item \textbf{Interpretation}  
+        Greater central-tendency numbers mean \emph{most} AlphaNet customers report higher satisfaction even though ratings vary slightly more (SD \(=18.6\) vs.\;14.7).
+\end{itemize}
+
+%----------------------------------------------------------------
+\item \textbf{Why is “we share the same mode of 100, so both are good” misleading?}\\[2pt]
+\textit{Answer:}
+\begin{itemize}
+    \item \textbf{Mode is blind to the rest of the distribution.}  
+          A few repeated 100-scores (the mode) tell us nothing about the other observations.  This limitation makes the mode a weak summary for nearly continuous data like satisfaction ratings.
+    \item \textbf{Contrasting centre measures}  
+          \begin{itemize}
+              \item \textbf{BetaCom:} mean \(=\) median \(=65.5\) \(\;\to\) values cluster far below 100.  
+              \item \textbf{AlphaNet:} mean \(77.0<\) median \(85.0\) \(\;\to\) a few low scores drag the mean down, but most ratings are high.
+          \end{itemize}
+    \item \textbf{Interquartile-range (IQR) evidence}  
+          BetaCom’s middle 50 \% of scores lie between 55.6 and 75.2—both limits well below 100 and below AlphaNet’s corresponding limits (65.1–89.6).  Thus even the “typical” BetaCom customer rates lower than the typical AlphaNet customer.
+    \item \textbf{Practical takeaway}  
+          A random BetaCom user is far likelier to land in the 60–70 range than at 100.  Judging performance by the shared mode alone greatly overstates BetaCom’s overall satisfaction relative to AlphaNet.
+\end{itemize}
+
+%----------------------------------------------------------------
+\item \textbf{Which area should AlphaNet investigate further?}\\[2pt]
+    \textit{Answer:}
+Although AlphaNet scores higher overall, the summary statistics reveal a \emph{small group of very dissatisfied customers}:
+\begin{itemize}
+    \item \textbf{Left-skewed distribution.}  
+          The cluster of low scores forms a ``left tail,” showing that a minority of ratings lie far below the bulk of the data.
+    \item \textbf{Very low minimum and first quartile.}  
+          Minimum \(=22.8\) and \(Q_1=65.1\) are well below the median \(85.0\), confirming that roughly the lowest 25 \% of customers feel much less satisfied than the majority.
+    \item \textbf{Effect on the mean.}  
+          These low ratings pull the overall mean down by about 8 points (\(85\to77\)) even though most users are happy.
+
+\end{itemize}
+In plain language, most AlphaNet users are happy, but a minority have a genuinely poor experience. Understanding who these customers are and what drives their frustration could help the firm raise average customer satisfaction and reduce its dispersion.
+
+
+\end{enumerate}
+
+% ----------------------------------------------------------------
+\section*{Section 3: Random Variables}
+
+\begin{enumerate}[label=3.\arabic*]
+    \item \textbf{Expected Value of Prize}
+
+    \textit{Answer:}
+\[
+    E[X] = \sum x_i P(x_i) = 0(0.50) + 200(0.35) + 500(0.15) = 0 + 70 + 75 = \boxed{145.00}
+\]
+
+    \item \textbf{Interpretation of Expected Value}
+
+    \textit{Answer:} The expected value of \$145 means that, on average, each raffle ticket is worth \$145 in the long run. Another way to think about this is that, if you were to buy many, many, tickets, your average winnings would be $\$145.00$. \\
+    This is just an application of the definition of expected value, which is a weighted average of all possible outcomes:
+    \[
+        E[X] = \sum x_i P(x_i)
+    \]
+    where each outcome \(x_i\) is multiplied by the probability \(P(x_i)\) that it occurs. In this case:
+    \begin{itemize}
+        \item There is a 50\% chance of winning \$0,
+        \item a 35\% chance of winning \$200, and
+        \item a 15\% chance of winning \$500.
+    \end{itemize}
+    The expected value combines all these into a single summary that reflects the long-run average payout per ticket. It does \emph{not} mean that any individual ticket will pay \$145, but rather that \$145 is the average payout over the long run across many repetitions.
+
+    \item \textbf{Unfair Raffle Pricing}
+
+    \textit{Answer:} If the raffle ticket price exceeds \$145, participants expect a net loss on average, making the raffle economically unfair.
+
+    In other words, since the average winnings per ticket are \$145, paying more than that means the average person will lose money by participating. Some players might still win big, but if many people play the raffle again and again, their winnings will average out to less than what they paid. That’s why a ticket price above \$145 wouldn’t be a fair deal for those buying tickets.
+
+\end{enumerate}
+
+\newpage 
+\section*{Section 4: Hypothesis Testing (Rounded Version for Grading -- 2 decimals)}
+
+\begin{enumerate}[label=4.\arabic*]
+    \item \textbf{Hypotheses}
+
+    \textit{Answer:}  
+\[
+    H_0: p_{\text{men}} = p_{\text{women}}, \quad H_a: p_{\text{men}} \neq p_{\text{women}}
+\]
+
+    \item \textbf{Two-Proportion Z-Test}\text{ }\footnote{Note that $P(Z > 2.00) = 1 - P(Z < 2.00) = 1-0.9772 = 0.0228$.}
+
+    \textit{Answer:} \\
+    \textbf{We round everything up to two decimals.}
+
+    \begin{align*}
+    p_{\text{pool}} &= \frac{(0.48)(1000) + (0.52)(1000)}{2000} = \boxed{0.50} \\
+    SE &= \sqrt{0.50(1 - 0.50)\left(\frac{1}{1000} + \frac{1}{1000}\right)} = \boxed{0.02} \\
+    z &= \frac{0.48 - 0.52}{0.02} = \boxed{-2.00} \\
+    p\text{-value} &= 2 \cdot P(Z > |{-2.00}|) = 2 \cdot P(Z > 2.00) \approx 2\cdot (1-0.9772) \approx 2 \cdot 0.0228 = \boxed{0.046} 
+    \end{align*}
+
+    \textbf{Conclusion using p-value:} Since $p = 0.046 \leq \alpha = 0.05$, we \textbf{reject} $H_0$.
+
+    \textbf{Critical value method:} For a two-tailed test at $\alpha = 0.05$, the critical z-values are:
+\[
+    z_{1-\alpha/2} = z_{0.975} = \boxed{1.96}
+\]
+    Since $\left| z \right| = 2.00 > 1.96 =z^*$, the test statistic falls in the rejection region. Therefore, we \textbf{reject} $H_0$ using the critical value method as well.
+    
+    \item \textbf{Interpretation}
+
+    \textit{Answer:} The difference in concern levels between men and women is statistically significant at the 5\% level. We have enough evidence to conclude that concern about AI-related job loss differs by gender.
+\end{enumerate}
+
+
+\newpage 
+\section*{Section 4: Hypothesis Testing (four decimals rounding)}
+
+\begin{enumerate}[label=4.\arabic*]
+    \item \textbf{Hypotheses}
+
+    \textit{Answer:}  
+\[
+    H_0: p_{\text{men}} = p_{\text{women}}, \quad H_a: p_{\text{men}} \neq p_{\text{women}}
+\]
+
+    \item \textbf{Two-Proportion Z-Test}\text{ }\footnote{Note that $P(Z > 1.80) = 1 - P(Z < 1.80) = 1-0.9641 = 0.0359$.}
+
+    \textit{Answer:}  
+    \begin{align*}
+    p_{\text{pool}} &= \frac{(0.48)(1000) + (0.52)(1000)}{2000} = 0.50 \\
+    SE &= \sqrt{0.5(1-0.5)\left(\frac{1}{1000} + \frac{1}{1000}\right)} \approx 0.0224 \\
+    z &= \frac{0.48 - 0.52}{0.0224} \approx \boxed{-1.7857}  \approx - 1.80 \\
+    p\text{-value} &= 2 \cdot P(Z > |- 1.80|) = 2 \cdot P(Z > 1.80) \approx 2\cdot (1-0.9641) \approx  2 \cdot 0.0359 = \boxed{0.0718} 
+    \end{align*}
+
+    \textbf{Conclusion using p-value:} Since $p = 0.0718 > \alpha = 0.05$, we \textbf{fail to reject} $H_0$.
+
+    \textbf{Critical value method:} For a two-tailed test at $\alpha = 0.05$, the critical z-values are:
+\[
+    z_{1-\alpha/2} = z_{0.975} = \boxed{1.960}
+\]
+    Since $\left| z \right| = 1.789 < 1.960=z^*$, the test statistic does not fall in the rejection region. Therefore, we also \textbf{fail to reject} $H_0$ using the critical value method.
+    
+    \item \textbf{Interpretation}
+
+    \textit{Answer:} The difference in concern levels between men and women is not statistically significant at the 5\% level. We do not have sufficient evidence to conclude a gender gap in concern about AI-related job loss.
+\end{enumerate}
+
+
+
+\newpage 
+%-------------------------------------------------------------------------------------------------
+\section*{Section 5: Inference Concepts and Applications}
+
+\begin{enumerate}[label=5.\arabic*]
+%----------------------------------------------------------------
+\item \textbf{Population‐Proportion Confidence Interval}\\[2pt]
+
+
+\textit{Answer:}\; $\boxed{(D)} \quad$ \emph{We are 95\% confident that the true population proportion is between 0.47 and 0.53.} \newline \noindent\hspace*{0.01cm}\rule{\linewidth}{0.1pt}
+
+A 95 \% confidence interval means that, in repeated random sampling, 95\% of similarly constructed intervals will capture the \emph{true} population proportion.  
+Hence we are 95 \% confident the true share of voters who support the policy lies between 0.47 and 0.53.
+
+\smallskip
+\emph{Why the other options are wrong}
+\begin{itemize}
+  \item (A) Confuses the random sample statistic with the fixed population parameter.  
+  \item (B) Claims the point in the middle is the truth; intervals do not guarantee this.  
+  \item (C) Treats the entire electorate as if exactly 95 \% support the policy, a clear misreading.
+\end{itemize}
+
+%----------------------------------------------------------------
+\item \textbf{Poll Estimate with Margin of Error}\\[2pt]
+
+\textit{Answer:}\; $\boxed{(B)} \quad$ \emph{Between 53\% and 63\% of all voters support Candidate X.}  \newline \noindent\hspace*{0.01cm}\rule{\linewidth}{0.1pt}
+
+Adding and subtracting the 5 \% margin of error to the point estimate (58 \%) gives a 95 \% confidence interval of 53 \%–63 \% for the \emph{population} support rate. Recall a confidence interval is always defined as: $CI = \text{Sample Estimate } \pm \text{Margin of Error }(MoE)$.
+
+\smallskip
+\emph{Why the other options are wrong}
+\begin{itemize}
+  \item (A) Polls predict voter \emph{intentions}, not certain outcomes.  
+  \item (C) Uses the wrong bounds (45 \%–55 \%).  
+  \item (D) Misinterprets the margin of error as a probability statement about a future vote share.
+\end{itemize}
+
+%----------------------------------------------------------------
+\item \textbf{Hypotheses for the Mean Age Test}\\[2pt]
+
+\textit{Answer:}\; $\boxed{(A)} \quad$ $H_0:\ \mu = 45, \quad H_a:\ \mu \neq 45$ \newline \noindent\hspace*{0.01cm}\rule{\linewidth}{0.1pt}
+\[
+  H_0:\ \mu = 45, 
+  \qquad
+  H_a:\ \mu \neq 45
+\]
+For continuous random variables, hypotheses are always stated in terms of the \emph{population} mean \(\mu\).  
+We test whether the district mean age differs from the national mean of 45 years.
+
+\smallskip
+\emph{Why the other options are wrong}
+\begin{itemize}
+  \item (B) Uses the sample mean \(\bar{x}\) instead of the parameter \(\mu\).  
+  \item (C) Involves a population proportion \(p\), not a mean.  
+  \item (D) Switches the null and alternative, placing the research claim in \(H_0\).
+\end{itemize}
+
+\end{enumerate}
+
+%-------------------------------------------------------------------------------------------------
+\section*{Section 6: Confidence Intervals}
+
+\begin{enumerate}[label=6.\arabic*]
+    \item \textbf{Sample Mean and Standard Deviation}
+
+    \textit{Answer:}  
+\[
+    \bar{x} = \frac{\sum x_i}{10} = \frac{45}{10} = \boxed{4.5}, \quad s = \sqrt{\frac{\sum (x_i-\bar x)^2}{9}} \approx \boxed{1.5811}
+\]
+
+    \item \textbf{95\% Confidence Interval using t-distribution}
+
+    \textit{Answer:}  
+    \begin{align*}
+    df &= 10 - 1 = 9 \\
+    t^* &\approx 2.2622 \\
+    SE &= \frac{1.5811}{\sqrt{10}} \approx 0.5 \\
+    MoE &= 2.2622 \times 0.5 \approx 1.13 \\
+    \text{CI} &= \text{Estimate $\pm$ MoE} \\
+    &=  4.5 \pm 1.13 = \boxed{(3.37,\ 5.63)}
+    \end{align*}
+
+    To find the value for $t^*$, in the $t$-distribution CDF table, you need to lookup the element of the row with $df=9$ and the column with $CDF(t^*)=1-\frac{\alpha}{2}=1-\frac{0.05}{2}=0.975$. This is element is  $t_{df=9,\,0.975}^* = 2.2622$. 
+
+    \item \textbf{Interpretation}
+
+    \textit{Answer:} We are 95\% confident that the true average number of hours spent per week on political news consumption is between 3.37 and 5.63 hours.
+\end{enumerate}
+
+\end{document}

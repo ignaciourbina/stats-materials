@@ -1,0 +1,291 @@
+========= SOLUTIONS FOR INFERENCE PROPORTIONS PROBLEMS =========
+
+
+--- Problem 1: Framing the responsibility ---
+
+(1a) 95% CI for 'very responsible':
+
+--- Inference Results ---
+  Sample Proportion (p_hat): 0.4299
+  Confidence Interval (5%): (0.4156, 0.4442) for p
+  Alpha: 0.05
+-------------------------
+
+(1b) 95% CI for 'at least somewhat responsible':
+
+--- Inference Results ---
+  Sample Proportion (p_hat): 0.6701
+  Confidence Interval (5%): (0.6565, 0.6836) for p
+  Alpha: 0.05
+-------------------------
+(1c) is for interpretation based on the CIs from 1a and 1b.
+
+
+--- Problem 2: A super majority support? ---
+
+(2a) 95% CI for true proportion favoring amendment:
+
+--- Inference Results ---
+  Sample Proportion (p_hat): 0.6701
+  Confidence Interval (5%): (0.6561, 0.6840) for p
+  Alpha: 0.05
+-------------------------
+(2b) is for interpretation based on the CI from 2a.
+
+(2c) Test claim 'well over two-thirds' (p > 2/3) at alpha=0.05:
+
+--- Inference Results ---
+  Test Type: One-Sample Proportion Z-Test
+  Null Hypothesis (p_null): 0.6666666666666666
+  Alternative Hypothesis: p > 0.6666666666666666
+  Z-Statistic: 0.4726
+  P-value: 0.3182
+-------------------------
+
+
+--- Problem 3: Is there a gender gap in belief about AI emotions? ---
+(3a) Hypotheses: H0: p_male = p_female (or p_male - p_female = 0)
+                 Ha: p_male != p_female (or p_male - p_female != 0)
+
+(3b) Two-proportion z-test at alpha = 0.05:
+
+--- Inference Results ---
+  Test Type: Two-Sample Proportion Z-Test
+  Z-Statistic: 6.0221
+  P-value: 0.0000
+  Confidence Interval for Difference (5%): (0.0673, 0.1315) for p1-p2
+  Notes: Normal approximation used.
+-------------------------
+(3c) is for interpretation based on the test result from 3b.
+
+
+--- Problem 4: Remote vs. on-campus learning outcomes ---
+
+(4a) Pooled standard error and z-statistic for testing equality of pass rates:
+  Z-statistic for equality: -1.0685
+  Pooled SE was used for this test: True
+  Manually calculated Pooled SE for equality test: 0.0447
+
+(4b) At alpha=0.10, test if on-campus (p2) yields a higher pass rate (p2 > p1 => p1 - p2 < 0):
+
+--- Inference Results ---
+  Test Type: Two-Sample Proportion Z-Test
+  Null Hypothesis (p1-p2 = diff_null): 0
+  Alternative Hypothesis: p1-p2 < 0
+  Z-Statistic: -1.0685
+  P-value: 0.1427
+  Pooled SE for test: True
+-------------------------
+
+
+--- Problem 5: Vaccine acceptance across age groups ---
+
+(5a) 99% CI for difference in acceptance (younger - older):
+
+--- Inference Results ---
+  Sample 1 Proportion (p1_hat): 0.6100
+  Sample 2 Proportion (p2_hat): 0.6233
+  Observed Difference (p1_hat - p2_hat): -0.0133
+  Confidence Interval for Difference (1%): (-0.0770, 0.0505) for p1-p2
+  Alpha: 0.01
+-------------------------
+(5b) is for interpretation based on the CI from 5a.
+
+
+--- Problem 6: Margin of Error and Design Effects ---
+
+(6a) Compute SE_SRS assuming p0 = 0.5:
+  SE_SRS = sqrt(0.5 * (1-0.5) / 1500) = 0.0129
+
+(6b) MoE_SRS = z* * SE_SRS (Expression shown in problem text)
+
+(6c) Derivation shown in problem text. Formula for DEFF: DEFF = (MoE_real / (z* * SE_SRS))^2 or (MoE_real / MoE_SRS)^2
+
+(6d) Compute MoE_SRS and DEFF:
+  MoE_SRS = 1.96 * 0.0129 = 0.0253 (or 2.53%)
+  DEFF = (0.031 / 0.0253)^2 = 1.5009
+(6e) is for interpretation of DEFF.
+
+
+--- Problem 7: Margin of What, Exactly? — Part II ---
+
+(7a) Interval for 52% who do not personally know anyone who is an illegal immigrant (using reported MoE):
+  Using reported MoE of +/- 3.1%:
+  95% CI: (48.9%, 55.1%) or (0.489, 0.551)
+  Alternative: Calculating CI with the toolkit for p_hat = 0.52, n = 1500, alpha = 0.05:
+
+--- Inference Results ---
+  Sample Proportion (p_hat): 0.5200
+  Confidence Interval (5%): (0.4947, 0.5453) for p
+  Alpha: 0.05
+-------------------------
+(7b-7e) are conceptual questions for interpretation.
+
+
+--- Problem 8: Partisan optimism about AI? ---
+
+(8a) Proportion of each group 'at least somewhat positive':
+  Democrats 'at least somewhat positive': 38.0% (successes: 133)
+  Republicans 'at least somewhat positive': 46.0% (successes: 135)
+
+(8b) Two-proportion z-test for partisan difference at alpha = 0.05:
+
+--- Inference Results ---
+  Test Type: Two-Sample Proportion Z-Test
+  Z-Statistic: -2.0980
+  P-value: 0.0359
+  Confidence Interval for Difference (5%): (-0.1582, -0.0055) for p1-p2
+  Notes: Normal approximation used.
+-------------------------
+(8c-8d) are for interpretation.
+
+
+========= SOLUTIONS FOR INFERENCE MEANS PROBLEMS =========
+
+
+--- Problem 1 (Means): An urban planning problem ---
+
+(1a) 99% CI for true mean household size mu:
+
+--- Inference Results ---
+  Sample Mean: 3.0000
+  CI (1%): (2.8982, 3.1018) for mu
+  Alpha: 0.01
+-------------------------
+
+(1b) Test H0: mu <= 2.8 vs. Ha: mu > 2.8 at alpha = 0.01:
+
+--- Inference Results ---
+  Test Type: One-Sample Z-test (large sample approximation)
+  Null Hypothesis (mu_null): 2.8
+  Alternative Hypothesis: mu > 2.8
+  Z-Statistic: 5.0596
+  P-value: 0.0000
+-------------------------
+(1c-1d) are for interpretation/application.
+
+
+--- Problem 2 (Means): Reducing Emergency Room Wait Times ---
+(2a) Hypotheses: H0: mu_d >= -15 (reduction is not more than 15 mins, or is less)
+                 Ha: mu_d < -15 (reduction is more than 15 mins)
+
+(2b) SE of mean difference and test statistic (z-test due to large n_pairs):
+  Standard Error of the sample mean difference (s_d/sqrt(n)): 1.5021
+  Test Statistic (Paired Sample Z-test on Differences-value): -2.1304
+
+(2c) P-value for the test statistic:
+  P-value: 0.0166
+  (Assumption: Differences are approximately normal, or n_pairs is large enough for CLT on differences - satisfied here with n=1000)
+
+(2d) Formal decision at alpha = 0.05:
+
+--- Inference Results ---
+  Test Type: Paired Sample Z-test on Differences
+  Null Hyp (mu_diff = mu_diff_null): -15
+  Alternative Hypothesis: mu_differences < -15
+  Z-Statistic: -2.1304
+  P-value: 0.0166
+-------------------------
+(2e) is for interpretation.
+
+
+--- Problem 3 (Means): Partisan Affect ---
+(3a) Hypotheses: H0: mu_dem = mu_rep (mu_dem - mu_rep = 0)
+                 Ha: mu_dem != mu_rep (mu_dem - mu_rep != 0) (Two-sided test)
+
+(3b) Standard error for the difference in sample means (calculated internally by toolkit).
+
+(3c) Test statistic (z-value) and p-value (large samples, Z-test):
+
+--- Inference Results ---
+  Test Type: Two-Sample Z-test (large samples approximation)
+  Null Hyp (mu1-mu2 = mu_diff_null): 0
+  Alternative Hypothesis: mu1-mu2 != 0
+  Z-Statistic: -10.2955
+  P-value: 0.0000
+  Equal Variances Assumed: N/A
+-------------------------
+(3d-3e) are for interpretation at alpha = 0.05.
+
+
+========= SOLUTIONS FOR INFERENCE MEANS (SMALL SAMPLE) PROBLEMS =========
+
+
+--- Problem 1 (Small Means): City council ideological scores ---
+
+(1a) Sample mean and sample standard deviation:
+  Sample Mean (x_bar): -0.2500
+  Sample Standard Deviation (s): 1.6819
+  Sample Size (n): 20
+
+(1b) 95% CI for the true population mean ideological score (t-distribution):
+
+--- Inference Results ---
+  Sample Mean: -0.2500
+  CI (5%): (-1.0372, 0.5372) for mu
+  Alpha: 0.05
+-------------------------
+(1c) is for interpretation based on the CI from 1b.
+
+
+--- Problem 2 (Small Means): Hypothesis Testing for Voter Turnout ---
+
+(2a) Hypotheses: H0: mu <= 58 (or mu = 58)
+                 Ha: mu > 58 (program increased turnout)
+
+(2b) Sample mean, std, test statistic, and df:
+  Sample Mean (x_bar): 63.5833
+  Sample Standard Deviation (s): 2.7784
+  Test Statistic (t-value): 6.9612
+  Degrees of Freedom (df): 11
+
+(2c) Critical value(s) and conclusion:
+  Critical value for t(11) at alpha=0.05 (one-tailed, upper): 1.7959
+  Full test results (including p-value for conclusion):
+
+--- Inference Results ---
+  Test Type: One-Sample t-test (small sample)
+  t-Statistic: 6.9612
+  Degrees of Freedom: 11.00
+  P-value: 0.0000
+  Confidence Interval (5%): (61.8180, 65.3487) for mu
+  Diagnostics:
+    Normality Note: For t-tests on small samples (n<30), assess normality of data. Ideal skewness ~0 (acceptable approx. -1 to 1), Ideal excess kurtosis ~0 (acceptable approx. -1 to 1).
+    Sample Skewness: -0.0915
+    Sample Kurtosis: -0.8175
+  Notes: Small sample (n<30), t-distribution used.
+-------------------------
+(2d) is for interpretation.
+
+
+--- Problem 3 (Small Means): Two-Sample Small Inference (Tutoring Program) ---
+
+(3a) Hypotheses: H0: mu_T <= mu_C (or mu_T - mu_C <= 0)
+                 Ha: mu_T > mu_C (or mu_T - mu_C > 0) (tutoring leads to higher scores)
+
+(3b) Pooled variance, test statistic (t), and df:
+  Manually Calculated Pooled Variance (s_p^2): 31.5200
+  Test Statistic (t-value): 2.1906
+  Degrees of Freedom (df): 18
+
+(3c) Critical value(s) and conclusion:
+  Critical value for t(18) at alpha=0.05 (one-tailed, upper): 1.7341
+  Full test results (including p-value for conclusion):
+
+--- Inference Results ---
+  Test Type: Two-Sample t-test (pooled variances)
+  t-Statistic: 2.1906
+  P-value: 0.0209
+  CI for Difference (5%): (0.2251, 10.7749) for mu1-mu2
+  Diagnostics:
+    Note: Raw data not provided for samples; cannot compute skew/kurt for normality check. Variance ratio (s1^2/s2^2) = 0.751. Pooled t-test (equal_var=True) assumes similar variances.
+    Sample1 Diagnostics:
+      N: 10
+    Sample2 Diagnostics:
+      N: 10
+  Notes: Small sample(s) involved (n1<30 or n2<30), t-distribution used.
+-------------------------
+(3d) is for interpretation.
+
+
+--- End of Problem Set Solutions ---

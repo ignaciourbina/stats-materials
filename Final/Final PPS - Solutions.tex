@@ -1,0 +1,641 @@
+\documentclass{article}
+\usepackage[letterpaper, total={7in, 9.5in}]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{ifthen}
+\tcbuselibrary{listings,breakable}
+\usepackage{float}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{hyperref} 
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
+\title{SOLUTIONS -- Final Practice Problem Set}
+\author{POL201.01 -- Introduction to Statistical Methods in Political Science}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\emph{\underline{Last Version}: v1.1. Updates:}
+\begin{itemize}
+    \item Corrected solutions for Question 3 in Section 2.4 — ``Inference for One and Two Means (Small Sample)” (update \emph{v1} → \emph{v1.1}). The previous solutions treated the test as two-tailed, but given the wording of the question, the appropriate test is one-tailed (right-sided).
+\end{itemize}
+
+\section{Midterm Topics}
+
+\subsection{Understanding Data and Summary Statistics}
+
+
+\textbf{Questions}:
+
+\begin{enumerate}
+
+  \item \textbf{Variable Classification}  
+  \begin{center}
+  \begin{tabular}{|l|l|}
+  \hline
+  \textbf{Variable} & \textbf{Classification} \\
+  \hline
+  Hours of sleep/night & Numerical, continuous \\
+  Major & Categorical, nominal \\
+  Class standing & Categorical, ordinal \\
+  Number of roommates & Numerical, discrete \\
+  Opinion on new university logo & Categorical, ordinal \\
+  \hline
+  \end{tabular}
+  \end{center}
+
+  \item \textbf{Summary Statistics in Context} \\
+  The mean number of training sessions is $\bar{x} = 3$ and the standard deviation is $s = 1.94$. \\
+  \textit{Interpretation:} On average, employees attended 3 sessions last month, with typical variation of about 2 sessions from that average.
+
+  \item \textbf{Interpreting a Boxplot} \\
+  The distribution is symmetric and fairly uniform. The center is the median at 4 hours. The spread goes from 1 (min) to 7 (max), with an interquartile range from 2 to 6.
+
+  \item \textbf{Choosing the Right Graph}
+  \begin{enumerate}
+    \item Bar plot or segmented bar chart — both variables (gender, political affiliation) are categorical.
+    \item Histogram or density plot — GPA is numerical and continuous.
+    \item Side-by-side boxplots — comparing a numerical variable (study hours) across a binary categorical variable (on/off campus).
+  \end{enumerate}
+
+\item \textbf{Describing a Distribution from a Histogram}
+  \begin{itemize}
+    \item Mean income: $\$267$ (2.67 in \$100s), Median income: $\${200}$ (2 in \$100s)
+    \item \textit{Shape:} Right-skewed — bars decrease as income increases.
+    \item \textit{Center:} Median = 2, Mean = 2.67
+    \item \textit{Spread:} Values range from 1 to 6, with decreasing frequency.\\
+      The sample standard deviation is approximately $s = 1.91$.\\
+      \textit{How to compute:}
+      \begin{enumerate}
+        \item Reconstruct the dataset by repeating each bin value according to its frequency.
+        \item Compute the sample mean $\bar{x} = 2.67$.
+        \item For each value $x_i$, compute $(x_i - \bar{x})^2$.
+        \item Sum these squared deviations and divide by $n - 1 = 20 - 1 = 19$ to get the variance.
+        \item Take the square root to obtain the standard deviation: $s \approx 1.91$.
+      \end{enumerate}
+  \end{itemize}
+
+
+  \item \textbf{Understanding a Bimodal Distribution}
+  \begin{itemize}
+    \item \textit{Shape:} Bimodal, with peaks at 3 and 6 hours.
+    \item \textit{Modes:} 3 hours and 6 hours (each with 4 students).
+    \item \textit{Mean:} 4.25 hours.
+    \item \textit{Interpretation:} The mean does not capture the bimodal structure. Reporting only the mean would hide the presence of two distinct screen-time groups.
+  \end{itemize}
+
+\item \textbf{Interpreting Affective Polarization (ANES 2020)}
+  \begin{enumerate}
+    \item Both groups have a median of 15.0, indicating similar central tendencies in how coldly they rate the opposing party. However, Democrats have a higher mean (19.6) compared to Republicans (17.7), and the gap between mean and median is larger for Democrats. This suggests that warm outliers — respondents who gave unusually favorable ratings to the opposing party — may be slightly more prevalent among Democrats than Republicans. While most respondents in both groups rated the opposing party very coldly, Democrats appear to have a few more individuals expressing relatively warmer sentiments, which pulls their average rating upward.
+
+    \item Mode and Q1 = 0.0 implies many respondents gave the coldest possible rating to the opposing party. Specifically, since Q1 = 0.0, at least 25\% of respondents in each group rated the opposing party at the absolute coldest level (0 out of 100). Additionally, Mode=0 means that the lowest thermometer rating was the most frequent in both groups.
+
+    \item Since mean $>$ median and max = 100, the distributions are right-skewed — indicating that while most ratings are clustered at the low (cold) end, a few large values in the warm direction pull the mean upward.
+
+    \item Q3 = 30.0 implies that at least 25\% of respondents rated the opposing party 30 or higher. This tail segment reflects the upper quartile of relatively warmer ratings, even in an otherwise cold distribution.
+  \end{enumerate}
+
+
+\end{enumerate}
+
+
+% ~~ ~~ ~~ ~~~ ~~~~ ~~~ ~~~~~ ~~~ ~~~ ~~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~~ ~~~~ ~~~ ~~~~
+\subsection{Probability}
+
+\textbf{Questions}:
+\begin{enumerate}
+  \item \textbf{Independence of Events}  
+  
+        \[
+          P(A)=0.50,\;P(B)=0.40,\;P(A\cap B)=0.20
+        \]
+        Under independence we would expect $P(A\cap B)=P(A)\,P(B)$. Plugging the values for $P(A)$ and $P(B)$:
+        \[
+          P(A\cap B)=P(A)\,P(B)=0.5\times0.4=0.20,
+        \]
+        which matches the observed intersection.  
+        \textbf{Answer: (A)} The analyst \emph{is} correct.
+
+  \item \textbf{Two Smokers in a Sample of Two}.  Suppose $A$ is the first person sampled, and $B$ is the second. Since we are conducting random sampling, the outcome we observe for $A$ will be independent of the outcome for $B$ (and vice versa).
+        \[
+          P(\text{a random person smokes}) = 0.20 \quad\Longrightarrow\quad
+          P(\text{both smoke}) = P(\text{A smokes } \cap \text{ B smokes } ) = 0.20\cdot 0.20 = 0.04
+        \]
+        We applied the multiplication rule for independent events. \\
+        \textbf{Answer: (C)} \(0.04\).
+
+  \item \textbf{Exactly Two Heads in Three Fair Flips}. We can use the binomial distribution. Let $p=0.5$ be the probability of getting one $Head$ in one independent throw (head = success). Then, let $X$ be the total heads in $n=3$ flips. Thus,
+  $$ X \sim Binomial(p=0.5, n=3)$$
+  $$P(X=k)=\binom{n}{k}p^k (1-p)^{n-k}=\binom{3}{k}p^k (1-p)^{3-k}$$
+
+        \[
+          P(\text{exactly }2H)=\binom{3}{2}0.5^2 \cdot 0.5^1 =\binom{3}{2}\bigl(\tfrac12\bigr)^3
+          =  \frac{3!}{(3-2)! 2!} \cdot \frac{1}{8}
+          = \frac{3\cdot 2 \cdot 1}{1 \cdot (2 \cdot 1)} \cdot \frac{1}{8}
+          =\frac{3}{8}=0.375
+        \]
+        \textbf{Answer: (B)} \(0.375\).
+
+\item \textbf{AI‐Written Essay Given a Positive Flag}  
+Let
+\[
+A = \{\text{essay is AI‐written}\},\quad
+H = \{\text{essay is human‐written}\},\quad
++ = \{\text{tool flags ``AI‐generated''}\}.
+\]
+We are given:
+\[
+P(A)=0.35,\quad P(H)=0.65,
+\]
+\[
+P(+\mid A)=0.92,\quad P(+\mid H)=0.08.
+\]
+By Bayes’ theorem,
+\[
+P(A\mid+)
+=\frac{P(+\mid A)\,P(A)}{P(+)}
+=\frac{P(+\mid A)\,P(A)}{P(+\mid A)\,P(A)+P(+\mid H)\,P(H)}.
+\]
+Substitute:
+\[
+P(A\mid+)
+=\frac{0.92\cdot0.35}{0.92\cdot0.35 \;+\; 0.08\cdot0.65}
+=\frac{0.3220}{0.3220+0.0520}
+=\frac{0.3220}{0.3740}
+\approx0.86096.
+\]
+\textbf{Answer: (C)} \(0.86\) (rounded to two decimals).
+
+\end{enumerate}
+
+
+
+% ------------------------------------------------------------------
+%  RANDOM VARIABLES — PRACTICE PROBLEMS  (NO CALCULUS REQUIRED)
+% ------------------------------------------------------------------
+\subsection{Random Variables}
+
+\textbf{Questions:}
+
+\begin{enumerate}
+%---------------------------------------------------------------
+\item \textbf{Standard Normal / Z–scores}  
+      \begin{enumerate}
+        \item[(a)] \(Z=\dfrac{85-78}{6}=1.17\).
+        \item[(b)] \(P(X\ge 85)=1-CDF_X(1.17)=1-\Phi(1.17)=1-0.8789\approx 0.121\).
+      \end{enumerate}
+
+%---------------------------------------------------------------
+\item \textbf{Normal Approximation for \(\bar X\) (\(n=64\))}  
+      \begin{enumerate}
+        \item[(a)] We are given $X\sim N(\mu, \sigma^2)$. Thus, we know $E[\bar X ] = \mu$, and $SE(\bar X )= \sigma / \sqrt{n}$. \newline Therefore, \(\bar X\sim\mathcal N\!\bigl(78,\;(\sigma/\sqrt n)^2\bigr)=\mathcal N(78,(6/\sqrt{64})^2)=\mathcal N(78,0.75^2)\). Hence,
+        $$\bar X \sim \mathcal N(78,0.75^2) $$
+        \item[(b)] Let $Z \sim N(0,1)$, and let $CDF_Z(z)$ be the cumulative probability distribution for $Z$. \(P(\bar X\ge 80)
+                    = 1 - CDF_Z\left(\dfrac{80-78}{0.75}\right)
+                    = 1-\Phi\!\left(\dfrac{80-78}{0.75}\right)
+                    = 1-\Phi(2.67)\approx 0.0038\).
+        \item[(c)] Let $Z \sim N(0,1)$, and let $CDF_Z(z)$ be the cumulative probability distribution for $Z$. \(P(\bar X\le 76)=CDF_Z\left(\dfrac{76-78}{0.75}\right)=\Phi(-2.67)\approx 0.0038\).
+      \end{enumerate}
+
+%---------------------------------------------------------------
+\item \textbf{Bernoulli r.v.\ (\(p=0.12\))}  
+      \begin{enumerate}
+        \item[(a)] PMF:\; \(P(C=1)=0.12,\;P(C=0)=0.88\).
+        \item[(b)] \(\mathbb E[C]=p=0.12,\qquad\operatorname{Var}(C)=p(1-p)=0.1056\).
+      \end{enumerate}
+
+%---------------------------------------------------------------
+\item \textbf{Binomial\; \(Y\sim\mathrm{Bin}(15,\,0.12)\)}  
+  \begin{enumerate}
+    \item[(a)] To find the probability of exactly 3 clicks:
+          \[
+          P(Y=3)=\binom{15}{3}(0.12)^3(0.88)^{12}
+          = 455 \cdot 0.001728 \cdot 0.2750 \approx 0.1696.
+          \]
+    \item[(b)] For at most 1 click:
+          \begin{align*}
+          P(Y=0) &= \binom{15}{0}(0.12)^0(0.88)^{15} = 1 \cdot 1 \cdot 0.1470 = 0.1470,\\
+          P(Y=1) &= \binom{15}{1}(0.12)^1(0.88)^{14} = 15 \cdot 0.12 \cdot 0.1670 \approx 0.3006,\\
+          P(Y\le 1) &= P(0) + P(1) = 0.1470 + 0.3006 = 0.4476.
+          \end{align*}
+    \item[(c)] For more than 1 click (here we use the complement probability rule):
+          \[
+          P(Y > 1) = 1 - P(Y \le 1) = 1 - 0.4476 = 0.5524.
+          \]
+  \end{enumerate}
+
+
+
+%---------------------------------------------------------------
+\item \textbf{Game Payout \(W\)}  
+      \begin{enumerate}
+        \item[(a)] \(\mathbb E[W]= \sum_{i}  w_i \cdot \Pr(W=w_i) = 5(0.60)+10(0.30)+25(0.10)=\$8.50\).
+        \item[(b)] On average, a large number of plays would net about \$8.50 per game.
+        \item[(c)] \(\operatorname{Var}(W)=E[W^2]-E[W]^2=107.5-8.5^2=35.25\).
+      \end{enumerate}
+
+%---------------------------------------------------------------
+\item \textbf{CDF of \(Z\)}  
+  \begin{center}
+  \begin{tabular}{c|c|c}
+    $z$ & $p_Z(z)$ & $CDF_Z(z) = \Pr(Z \le z)$ \\
+    \hline
+    $0$ & $0.1$ & $0.1$ \\
+    $1$ & $0.4$ & $0.5$ \\
+    $2$ & $0.3$ & $0.8$ \\
+    $3$ & $0.2$ & $1.0$
+  \end{tabular}
+  \end{center}
+
+  \begin{enumerate}
+    \item[(a)] The table above shows the cumulative distribution function $CDF_Z(z)$, computed as the running total of the probabilities up to each value of $z$.
+
+    \item[(b)] To compute \( \Pr(1 < Z \le 3) \), we sum the probabilities for $Z = 2$ and $Z = 3$:
+    \[
+    \Pr(1 < Z \le 3) = p_Z(2) + p_Z(3) = 0.3 + 0.2 = 0.5.
+    \]
+    Alternatively, using the CDF:
+    \[
+    \Pr(1 < Z \le 3) = CDF_Z(3) - CDF_Z(1) = 1.0 - 0.5 = 0.5.
+    \]
+  \end{enumerate}
+
+
+%---------------------------------------------------------------
+\item \textbf{Difference \(D=X_j-X_i\)}  
+      \[
+        \mathbb E[D]= \mathbb E[X_j] - \mathbb E[X_i]= \mu-\mu=0,\qquad
+        \operatorname{Var}(D)=V[X_j] + V[X_i]=\sigma^2+\sigma^2=2\sigma^2.
+      \]
+
+%---------------------------------------------------------------
+\item \textbf{Midpoint \(M=\tfrac12(X_i+X_j)\)}  
+      \[
+        \operatorname{Var}(M)
+        = \left(\frac{1}{2}\right)^2\operatorname{Var}(X_i+X_j) 
+        = \bigl(\tfrac12\bigr)^2(V[X_i]+V[X_j])
+        =
+        \bigl(\tfrac12\bigr)^2\bigl(\sigma^2+\sigma^2\bigr)=\sigma^2/2.
+      \]
+
+%---------------------------------------------------------------
+\item \textbf{Sample Proportion \(\hat p\) (\(n=200,\;p=0.48\))}  
+      \begin{enumerate}
+        \item[(a)] \(\mu_{\hat p}=0.48,\quad
+                     \mathrm{SE}_{\hat p}=\sqrt{\dfrac{0.48(0.52)}{200}}\approx 0.0353.\)
+        \item[(b)] \(Z=\dfrac{0.55-0.48}{0.0353}\approx 1.98\;\Rightarrow\;
+                    P(\hat p\ge 0.55)=1-CDF_Z(1.98)=1-\Phi(1.98)\approx 0.024.\)
+      \end{enumerate}
+\end{enumerate}
+
+
+\section{Post-Midterm Topics}
+
+% ------------------------------------------------------------------
+%  ESTIMATORS AND SAMPLING DISTRIBUTIONS
+% ------------------------------------------------------------------
+\subsection{Estimators and Sampling Distributions}
+
+
+\textbf{Questions}:
+
+\begin{enumerate}
+  \item \textbf{Which statement captures the primary goal of using an \emph{estimator} in statistics?} \\
+  \textbf{Answer: (D)} To use sample data to approximate a population quantity and acknowledge possible sampling variation.\\
+  \textit{Explanation:} Estimators summarize information from a sample to make informed guesses about population values. Since sampling involves randomness, we must account for variability across samples.
+
+  \item \textbf{Evaluating a Claim About Estimates} \\
+  \emph{“Since any estimate is one possible result from a single sample, we shouldn’t trust it as there is no way to know how representative it is.”} \\
+  \textbf{Answer: (C)} The statement is \textbf{False}, because although estimates come from samples, we can quantify their uncertainty using sampling distributions.\\
+  \textit{Explanation:} While a single estimate may vary, statistical tools (like standard errors and confidence intervals) help us assess how much variation to expect.
+
+  \item \textbf{Key Consideration for a Sample Proportion Estimate} \\
+  \textbf{Answer: (B)} How well it accounts for the fact that the sample proportion can vary due to random sampling.\\
+  \textit{Explanation:} Point estimates differ from sample to sample. Accounting for this variability is what allows us to generalize responsibly to the population.
+
+  \item \textbf{Role of Random Variables in Estimation} \\
+  \textbf{Answer: (A)} We treat each $x_i$ as a random draw from a distribution, helping us formalize the behavior of an estimator using $x_i$.\\
+  \textit{Explanation:} Random variables allow us to model the data generation process and use probability theory to study estimators built from those data points.
+
+  \item \textbf{Interpretation of Expected Value} \\
+  \textbf{Answer: (B)} It is a theoretical value describing the long-run average, which we often attempt to estimate using sample means.\\
+  \textit{Explanation:} The expected value tells us where outcomes ``center" on average in the long run—it’s the population mean we're typically aiming to estimate.
+
+  \item \textbf{Why Distributions of Estimators Matter} \\
+  \textbf{Answer: (D)} Because it helps us understand how an estimator (like a sample mean or proportion) might vary across repeated samples.\\
+  \textit{Explanation:} The sampling distribution reflects the uncertainty in estimation and allows us to calculate margins of error or p-values.
+
+  \item \textbf{Purpose of Modeling Assumptions} \\
+  \textbf{Answer: (C)} They allow us to use theoretical tools (like probability distributions) to quantify sampling uncertainty, even when we only have one observed sample.\\
+  \textit{Explanation:} Assumptions like independence or normality justify applying statistical models, so we can make inferences even without repeated sampling.
+\end{enumerate}
+
+
+
+% ------------------------------------------------------------------
+%  INFERENCE PROPORTIONS
+% ------------------------------------------------------------------
+\subsection{Inference for One and Two Proportions}
+
+\textbf{Questions}:
+\begin{enumerate}  % ---------------------------
+% -------------------------------------------------------------
+\item \emph{Framing the responsibility}
+\begin{enumerate}[label=(\alph*)]
+    \item 
+    $\hat{p}_1 = 0.43,\ n = 4610$ \\
+    $SE = \sqrt{\frac{0.43(1 - 0.43)}{4610}} \approx 0.0073$ \\
+    CI: $0.43 \pm 1.96 \cdot 0.0073 = (0.4157,\ 0.4443)$
+
+    \item 
+    $\hat{p}_2 = 0.67$ \\
+    $SE = \sqrt{\frac{0.67(1 - 0.67)}{4610}} \approx 0.0069$ \\
+    CI: $0.67 \pm 1.96 \cdot 0.0069 = (0.6565,\ 0.6835)$
+
+    \item 
+    Claim: Majority $\Rightarrow$ $> 0.50$ \\
+    \textbf{Very responsible}: CI entirely below 0.50 $\Rightarrow$ \textbf{Not supported} \\
+    \textbf{At least somewhat responsible}: CI entirely above 0.50 $\Rightarrow$ \textbf{Supported}
+\end{enumerate}
+
+%-------------------------------------------------------------
+\item \emph{A super majority support?}
+\begin{enumerate}[label=(\alph*)]
+  \item $\displaystyle \hat p = \frac{2904}{4334}=0.6701,\quad SE=\sqrt{\frac{\hat p(1-\hat p)}{n}}=\sqrt{\frac{0.6701\cdot0.3299}{4334}}\approx0.00714$\\
+        $95\%\,CI:\;0.6701\pm1.96(0.00714)=(0.6561,\;0.6841)$
+  \item The 60\% threshold lies below the interval’s lower bound (0.6561), so the true support is credibly above 60\%.
+  \item Test “well over two‐thirds” ($p_0=2/3$):  
+        $H_0:p=2/3,\;H_A:p>2/3$\\
+        $SE_0=\sqrt{\frac{(2/3)(1/3)}{4334}}\approx0.00716,\quad 
+         z=\frac{0.6701-0.6667}{0.00716}\approx0.47$\\
+        $p\text{-value}=1-\Phi(0.47)\approx0.32>0.05\;\Rightarrow$ fail to reject $H_0$.
+\end{enumerate}
+
+%-------------------------------------------------------------
+\item \emph{Is there a gender gap in belief about AI emotions?}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    $H_0: p_{\rm men}=p_{\rm women}\quad(H_0:p_{\rm men}-p_{\rm women}=0)$\\
+    $H_A: p_{\rm men}\neq p_{\rm women}$
+  \item 
+    $n_1=n_2=2434/2=1217,\;\hat p_1=0.26 \text{ (men)},\;\hat p_2=0.16\text{ (woman)}$\\
+    pooled $\displaystyle \hat p=\frac{x_1+x_2}{n_1+n_2}=\frac{\hat p_1n_1+\hat p_2n_2}{n_1+n_2}=0.21$\\
+    $SE=\sqrt{\hat p(1-\hat p)\Bigl(\frac1{n_1}+\frac1{n_2}\Bigr)}\approx0.0165$\\
+    $z=\frac{0.26-0.16}{0.0165}\approx6.06,\quad p\text{-value}\approx1.4\times10^{-9}<0.05\,$
+  \item 
+    Reject $H_0$.  There is strong evidence of a gender gap in beliefs.  Men are about 10 pp more likely than women to believe computers will feel emotions.
+\end{enumerate}
+
+%-------------------------------------------------------------
+\item \emph{Remote vs.\ on‑campus learning outcomes.}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    $n_1=180,\ x_1=139,\ \hat p_1=139/180=0.7722$ (online)\\
+    $n_2=150,\ x_2=123,\ \hat p_2=123/150=0.8200$ (on‑campus)\\
+    pooled $\displaystyle \hat p=\frac{139+123}{180+150}=0.7939$\\
+    $\displaystyle SE=\sqrt{\hat p(1-\hat p)\Bigl(\frac1{n_1}+\frac1{n_2}\Bigr)}
+      =\sqrt{0.7939\cdot0.2061\,(1/180+1/150)}\approx0.0446$\\
+    $\displaystyle z=\frac{\hat p_2-\hat p_1}{SE}=\frac{0.8200-0.7722}{0.0446}\approx1.07$
+  \item 
+    $H_0:p_2=p_1,\ H_A:p_2>p_1$; at $\alpha=0.10,\ z_{crit}=1.28$.  Since $z=1.07<1.28$, fail to reject $H_0$.\\
+    No statistically significant evidence (at 10\% level) that on‑campus pass rate is higher.
+\end{enumerate}
+
+%-------------------------------------------------------------
+\item \emph{Vaccine acceptance across age groups.}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    $n_1=700,\ x_1=427,\ \hat p_1=427/700=0.6100$ (age 18–34)\\
+    $n_2=860,\ x_2=536,\ \hat p_2=536/860=0.6233$ (age 55+)\\
+    $d=\hat p_1-\hat p_2=-0.0133$\\
+    $SE=\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+       =\sqrt{\frac{0.61\cdot0.39}{700}+\frac{0.6233\cdot0.3767}{860}}\approx0.0248$\\
+    $z^*=2.576$ for 99\% CI, margin of error ($MoE$) $z^* \times SE=2.576\cdot0.0248\approx0.0638$\\
+    $\displaystyle CI:d\pm MoE=(-0.0133\pm0.0638)=(-0.0771,\;0.0505)$
+  \item 
+    The 99\% CI for (younger – older) is approximately \(-7.7\%\) to \(+5.1\%\).  
+    It includes 0, so there is no clear difference: younger adults may be up to 7.7 pp less willing or up to 5.1 pp more willing than older adults.  
+\end{enumerate}
+
+%-------------------------------------------------------------
+\item \emph{Margin of Error and Design Effects in Public Opinion Polls}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    $SE_{\rm SRS}=\sqrt{\frac{0.5\,(1-0.5)}{1500}}\approx0.01291$
+  \item 
+    $MoE_{\rm SRS}=z^*\cdot SE_{\rm SRS}=z^*\cdot 0.01291$
+  \item 
+    $MoE_{\rm real}=z^*\,SE_{\rm real},$ \quad $SE_{\rm real}=\sqrt{\mathrm{DEFF}}\times SE_{\rm SRS}$, \quad  $MoE_{\rm SRS}=z^*\,SE_{\rm SRS}$ \\
+    $\frac{MoE_{\rm real}}{MoE_{\rm SRS}}
+      =\frac{z^*\times SE_{\rm real}}{z^*\times SE_{\rm SRS}}
+      =\frac{z^*\,\times \sqrt{DEFF} \times SE_{\rm SRS}}{z^*\,SE_{\rm SRS}}
+      =\sqrt{\mathrm{DEFF}}
+    \;\Rightarrow\;
+\frac{MoE_{\rm real}}{MoE_{\rm SRS}} = \sqrt{DEFF}
+    \;\Rightarrow\;
+    \mathrm{DEFF}=\Bigl(\frac{MoE_{\rm real}}{{MoE_{\rm SRS}} }\Bigr)^2$
+  \item 
+    $z^*=1.96$ gives 
+    $MoE_{\rm SRS}=1.96\times0.01291\approx0.02530$.\\
+    With $MoE_{\rm real}=0.031$,
+    \[
+      \mathrm{DEFF}=\Bigl(\frac{0.031}{1.96\times0.01291}\Bigr)^2\approx1.50
+    \]
+  \item 
+    $\mathrm{DEFF}\approx1.50$ means the actual SE is $\sqrt{1.50}\approx1.225$ times larger than under SRS.  
+    Real‐world design features (clustering, weighting) inflate uncertainty by about 22.5\% over simple random sampling.
+\end{enumerate}
+
+%-------------------------------------------------------------
+\item \emph{Margin of What, Exactly? — Part II}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    With $DEFF\approx 1.50$, $SE_{\rm real}=\sqrt{1.50}\times\sqrt{\tfrac{0.52\cdot0.48}{1500}}\approx0.01580$.\\
+    $MoE=1.96\times0.01580\approx0.0310$.\\
+    $95\%$‑CI: $0.52\pm0.0310=(0.4890,\;0.5510)$.
+  \item 
+    No—the published $MoE$ applies to the overall sample, given the overall $DEF$ and the $SE$ for the full sample size. Subgroup CIs require their own $SE$ and $DEFF$.
+  \item 
+    Smaller‐\(n\) subgroups yield larger SE (and thus larger MoE) since $SE \text{ is proportional to }1/\sqrt{n}$ (i.e., inversely proportion to $\sqrt{n}$ -- as $n$ grows, $SE$ becomes smaller) and design effects may differ by subgroup.
+  \item 
+    A $\pm 5\%$ MoE could result from fewer respondents or a higher DEFF (e.g.\ stronger clustering or heavier weights). Wider MoE makes narrow differences (e.g.\ 48\% vs 52\%) statistically indistinguishable.
+  \item 
+    MoE omits non‑sampling errors: questionnaire wording, nonresponse bias, sampling coverage gaps (e.g., self-selection), weighting procedures, etc., which also affect accuracy.
+\end{enumerate}
+
+% ------------------------------------------------------------------
+\item \emph{Partisan optimism about AI?}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    Democrats: $p_1=0.12+0.26=0.38$ \quad (of $n_1=351$)\\
+    Republicans: $p_2=0.07+0.39=0.46$ \quad (of $n_2=293$)
+  \item 
+    $H_0:p_1=p_2,\ H_A:p_1\neq p_2$\\
+    counts: $x_1=\mathrm{round}(0.38\times 351)=133,\ x_2=\mathrm{round}(0.46\times 293)=135$\\
+    pooled $\displaystyle \hat p=\frac{x_1+x_2}{n_1+n_2}=\frac{133+135}{351+293}=0.4161$\\
+    $SE=\sqrt{\hat p(1-\hat p)\Bigl(\frac1{351}+\frac1{293}\Bigr)}\approx0.03901$\\
+    $z=\frac{0.38-0.46}{0.03901}\approx -2.051,\ p\approx0.0403<0.05$
+  \item 
+    Reject $H_0$.  There is statistically significant evidence of a partisan difference in optimism about AI.
+  \item 
+    Yes—the data support “Republicans are more optimistic” (46\% vs.\ 38\%, $p<0.05$).  Statistical significance means the 8pp gap is unlikely under no­-difference; rhetorical significance concerns whether an 8pp gap is substantively important.
+\end{enumerate}
+
+\end{enumerate} % ---------------------------
+
+
+
+% ------------------------------------------------------------------
+%  INFERENCE MEANS - LARGE SAMPLES
+% ------------------------------------------------------------------
+
+\subsection{Inference for One and Two Means (Large Sample)}
+
+
+\textbf{Questions}:
+\begin{enumerate} % ~ ~ ~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~
+
+\item \textbf{An urban planning problem (Z‐approximation)}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    $SE=\dfrac{1.25}{\sqrt{1000}}\approx0.03953,\quad z_{.995}=2.576$\\
+    $MoE=2.576\times0.03953\approx0.1018$\\
+    $99\%\,CI:\;3.00\pm0.1018=(2.8982,\;3.1018)$
+  \item 
+    $H_0:\mu\le2.8\ vs.\ H_a:\mu>2.8$\\
+    $z=\frac{\bar{x}-\mu_0}{SE}=\frac{3.00-2.8}{0.03953}\approx5.06,\ p\!<0.0001\;\Rightarrow$ reject $H_0$ ($z=5.06 > z_{.995}=2.576$)
+  \item 
+    Total pop CI: $1200\times(2.8982,\;3.1018)=(3478,\;3722)$ persons
+  \item 
+    Sampling uncertainty means average household size could be as low as 2.90 or as high as 3.10, so plan school capacity for roughly 3,478–3,722 residents rather than a single point estimate.
+\end{enumerate}
+
+% --------------------------------------------------------------------------------
+\item \emph{Reducing Emergency Room Wait Times: Policy Evaluation via Hypothesis Testing}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    Let $d_i = x_{i,\rm new}-x_{i,\rm old}$.  Negative $d_i$ means a reduction.  
+    \[
+      H_0:\mu_d \ge -15
+      \quad\text{vs.}\quad
+      H_A:\mu_d < -15
+    \]
+    $H_0$ says the new protocol reduces wait by at most 15 min (insufficient), $H_A$ says it reduces by more than 15 min (policy goal).
+  \item 
+    $SE = \frac{s_d}{\sqrt{n}}=\frac{47.5}{\sqrt{1000}}\approx1.5021$ min,\\
+    $z=\frac{\bar d-(-15)}{SE}=\frac{-18.2+15}{1.5021}\approx-2.13$.
+  \item 
+    One‐sided $p$‑value $=P(Z<-2.13)\approx0.0166$ (CLT $\Rightarrow$ $\bar d\sim N(\mu_d,SE^2)$).
+  \item 
+    $p\,\text{-value}=0.0166<0.05\;\Rightarrow$ reject $H_0$.  There is significant evidence the protocol reduces wait by more than 15 min.
+  \item 
+    Plainly: “The data show the new triage cuts average ER waits by over 15 minutes ($p\,\text{-value}\approx0.017$), so implementing it permanently is justified.” 
+\end{enumerate}
+
+% --------------------------------------------------------------------------------
+\item \emph{Partisan Affect: Feeling Thermometer Scores}
+\begin{enumerate}[label=(\alph*)]
+  \item 
+    $H_0:\mu_{\rm Dem}=\mu_{\rm Rep}\quad vs.\quad H_A:\mu_{\rm Dem}\neq\mu_{\rm Rep}$ (two‐sided)
+  \item 
+    $SE=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}=\sqrt{\frac{21.5^2}{520}+\frac{22.1^2}{495}}\approx1.3695$
+  \item 
+    $z=\frac{\bar x_{Dem} - \bar x_{Rep}  - 0}{SE}=\frac{48.3-62.4}{1.3695}\approx-10.30,\quad p\text{-value}<0.0001$  
+  \item 
+    $p<0.05\, \Rightarrow$ reject $H_0$.  Significant difference (Rejection region criteria: $|-10.30|=10.30>1.96$).
+  \item 
+    Republicans rate the Court about 14.1 points warmer than Democrats—a highly significant partisan gap.
+\end{enumerate}
+
+\end{enumerate} % ~ ~ ~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~
+
+
+% ------------------------------------------------------------------
+%  INFERENCE MEANS - SMALL SAMPLE
+% ------------------------------------------------------------------
+
+\subsection{Inference for One and Two Means (Small Sample)}
+
+\textbf{Questions}:
+\begin{enumerate}
+
+  \item \textbf{Question 1 (Small Sample Inference for Means)}
+  \begin{enumerate}[label=(\alph*)]
+    \item Sample mean: $\bar{x} = -0.25$ \\
+          Sample standard deviation: $s = 1.682$
+
+    \item 95\% Confidence Interval:
+    \[
+    \text{df} = 19,\quad t^* \approx 2.093,\quad SE = \frac{1.682}{\sqrt{20}} \approx 0.376
+    \]
+    \[
+    CI = -0.25 \pm 2.093 \cdot 0.376 = (-1.037,\; 0.537)
+    \]
+    \textit{Interpretation:} We are 95\% confident that the true mean ideological score of city council members in small municipalities lies between $-1.037$ and $0.537$. This interval provides a plausible range for the population mean based on our random sample of 20 members.
+
+    \item Since the confidence interval includes $0$, we cannot statistically rule out a centrist average. There is insufficient evidence to conclude that the mean ideology of council members is either liberal (negative mean) or conservative (positive mean). The data are consistent with a centrist, leftist, or rightist ideological leaning.
+  \end{enumerate}
+
+  \item \textbf{Question 2 (Hypothesis Testing for Small Samples)}
+  \begin{enumerate}[label=(\alph*)]
+    \item Hypotheses:
+    \[
+    H_0: \mu = 58 \quad\text{vs.}\quad H_A: \mu > 58
+    \]
+    The null represents the historical average turnout; the alternative tests whether the new outreach program has increased it.
+
+    \item Sample mean: $\bar{x} = 63.58$, Sample standard deviation: $s = 2.778$ \\
+    \[
+    SE = \frac{2.778}{\sqrt{12}} \approx 0.802,\quad
+    t = \frac{63.58 - 58}{0.802} \approx 6.96,\quad
+    \text{df} = 11
+    \]
+
+    \item Critical value: $t^* = t_{0.95,\,df=11} \approx 1.796$ (one-tailed, $\alpha = 0.05$) \\
+    Since $t = 6.96 > 1.796$, we reject $H_0$. \\
+    $p$-value $\approx 1.19 \times 10^{-5}$ — extremely small.
+
+    \item \textit{Interpretation:} The evidence strongly supports the hypothesis that the outreach program increased voter turnout. The increase from the historical average of 58\% to the sample mean of 63.6\% is both statistically and practically significant.
+  \end{enumerate}
+
+  \item \textbf{Question 3 (Two-Sample Small Inference)}
+  \begin{enumerate}[label=(\alph*)]
+    \item Hypotheses:
+    \[
+    H_0: \mu_T = \mu_C \quad\text{vs.}\quad H_A: \mu_T > \mu_C
+    \]
+    This tests whether the tutoring program led to higher average math scores in the treatment group.
+
+    \item Pooled variance:
+    \[
+    s_p^2 = s_{pool}^2 = \frac{(10-1)(5.2)^2 + (10-1)(6.0)^2}{18} = 31.52
+    \]
+    \[
+    SE = \sqrt{31.52\left(\frac{1}{10} + \frac{1}{10}\right)} = \sqrt{31.52 \cdot 0.2} \approx 2.51,\qquad
+    t_{\text{test stat.}} = \frac{84.5 - 79.0}{2.51} \approx 2.19,\quad \text{df} = 20-2=18
+    \]
+
+    \item Critical value: $t^* = t_{0.95,\,df=18} \approx 1.73$ (\textbf{right-tailed}, $\alpha = 0.05$) -- We find it using the $t$ table. \\
+    Since $t_{\text{test stat.}} = 2.19 > 1.73=t^*$, we reject $H_0$ (our test statistic falls into the rejection region). \\
+    $p$-value $\approx 0.021 = \Pr(t > |t_{\text{test stat.}}|)$.
+
+    \item \textit{Interpretation:} The tutoring program appears to significantly improve students' math scores. The difference in group means (84.5 vs.\ 79.0) is supported by statistical evidence at the 5\% level, suggesting the program had a positive impact.
+  \end{enumerate}
+% ------------------------------------------------------------------
+
+\end{enumerate}
+% ------------------------------------------------------------------
+% ------------------------------------------------------------------
+
+\end{document}
+
+

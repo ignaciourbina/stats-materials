@@ -1,0 +1,279 @@
+\documentclass{article}
+\usepackage[letterpaper, top=0.25in, left=0.4in, right=0.4in, bottom=0.2in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{ifthen}
+\tcbuselibrary{listings,breakable}
+\usepackage{float} % Allows precise placement of floating objects
+\usepackage{tikz} % Core TikZ package
+\usepackage{pgfplots} % For statistical plots
+\pgfplotsset{compat=1.18} % Ensure compatibility
+
+\usepackage{comment}
+
+\usetikzlibrary{positioning, shapes, calc, backgrounds, decorations.pathreplacing, arrows.meta, plotmarks}
+
+% Package for changing counter properties, specifically for resetting enumerate counter per section
+\usepackage{chngcntr}
+% This command makes the 'enumi' counter (used by the first level of enumerate)
+% reset with every new 'section' and formats its output (\theenumi)
+% as <section_number>.<enumi_value>. For example, 1.1, 1.2, then 2.1, 2.2, etc.
+\counterwithin{enumi}{section}
+
+
+% Define a new command for a centered floating blank text box
+\newcommand{\blankbox}[2][3cm]{%
+    \vspace{-0.5em}
+    \begin{figure}[H]
+        \makebox[\linewidth]{% Ensures the box extends to full line width
+            \begin{tcolorbox}[
+                colback=white, 
+                colframe=white,  % adjust the border frame color
+                width=#2, % Adjusting for A4 paper margins
+                height=#1,
+                boxrule=0.2mm
+            ]
+            \end{tcolorbox}
+        }
+    \end{figure}
+    \vspace{-2em}
+}
+
+% Define a new boolean for showing or hiding answers
+\newboolean{showanswers}
+\setboolean{showanswers}{false}  % Set to true to show answers, false to hide answers
+
+% Define the command to conditionally display answers
+\newcommand{\answer}[1]{
+    \ifthenelse{\boolean{showanswers}}{
+        \begingroup
+        \color{MidnightBlue}
+        \begin{tcolorbox}[colback=white, colframe=MidnightBlue, title=Solution, fonttitle=\bfseries, breakable, fontupper=\color{MidnightBlue}]
+        #1
+        \end{tcolorbox}
+        \endgroup
+    }{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\setlength{\parindent}{0pt} % remove indentation in the whole document
+\pagenumbering{gobble} % Suppress page numbers
+ \hspace{1em} \vspace{-1.7em} % This line might cause a small horizontal space at the very top.
+\begin{center}
+   \Large    POL201.01 - Final, Spring 2025.
+\end{center}
+
+\vspace{1em}
+\noindent\textbf{First and Last Name:} \underline{\hspace{8cm}}  \quad  \textbf{Student ID:} \underline{\hspace{4.4cm}} 
+
+\vspace{0.7em}
+\noindent\textbf{Instructions:} 
+
+\vspace{-0.8em}
+\begin{itemize}
+    \setlength{\itemsep}{-0.35em}
+    \item Turn off and put away your phone and any electronic devices.
+    \item You have from \textbf{11:15 AM to 1:45 PM} to complete the exam.
+    \item Show all your work. Partial credit may be awarded.
+    \item Read each question carefully and manage your time wisely.
+    \item Write your answers in the \emph{space provided below each question statement}. Only answers written in the designated areas will be graded.
+    \item Make sure to sign-in the \textbf{attendance sheet}.
+    \item Round your calculations up to two decimals.
+    \item If you have any questions, raise your hand and ask the instructor.
+\end{itemize}
+\vspace{-1.1em}
+\noindent\rule{\linewidth}{0.4pt} % Horizontal line to separate this section from the exam content
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability (6 points total)} 
+\noindent\textbf{Instructions:} \\
+Select the single best answer (A, B, C, or D) for each of the following multiple-choice questions. Circle your response clearly. You may use scratch space to perform any calculations.
+\begin{enumerate}
+
+
+\item \textbf{(3 points)} Suppose you randomly draw one marble from each of two separate bags. Bag A contains exactly two red marbles and two blue marbles. Bag B contains exactly one red marble and three blue marbles. What is the probability that the marble you draw from Bag A is red \emph{and} the marble you draw from Bag B is blue?
+\begin{enumerate}
+  \item[(A)] 0.125            % multiplies P(Red\_A)=0.5 by **wrong** P(Red\_B)=0.25  
+  \item[(B)] 0.375            % correct: (0.5)(0.75)  
+  \item[(C)] 0.25             % assumes Bag B also has 2 red/2 blue, so (0.5)(0.5)  
+  \item[(D)] 0.50             % computes “different colors” instead of the ordered pair
+\end{enumerate} \blankbox[3.5cm]{1.0\linewidth}
+
+\item \textbf{(3 points)}  Suppose a city’s job‐training program was evaluated by surveying 1,000 residents.  
+Among the 400 surveyed residents who completed the program, 320 later found employment.  
+Among the 600 surveyed residents who did not complete the program, 360 found employment.  
+
+Given that a resident completed the program, what is the probability they found employment?
+
+\begin{enumerate}
+  \item[(A)] 0.20  
+  \item[(B)] 0.60  
+  \item[(C)] 0.68  
+  \item[(D)] 0.80  
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Descriptive Statistics (9 points total)} 
+\noindent\textbf{Instructions:} \\
+In a consumer survey, customers were asked to rate their satisfaction with their internet service providers on a scale from 0 (completely dissatisfied) to 100 (completely satisfied). The two companies studied were \textbf{AlphaNet} and \textbf{BetaCom}. A random sample of 2,000 customers from each provider was collected. The table below summarizes the \emph{satisfaction scores} provided by customers of each company:
+
+\begin{center}
+\begin{tabular}{|p{3.5cm}|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Group} & \textbf{Count} & \textbf{Mean} & \textbf{Median} & \textbf{Mode} & \textbf{Std. Dev.} & \textbf{Min} & \textbf{Q1} & \textbf{Q3} & \textbf{Max} \\
+\hline
+AlphaNet Customers & 2,000 & 77.0 & 85.0 & 100.0 & 18.6 & 22.8 & 65.1 & 89.6 & 100.0 \\
+BetaCom Customers & 2,000 & 65.5 & 65.5 & 100.0 & 14.7 & 19.0 & 55.6 & 75.2 & 100.0 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{(3 points)} Based on the provided data, which company, AlphaNet or BetaCom, appears to offer better overall customer satisfaction? Justify your choice by referencing specific statistics from the table. \blankbox[5cm]{1.0\linewidth}
+
+\item \textbf{(3 points)}  An employee at BetaCom claims, ``\emph{I think both providers have generally positive evaluations because we share the same mode at the maximum satisfaction level.}" Carefully explain why this statement is misleading, using specific information from the table and your understanding of descriptive statistics. \blankbox[6cm]{1.0\linewidth}
+
+\item \textbf{(3 points)}  Based on the data, if you were to advise AlphaNet on one area of customer satisfaction to investigate further, what would you choose and why? Consider not just the overall level of satisfaction, but also how scores are distributed, including any patterns or imbalances that might suggest deeper issues. Use specific evidence from the table to support your answer. \blankbox[6cm]{1.0\linewidth}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+% NEW SECTION
+\section{Random Variables (5 points total)}
+\noindent\textbf{Instructions:} Please show all your calculations. Justify and explain all your answers. Consider the following information to answer the questions in this section: \\
+
+Suppose a raffle ticket can yield a prize of \$0, \$200, or \$500 with probabilities $0.50$, $0.35$, and $0.15$, respectively.
+\begin{enumerate}
+\item \textbf{(2 points)}  Let $X$ be the raffle ticket's prize amount. Compute $\mathbb{E}[X]$. \blankbox[6cm]{1.0\linewidth}
+\item \textbf{(2 points)} Provide an intuitive interpretation of $\mathbb{E}[X]$ using plain language. \blankbox[7cm]{1.0\linewidth}
+\item \textbf{(1 points)} From the perspective of someone buying a ticket, explain why it would be a problem if the raffle organizers set the ticket price $P$ higher than the expected value $\mathbb{E}[X]$. Why would this make the raffle unfair or flawed? \blankbox[6cm]{1.0\linewidth}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+% Example Section 2
+\section{Hypothesis Testing (25 points total)}
+\noindent\textbf{Instructions:} Please show all your calculations. Justify and explain all your answers. Consider the following information to answer the questions in this section: \\
+
+Suppose a survey of $n = 2{,}000$ U.S.\ adults asked whether they are concerned that artificial intelligence (AI) will eliminate a large number of jobs in the next 10 years. Among male respondents, $48\%$ said “yes”; among female respondents, $52\%$ said “yes.” Assume the sample was evenly split between men and women.
+
+\begin{enumerate}
+    \item \textbf{(10 points)} State appropriate null and alternative hypotheses to test whether men and women differ in their concern about AI replacing jobs.  \blankbox[3cm]{1.0\linewidth}
+    \item \textbf{(10 points)} Conduct a two-proportion $z$-test at the $\alpha = 0.05$ significance level to evaluate the stated hypotheses. Clearly present the following: \textbf{(I)} The formulas used, along with the substituted values;  
+    \textbf{(II)} The resulting $z$-statistic and either the critical value or the $p$-value;  
+    \textbf{(III)} A clear conclusion: reject or fail to reject the null hypothesis.  
+    \blankbox[9cm]{1.0\linewidth}
+
+    \item  \textbf{(5 points)}  Interpret the result in context. Is there convincing statistical evidence of a gender gap in concern about AI-driven job loss? Explain in plain language.  \blankbox[6cm]{1.0\linewidth}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Inference Concepts and Applications (30 points total)} 
+\noindent\textbf{Instructions:} \\
+Select the single best answer (A, B, C, or D) for each of the following multiple-choice questions. Circle your response clearly. You may use scratch space to perform any calculations if and whenever required.
+
+\begin{enumerate}
+    \item \textbf{(10 points)}   A political scientist constructs a 95\% confidence interval for the proportion of voters who support a proposed policy and finds the interval is (0.47, 0.53). Which of the following is the correct interpretation?
+    \begin{enumerate}
+        \item[(A)] There is a 95\% chance that the sample proportion is between 0.47 and 0.53.
+        \item[(B)] The true proportion is exactly 0.50, since it is in the middle of the interval.
+        \item[(C)] 95\% of all voters support the policy.
+        \item[(D)]  We are 95\% confident that the true population proportion is between 0.47 and 0.53.
+    \end{enumerate} \blankbox[2cm]{1.0\linewidth}
+    
+
+    \item \textbf{(10 points)} Suppose a pollster collects a probabilistic sample of voters to estimate their preferences in an upcoming election. The analysis reveals that 58\% of respondents support Candidate X. Furthermore, assume the reported margin of error is 5\% at a 95\% confidence level. Based on this information, which of the following is the correct statistical inference?
+    
+    \begin{enumerate}
+        \item[(A)] We can be sure candidate X will win the election.
+        \item[(B)] Between 53\% and 63\% of all voters support Candidate X.
+        \item[(C)] Between 45\% and 55\% of all voters support Candidate X.
+        \item[(D)] There is a 5\% chance that Candidate X will receive less than 50\% of the vote.
+    \end{enumerate}
+    \blankbox[2cm]{1.0\linewidth}
+    
+    
+    \item \textbf{(10 points)}   A campaign analyst wants to test whether the mean age of voters in a district is different from the national mean of 45 years. Which is the correct null and alternative hypothesis?
+    \begin{enumerate}
+        \item[(A)] $H_0: \mu = 45$, $H_a: \mu \neq 45$
+        \item[(B)] $H_0: \bar{x} = 45$, $H_a: \bar{x} \neq 45$
+        \item[(C)] $H_0: p = 0.45$, $H_a: p \neq 0.45$
+        \item[(D)] $H_0: \mu \neq 45$, $H_a: \mu = 45$
+    \end{enumerate} \blankbox[2cm]{1.0\linewidth}
+    
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\section{Confidence Intervals (25 points total)}
+\noindent\textbf{Instructions:} Please show all your work, including formulas used, values substituted, and rounding your final answers to two decimal places.
+
+\bigskip
+\noindent A POL103 (Intro to Comparative Politics) professor at Stony Brook wants to estimate the average number of hours her students spend on political news consumption per week. There are 300 students registered in her course. She randomly samples 10 students and records the following number of hours:
+
+\[
+\text{Data: } \{\, 3,\ 5,\ 4,\ 6,\ 2,\ 5,\ 7,\ 4,\ 6,\ 3 \,\}
+\]
+
+\begin{enumerate}
+    \item \textbf{(10 points)}  Compute the sample mean $\bar{x}$ and the sample standard deviation $s$ for these 10 students. \blankbox[3cm]{1.0\linewidth}
+    
+    \item \textbf{(10 points)}   Construct a 95\% confidence interval for the \emph{population mean} number of hours spent on political news per week. Use the $t$-distribution. Clearly show:
+    \begin{itemize}
+        \item The formula used.
+        \item Degrees of freedom ($df$).
+        \item Critical $t$-value.
+        \item Your final confidence interval.
+    \end{itemize}
+    \blankbox[8.5cm]{1.0\linewidth}
+
+    \item \textbf{(5 points)}   Provide an intuitive interpretation of the confidence interval using plain language. 
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
+    \item In a two-tailed hypothesis test, the p-value is found to be 0.08. At the $\alpha = 0.05$ level, what is the correct conclusion?
+    \begin{enumerate}
+        \item[(A)] Fail to reject the null hypothesis; no statistically significant evidence.
+        \item[(B)] Reject the null hypothesis; the difference is statistically significant.
+        \item[(C)] The null hypothesis is proven true.
+        \item[(D)] The result is statistically significant because the p-value is less than 0.10.
+    \end{enumerate} \blankbox[2cm]{1.0\linewidth}
+
+\item \textbf{Consider the following statement:} \newline 
+    \emph{``Since any estimate is one possible result from a single sample, we shouldn’t trust it as there is no way to know how representative it is.”} \newline 
+    Which of the following best evaluates the truth and reasoning of this statement?
+    \begin{enumerate}
+    \item[(A)] The statement is \textbf{False}, because most sample estimates exactly match the population value in practice.
+    \item[(B)] The statement is \textbf{False}, because although estimates come from samples, we can quantify their uncertainty using sampling distributions.
+    \item[(C)] The statement is \textbf{True}, because without knowing the population, we have no grounds to assess an estimate’s accuracy.
+    \item[(D)] The statement is \textbf{True}, because estimates are inherently unreliable and can’t be evaluated.
+    \end{enumerate}
+
+    \item A public health study finds that 20\% of adults smoke. What is the probability that in a random sample of two adults, \emph{neither} of them smokes, assuming independence?
+\begin{enumerate}
+    \item[(A)] 0.04  
+    \item[(B)] 0.40  
+    \item[(C)] 0.64 
+    \item[(D)] 0.80   
+\end{enumerate} %\blankbox[0.15cm]{1.0\linewidth}

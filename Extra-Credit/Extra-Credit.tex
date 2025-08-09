@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\geometry{margin=1in}
+\title{Homework Assignment: Understanding Sampling Error and Design Effects in Polling}
+\author{POL201 – Introduction to Statistics for Political Science}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction: Sampling Distribution of a Sample Proportion}
+
+When researchers collect a sample and calculate the proportion of people who support a certain policy or issue, this sample proportion is typically denoted as \(\hat{p}\). Because \(\hat{p}\) is based on a sample and not the whole population, it is a random variable—it will vary from sample to sample.
+
+The \textbf{sampling distribution} of \(\hat{p}\) refers to the distribution of values that \(\hat{p}\) would take if we repeatedly drew samples of the same size from the population and computed \(\hat{p}\) each time.
+
+Under simple random sampling (SRS), where each individual in the population has an equal chance of being selected, the sampling distribution of \(\hat{p}\) is approximately normal when the sample size is large, centered at the true population proportion \(p\). The variability of this distribution is captured by the \textbf{standard error (SE)}:
+
+\[
+SE(\hat{p}) = \sqrt{ \frac{ \hat{p}(1 - \hat{p}) }{n} }
+\]
+
+\begin{itemize}
+  \item \(\hat{p}\): the sample proportion,
+  \item \(n\): the sample size.
+\end{itemize}
+
+This formula assumes SRS and no complications in the sampling process.
+
+\section*{The Design Effect (Deff)}
+
+In practice, survey researchers often use sampling designs that are more complex than SRS. These designs might involve:
+\begin{itemize}
+  \item \textbf{Stratification}: dividing the population into subgroups (strata) and sampling from each,
+  \item \textbf{Clustering}: selecting groups or clusters of individuals (e.g., geographic areas),
+  \item \textbf{Weighting}: adjusting the influence of some respondents to correct for unequal selection probabilities.
+\end{itemize}
+
+These methods can improve efficiency or representation but often increase the variability of estimates. To quantify how much more variable the estimate is compared to what it would be under SRS, we use the \textbf{design effect}, denoted as \(Deff\).
+
+\textbf{Definition:}
+
+\[
+Deff = \frac{ \text{Actual variance under complex design} }{ \text{Variance under SRS} }
+\]
+
+A \(Deff > 1\) means that the sample design increases variability. For example, if \(Deff = 1.3\), the variance is 30\% larger than it would be under SRS.
+
+\subsubsection*{A Simple Example}
+
+Suppose we conduct a survey using two methods:
+\begin{itemize}
+  \item \textbf{Method A (Simple Random Sample)}: From 1,000 respondents, we estimate \(\hat{p} = 0.5\). The standard error is:
+  \[
+  SE_{SRS} = \sqrt{ \frac{0.5 \cdot 0.5}{1000} } = \sqrt{0.00025} = 0.0158
+  \]
+  \item \textbf{Method B (Clustered Design)}: The same sample size is used, but we select people from a few large clusters (e.g., neighborhoods). The responses within each cluster tend to be similar, reducing diversity in the sample. This inflates the variance.
+
+  Suppose the design effect is 1.3. Then:
+  \[
+  \text{Var}_{\text{design}} = 1.3 \cdot \frac{0.25}{1000} = 0.000325, \quad SE = \sqrt{0.000325} \approx 0.0180
+  \]
+\end{itemize}
+
+This illustrates how the standard error becomes larger under a more complex design.
+
+\section*{Sampling Design and the True Standard Error}
+
+\textit{(This section will explain how to generalize the idea of Deff to adjust the standard error, and its implications for confidence intervals and margins of error.)}
+
+\section*{Homework Questions}
+
+\textit{(This section will guide students through computing SE, MOE, and applying Deff numerically.)}
+
+\section*{Wrap-Up}
+
+\textit{(This section will summarize the key takeaways and link them to interpreting polling data critically.)}
+
+\end{document}

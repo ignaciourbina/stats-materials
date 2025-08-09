@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[english]{babel}
+\usepackage{dirtytalk}
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+\usepackage{multicol}
+
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+
+\title{Interpreting the Density Function of a Continuous Random Variable}
+\author{POL201.01}
+\date{}
+
+\begin{document}
+
+
+Computing \( \hat{p}_{\text{strat}} \) and \( \text{Var}(\hat{p}_{\text{strat}}) \)
+
+When using stratified sampling from a large population divided into \( H \) non-overlapping strata, we estimate the overall proportion and its variance as follows:
+
+
+1. Estimate the Stratified Sample Proportion
+
+Let:
+\begin{itemize}
+    \item  \( N_h \): Size of stratum \( h \) (i.e., how many people in the population are classified as belonging to stratum $h$),
+    \item  \( N = \sum_{h=1}^H N_h \): Total population size,
+    \item  \( n_h \): Sample size drawn from stratum \( h \),
+    \item \( \hat{p}_h \): Sample proportion of "successes" in stratum \( h \),
+    \item \( W_h = \dfrac{N_h}{N} \): Stratum weight (proportion of the population in stratum \( h \)).
+\end{itemize}
+
+Then the overall estimated proportion is:
+
+\[
+\hat{p}_{\text{strat}} = \sum_{h=1}^{H} W_h \cdot \hat{p}_h
+\]
+
+We can see that \( \hat{p}_{\text{strat}} \) is a \textbf{weighted average} of the sample proportions from each stratum \( h \), where the weights correspond to the \textbf{relative size} of each stratum in the population, denoted \( W_h = \frac{N_h}{N} \). These weights reflect how much each stratum contributes to the overall population. 
+
+To compute \( W_h \), we typically rely on \textbf{population-level data}, such as that provided by the \textbf{national census}. For instance, if the population is stratified by racial or ethnic group, we use the census to determine what percentage of the total population each group represents. These population proportions are then used as weights to appropriately scale each stratum’s contribution to the overall estimate.
+
+
+2. Estimate the Variance of \( \hat{p}_{\text{strat}} \)
+
+Assuming:
+\begin{itemize}
+    \item Simple random sampling within each stratum,
+    \item The population is large, so we ignore the finite population correction (FPC: \( 1 - \frac{n_h}{N_h} \approx 1 \)),
+\end{itemize}
+
+Then:
+
+\[
+\text{Var}(\hat{p}_{\text{strat}}) = \sum_{h=1}^{H} W_h^2 \cdot \frac{\hat{p}_h (1 - \hat{p}_h)}{n_h}
+\]
+
+\end{document}
