@@ -297,13 +297,13 @@ and finally sorted in descending order by `avg_income`.
 
 ## Summary of the Main Verbs
 
-1. **`filter()`**: Subsets rows.
-2. **`select()`**: Subsets columns.
-3. **`mutate()`**: Adds or modifies columns.
-4. **`summarise()`**: Collapses rows into a summary.
-5. **`group_by()`**: Groups data for summary or other grouped operations.
-6. **`arrange()`**: Sorts rows.
-7. **`join` functions**: Combine data frames based on common keys.
+- **`filter()`**: Subsets rows.
+- **`select()`**: Subsets columns.
+- **`mutate()`**: Adds or modifies columns.
+- **`summarise()`**: Collapses rows into a summary.
+- **`group_by()`**: Groups data for summary or other grouped operations.
+- **`arrange()`**: Sorts rows.
+- **`join` functions**: Combine data frames based on common keys.
 
 These verbs enable a fluent, readable style of data manipulation when used
 together with the pipe operator `%>%`.
