@@ -1,0 +1,376 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{Solutions to Problem Set 2}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1: Campaign Donations}
+
+\subsection*{Part (a)}
+The scatterplot (see Figure 1) visually represents the relationship between the number of political campaigns run in different cities and the total donations received. A positive correlation can be observed, where cities with more campaigns generally receive higher donations. This relationship seems to be linear, suggesting that increasing the number of campaigns could potentially increase donations. However, the scatter of points around this line is fairly wide, indicating that the strength of the relationship is moderate, and other factors might also influence the total donations.
+
+\begin{center}
+\textbf{Figure 1: Scatterplot of Campaigns vs. Donations}
+    \includegraphics[width=\linewidth]{FiguresPS2/scatterplot.png}
+\end{center}
+
+\subsection*{Part (b)}
+Mean Calculation: \[ \text{Mean} = \frac{180 + 165 + 220 + 160 + 250}{5} = \frac{975}{5} = 195 \text{ million} \]
+
+Median Calculation: Order the donations: 160, 165, 180, 220, 250 The median is the middle value: 180 million
+
+
+The mean total donations across the cities are \$195 million, whereas the median is slightly lower at \$180 million. This discrepancy indicates a right-skewed distribution, where there are a few cities with very high donations pulling the average above the median. Since each donation value is unique, the mode is not applicable as there is no most frequently occurring value. This analysis tells us that while most cities gather around a central number of donations, a few outliers are significantly affecting the average, suggesting high variability in how campaigns are funded across different cities.
+
+\section*{Question 2: Turnout Across Districts}
+
+\subsection*{Part (a)}
+\begin{itemize}
+    \item Histogram. Bins: To divide the range 94 - 45 into 10 bins, we first calculate the width of each bin. The formula for the bin width is:\[ \text{Bin Width} = \frac{\text{Max Value} - \text{Min Value}}{\text{Number of Bins}} \]Using the given range:\[ \text{Bin Width} = \frac{94 - 45}{10} = \frac{49}{10} = 4.9.\] Now, we can determine the boundaries for each bin. Starting from the minimum value (45), we add the bin width successively to get the boundaries:45 to 49.9, 49.9 to 54.8, 54.8 to 59.7, 59.7 to 64.6, 64.6 to 69.5, 69.5 to 74.4, 74.4 to 79.3, 79.3 to 84.2, 84.2 to 89.1, 89.1 to 94. Then, we plot the frequency of turnout rates within these rates.
+    \item Box Plot. Steps: Arrange data in ascending order, find the median, Q1 (25th percentile), and Q3 (75th percentile). Identify the minimum and maximum values.
+    \item Description. Shape: The distribution might be slightly right-skewed due to the higher frequency of higher turnout rates.Center: The median turnout rate.
+    \item Spread. Range from 45\% to 93\%, with IQR indicating the middle 50\% of the concentration of data points.
+\end{itemize}
+
+
+The histogram (see Figure 2) displays voter turnout rates across different districts, showing a bimodal distribution with two peaks. This suggests that there are two main groups of districts: one with lower turnout rates around 50\% and another with higher rates around 85\%. The box plot (see Figure 3) further illustrates this distribution's characteristics, showing a median turnout rate at 76\%, which is relatively high, indicating that more than half of the districts have a turnout rate above 75\%. The presence of an outlier at 45\% turnout rate suggests that there are some districts with unusually low voter engagement, which could be a point of concern for election officials.
+
+\begin{center}
+\textbf{Figure 2: Histogram of Voter Turnout Rates}
+\includegraphics[width=\linewidth]{FiguresPS2/histogram.png}
+\end{center}
+
+\begin{center}
+\textbf{Figure 3: Box Plot of Voter Turnout Rates}
+\includegraphics[width=\linewidth]{FiguresPS2/boxplot.png}
+\end{center}
+
+\section*{Question 3: Policy Support and Age Cohorts}
+
+\subsection*{Part (a)}
+Using side-by-side box plots (see Figure 4), we compare approval ratings for Policy A and Policy B across two age groups. The younger group (18-30) shows a preference for Policy B, with a higher median and a broader interquartile range, suggesting stronger and more dispersed support. Conversely, Policy A, while having a narrower IQR in both age groups, indicates more consistent but generally lower approval. This analysis highlights not only which policies are more favored by different age demographics but also how opinion variance can affect policy perception and eventual acceptance.
+
+\begin{center}
+\textbf{Figure 4: Side-by-Side Box Plots for Policy Approval Ratings}
+\includegraphics[width=\linewidth]{FiguresPS2/boxplots.png}
+\end{center}
+
+\section*{Question 4: Issue Position Strategy}
+
+\subsection*{Part (a)}
+The bar plots for voter support in Districts A and B (see Figures 5) demonstrate distinct political landscapes. District A shows a clear opposition to the policy with higher percentages at the lower end of the Likert scale, suggesting strong resistance. In contrast, District B has a significant portion of the population strongly supporting the policy, evident from the 35\% at the highest point of the Likert scale, indicating a potential area of focus for campaign efforts if the policy is to be pursued.
+
+\begin{center}
+\textbf{Figure 5: Bar Plot of District A and B Voter Support}
+    \includegraphics[width=\linewidth]{FiguresPS2/barplots.png}
+\end{center}
+
+\subsection*{Part (b)}
+Analyzing the weighted averages—2.65 for District A and 3.37 for District B—reveals that District B is more likely to support the policy. This average, though providing a quick snapshot, masks the underlying distribution where a significant percentage in both districts either strongly support or oppose the policy, underscoring the polarized nature of voter sentiment.
+
+\section*{Question 5: Policy Impact Analysis}
+
+\subsection*{Mean Approval Rating and SD}
+\begin{itemize}
+        \item The mean approval rating is a measure of central tendency, indicating the average level of approval among the surveyed citizens. The increase from 50\% to 60\% suggests that, on average, more people approve of the president post-policy implementation than before.
+        \item The standard deviation (SD) measures the dispersion or spread of approval ratings around the mean. An increase from 10\% to 25\% indicates a larger variability in approval ratings post-policy implementation.
+\end{itemize}
+
+\subsection*{Impact on Understanding the Policy's Effect:} 
+    \begin{itemize}
+        \item The increase in the standard deviation limits our understanding because it introduces more uncertainty and variability in the data. While the mean approval rating has increased, an increased standard deviation shows higher dispersion of the data around the mean. The increase in standard deviation suggests that opinions on the president's approval have become more polarized. Thus, because of this polarization, it's not immediately clear from this data that the \% of people with support equal or higher than 50\% has increased.
+        \item To understand the effect of the policy on public opinion, consider this: Suppose approval ratings range from 0 to 100. Additionally, suppose that before the policy, most people had an approval rating of 50. After the policy, imagine a few people now rate the president at 100 because they now strongly support him, while many others still rate him at 50 or even slightly lower at 45. Despite this, the average approval rating (mean) could still rise because the mean is heavily influenced by these few extreme values (outliers). 
+        \item However, to truly understand if more people support the president or how the overall distribution of support has shifted, we should look at the median approval rating. The median is the middle value that separates the higher half from the lower half of the data. If the median increases, it means that at least 50\% of people have a higher approval rating than before. This gives a clearer picture of general support because the median is not affected by outliers as the mean is.
+    \end{itemize}
+
+\section{Question 6: Public Healtcare Support}
+
+\subsection*{Part (a): Calculate the Mean Approval Rating}
+The mean approval rating is calculated using the formula for the weighted average:
+\[
+\bar{x} = \frac{\sum (x_i \cdot f_i)}{N}
+\]
+
+\subsubsection*{State 1}
+\[
+N_1 = 4000 + 2000 + 4000 = 10000
+\]
+\[
+\bar{x}_1 = \frac{(1 \cdot 4000) + (2 \cdot 2000) + (3 \cdot 4000)}{10000}
+\]
+\[
+= \frac{4000 + 4000 + 12000}{10000}
+\]
+\[
+= \frac{20000}{10000} = 2.0
+\]
+
+\subsubsection*{State 2}
+\[
+N_2 = 1500 + 7000 + 1500 = 10000
+\]
+\[
+\bar{x}_2 = \frac{(1 \cdot 1500) + (2 \cdot 7000) + (3 \cdot 1500)}{10000}
+\]
+\[
+= \frac{1500 + 14000 + 4500}{10000}
+\]
+\[
+= \frac{20000}{10000} = 2.0
+\]
+
+Just by looking at the means we would infer that both States support the policy equally.
+
+\subsection*{Part (b): Calculate the Standard Deviation}
+The standard deviation is calculated using the formula for the weighted standard deviation:\footnote{Because of the large sample size ($N=10,000)$, using the formula for the population SD or Sample SD gives an almost identical results. Note that for smaller samples, we should use the sample SD formula. Thus, one must divide by $(N-1)$, instead of $(N)$.}
+\[
+\text{SD} = \sqrt{\frac{\sum f_i (x_i - \bar{x})^2}{N}}
+\]
+
+\subsubsection*{State 1}
+\[
+\text{SD}_1 = \sqrt{\frac{4000 (1 - 2)^2 + 2000 (2 - 2)^2 + 4000 (3 - 2)^2}{10000}}
+\]
+\[
+= \sqrt{\frac{4000 (1) + 2000 (0) + 4000 (1)}{10000}}
+\]
+\[
+= \sqrt{\frac{4000 + 4000}{10000}}
+\]
+\[
+= \sqrt{\frac{8000}{10000}}
+\]
+\[
+= \sqrt{0.8}
+\]
+\[
+= 0.894
+\]
+
+\subsubsection*{State 2}
+\[
+\text{SD}_2 = \sqrt{\frac{1500 (1 - 2)^2 + 7000 (2 - 2)^2 + 1500 (3 - 2)^2}{10000}}
+\]
+\[
+= \sqrt{\frac{1500 (1) + 7000 (0) + 1500 (1)}{10000}}
+\]
+\[
+= \sqrt{\frac{1500 + 1500}{10000}}
+\]
+\[
+= \sqrt{\frac{3000}{10000}}
+\]
+\[
+= \sqrt{0.3}
+\]
+\[
+= 0.548
+\]
+
+The standard deviation, by being much higher in State 1, it tells us that there's more spread on variability of opinions in state one, while in State 2 opinions seem to be much more concentrated around the mean.
+
+\subsection*{Part (c): Bar Plots to Visualize Distribution}
+The bar plots below visualize the distribution of opinions in both states:
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\linewidth]{FiguresPS2/barplots2.png}
+\caption{Distribution of Opinions in Both States}
+\end{figure}
+
+\subsection*{Part (d): Analysis of Neutral Opinions}
+From the data, it is evident that State 2 has a higher percentage of respondents with neutral opinions (70\%) compared to State 1 (20\%). This higher concentration around the neutral rating indicates that citizens in State 2 are more neutral in their opinions on the policy.
+
+\subsection*{Summary}
+This analysis shows the importance of looking at both the mean and standard deviation to understand the full context of public opinion. The mean alone would not highlight the concentration of neutral opinions in State 2.
+
+\section*{Question 7 Solutions}
+
+\subsection*{Part 7a.}
+
+To reduce the average cost of the remaining programs, the Secretary should close the most expensive programs. Removing the most expensive programs significantly reduces the total cost, leading to a lower mean cost for the remaining programs.
+
+\textbf{Example:}
+
+Assume there are three programs with costs:
+\begin{itemize}
+    \item Program 1: \$300,000
+    \item Program 2: \$500,000
+    \item Program 3: \$700,000
+\end{itemize}
+
+Original mean cost:
+\[
+\text{Mean} = \frac{300,000 + 500,000 + 700,000}{3} = 500,000
+\]
+
+After removing the highest cost program (Program 3):
+\[
+\text{New Mean} = \frac{300,000 + 500,000}{2} = 400,000
+\]
+
+The mean cost drops from \$500,000 to \$400,000, illustrating the effectiveness of removing the most expensive programs.
+
+\subsection*{Part 7b.}
+
+Yes, splitting some existing programs into multiple smaller programs would be effective for reducing the average cost. This strategy increases the number of programs while keeping the total cost constant, which reduces the mean cost.
+
+\textbf{Justification:}
+
+Assume there are $N$ programs. If a program with cost \(C\) is split into \(k\) smaller programs with costs summing to \(C\), the total cost \(\sum x_i\) remains the same, but the number of programs increases. This leads to a new mean:
+\[
+\text{New Mean} = \frac{\sum x_i}{ (N-1) + k}
+\]
+Since the denominator increases, the mean cost per program decreases, effectively reducing the average cost.\footnote{The numerator increases if $k\geq 2$, since $N-1+k > N$.}
+
+\textbf{Example:}
+
+Assume there are three programs with costs:
+\begin{itemize}
+    \item Program 1: \$300,000
+    \item Program 2: \$500,000
+    \item Program 3 (new): \$450,000
+    \item Program 4 (new): \$250,000
+\end{itemize}
+
+\[
+\text{New Mean} = \frac{300,000 + 500,000 + 450,000 + 250,000}{4} = 375,000
+\]
+
+\section*{Question 8. Answer.}
+
+To compare the standard of living between Country A and Country B using GDP per capita, we need to use the concept of averages. The GDP per capita is the average GDP per person and is calculated as:
+\[
+\text{GDP per capita} = \frac{\text{Total GDP}}{\text{Population}}
+\]
+
+Here's how we can disprove the initial claim using this statistical concept:
+
+\subsection*{Calculate GDP per Capita}
+
+For Country A:
+\[
+\text{GDP per capita}_A = \frac{\text{GDP of Country A}}{\text{Population of Country A}}
+\]
+
+For Country B:
+\[
+\text{GDP per capita}_B = \frac{\text{GDP of Country B}}{\text{Population of Country B}}
+\]
+
+\subsection*{Assume Populations to Illustrate}
+
+Let’s assume:
+\begin{itemize}
+    \item Population of Country A ($P_A$) = 50 million
+    \item Population of Country B ($P_B$) = 300 million
+\end{itemize}
+
+\subsection*{Calculate using Hypothetical Populations}
+
+For Country A:
+\[
+\text{GDP per capita}_A = \frac{1 \text{ trillion dollars}}{50 \text{ million}} = 20,000 \text{ dollars/person}
+\]
+
+For Country B:
+\[
+\text{GDP per capita}_B = \frac{3 \text{ trillion dollars}}{300 \text{ million}} = 10,000 \text{ dollars/person}
+\]
+
+\subsection*{Conclusion}
+
+Even though Country B has a higher total GDP, Country A has a higher GDP per capita, indicating a higher average income per person. This demonstrates that the standard of living, based on average income (GDP per capita), is higher in Country A than in Country B, despite the total GDP being larger in Country B.
+
+\section*{Question 9. Answer.}
+
+The graph provided shows the number of supporters for two policies, Policy X and Policy Y, over a period of six months.
+
+\begin{itemize}
+    \item \textbf{Trend in the Number of Supporters for Policy X and Policy Y:}
+    \begin{itemize}
+        \item \textbf{Policy X:} The number of supporters for Policy X shows a gradual increase over the six months.
+        \item \textbf{Policy Y:} Policy Y demonstrates a more rapid increase in supporters, especially noticeable in the later months.
+    \end{itemize}
+    \item \textbf{Which Policy is Gaining Support More Rapidly?}
+    \begin{itemize}
+        \item Based on the graph, Policy Y appears to be gaining support more rapidly than Policy X. This can be inferred from the steeper slope of the line representing Policy Y, indicating a faster rate of increase in the number of supporters.
+    \end{itemize}
+\end{itemize}
+
+
+\section*{Question 10. Answer.}
+
+The provided box plot for three cities, City A, City B, and City C, shows the spread and central tendency of campaign donations in these cities. To interpret this box plot, we focus on the median and the interquartile range (IQR), and make observations about the shape of the distribution:
+
+\begin{itemize}
+    \item \textbf{Median:} The median is represented by the line within each box. It divides the data into two halves. City A's median appears to be around \$200, City B's around \$300, and City C's near \$500. This indicates that City C has a higher central tendency of campaign donations compared to City A and City B.
+    \item \textbf{Interquartile Range (IQR):} The IQR is the distance between the first quartile (Q1, bottom of the box) and the third quartile (Q3, top of the box), representing the middle 50\% of the data. A larger IQR indicates more variability within the middle 50\% of the data. From the plot, all cites seems to have the same IQR, suggesting similar variability in donations.
+    \item \textbf{Shape of Distribution:} The symmetry of the box within the whiskers can indicate the skewness of the data. In this case, all the boxes appear symmetrical and centered between the whiskers, so the distribution is likely fairly symmetric for each city.
+\end{itemize}
+
+\section*{Question 11. Answers.}
+
+The bar plot shows the percentage of voters in favor of different policies labeled A through E.
+
+\begin{itemize}
+    \item \textbf{Distribution of Voter Support:}
+    \begin{itemize}
+        \item Policy A: 15\% support
+        \item Policy B: 5\% support (lowest)
+        \item Policy C: 40\% support (highest)
+        \item Policy D: 15\% support
+        \item Policy E: 25\% support
+    \end{itemize}
+    \item \textbf{Highest and Lowest Support:} Policy C has the highest voter support at 40\%, and Policy B has the lowest at 5\%.
+    \item \textbf{Incorrect Calculation of Standard Deviation:} Calculating standard deviation to understand the dispersion of preferences in this context would be incorrect because the policies aren't numerical variables that would justify the calculation of such a measure of spread. Standard deviation is relevant for continuous numerical data, not categorical data like policy preferences. Each policy is distinct and doesn't represent a numerical scale where such calculations would make sense. Instead, analyzing voter support through proportions or percentages, as done with the bar plot, is more appropriate for these categorical comparisons.
+\end{itemize}
+
+\section*{Question 12. Answers.}
+
+\subsection*{Weighted Mean Calculation for State A}
+
+Calculate the weighted average for voter support in State A by multiplying each support level by its corresponding percentage and summing the results:
+
+\[
+\text{Mean}_A = (1 \times 0.13) + (2 \times 0.35) + (3 \times 0.04) + (4 \times 0.35) + (5 \times 0.13)
+\]
+\[
+\text{Mean}_A = 0.13 + 0.70 + 0.12 + 1.40 + 0.65 = 3.00
+\]
+
+\subsection*{Weighted Mean Calculation for State B}
+
+Similarly, for State B:
+\[
+\text{Mean}_B = (1 \times 0.22) + (2 \times 0.18) + (3 \times 0.20) + (4 \times 0.18) + (5 \times 0.22)
+\]
+\[
+\text{Mean}_B = 0.22 + 0.36 + 0.60 + 0.72 + 1.10 = 3.00
+\]
+
+\subsection*{Median Level of Support:}
+
+State A reaches a cumulative 50\% at support level 3, and so does State B.
+
+\subsection*{Symmetry and Skewness}
+
+Both states show a symmetric distribution pattern. They mean is equal to the mode, so there is no skewness. Thus, the distributions from the right and left of the mean accumulate the same probabilities and have a similar reflected shape (which would be more evident if one graphs a bar plot).
+
+\subsection*{Discussion - Answer to part c)}
+
+Both State A and State B have the same mean, median, and show symmetric distributions concerning support for a new immigration policy. However, the nature of these distributions reveals critical differences in voter sentiment:
+
+\begin{itemize}
+    \item \textbf{State A:} The distribution is characterized by a high level of polarization. A significant portion of the electorate is clustered at the extreme ends of the support spectrum ("Strongly Against" and "Strongly Favor"). This polarization indicates a deeply divided voter base, which can pose challenges for policymakers due to the potential for significant opposition or support depending on the policy direction.
+    
+    \item \textbf{State B:} In contrast, this state exhibits a more uniform distribution of opinions, with voters more evenly spread across different levels of support. This balance suggests a moderate electorate that may be more open to compromise, reflecting a lesser degree of societal division compared to State A.
+\end{itemize}
+
+\end{document}

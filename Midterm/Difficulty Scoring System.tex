@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\title{Difficulty Scoring System for Assessment Instruments}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document presents a structured methodology for assessing the relative difficulty of a test or problem set. The system assigns a difficulty score to each question based on three dimensions: 
+
+\begin{itemize}
+    \item \textbf{Cognitive Load (CL)}: Measures the mental effort required to answer the question.
+    \item \textbf{Mathematical Complexity (MC)}: Assesses the computational difficulty of solving the problem.
+    \item \textbf{Interpretative Depth (ID)}: Evaluates how much reasoning and justification are required.
+\end{itemize}
+
+Each component is scored from 0 to 40, leading to a maximum question difficulty score of 120.
+
+\section{Scoring System}
+Each question receives a total difficulty score based on the formula:
+\[
+D_i = CL_i + MC_i + ID_i
+\]
+where \(D_i\) is the total difficulty score for question \(i\), and \(CL_i\), \(MC_i\), and \(ID_i\) are the component scores.
+
+The overall difficulty of a test containing \( N \) questions is then:
+\[
+D_{\text{total}} = \sum_{i=1}^{N} D_i
+\]
+
+The **maximum theoretical difficulty** of the instrument is calculated assuming that every question attains the highest possible difficulty score:
+\[
+D_{\text{max}} = 120 \times N
+\]
+
+\section{Computing Relative Difficulty}
+To determine the relative difficulty of the instrument, we use the ratio:
+\[
+D_{\text{relative}} = \frac{D_{\text{total}}}{D_{\text{max}}} \times 100
+\]
+
+This percentage represents how difficult the actual instrument is relative to the hardest possible test.
+
+\subsection{Steps to Compute Relative Difficulty}
+\begin{enumerate}
+    \item Assign scores for \( CL \), \( MC \), and \( ID \) for each question.
+    \item Compute the total difficulty score for each question: \( D_i = CL_i + MC_i + ID_i \).
+    \item Sum the scores across all questions to get \( D_{\text{total}} \).
+    \item Compute the maximum possible difficulty: \( D_{\text{max}} = 120 \times N \).
+    \item Compute relative difficulty using:
+    \[
+    D_{\text{relative}} = \frac{D_{\text{total}}}{D_{\text{max}}} \times 100
+    \]
+    \item Interpret the result:
+    \begin{itemize}
+        \item \( D_{\text{relative}} < 40\% \) indicates an easy test.
+        \item \( 40\% \leq D_{\text{relative}} < 70\% \) indicates a moderate test.
+        \item \( D_{\text{relative}} \geq 70\% \) indicates a hard test.
+    \end{itemize}
+\end{enumerate}
+
+\section{Conclusion}
+This system provides a structured, quantitative approach to measuring test difficulty, ensuring consistency across different assessments. It allows educators to design instruments that are appropriately challenging and balanced.
+
+\end{document}

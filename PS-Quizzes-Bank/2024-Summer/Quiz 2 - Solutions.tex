@@ -1,0 +1,490 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Quiz 2}
+\author{POL 201 - POL 501}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Part 1: Instructions}
+
+For the next problems, you have to reason and justify whether the given statement is correct or incorrect. First, state whether the statement is correct and then proceed to provide a  justification for your argument. Most of the score will be assigned to the justification.
+
+In most problems, you will need to justify your answer by showing probability calculations and being transparent about the intermediate steps. You will have points deducted if you don't justify your answers appropriately.
+
+\subsection*{Question 1 (2 points)}
+
+A survey was conducted to understand the voting preferences of urban and rural residents in a county. The survey included 1,000 randomly selected participants. Out of these, 400 were from urban areas, and 600 were from rural areas. Among urban residents, 280 expressed support for the local mayor, while 360 rural residents expressed support for the mayor.
+
+\textbf{Statement:} ``Given this data, an urban resident is more likely to support the mayor compared to a rural resident.''
+
+\subsection*{Question 2 (2 points)}
+
+A survey conducted among 1,200 adults showed the following results: 400 adults exercise regularly (at least three times a week). Among those who exercise regularly, 320 report being in excellent health. Among those who do not exercise regularly, 200 report being in excellent health.
+
+\textbf{Statement:} ``There is a higher probability of being in excellent health for people who exercise regularly versus those who don't''
+
+\subsection*{Question 3 (2 points)}
+
+A survey of 1,000 adults found the following: 500 adults use social media regularly. 200 adults shop online regularly. 400 adults do both.
+
+\textbf{Statement:} ``The probability that a person in the survey uses social media regularly or shops online is greater than 50\%.''
+
+\subsection*{Question 4 (2 points)}
+
+A survey was conducted to understand the attitudes about a new healthcare policy and the voting behavior of adults in a city. The following probabilities were reported:
+\begin{itemize}
+    \item Probability that an adult supports the new healthcare policy: \( P(A) = 0.40 \)
+    \item Probability that an adult voted in the last election: \( P(B) = 0.60 \)
+    \item Probability that an adult supports the new healthcare policy given that they voted in the last election: \( P(A|B) = 0.50 \)
+\end{itemize}
+
+\textbf{Statement:} ``The probability that an adult both supports the new healthcare policy and voted in the last election is 0.24.''
+
+\subsection*{Question 5 (2 points)}
+
+A survey asked people to pick one and only one of three mutually exclusive policy proposals: Policy A, Policy B, and Policy C. The probabilities are as follows:
+\begin{itemize}
+    \item Probability that a person supports Policy B: \( P(B) = 0.30 \)
+    \item Probability that a person supports Policy C: \( P(C) = 0.50 \)
+\end{itemize}
+
+\textbf{Statement:} ``The probability of a person choosing policy A is 0.20.''
+
+\section*{Part 2}
+
+\subsection*{Question 6: Regime Type and Economic Inequality}
+
+Consider the following joint frequency distribution of regime type and economic inequality for a set of countries. The table shows the number of countries associated with each type of regime and level of economic inequality. There are a total of 200 countries.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Regime & Low Inequality & Medium Inequality & High Inequality \\
+\hline
+Full Democracy & 30 & 20 & 10 \\ %60 
+\hline
+Flawed Democracy & 20 & 30 & 20 \\ % 70 
+\hline
+Electoral Autocracy  & 10 & 20 & 40 \\ % 70 == 200
+\hline
+\end{tabular}
+\end{table}
+
+Based on this table, calculate the following probabilities. Important: justify your calculations with the appropriate formulas.
+
+\begin{enumerate}
+    \item[a)] The probability that a country is a Full Democracy . (1 point)
+    \item[b)] The probability that a country does not have Medium Inequality . (1 point)
+    \item[c)] The probability that a country is a Full Democracy and does not have Medium Inequality. (1 point)
+    \item[d)] The probability that a country is a Full Democracy given that it has Medium Inequality. (1 point)
+    \item[e)] The probability that a country is either a Flawed Democracy or has High Inequality . (1 point)
+\end{enumerate}
+
+\newpage
+\section*{Answers and Grading Criteria}
+
+\subsection*{Question 1}
+\textbf{Statement:} "Given this data, an urban resident is more likely to support the mayor compared to a rural resident."
+
+\textbf{Data:}
+\begin{itemize}
+    \item Total respondents: 1000
+    \begin{itemize}
+        \item Urban: 400
+        \begin{itemize}
+            \item Support Mayor: 280
+        \end{itemize}
+        \item Rural: 600
+        \begin{itemize}
+            \item Support Mayor: 360
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Calculations:}
+\begin{itemize}
+    \item Probability that a urban resident supports the mayor:
+    \[
+    P(\text{Supports} | \text{Urban}) = \frac{280}{400} = 0.7
+    \]
+    \item Probability a rural resident supports the mayor:
+    \[
+    P(\text{Supports} | \text{Rural}) = \frac{360}{600} = 0.6
+    \]
+\end{itemize}
+
+\textbf{Justification:}
+The probability of an urban resident supporting the mayor is 0.7, while for a rural resident, it is 0.6. Since 0.7 is higher than 0.6, it can be concluded that urban residents are indeed more likely to support the mayor compared to rural residents.
+
+\subsection*{Question 2}
+\textbf{Statement:} "There is a higher probability of being in excellent health for people who exercise regularly versus those who don’t."
+
+\textbf{Data:}
+\begin{itemize}
+    \item Total adults: 1200
+    \begin{itemize}
+        \item Exercise regularly: 400
+        \begin{itemize}
+            \item Excellent health: 320
+        \end{itemize}
+        \item Do not exercise regularly: 800
+        \begin{itemize}
+            \item Excellent health: 200
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Calculations:}
+\begin{itemize}
+    \item Probability of being in excellent health when exercising regularly:
+    \[
+    P(\text{Excellent} | \text{Exercise}) = \frac{320}{400} = 0.8
+    \]
+    \item Probability of being in excellent health when not exercising regularly:
+    \[
+    P(\text{Excellent} | \text{No Exercise}) = \frac{200}{800} = 0.25
+    \]
+\end{itemize}
+
+\textbf{Justification:}
+The probability of being in excellent health is significantly higher among those who exercise regularly (0.8) compared to those who do not (0.25). therefore the statement is correct.
+
+\subsection*{Question 3}
+\textbf{Statement:} "The probability that a person in the survey uses social media regularly or shops online is greater than 50\%."
+
+\textbf{Data:}
+\begin{itemize}
+    \item Total adults: 1000
+    \item Regular social media users: 500
+    \item Regular online shoppers: 200
+    \item Both: 400
+\end{itemize}
+
+\textbf{Calculations:}
+Using the principle of inclusion-exclusion:
+\[
+P(\text{Social or Online}) = \frac{500 + 200 - 400}{1000} = \frac{300}{1000} = 0.3
+\]
+
+\textbf{Justification:}
+The probability that a person uses social media regularly or shops online is 30\%, which is less than 50\%. Therefore, the statement is incorrect.
+
+\subsection*{Question 4}
+\textbf{Statement:} "The probability that an adult both supports the new healthcare policy and voted in the last election is 0.24."
+
+\textbf{Given Probabilities:}
+\begin{itemize}
+    \item Probability that an adult supports the new healthcare policy, \( P(A) = 0.40 \)
+    \item Probability that an adult voted in the last election, \( P(B) = 0.60 \)
+    \item Probability that an adult supports the new healthcare policy given that they voted, \( P(A|B) = 0.50 \)
+\end{itemize}
+
+\textbf{Calculations:}
+To find the probability that an adult both supports the healthcare policy and voted, we use:
+\[ P(A \cap B) = P(A|B) \times P(B) \]
+\[ P(A \cap B) = 0.50 \times 0.60 = 0.30 \]
+
+\textbf{Justification:}
+The calculated probability that an adult both supports the healthcare policy and voted in the last election is 0.30, not 0.24 as stated. Therefore, the statement is incorrect.
+
+\subsection*{Question 5}
+\textbf{Statement:} "The probability of a person choosing policy A is 0.20."
+
+\textbf{Given Probabilities:}
+\begin{itemize}
+    \item Probability that a person supports Policy B, \( P(B) = 0.30 \)
+    \item Probability that a person supports Policy C, \( P(C) = 0.50 \)
+\end{itemize}
+
+\textbf{Calculations:}
+Since the events (supporting Policy A, B, C) are mutually exclusive and exhaustive, the probabilities must sum to 1. Thus:
+\[ P(A) = 1 - (P(B) + P(C)) \]
+\[ P(A) = 1 - (0.30 + 0.50) = 0.20 \]
+
+\textbf{Justification:}
+The probability of a person choosing Policy A is calculated to be 0.20, which matches the statement, confirming it as correct.
+
+\section*{Detailed Solutions to Subparts of Question 6}
+
+\textbf{Data Overview:}
+\begin{itemize}
+    \item Total countries: 200
+    \item Full Democracy (FD): FD \& Low Inequality = 30, FD \& Medium Inequality = 20, FD \& High Inequality = 10
+    \item Flawed Democracy (FLD): FLD \& Low Inequality= 20, FLD \& Medium Inequality= 30, FLD \& High Inequality= 20
+    \item Electoral Autocracy (EA): EA \& Low Inequality= 10, EA \& Medium Inequality= 20, EA \& High Inequality= 40
+    \item Totals by inequality: Low Inequality= 60, Medium Inequality= 70, High Inequality= 70
+\end{itemize}
+
+\subsection*{a) Probability that a country is a Full Democracy}
+\textbf{Calculation:}
+\[ P(\text{FD}) = \frac{30 + 20 + 10}{200} = 0.30 \]
+\textbf{Justification:} This calculation sums all countries classified as Full Democracy and divides by the total number of countries, yielding the direct probability of a Full Democracy.
+
+\subsection*{b) Probability that a country does not have Medium Inequality}
+\textbf{Direct Counting:}
+\[ P(\text{Not Medium}) = \frac{60 + 70}{200} = 0.65 \]
+\textbf{Justification:} This is calculated by adding the number of countries with Low and High inequality statuses and dividing by the total number of countries.
+
+\textbf{Alternative Probability Method:}
+\[ P(\text{Not Medium}) = 1 - P(\text{Medium}) = 1 - \frac{70}{200} = 0.65 \]
+\textbf{Justification:} Using the complement rule calculates the probability by subtracting the probability of Medium Inequality from 1.
+
+\subsection*{c) Probability that a country is a Full Democracy and does not have Medium Inequality}
+\textbf{Calculation:}
+\[ P(\text{FD and Not Medium}) = \frac{30 + 10}{200} = 0.20 \]
+\textbf{Justification:} This direct calculation takes the sum of Full Democracies with Low and High Inequality and divides by the total number of countries.
+
+\subsection*{d) Probability that a country is a Full Democracy given that it has Medium Inequality}
+\textbf{Direct Counting:}
+\[ P(\text{FD $|$ Medium}) = \frac{20}{70} = 0.2857 \]
+\textbf{Justification:} The number of Full Democracies with Medium Inequality is divided by the total number of countries with Medium Inequality, giving the direct conditional probability.
+
+\textbf{Alternative Probability Method:}
+\[ P(\text{FD and Medium}) = \frac{20}{200} = 0.10 \]
+\[ P(\text{FD $|$ Medium}) = \frac{P(\text{FD and Medium})}{P(\text{Medium})} = \frac{0.10}{0.35} = 0.2857 \]
+\textbf{Justification:} Using \( P(A | B) = \frac{P(A \cap B)}{P(B)} \) confirms the direct method's result using probability rules.
+
+\subsection*{e) Probability that a country is either a Flawed Democracy or has High Inequality}
+\textbf{Direct Counting:}
+\[ P(\text{FLD or High}) = \frac{70 + 70 - 20}{200} = 0.60 \]
+\textbf{Justification:} This calculation adds the counts of Flawed Democracies and countries with High Inequality, subtracting the overlap to avoid double-counting.
+
+\textbf{Alternative Probability Method:}
+\[ P(\text{FLD or High}) = 0.35 + 0.35 - 0.10 = 0.60 \]
+\textbf{Justification:} Applying the inclusion-exclusion principle using known probabilities reinforces the accuracy of the direct counting method.
+
+
+
+\end{document}
+
+
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Problem Set Solutions}
+\author{Your Name}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Answers to Questions}
+
+\subsection*{Question 1}
+\textbf{Statement:} "Given this data, an urban resident is more likely to support the mayor compared to a rural resident."
+
+\textbf{Data:}
+\begin{itemize}
+    \item Total respondents: 1000
+    \begin{itemize}
+        \item Urban: 400
+        \begin{itemize}
+            \item Support Mayor: 280
+        \end{itemize}
+        \item Rural: 600
+        \begin{itemize}
+            \item Support Mayor: 360
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Calculations:}
+\begin{itemize}
+    \item Probability urban resident supports mayor:
+    \[
+    P(\text{Urban supports}) = \frac{280}{400} = 0.7
+    \]
+    \item Probability rural resident supports mayor:
+    \[
+    P(\text{Rural supports}) = \frac{360}{600} = 0.6
+    \]
+\end{itemize}
+
+\textbf{Justification:}
+The probability of an urban resident supporting the mayor is 0.7, while for a rural resident, it is 0.6. Since 0.7 is higher than 0.6, it can be concluded that urban residents are indeed more likely to support the mayor compared to rural residents.
+
+\subsection*{Question 2}
+\textbf{Statement:} "There is a higher probability of being in excellent health for people who exercise regularly versus those who don’t."
+
+\textbf{Data:}
+\begin{itemize}
+    \item Total adults: 1200
+    \begin{itemize}
+        \item Exercise regularly: 400
+        \begin{itemize}
+            \item Excellent health: 320
+        \end{itemize}
+        \item Do not exercise regularly: 800
+        \begin{itemize}
+            \item Excellent health: 200
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Calculations:}
+\begin{itemize}
+    \item Probability of being in excellent health when exercising regularly:
+    \[
+    P(\text{Excellent | Exercise}) = \frac{320}{400} = 0.8
+    \]
+    \item Probability of being in excellent health when not exercising regularly:
+    \[
+    P(\text{Excellent | No Exercise}) = \frac{200}{800} = 0.25
+    \]
+\end{itemize}
+
+\textbf{Justification:}
+The probability of being in excellent health is significantly higher among those who exercise regularly (0.8) compared to those who do not (0.25). This suggests a strong correlation between regular exercise and excellent health.
+
+\subsection*{Question 3}
+\textbf{Statement:} "The probability that a person in the survey uses social media regularly or shops online is greater than 50\%."
+
+\textbf{Data:}
+\begin{itemize}
+    \item Total adults: 1000
+    \item Regular social media users: 500
+    \item Regular online shoppers: 200
+    \item Both: 400
+\end{itemize}
+
+\textbf{Calculations:}
+Using the principle of inclusion-exclusion:
+\[
+P(\text{Social or Online}) = \frac{500 + 200 - 400}{1000} = \frac{300}{1000} = 0.3
+\]
+
+\textbf{Justification:}
+The probability that a person uses social media regularly or shops online is 30\%, which is less than 50\%. Therefore, the statement is incorrect.
+
+\end{document}
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solutions to Questions 4 and 5}
+\author{Your Name}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Analysis and Solutions}
+
+\subsection*{Question 4}
+\textbf{Statement:} "The probability that an adult both supports the new healthcare policy and voted in the last election is 0.24."
+
+\textbf{Given Probabilities:}
+\begin{itemize}
+    \item Probability that an adult supports the new healthcare policy, \( P(A) = 0.40 \)
+    \item Probability that an adult voted in the last election, \( P(B) = 0.60 \)
+    \item Probability that an adult supports the new healthcare policy given that they voted, \( P(A|B) = 0.50 \)
+\end{itemize}
+
+\textbf{Calculations:}
+To find the probability that an adult both supports the healthcare policy and voted, we use:
+\[ P(A \cap B) = P(A|B) \times P(B) \]
+\[ P(A \cap B) = 0.50 \times 0.60 = 0.30 \]
+
+\textbf{Justification:}
+The calculated probability that an adult both supports the healthcare policy and voted in the last election is 0.30, not 0.24 as stated. Therefore, the statement is incorrect.
+
+\subsection*{Question 5}
+\textbf{Statement:} "The probability of a person choosing policy A is 0.20."
+
+\textbf{Given Probabilities:}
+\begin{itemize}
+    \item Probability that a person supports Policy B, \( P(B) = 0.30 \)
+    \item Probability that a person supports Policy C, \( P(C) = 0.50 \)
+\end{itemize}
+
+\textbf{Calculations:}
+Since the events (supporting Policy A, B, C) are mutually exclusive and exhaustive, the probabilities must sum to 1. Thus:
+\[ P(A) = 1 - (P(B) + P(C)) \]
+\[ P(A) = 1 - (0.30 + 0.50) = 0.20 \]
+
+\textbf{Justification:}
+The probability of a person choosing Policy A is calculated to be 0.20, which matches the statement, confirming it as correct.
+
+\end{document}
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Solutions to Question 6}
+\author{Your Name}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Detailed Solutions to Subparts of Question 6}
+
+\textbf{Data Overview:}
+\begin{itemize}
+    \item Total countries: 200
+    \item Full Democracy (FD): Low = 30, Medium = 20, High = 10
+    \item Flawed Democracy (FLD): Low = 20, Medium = 30, High = 20
+    \item Electoral Autocracy (EA): Low = 10, Medium = 20, High = 40
+    \item Totals by inequality: Low = 60, Medium = 70, High = 70
+\end{itemize}
+
+\subsection*{a) Probability that a country is a Full Democracy}
+\textbf{Calculation:}
+\[ P(\text{FD}) = \frac{30 + 20 + 10}{200} = 0.30 \]
+\textbf{Justification:} This calculation sums all countries classified as Full Democracy and divides by the total number of countries, yielding the direct probability of a Full Democracy.
+
+\subsection*{b) Probability that a country does not have Medium Inequality}
+\textbf{Direct Counting:}
+\[ P(\text{Not Medium}) = \frac{60 + 70}{200} = 0.65 \]
+\textbf{Justification:} This is calculated by adding the number of countries with Low and High inequality statuses and dividing by the total number of countries.
+
+\textbf{Alternative Probability Method:}
+\[ P(\text{Not Medium}) = 1 - P(\text{Medium}) = 1 - \frac{70}{200} = 0.65 \]
+\textbf{Justification:} Using the complement rule calculates the probability by subtracting the probability of Medium Inequality from 1.
+
+\subsection*{c) Probability that a country is a Full Democracy and does not have Medium Inequality}
+\textbf{Calculation:}
+\[ P(\text{FD and Not Medium}) = \frac{30 + 10}{200} = 0.20 \]
+\textbf{Justification:} This direct calculation takes the sum of Full Democracies with Low and High Inequality and divides by the total number of countries.
+
+\subsection*{d) Probability that a country is a Full Democracy given that it has Medium Inequality}
+\textbf{Direct Counting:}
+\[ P(\text{FD | Medium}) = \frac{20}{70} = 0.2857 \]
+\textbf{Justification:} The number of Full Democracies with Medium Inequality is divided by the total number of countries with Medium Inequality, giving the direct conditional probability.
+
+\textbf{Alternative Probability Method:}
+\[ P(\text{FD and Medium}) = \frac{20}{200} = 0.10 \]
+\[ P(\text{FD | Medium}) = \frac{P(\text{FD and Medium})}{P(\text{Medium})} = \frac{0.10}{0.35} = 0.2857 \]
+\textbf{Justification:} Using \( P(A | B) = \frac{P(A \cap B)}{P(B)} \) confirms the direct method's result using probability rules.
+
+\subsection*{e) Probability that a country is either a Flawed Democracy or has High Inequality}
+\textbf{Direct Counting:}
+\[ P(\text{FLD or High}) = \frac{70 + 70 - 20}{200} = 0.60 \]
+\textbf{Justification:} This calculation adds the counts of Flawed Democracies and countries with High Inequality, subtracting the overlap to avoid double-counting.
+
+\textbf{Alternative Probability Method:}
+\[ P(\text{FLD or High}) = 0.35 + 0.35 - 0.10 = 0.60 \]
+\textbf{Justification:} Applying the inclusion-exclusion principle using known probabilities reinforces the accuracy of the direct counting method.
+
+\end{document}
+
+
+
+Solve questions 4 and 5 of this problem set. Use Python for all your calculations and show middle steps. Don't use any python packages as it is forbidden. Just use arithmetic operations. Justify your answers and explain your reasoning. Verify your calculations with python, and adjust your responses if necessary. 
+
+Now compile your answers verbatim, word by word, in a new standalone latex document, but omit any mentioning of python verification. Provide the entirety of your new output response in a self contained latex snippet. 

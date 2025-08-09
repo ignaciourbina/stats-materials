@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Solutions to Problem Set 4}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 1:}
+
+\text{Given the probability distribution:}
+
+\[
+\begin{array}{c|c}
+X & P(X = x) \\
+\hline
+0 & 0.2 \\
+1 & 0.3 \\
+2 & 0.25 \\
+3 & 0.15 \\
+4 & 0.1 \\
+\end{array}
+\]
+
+\begin{itemize}
+    \item[(a)] \text{The probability that a randomly selected student reads at least 2 books in a month:}
+    \[
+    P(X \geq 2) = P(X = 2) + P(X = 3) + P(X = 4) = 0.25 + 0.15 + 0.1 = 0.5
+    \]
+
+    \item[(b)] \text{The probability that a randomly selected student reads less than 2 books in a month:}
+    \[
+    P(X < 2) = P(X = 0) + P(X = 1) = 0.2 + 0.3 = 0.5
+    \]
+
+    \item[(c)] \text{The expected number of books read by a student in a month, } E[X]:
+    \[
+    E[X] = \sum_{x=0}^{4} x \cdot P(X = x) = (0 \cdot 0.2) + (1 \cdot 0.3) + (2 \cdot 0.25) + (3 \cdot 0.15) + (4 \cdot 0.1) = 1.6
+    \]
+
+    \item[(d)] \text{The standard deviation of the number of books read by a student in a month, } SD(X):
+    \[
+    E[X^2] = \sum_{x=0}^{4} x^2 \cdot P(X = x) = (0^2 \cdot 0.2) + (1^2 \cdot 0.3) + (2^2 \cdot 0.25) + (3^2 \cdot 0.15) + (4^2 \cdot 0.1) = 3.0
+    \]
+    \[
+    Var(X) = E[X^2] - (E[X])^2 = 3.0 - (1.6)^2 = 3.0 - 2.56 = 0.44
+    \]
+    \[
+    SD(X) = \sqrt{Var(X)} = \sqrt{0.44} \approx 0.6633
+    \]
+\end{itemize}
+
+\textbf{Problem 2 Solutions}
+
+\textbf{a) Values of } a \textbf{ and } b
+\begin{align*}
+a &= 0 \\
+b &= 100
+\end{align*}
+
+\textbf{b) Probability } P(Y \leq 50)
+\[
+P(Y \leq x) = \frac{x - a}{b - a}
+\]
+Substituting \( x = 50 \), \( a = 0 \), and \( b = 100 \):
+\[
+P(Y \leq 50) = \frac{50 - 0}{100 - 0} = \frac{50}{100} = 0.5
+\]
+
+\textbf{c) Probability } 40 \leq Y \leq 70
+\[
+P(a \leq Y \leq b) = CDF_Y(b) - CDF_Y(a)
+\]
+For \( a = 40 \) and \( b = 70 \):
+\[
+P(40 \leq Y \leq 70) = \frac{70 - 0}{100 - 0} - \frac{40 - 0}{100 - 0} = 0.70 - 0.40 = 0.30
+\]
+
+\textbf{d) Mean and Standard Deviation for Uniform Distribution}
+\[
+\mu = \frac{a + b}{2} = \frac{0 + 100}{2} = 50
+\]
+\[
+\sigma^2 = \frac{(b - a)^2}{12} = \frac{(100 - 0)^2}{12} = \frac{10000}{12} \approx 833.33
+\]
+\[
+\sigma = \sqrt{833.33} \approx 28.87
+\]
+
+\textbf{e) Real-World Application of Uniform Distribution}
+
+Uniform distributions assume all outcomes within the interval \([a, b]\) are equally likely. This might be appropriate in hypothetical or theoretical models, but in real-world scenarios, particularly for political figures, people's opinions are often not uniformly distributed. Ratings tend to cluster around certain values, influenced by factors such as media, public perception, and individual experiences. Therefore, while the uniform distribution can be a useful simplification for some analytical purposes, it may not accurately reflect the distribution of opinions in most real-world cases.
+
+\section*{Question 3}
+
+\subsection*{a) List all possible values of \(W\) and their corresponding probabilities.}
+
+\[
+\begin{array}{c|c|c}
+\text{Outcome} & \text{Net Profit } (W) & \text{Probability } P(W=w) \\
+\hline
+\text{H, 1} & 2(1) - 3 = -1 & \frac{1}{12} \\
+\text{H, 2} & 2(2) - 3 = 1 & \frac{1}{12} \\
+\text{H, 3} & 2(3) - 3 = 3 & \frac{1}{12} \\
+\text{H, 4} & 2(4) - 3 = 5 & \frac{1}{12} \\
+\text{H, 5} & 2(5) - 3 = 7 & \frac{1}{12} \\
+\text{H, 6} & 2(6) - 3 = 9 & \frac{1}{12} \\
+\text{T, 1} & 1 - 4 = -3 & \frac{1}{12} \\
+\text{T, 2} & 2 - 4 = -2 & \frac{1}{12} \\
+\text{T, 3} & 3 - 4 = -1 & \frac{1}{12} \\
+\text{T, 4} & 4 - 4 = 0 & \frac{1}{12} \\
+\text{T, 5} & 5 - 4 = 1 & \frac{1}{12} \\
+\text{T, 6} & 6 - 4 = 2 & \frac{1}{12} \\
+\end{array}
+\]
+
+\subsection*{b) Verify that the PMF satisfies the properties of a probability distribution.}
+
+The sum of all probabilities is:
+\[
+\sum P(W=w) = \frac{1}{12} + \frac{1}{12} + \frac{2}{12} + \frac{1}{12} + \frac{2}{12} + \frac{1}{12} + \frac{1}{12} + \frac{1}{12} + \frac{1}{12} + \frac{1}{12} = 1
+\]
+
+\subsection*{c) Calculate the expected value of \(W\).}
+
+The expected value \( E[W] \) is calculated as:
+\[
+E[W] = \sum w \cdot P(W=w) 
+= (-3) \cdot \frac{1}{12} + (-2) \cdot \frac{1}{12} + (-1) \cdot \frac{2}{12} + 0 \cdot \frac{1}{12} + 1 \cdot \frac{2}{12} + 2 \cdot \frac{1}{12} + 3 \cdot \frac{1}{12} + 5 \cdot \frac{1}{12} + 7 \cdot \frac{1}{12} + 9 \cdot \frac{1}{12}
+\]
+
+Substituting the values:
+\[
+E[W] = (-3) \cdot \frac{1}{12} + (-2) \cdot \frac{1}{12} + (-1) \cdot \frac{2}{12} + 0 \cdot \frac{1}{12} + 1 \cdot \frac{2}{12} + 2 \cdot \frac{1}{12} + 3 \cdot \frac{1}{12} + 5 \cdot \frac{1}{12} + 7 \cdot \frac{1}{12} + 9 \cdot \frac{1}{12}
+\]
+
+\[
+E[W] = \frac{-3 - 2 - 2 + 0 + 2 + 2 + 3 + 5 + 7 + 9}{12} = \frac{21}{12} = 1.75
+\]
+
+\subsection*{d) Calculate the variance and standard deviation of \(W\).}
+
+First, calculate \( E[W^2] \):
+\[
+E[W^2] = \sum w^2 \cdot P(W=w) 
+= (-3)^2 \cdot \frac{1}{12} + (-2)^2 \cdot \frac{1}{12} + (-1)^2 \cdot \frac{2}{12} + 0^2 \cdot \frac{1}{12} + 1^2 \cdot \frac{2}{12} + 2^2 \cdot \frac{1}{12} + 3^2 \cdot \frac{1}{12} + 5^2 \cdot \frac{1}{12} + 7^2 \cdot \frac{1}{12} + 9^2 \cdot \frac{1}{12}
+\]
+
+\[
+E[W^2] = \frac{9 + 4 + 2 + 0 + 2 + 4 + 9 + 25 + 49 + 81}{12} = \frac{185}{12} \approx 15.42
+\]
+
+Then, calculate the variance:
+\[
+\text{Var}(W) = E[W^2] - (E[W])^2 = 15.42 - (1.75)^2 = 15.42 - 3.0625 = 12.3575
+\]
+
+Finally, calculate the standard deviation:
+\[
+\text{SD}(W) = \sqrt{\text{Var}(W)} \approx \sqrt{12.3575} \approx 3.52
+\]
+
+
+
+
+\end{document}
+
+
+Solve question 2 of this problem set. Follow this procedure to create your output response.
+1. First for each letter plan your response. Write down the formulas you will use, and expand arithmetic calculations. Don't compute the final answers. 
+2. BEFORE computing the operations, use python to as a calculator. Don't use packages.
+3. Once you have the computations ready, write your answer in a latex snippet. Your answer must include the formulas you are using, the middle steps, and the final (python verified) results. Hence, your answer will be properly justified. 

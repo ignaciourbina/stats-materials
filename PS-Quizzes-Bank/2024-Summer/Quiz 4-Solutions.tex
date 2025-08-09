@@ -1,0 +1,282 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+
+\usepackage{xcolor}  % This line includes the xcolor package
+\definecolor{dblue}{rgb}{0.252, 0.378, 0.462}  % Reduced each component by about 20%
+
+% ------------------------------------------- %
+\title{Quiz 4 - Solutions}
+\author{POL 201 - POL 501}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{Question 1 (3 points)}
+In a certain city, the response time of ambulances to emergency calls is normally distributed. The mean response time is 12 minutes, with a standard deviation of 3 minutes. Let \(X\) represent the random variable measuring the response time of an ambulance. 
+
+Based on this information, answer the following questions:
+
+\begin{enumerate}
+\item[a)] What is the probability that an ambulance will respond within 10 minutes? \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+    \textcolor{dblue}{ \textbf{Answer:} \newline To determine the probability that the response time \(X\) is less than or equal to 10 minutes, we calculate the Z-score:
+    \[
+    Z = \frac{X - \mu}{\sigma} = \frac{10 - 12}{3} \approx -0.67
+    \]
+    Using the standard normal distribution, we find the cumulative probability for \(Z = -0.67\):
+    \[
+    P(X \leq 10) = P(Z \leq -0.67) \approx 0.2514
+    \]
+    Thus, there is approximately a 25.14\% chance that an ambulance will respond within 10 minutes.
+    }
+}}
+\end{center}
+
+\item[b)] What is the probability that an ambulance will respond within 15 minutes? \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+    \textcolor{dblue}{\textbf{Answer:} \newline 
+    Similarly, we calculate the Z-score for 15 minutes:
+    \[
+    Z = \frac{15 - 12}{3} = 1.00
+    \]
+    The cumulative probability for \(Z = 1.00\) is:
+    \[
+    P(X \leq 15) = P(Z \leq 1.00) \approx 0.8413
+    \]
+    Thus, there is approximately an 84.13\% chance that an ambulance will respond within 15 minutes.
+    }
+}}
+\end{center}
+
+\item[c)] What is the probability that an ambulance will respond within 10 to 15 minutes? \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+    \textcolor{dblue}{\textbf{Answer:} \newline 
+    First, recall the following property of the $CDF_X(x)$ of a continuous random variable $X$: $P(a\leq X \leq b) = CDF_X(b) - CDF_X(a)$. To find the probability that the response time is between 10 and 15 minutes, we calculate:
+    \[
+    P(10 \leq X \leq 15) = P(X \leq 15) - P(X \leq 10) = 0.8413 - 0.2514 \approx 0.5899
+    \]
+    Therefore, there is approximately a 58.99\% chance that an ambulance will respond within 10 to 15 minutes.
+    }
+}}
+\end{center}
+
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
+\subsection*{Question 2 (6 points)}
+A study of 400 social media users found that 280 of them believe that social media has a negative impact on their mental health. Suppose we are interested in making inferences about the population proportion of social media users who believe social media has a negative impact on their mental health. 
+
+Based on the provided information, answer the following questions:
+
+\begin{enumerate}
+\item[a)] Calculate the sample proportion of social media users who believe that social media has a negative impact on their mental health. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline The sample proportion, \( \hat{p} \), is calculated as:
+\[
+\hat{p} = \frac{\text{number of favorable outcomes}}{\text{total number of trials}} = \frac{280}{400} = 0.70
+\]
+Thus, 70\% of the sampled users believe social media negatively affects their mental health.
+}
+}}
+\end{center}
+    
+\item[b)] Calculate the standard error of the sample proportion. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline Given the parameters of the sampling distribution of the sample proportion, the standard error of the sample proportion is calculated using:
+\[
+\text{SE}(\hat{p}) = \sqrt{\frac{\hat{p} (1 - \hat{p})}{n}} = \sqrt{\frac{0.70 \times (0.30)}{400}} \approx 0.0229 \]
+}
+}}
+\end{center}
+    
+\item[c)] If we want to construct a confidence interval with 95\% confidence, which critical value of the standard normal distribution should we use? \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline The critical value for a 95\% confidence interval using the standard normal distribution is approximately \( |z_{\alpha/2}| = |z_{2.5\%}|  = 1.96 \). This is because if we use software or check the z-table, we will find that: $P(Z\leq -1.96) = 0.025$. Hence, $P(-1.96 \leq Z \leq 1.96) = 1 - 2\cdot 0.025 = 1 - 0.05 = 0.95$. Therefore, 95\% of the distribution of the z-score is between -1.96 and 1.96.
+}
+}}
+\end{center}
+    
+\item[d)] If we want to construct a confidence interval with 99\% confidence, which critical value of the standard normal distribution should we use? \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline The critical value for a 99\% confidence interval is approximately \( |z_{\alpha/2}| = |z_{0.5\%}|  = 2.576 \).  This is because if we use software or check the z-table, we will find that $P(Z\leq -2.576) = 0.005$. Hence, $P(-2.576 \leq Z \leq 2.576) = 1 - 2\cdot 0.005 = 1 - 0.01 = 0.99$. Therefore, 99\% of the distribution of the z-score is between -2.576 and 2.576.
+}
+}}
+\end{center}
+    
+\item[e)] Using the sample data, construct a confidence interval for the population proportion at the 95\% confidence level. Interpret the confidence interval. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline The 95\% confidence interval for the population proportion is:
+\[
+\text{CI}_{95\%} = \hat{p} \pm |z_{2.5\%}| \times \text{SE}(\hat{p}) = 0.70 \pm 1.96 \times 0.0229 \approx (0.6551, 0.7449)
+\]
+This interval suggests that we are 95\% confident that the true proportion lies between 65.51\% and 74.49\%.
+}
+}}
+\end{center}
+    
+\item[f)] Using the sample data, construct a confidence interval for the population proportion at the 99\% confidence level. Interpret the confidence interval. \emph{Justify your answer.} (1 point)
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline The 99\% confidence interval for the population proportion is:
+\[
+\text{CI}_{99\%} = \hat{p} \pm |z_{0.5\%}| \times \text{SE}(\hat{p}) = 0.70 \pm 2.576 \times 0.0229 \approx (0.6410, 0.7590)
+\]
+This interval suggests that we are 99\% confident that the true proportion lies between 64.10\% and 75.90\%.
+}
+}}
+\end{center}
+
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
+%\newpage
+\subsection*{Question 3 (6 points)}
+
+A recent survey suggests that 45\% of residents in a small town support implementing a participatory budgeting process for local government spending. A political scientist believes that the true support for participatory budgeting is actually higher than 45\%. To test this claim, a random sample of 700 residents is surveyed, and 360 of them express support for participatory budgeting.\footnote{Participatory budgeting is a democratic process in which community members directly decide how to allocate a portion of a public budget.} We are asked to carry out a hypothesis test to assess whether there is evidence in support of the political scientist's claim. The test is conducted at the 1\% significance level ($\alpha=0.01$).
+
+Based on the provided information, answer the following questions:
+
+\begin{enumerate}
+\item[a)] State the null and alternative hypotheses. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{ \textbf{Answer:} \newline \underline{Hypotheses:}
+\begin{itemize}
+    \item Null hypothesis (\(H_0\)): The proportion of support (\(p\)) is 45\%, i.e., \( H_0: p_0 = 0.45 \) (Note that it would also be correct to state that \( H_0: p_0 \leq 0.45 \), as this is a matter of convention according to some textbooks).
+    \item Alternative hypothesis (\(H_1\)): The proportion of support is greater than 45\%, i.e., \( H_1 : p_0 > 0.45 \).
+\end{itemize}
+}
+}}
+\end{center}
+
+\item[b)] Calculate the sample proportion. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline \underline{Sample Proportion Calculation:}
+\[
+\hat{p} = \frac{360}{700} \approx 0.5143
+\]
+Approximately 51.43\% of the sampled residents support participatory budgeting.
+}
+}}
+\end{center}
+
+\item[c)] Compute the standard error of the proportion assuming the null hypothesis. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline In hypothesis testing, we assume the null hypothesis and see if our data is extreme enough (very far from the null) so that we can affirm there is evidence against the null hypothesis. Hence, we compute the SE assuming the null, which in this case implies $p_0=0.45$. Therefore, \underline{Standard Error Under the Null Hypothesis:}
+\[
+\text{SE}(p_0) = \sqrt{\frac{0.45 \times (1 - 0.45)}{700}} \approx 0.0188
+\]
+}
+}}
+\end{center}
+\vspace{1em}
+%\newpage % -------------------------------
+
+\item[d)] Calculate the test statistic (Z). \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline \underline{Test Statistic (Z-score):}
+\[
+Z = \frac{\hat{p}-p_0}{\text{SE}(p_0)} =  \frac{0.5143 - 0.45}{0.0188} \approx 3.42
+\]
+Hence, we can say that the sample proportion is approximately 3.42 standard deviations away from the population proportion under the null hypothesis.
+}
+}}
+\end{center}
+
+
+\item[e)] Determine the critical value for a one-sided test at the 1\% significance level ($\alpha=0.01$). \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline \underline{Critical Value for a One-sided Test at the 1\% Significance Level:}
+\[
+z_{\text{critical}} = 2.33
+\]
+This value is the one such that $P(Z>z_{\text{critical}}) = 0.01$, according to the z-table or software computation. This value defines the boundary between the non-rejection and rejection regions of the test statistic. 
+}
+}}
+\end{center}
+    
+\item[f)] Compare the value of the test statistic to the critical value and make a conclusion regarding whether the new data supports the political scientist's claim. \emph{Justify your answer.} (1 point)
+
+\begin{center}
+\fbox{\parbox{0.93\textwidth}{
+\textcolor{dblue}{
+\textbf{Answer:} \newline The test statistic \(Z \approx 3.42\) exceeds the critical value \(Z_{\text{critical}} = 2.33\). Therefore, we reject the null hypothesis and conclude that there is significant evidence at the 1\% level to support the claim that the true support for participatory budgeting is higher than 45\%. \newline Intuitively, this means that our data is extreme enough that it would be very unlikely under the null hypothesis. Based on the significance level of 1\%, we would tolerate that the sample proportion is away from the null proportion by 2.33 standard deviations or less. Yet, our data shows that the sample proportion is 3.42 standard deviations away from the null proportion, which goes beyond the tolerance level defined by the critical value. Hence, our sample statistic falls in the rejection region. This implies the new data supports the political scientist's claim that the true population proportion is higher than 45\%.
+}
+}}
+\end{center}
+    
+\end{enumerate}
+
+
+
+\end{document}
+
+
+
+\subsection*{Part (c)}
+
+
+\subsection*{Part (d)}
+\textbf{Test Statistic (Z-score):}
+\[
+Z = \frac{0.5143 - 0.45}{0.0188} \approx 3.42
+\]
+
+\subsection*{Part (e)}
+
+
+\subsection*{Part (f)}
+\textbf{Decision:}
+
+
+\end{document}
+
+
+Solve this quiz following this procedure.
+1. Once you attempt a given letter of a question, first describe your logic and strategy and all assumptions you are making. Be very clear about the mathematical operations you plan to carry out, making explicit the general versions of the formulas. DO NOT COMPUTE VALUES; JUST EXPRESS FORMULAS IN EXTENSIVE FORM.
+2. Then, once you have that plan detailed, then finalize your computations in Python. 
+3. Then, write your finalized brief answer that shows your work fully and with python verified calculations
+4. Repeat the process for the next letter.
+
+Now, provide your answers in a latex document. Don't include the Python calls. Include the verified computations. Include the justification of your answers. Do this to the answer you provided to question 1.
+

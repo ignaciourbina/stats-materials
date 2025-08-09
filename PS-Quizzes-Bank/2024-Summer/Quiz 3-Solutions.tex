@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\usepackage{xcolor}  % This line includes the xcolor package
+\definecolor{dblue}{rgb}{0.252, 0.378, 0.462}  % Reduced each component by about 20%
+
+%--------------------------------------------------------
+
+\title{Quiz 3 - Solutions}
+\author{POL 201 - POL 501}
+\date{}
+
+\begin{document}
+\maketitle
+
+As a campaign organizer, you are preparing to host a political event. The event is free for attendees, but the owners of the venue will charge you a variable cost of \$70 per attendee. Additionally, there is a fixed cost for the venue rental of \$20,000 you have to pay regardless of how many people attend the event. The number of attendees is represented by a random variable $A$. Below is the distribution for the number of attendees:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c}
+    \hline 
+    Attendees ($A$) & Probability ($P(A = a)$) \\
+    \hline
+    $A < 50$ & 0 \\
+    50 & 0.10 \\
+    100 & 0.20 \\
+    150 & 0.30 \\
+    200 & 0.25 \\
+    250 & 0.15 \\
+    $A > 250$ & 0 \\
+    \hline 
+\end{tabular}
+\caption{Probability Mass Function of Attendees.}
+\end{table}
+\begin{itemize}
+    \item \textbf{Fixed Cost:} The venue rental fee is \$20,000.
+\end{itemize}
+
+\subsection*{Questions}
+
+\subsubsection*{(a) Calculate the Expected Value of the Number of Attendees (3 points)}
+
+Determine the expected value of the number of attendees at the event. \emph{Justify your answer}.
+
+\begin{center}
+\fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+The expected value of the number of attendees at the event is calculated by summing  the products of each number of attendees and its respective probability:
+    \begin{align*}
+    E[A] &= 50 \times 0.10 + 100 \times 0.20 + 150 \times 0.30 + 200 \times 0.25 + 250 \times 0.15 \\
+    &= 5 + 20 + 45 + 50 + 37.5 \\
+    &= 157.5 \text{ attendees}
+    \end{align*} }
+}}
+\end{center}
+
+\subsubsection*{(b) Define the Total Cost as a Linear Combination (1 points)}
+
+To organize the event, the venue is charging you a cost per attendee of \$70, which will be totaled when the event finishes. Write down the total cost of the event, $C$, as a linear combination of $A$, the cost per attendee, and the venue rental fee. \emph{Justify your answer}.
+
+\begin{center}
+    \fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+    The total cost $C$ will be a sum of the variable cost (the product of the number of attendees and the cost per attendee) and the fixed venue rental fee. Thus we have:
+    $$C = 70A + 20000$$}
+    }}
+\end{center}
+
+\subsubsection*{(c) Compute the Probability Mass Function of the Total Cost (3 points)}
+
+Compute the probability mass function of the total cost, $C$. In other words, for each possible value of the total cost indicate its probability, $P_C(c)$. Express this in a table. \emph{Justify your answer}.
+
+\begin{center}
+\fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+As defined above, $C = 70A + 20000$. Because each value of $A$ is mapped to only one value of $C$ we can use the probabilities for the $PMF_A(a)$. So for each value of $A$, we can calculate $C$, and use the given probabilities: \newline}
+
+\centering 
+\textcolor{dblue}{
+\begin{tabular}{c|c|c}
+    \hline 
+    $A$ & $C$ & $P_C(c)$ \\
+    \hline
+    50 & \$23,500 & 0.10 \\
+    100 & \$27,000 & 0.20 \\
+    150 & \$30,500 & 0.30 \\
+    200 & \$34,000 & 0.25 \\
+    250 & \$37,500 & 0.15 \\
+    \hline
+\end{tabular}  \vspace{1em}}
+}}
+\end{center}
+
+
+\subsubsection*{(d) Compute the Cumulative Distribution Function of the Total Cost (2 points)}
+
+Compute the cumulative distribution function of the total cost, $C$. In other words, for each possible value of the total cost calculate $P_C(C\leq c)$. Express this in a table. \emph{Justify your answer}.
+
+\begin{center}
+    \fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+    The cumulative distribution function adds up the probabilities for all the costs up to and including each cost value: \newline}
+
+        \centering
+    \textcolor{dblue}{
+    \begin{tabular}{c|l}
+    \hline 
+    $c$ & $P_C(C\leq c)$ \\
+    \hline
+    \$23,500 & 0.10 \\
+    \$27,000 & 0.30 = 0.10 + 0.20 \\
+    \$30,500 & 0.60 = 0.10 + 0.20 + 0.30 \\
+    \$34,000 & 0.85 = 0.10 + 0.20 + 0.30 + 0.25 \\
+    \$37,500 & 1.00 = 0.10 + 0.20 + 0.30 + 0.25 + 0.15 \\
+    \hline
+    \end{tabular}  \vspace{1em}}
+}}
+\end{center}
+
+\subsubsection*{(e) Compute the Expected Value of the Total Cost (3 points)}
+
+Calculate the expected value of the total cost of the event. \emph{Justify your answer}.
+
+\begin{center}
+\fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+    The expected value of the total cost of the event, denoted as \( E(C) \), is calculated by summing the products of each possible total cost and its corresponding probability:
+    \[
+    E(C) = \$23,500 \times 0.10 + \$27,000 \times 0.20 + \$30,500 \times 0.30 + \$34,000 \times 0.25 + \$37,500 \times 0.15
+    \]
+    Calculating the above expression:
+    \[
+    E(C) = \$2,350 + \$5,400 + \$9,150 + \$8,500 + \$5,625 = \$31,025
+    \]
+    Thus, the expected total cost of the event is \$31,025. \vspace{1em} \newline 
+    Alternatively, we could have used the following rule for expectations of linear combinations: $E[aX+b] = aE[X] + b$. In our case, $E[C] = 70 E[A] + 20,000 =  70 \cdot 157.5 + 20,000 =  \$31,025$}
+}}
+\end{center}
+
+\newpage
+\subsubsection*{(f) Assess Budget Constraints (2 points)}
+
+Your supervisor has indicated that the maximum budget for the event is \$35,000. Calculate the probability that the cost of the event exceeds this budget. \emph{Justify your answer}.
+
+\begin{center}
+\fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+    Looking at the cumulative distribution function, we see that $P_C(C\leq \$35,000) = 0.85$. We can determine this since below $C=\$37,500$ and up to $\$34,000$ a probability of $85\%$ is accumulated given the $CDF_C(c)$.  Thus, the probability that the cost of the event exceeds this budget is $$P_C(C > \$35,000) = 1 - P_C(C\leq \$35,000) = 1 - 0.85 = 0.15.$$ So, the probability that the event's cost surpasses the budget is 15\%. \newline An alternative way to think about this question is that the only value of $C$ that exceeds $\$35,000$ is $C=\$37,500$. Therefore the event ``$C > \$35,000$'' is equivalent to the event ``$C=\$37,500$''. Hence, $$P(C > \$35,000) = P(C=\$37,500) = 0.15$$}
+}}
+\end{center}
+
+\subsubsection*{(g) Determine the Deviation Range (1 point)}
+
+Suppose you communicate to your supervisor the value of the expected cost of the event. She wonders whether the typical deviation from that cost is such that \$35,000 is outside or inside of that typical deviation range. 
+
+To answer this question, calculate the standard deviation of the total cost and find the range defined by the expected value plus and minus one standard deviation ($\mu + \sigma$ and $\mu - \sigma$). Determine whether \$35,000 is inside this interval. \emph{Justify your answer}.
+
+\begin{center}
+    \fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
+    The standard deviation of the total cost is calculated using the formula for standard deviation of a probability distribution:
+    $$\sigma = \sqrt{\sum_{\forall i} [C_i - E(C)]^2 \cdot P_C(C_i)}$$
+    We apply this formula to our values: 
+    \begin{align*}
+    \sigma &=\sqrt{(23,500-31,025)^2 \cdot 0.10 + (27,000-31,025)^2 \cdot 0.20 + (30,500-31,025)^2 \cdot 0.30 + \cdots } \\
+    & \quad \quad \overline{\cdots + (34,000-31,025)^2 \cdot 0.25 + (37,500 - 31,025)^2 \cdot 0.15} \\
+    &= \$4,181.73
+    \end{align*}
+    Thus, the range defined by one standard deviation from the mean is \$31,025 - \$4,181.73 to \$31,025 + \$4,181.73, or \$26,843.27 to \$35,206.72. \$35,000 is \textbf{inside} this interval.}
+    }}
+\end{center}
+
+\end{document}

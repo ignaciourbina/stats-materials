@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+
+\begin{document}
+\begin{center}
+    \Large  Solving Problem 3.1 Using the Addition Rule
+\end{center}
+\vspace{2em}
+
+\textbf{Problem 3.1:} Given independent juror decisions with probabilities:
+\[
+P(X_1 = 1) = 0.3,\quad P(X_2 = 1) = 0.4,\quad P(X_3 = 1) = 0.2,
+\]
+compute the probability that at least one juror votes guilty using the addition rule.
+
+\textbf{Solution:} Let
+\[
+A = \{X_1 = 1\},\quad B = \{X_2 = 1\},\quad C = \{X_3 = 1\}
+\]
+Then, using the addition rule:
+\[
+\begin{aligned}
+P(A \cup B \cup C) &= P(A) + P(B) + P(C) \\
+&\quad - P(A \cap B) - P(A \cap C) - P(B \cap C) \\
+&\quad + P(A \cap B \cap C) \\
+&= 0.3 + 0.4 + 0.2 - 0.12 - 0.06 - 0.08 + 0.024 \\
+&= 0.664
+\end{aligned}
+\]
+
+\textbf{Answer:} \( \boxed{0.664} \)
+
+\textbf{Note:} When we subtract the pairwise intersections like \( P(A \cap B) \), we are also subtracting the probability of all three events happening together, \( P(A \cap B \cap C) \), because this event is a subset of each of the pairwise intersections. For example, if all three jurors vote guilty, that outcome is included in \( P(A \cap B) \), \( P(A \cap C) \), and \( P(B \cap C) \). 
+
+So here’s exactly why we add the full intersection back once:
+
+\textbf{Step-by-step logic (why we add it once):}
+\begin{itemize}
+    \item We start by adding all individual probabilities:
+    \[
+    P(A) + P(B) + P(C)
+    \]
+    \item But this double-counts the overlaps between events. So we subtract the pairwise intersections:
+    \[
+    - P(A \cap B) - P(A \cap C) - P(B \cap C)
+    \]
+    \item Now, let’s see what happens to the part where all three events happen,  \( A \cap B \cap C \):
+    \begin{itemize}
+        \item It is \textbf{included} in all three of the individual terms → counted \textbf{3 times}.
+        \item It is \textbf{subtracted} in all three pairwise terms → subtracted \textbf{3 times}.
+    \end{itemize}
+    \item So far: counted 3 times, subtracted 3 times → total count = \textbf{0 times}.
+    \item But we need it to be counted \textbf{once}. So:
+    \[
+    \text{Final step: add } + P(A \cap B \cap C)
+    \]
+    \item Now we have:
+    \begin{itemize}
+        \item Counted: 3
+        \item Subtracted: 3
+        \item Added once = $\checkmark$ counted exactly once
+    \end{itemize}
+\end{itemize}
+
+\textbf{That’s why the inclusion-exclusion formula ends with \( + P(A \cap B \cap C) \)}.
+
+\end{document}

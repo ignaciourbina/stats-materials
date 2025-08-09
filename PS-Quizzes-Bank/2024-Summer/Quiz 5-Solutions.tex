@@ -1,0 +1,279 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\usepackage{xcolor}  % This line includes the xcolor package
+\definecolor{dblue}{rgb}{0.252, 0.378, 0.462}  % Reduced each component by about 20%
+
+% ------------------------------------------- %
+\title{Quiz 5 - Solutions}
+\author{POL 201 - POL 501}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+
+\subsection*{Part (a): Hypothesis Statements}
+The null and alternative hypotheses are stated as follows:
+\begin{itemize}
+    \item Null Hypothesis (\(H_0\)): The average safety rating in Neighborhood A is equal to that in Neighborhood B after the campaign.
+    \[ H_0: \mu_A = \mu_B \]
+    \item Alternative Hypothesis (\(H_1\)): The average safety rating in Neighborhood A is not equal to that in Neighborhood B after the campaign.
+    \[ H_1: \mu_A \neq \mu_B \]
+\end{itemize}
+The null hypothesis reflects no effect from the campaign, assuming no difference in safety perception between the two neighborhoods. The alternative hypothesis considers the possibility of a difference, prompted by the interest in the campaign's impact.
+
+\subsection*{Part (b): Test Statistic and Formula}
+The appropriate test statistic for this scenario, given the assumption of equal variances, is the two-sample t-test. The formula for the test statistic is:
+\[ t = \frac{\bar{X}_A - \bar{X}_B}{s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}}} \]
+where:
+\begin{itemize}
+    \item \(\bar{X}_A\) and \(\bar{X}_B\) are the sample means for neighborhoods A and B.
+    \item \(s_p\) is the pooled standard deviation, calculated as:
+    \[ s_p = \sqrt{\frac{(n_A-1)s_A^2 + (n_B-1)s_B^2}{n_A + n_B - 2}} \]
+    \item \(n_A\) and \(n_B\) are the sample sizes, and \(s_A\) and \(s_B\) are the sample standard deviations for neighborhoods A and B, respectively.
+\end{itemize}
+
+\subsection*{Part (c): Computation of Test Statistic and P-value}
+The detailed computation of the test statistic using the two-sample t-test formula is as follows:
+\[ t = \frac{\bar{X}_A - \bar{X}_B}{s_p \sqrt{\frac{1}{n_A} + \frac{1}{n_B}}} \]
+where:
+\begin{itemize}
+    \item \(\bar{X}_A = 5.2\) and \(\bar{X}_B = 7.6\) are the sample means for neighborhoods A and B, respectively.
+    \item \(s_A = 4.3\) and \(s_B = 4.5\) are the sample standard deviations for neighborhoods A and B, respectively.
+    \item \(n_A = 25\) and \(n_B = 28\) are the sample sizes for neighborhoods A and B, respectively.
+    \item The pooled standard deviation \(s_p\) is calculated as:
+    \[ s_p = \sqrt{\frac{(n_A-1)s_A^2 + (n_B-1)s_B^2}{n_A + n_B - 2}} = \sqrt{\frac{(25-1)4.3^2 + (28-1)4.5^2}{25 + 28 - 2}} = 4.407 \]
+\end{itemize}
+Plugging in these values, the computation for the t-statistic becomes:
+\[ t = \frac{5.2 - 7.6}{4.407 \sqrt{\frac{1}{25} + \frac{1}{28}}} \]
+\[ t = -1.979 \]
+
+The degrees of freedom for the test are \(df = n_A + n_B - 2 = 25 + 28 - 2 = 51\).
+
+To calculate the P-value for the two-tailed test using the t-distribution:
+\[ p = 2 \times P(T > |t|) \]
+\[ p = 2 \times P(T > 1.979) \]
+\[ p = 0.0532 \]
+
+Thus, the test statistic computed is \( t = -1.979 \) and the corresponding P-value is \( p = 0.0532 \), as derived from the t-distribution with 51 degrees of freedom.
+
+
+\subsection*{Part (d): Hypothesis Test Assessment}
+\begin{itemize}
+    \item At the 5\% significance level, the null hypothesis is not rejected because the P-value (\(p = 0.0532\)) is greater than 0.05.
+    \item Similarly, at the 1\% significance level, the null hypothesis is not rejected as the P-value remains above 0.01.
+\end{itemize}
+
+\subsection*{Part (e): Interpretation of Results}
+The results indicate no statistically significant evidence to conclude that the perceptions of safety in Neighborhood A and Neighborhood B differ post-campaign. The P-value suggests that the observed mean difference could reasonably occur under the null hypothesis, indicating no effective difference between the neighborhoods due to the campaign.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Question 2}
+
+\subsection*{a) Hypotheses Statement}
+
+\subsubsection*{Approach:}
+\begin{itemize}
+    \item \textbf{Null Hypothesis (H0):} The therapy program has no effect on anxiety scores. This implies that the average change in anxiety scores before and after the program is zero.
+    \item \textbf{Alternative Hypothesis (H1):} The therapy program reduces anxiety scores. This implies that the average change in anxiety scores is less than zero.
+\end{itemize}
+
+\subsubsection*{Mathematical Representation:}
+Define \( d_i = x_{\text{after},i} - x_{\text{before},i} \) for each participant \( i \).
+\begin{itemize}
+    \item \(\mu_d\) represents the population mean of the differences.
+    \item \textbf{Null Hypothesis (H0):} \( \mu_d = 0 \)
+    \item \textbf{Alternative Hypothesis (H1):} \( \mu_d < 0 \)
+\end{itemize}
+
+\subsubsection*{Justification:}
+The null hypothesis assumes no change, standard in hypothesis testing unless evidence suggests otherwise. The alternative hypothesis reflects the therapy's aim to reduce anxiety, suggesting a negative mean difference.
+
+\subsection*{b) Test Statistic}
+
+\subsubsection*{Approach:}
+Use a paired t-test because the same participants are measured before and after the treatment, indicating dependent samples. Additionally, we have a small sample size that why we use the $t$ statistic.
+
+\subsubsection*{Formula:}
+Calculate differences \( d_i = x_{\text{after},i} - x_{\text{before},i} \) for each participant. The following is the test statistic:
+\[
+t = \frac{\bar{d} - 0}{s_d / \sqrt{n}}
+\]
+where \( \bar{d} \) is the mean of these differences, \( s_d \) is the standard deviation of these differences, and \( n = 10 \) is the number of participants.
+
+\subsubsection*{Justification:}
+Paired samples t-test is appropriate as it considers the differences between paired observations (before and after scores). Also, we use the t-test because the sample size is small.
+
+\subsection*{c) Computation of Test Statistic and Explanation}
+
+\[
+\bar{d} = \frac{1}{n} \sum_{i=1}^{n} (x_{\text{after},i} - x_{\text{before},i})
+\]
+
+
+\[
+\bar{d} = \frac{1}{10} \left( (18 - 24) + (22 - 30) + (25 - 28) + \cdots  + (19 - 27) + (23 - 29) \right) = -5.3
+\]
+
+
+\[
+s_d = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (d_i - \bar{d})^2} = 1.89
+\]
+
+
+\textbf{Computed Values:}
+\begin{itemize}
+    \item Mean of differences, \( \bar{d} \): $-5.3$
+    \item Standard deviation of differences, \( s_d \): $1.89$
+    \item t-statistic, \( t \): $ \frac{-5.3}{1.89 / \sqrt{10} } = -8.87$
+\end{itemize}
+
+To calculate the P-value for the one-tailed test using the t-distribution:
+\[ p =  P(T < t) \]
+\[ \text{$p$-value} = P(T < -8.87) \]
+
+\textbf{Computed $p$-value:}
+\[
+\text{$p$-value}  \approx 0.0000048
+\]
+
+\textbf{Explanation:}
+\(\bar{d}\) indicates the average decrease in anxiety scores after the therapy. \(s_d\) measures the variability of these differences. A p-value significantly lower than $0.01$ suggests a strong effect of the therapy in reducing anxiety scores.
+
+\subsection*{d) Rejection of the Null Hypothesis and P-value Calculation}
+
+
+\textbf{Justification:}
+The p-value is extremely low (far below 0.01), indicating very strong evidence against the null hypothesis. We can reject the null hypothesis at both the 5\% and 1\% significance levels, confirming that the therapy program effectively reduces anxiety scores.
+
+\subsection*{e) Interpretation of Results}
+
+\textbf{Simple Explanation:}
+The analysis shows that the therapy program leads to a statistically significant reduction in anxiety levels among participants. The extremely low p-value supports the effectiveness of the therapy, suggesting that the observed decrease in anxiety scores is unlikely due to random chance.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section*{Question 3: Hypothesis Test for Proportions}
+
+\textbf{Part (a): State the null and alternative hypotheses}
+
+\begin{itemize}
+    \item We are testing whether there is a statistically significant difference in the proportions of participants reporting increased awareness between the two groups.
+    \item Let \( p_A \) be the proportion of participants in Group A (Visual) reporting increased awareness.
+    \item Let \( p_B \) be the proportion of participants in Group B (Facts) reporting increased awareness.
+\end{itemize}
+
+\textbf{Hypotheses:}
+\begin{itemize}
+    \item Null Hypothesis (\( H_0 \)):
+    \begin{itemize}
+        \item In words: There is no significant difference in the proportion of participants reporting increased awareness between Group A and Group B.
+        \item Mathematical statement: \( H_0: p_A = p_B \)
+    \end{itemize}
+    
+    \item Alternative Hypothesis (\( H_1 \)):
+    \begin{itemize}
+        \item In words: There is a significant difference in the proportion of participants reporting increased awareness between Group A and Group B.
+        \item Mathematical statement: \( H_1: p_A \neq p_B \)
+    \end{itemize}
+\end{itemize}
+
+\textbf{Part (b): Test statistic and formula}
+
+\begin{itemize}
+    \item We are comparing the proportions of two independent groups, so the appropriate test is a two-proportion z-test.
+    \item When performing a hypothesis test to compare two proportions, we often assume that under the null hypothesis (\( H_0 \): \( p_A = p_B \)), the two sample proportions come from the same underlying population proportion. This assumption allows us to pool the data from both groups to estimate a single proportion, which we then use in our test statistic.
+    \item Pooling the data provides a more stable estimate of the common proportion under the null hypothesis, particularly when the sample sizes are large, as it leverages all the available data from both groups.
+\end{itemize}
+
+\textbf{Formula:}
+\[
+z = \frac{ \hat{p}_A - \hat{p}_B }{ \sqrt{\hat{p}(1-\hat{p}) \left(\frac{1}{n_A} + \frac{1}{n_B}\right)} }
+\]
+Where:
+\begin{itemize}
+    \item \( \hat{p}_A \) and \( \hat{p}_B \) are the sample proportions of participants reporting increased awareness in Group A and Group B, respectively.
+    \item \( \hat{p} \) is the pooled proportion, calculated as:
+    \[
+    \hat{p} = \frac{X_A + X_B}{n_A + n_B}
+    \]
+    \item \( X_A \) and \( X_B \) are the number of participants reporting increased awareness in Group A and Group B, respectively.
+    \item \( n_A \) and \( n_B \) are the total number of participants in Group A and Group B, respectively.
+\end{itemize}
+
+
+\textbf{Part (c): Calculation of Test Statistic and P-value}
+
+\begin{itemize}
+    \item The sample proportions are calculated as:
+    \[
+    \hat{p}_A = \frac{X_A}{n_A} = \frac{860}{1200} \approx 0.7167
+    \]
+    \[
+    \hat{p}_B = \frac{X_B}{n_B} = \frac{780}{1150} \approx 0.6783
+    \]
+    \item The pooled proportion is:
+    \[
+    \hat{p} = \frac{860 + 780}{1200 + 1150} = \frac{1640}{2350} \approx 0.6979
+    \]
+    \item Substituting these into the z-test formula:
+    \[
+    z = \frac{0.7167 - 0.6783}{\sqrt{0.6979(1 - 0.6979) \left(\frac{1}{1200} + \frac{1}{1150}\right)}} \approx 2.027
+    \]
+    \item The corresponding p-value (two-tailed) is:
+    \[
+    p = 2 \times P(Z > |z_{obs}|) =  2 \times P(Z > 2.027 )  \approx 0.0427
+    \]
+\end{itemize}
+
+Note that we use the Z-test since we have large samples (hence, we can apply the Central Limit Theorem), and under the null, we can compute the value for the $SE$. \\
+
+\textbf{Part (d): Hypothesis Testing at Significance Levels}
+
+\begin{itemize}
+    \item At the 5\% significance level (\( \alpha = 0.05 \)):
+    \begin{itemize}
+        \item Since \( p = 0.0427 < 0.05 \), we reject the null hypothesis.
+    \end{itemize}
+    \item At the 1\% significance level (\( \alpha = 0.01 \)):
+    \begin{itemize}
+        \item Since \( p = 0.0427 > 0.01 \), we fail to reject the null hypothesis.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Part (e): Interpretation of Results}
+
+\begin{itemize}
+    \item At the 5\% significance level: There is evidence to suggest that there is a statistically significant difference in the proportion of participants reporting increased awareness between the two advertisement styles.
+    \item At the 1\% significance level: There is not enough evidence to conclude a statistically significant difference in the proportion of participants reporting increased awareness between the two advertisement styles.
+\end{itemize}
+
+
+\end{document}
+
+
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Analysis of Therapy Program Effectiveness}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+
+
+\end{document}
+
