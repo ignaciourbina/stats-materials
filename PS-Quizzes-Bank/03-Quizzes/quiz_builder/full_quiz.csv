@@ -1,0 +1,158 @@
+﻿NewQuestion,MC,,,,
+Title,Probability of Watching Debates,,,,
+QuestionText,"<p>In a recent poll, 30% of respondents say they watch political debates on TV, 25% say they follow debates online, and 10% say they do both.</p>
+<p>If one person is selected at random, what is the probability they watch debates on TV or online?</p>",HTML,,,
+Points,3,,,,
+Option,100,0.55,HTML,,
+Option,0,0.45,HTML,,
+Option,0,0.475,HTML,,
+Option,0,0.075,HTML,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Conditional Probability from Survey Table,,,,
+QuestionText,"<p>A national survey of 700 adults asked two questions: whether they support implementing a federal carbon tax (support coded as 1, and do not support as 0) and how much they agree with the statement:</p>
+<p><i>“Climate change poses a serious threat to the country’s future.”</i></p>
+<p>Responses to the agreement statement were measured on a 5-point scale (from Strongly Disagree to Strongly Agree). The results are summarized below:</p>
+<table>
+<tr><th></th><th>Strongly Disagree</th><th>Disagree</th><th>Neutral</th><th>Somewhat Agree</th><th>Strongly Agree</th></tr>
+<tr><td><b>Support Carbon Tax (1)</b></td><td>30</td><td>50</td><td>70</td><td>120</td><td>80</td></tr>
+<tr><td><b>Do Not Support (0)</b></td><td>60</td><td>90</td><td>100</td><td>50</td><td>50</td></tr>
+</table>
+<p>What is the probability that a respondent supports a carbon tax, <b>given</b> that they answered “Somewhat Agree” or “Strongly Agree” to the climate threat statement?</p>",HTML,,,
+Points,3,,,,
+Option,0,0.29,HTML,,
+Option,0,0.5,HTML,,
+Option,0,0.57,HTML,,
+Option,100,0.67,HTML,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Descriptive Statistics: Ideological Distribution Intro,,,,
+QuestionText,"<p>In a public opinion study, respondents were asked to place themselves on an ideological spectrum from 1 (most liberal) to 11 (most conservative). Samples of 200 residents were collected from each of two cities in different states. The table below shows the absolute frequency of responses in each group (e.g., 22 respondents from City A placed themselves at score position of “1,” that is, “most liberal”). Basic summary statistics are also provided.</p>
+
+<table>
+<tr><th></th><th colspan=\""11\""><b>Ideological Placement</b></th></tr>
+<tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th></tr>
+<tr><td><i>Absolute Frequencies</i></td><td colspan=\""11\""></td></tr>
+<tr><td><b>City A</b></td><td>22</td><td>18</td><td>20</td><td>18</td><td>16</td><td>12</td><td>16</td><td>18</td><td>18</td><td>20</td><td>22</td></tr>
+<tr><td><b>City B</b></td><td>17</td><td>18</td><td>16</td><td>19</td><td>18</td><td>21</td><td>17</td><td>19</td><td>18</td><td>17</td><td>18</td></tr>
+</table>
+
+<p><b>Summary statistics of the 1 to 11 ideological placement score variable:</b></p>
+<ul>
+<li><b>City A:</b> Mean = 6.01; Standard Deviation = 3.34</li>
+<li><b>City B:</b> Mean = 6.03; Standard Deviation = 3.13</li>
+</ul>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Draw Bar Charts for Each City,,,,
+QuestionText,<p>Create a bar chart (graph) for each city's ideological scores based on the frequency table above. Describe the general shape of each distribution.</p>,HTML,,,
+Points,3,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Interpret Similarity in Means and SDs,,,,
+QuestionText,<p>Both cities have almost the same mean ideological score and fairly similar standard deviations. Does this mean the ideological distributions are similar? Justify your response by interpreting each distribution's shape.</p>,HTML,,,
+Points,3,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Interpret Distribution Takeaways,,,,
+QuestionText,"<p>In plain language, what can we learn about the distribution of ideological placements for each city? What are the main takeaways?</p>",HTML,,,
+Points,3,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Flood Damage Cost Distribution Intro,,,,
+QuestionText,"<p>Floods can vary greatly in severity, from minor water intrusion to total property loss. Suppose the following table summarizes expert estimates for the <em>typical annual property damage</em> faced by uninsured homeowners in a flood-prone region. Each level reflects the amount a private homeowner might need to pay out-of-pocket for repairs or rebuilding in a given year.</p>
+<p><em>The table below represents four possible outcomes, each with an associated cost and probability; together, they describe a random variable for annual flood-related damages.</em></p>
+<table border=""1"">
+<tr><th>Flood Severity</th><th>No Flood</th><th>Moderate Flood</th><th>Heavy Flood</th><th>Catastrophic Flood</th></tr>
+<tr><td><b>Damage Cost (C)</b></td><td>$0</td><td>$5,000</td><td>$20,000</td><td>$100,000</td></tr>
+<tr><td><b>Probability</b></td><td>0.70</td><td>0.20</td><td>0.08</td><td>0.02</td></tr>
+</table>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Expected Value of Flood Damage,,,,
+QuestionText,<p>Let C be the random variable representing the yearly flood-related <em>cost</em> for an uninsured property in this region. Compute the expected value E[C].</p>,HTML,,,
+Points,2,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Interpret Expected Value in Context,,,,
+QuestionText,"<p>In plain language, explain what E[C] means in this context. What should a homeowner understand from this number, even if they don’t expect a flood every year?</p>",HTML,,,
+Points,2,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Flood Insurance Decision,,,,
+QuestionText,"<p>Suppose a person is considering buying flood insurance for their home. They are willing to get insurance only if the <em>amount they pay each year</em> for it is less than the expected yearly cost of flood damage. If they are offered insurance that costs <strong>$4,000 per year</strong>, should they take it? Fully justify and explain your answer.</p>",HTML,,,
+Points,1,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Spicy Food Preference Survey Intro,,,,
+QuestionText,"<p>Suppose a survey of <b>n = 2,000</b> U.S. adults asked whether they enjoy eating spicy food (recorded as “yes”) or not (recorded as “no”). Among the <b>600</b> respondents with <b>foreign-born parents</b>, <b>330</b> said “yes.” Among the <b>1,400</b> respondents with <b>U.S.-born parents</b>, <b>700</b> said “yes.”</p>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,State Hypotheses for Difference in Proportions,,,,
+QuestionText,<p>State appropriate null and alternative hypotheses to <em>test whether there is a difference in spicy food preference between adults with foreign-born parents and those with U.S.-born parents</em>. Use mathematical notation and define each term used in your notation.</p>,HTML,,,
+Points,10,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Conduct Two-Proportion Z-Test,,,,
+QuestionText,"<p>Conduct a two-proportion z-test at the α = 0.05 significance level to evaluate the stated hypotheses.</p>
+<p>Clearly show: <strong>(I)</strong> The formulas used, along with the substituted values; <strong>(II)</strong> The resulting z-statistic; <strong>(III)</strong> Either the critical value or the p-value (<strong>Choose only one</strong>); <strong>(IV)</strong> A clear conclusion: reject or fail to reject the null hypothesis.</p>",HTML,,,
+Points,10,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Interpret Hypothesis Test Result,,,,
+QuestionText,<p>Interpret the result in context. Is there convincing statistical evidence of a difference in preference for spicy food based on parental background? Explain in plain language.</p>,HTML,,,
+Points,5,,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Confidence Interval Interpretation,,,,
+QuestionText,"<p>A political scientist constructs a 90% confidence interval for the proportion of voters who are against a proposed policy and finds the interval is (0.41, 0.49). Which of the following conclusions is justified based on the information provided about the interval?</p>",HTML,,,
+Points,10,,,,
+Option,0,There is a 95% chance that the true proportion is between 0.41 and 0.49.,,,
+Option,100,"The estimated sample proportion of voters who opposed the policy is 0.45, since it is in the middle of the interval.",,,
+Option,0,At least 90% of all voters are against the policy.,,,
+Option,0,We are 95% confident that the true population proportion of voters supporting the policy is between 0.51 and 0.59.,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Confidence Interval with Standard Error,,,,
+QuestionText,"<p>A pollster reports that 62% of respondents in a representative sample support Candidate Y in an upcoming election. The pollster also reports a <strong>standard error (SE)</strong> of 1.9 percentage points (that is, SE=0.019). Based on this information, which of the following is the correct statement for the corresponding 95% confidence interval?</p>",HTML,,,
+Points,10,,,,
+Option,100,Between 60.1% and 63.9% of all voters support Candidate Y.,,,
+Option,0,"Based on the interval, candidate Y will surely win because more than half of the voters support them.",,,
+Option,0,Between 57% and 67% of all voters support Candidate Y.,,,
+Option,0,Between 58.3% and 65.7% of all voters support Candidate Y.,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Hypotheses for Mean Comparison,,,,
+QuestionText,<p>A researcher wants to test whether there is a difference in average weekly cereal spending between households with children (group 1) and households without children (group 2). Which is the correct null and alternative hypothesis for this test?</p>,HTML,,,
+Points,10,,,,
+Option,0,"H₀: x̄₁ = x̄₂, Hₐ: x̄₁ ≠ x̄₂",,,
+Option,100,"H₀: μ₁ = μ₂, Hₐ: μ₁ ≠ μ₂",,,
+Option,0,"H₀: μ₁ ≠ μ₂, Hₐ: μ₁ = μ₂",,,
+Option,0,"H₀: p₁ = p₂, Hₐ: p₁ ≠ p₂",,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Coffee Consumption Sampling Intro,,,,
+QuestionText,"<p>A human resources analyst at a mid-sized tech company wants to estimate the average number of cups of coffee employees drink per day. The company has 120 employees. The analyst randomly samples 10 employees and records the following number of cups consumed on a typical workday:</p>
+<p><b>Data:</b> { 2, 3, 1, 4, 2, 3, 2, 5, 3, 4 }</p>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Sample Mean and Standard Deviation,,,,
+QuestionText,"<p>Compute the sample mean x̄ and the sample standard deviation s for these 10 employees.</p>
+<p><b>Data:</b> { 2, 3, 1, 4, 2, 3, 2, 5, 3, 4 }</p>",HTML,,,
+Points,10,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,99% Confidence Interval for Mean,,,,
+QuestionText,"<p>Construct a 99% confidence interval for the <em>population mean</em> number of cups of coffee consumed per day by employees at the company. Use the t-distribution.</p>
+<p>Clearly show: <strong>(I)</strong> The formulas used, along with the substituted values; <strong>(II)</strong> Degrees of freedom (df) used; <strong>(III)</strong> The appropriate Critical t-value used to construct the interval; <strong>(IV)</strong> Your final confidence interval.</p>",HTML,,,
+Points,10,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Interpret Confidence Interval,,,,
+QuestionText,<p>Provide an intuitive interpretation of the confidence interval using plain language.</p>,HTML,,,
+Points,5,,,,
+,,,,,

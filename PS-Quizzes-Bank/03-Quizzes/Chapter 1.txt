@@ -1,0 +1,6 @@
+What is the main goal of statistical analysis?
+
+What is statistical uncertainty?
+
+Classical problem:
+Here's some variables. Classify them into types.

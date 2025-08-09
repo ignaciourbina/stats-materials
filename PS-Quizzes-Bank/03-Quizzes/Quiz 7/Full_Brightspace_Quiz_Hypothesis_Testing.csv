@@ -1,0 +1,41 @@
+NewQuestion,MC,
+QuestionText,Which of the following correctly states the null and alternative hypotheses?,
+Option,0,\( H_0: p = 0.50 \quad H_A: p > 0.50 \)
+Option,0,\( H_0: p = 0.50 \quad H_A: p < 0.50 \)
+Option,100,\( H_0: p = 0.50 \quad H_A: p \neq 0.50 \)
+Option,0,\( H_0: \hat{p} = 0.50 \quad H_A: \hat{p} \neq 0.50 \)
+,,
+NewQuestion,MC,
+QuestionText,Which of the following correctly states whether the normal approximation is appropriate?,
+Option,100,"Yes, because both \( np_0 \) and \( n(1 - p_0) \) are greater than 15."
+Option,0,"Yes, because \( \hat{p} \) is close to 0.50."
+Option,0,"No, because we don't know the standard deviation."
+Option,0,"No, because the sample size is not greater than 30."
+,,
+NewQuestion,MC,
+QuestionText,"Using your spreadsheet, compute the test statistic. Which of the following is closest to the correct value?",
+Option,0,\( z \approx -1.68 \)
+Option,0,\( z \approx 0.00 \)
+Option,0,\( z \approx 1.96 \)
+Option,100,\( z \approx 2.43 \)
+,,
+NewQuestion,MC,
+QuestionText,Suppose the significance level is \( \alpha = 0.05 \). Which of the following best describes the rejection region for this two-sided test?,
+Option,0,Reject \( H_0 \) if \( z > 1.645 \)
+Option,100,Reject \( H_0 \) if \( |z| > 1.96 \)
+Option,0,Reject \( H_0 \) if \( z < -1.645 \)
+Option,0,Reject \( H_0 \) if \( |z| > 2.58 \)
+,,
+NewQuestion,MC,
+QuestionText,"Based on your test statistic and the rejection region, what is the correct decision?",
+Option,100,Reject \( H_0 \); there is sufficient evidence that the proportion is different from 0.50.
+Option,0,Fail to reject \( H_0 \); there is not enough evidence that the proportion is different from 0.50.
+Option,0,Reject \( H_0 \); the sample proportion equals 0.50.
+Option,0,Fail to reject \( H_0 \); the population is not normal.
+,,
+NewQuestion,MC,
+QuestionText,Which of the following is the most appropriate conclusion?,
+Option,0,"The sample shows that 50\% of political science majors approve, so no difference exists in the population."
+Option,0,There is significant evidence that the approval rate among political science majors is greater than 50\%.
+Option,100,There is not enough evidence to conclude that the approval rate among political science majors is different from 50\%.
+Option,0,Political science majors strongly disapprove of the president's handling of the economy.

@@ -1,0 +1,114 @@
+﻿NewQuestion,MC,,,,
+Title,95 % CI formula,,,,
+QuestionText,Which expression gives the 95 % confidence interval for the difference of two population proportions (p₁ − p₂)?,,,,
+Points,2,,,,
+Option,100,(p̂₁ − p̂₂) ± 1.96 × SE,,,
+Option,0,(p̂₁ − p̂₂) ± t* × SE,,,
+Option,0,(p̂₁ − p̂₂) ± 1.64 × SE,,,
+Option,0,(p̂₁ − p̂₂) ± 2.58 × SE,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,CI Includes Zero,,,,
+QuestionText,"A confidence interval that *includes zero* proves, beyond any doubt, there is no difference between the two population proportions.",,,,
+Points,1,,,,
+Option,0,True,,,
+Option,100,False,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Pooled Standard Error,,,,
+QuestionText,Select the correct standard‑error formula under H₀: p₁ = p₂.,,,,
+Points,2,,,,
+Option,100,SE₀ = √[ p̂(1−p̂)(1/n₁ + 1/n₂) ],,,
+Option,0,SE₀ = √[ p̂₁(1−p̂₁)/n₁ + p̂₂(1−p̂₂)/n₂ ],,,
+Option,0,SE₀ = √[ (p̂₁ − p̂₂)/(n₁ + n₂) ],,,
+Option,0,SE₀ = √[ (p̂₁ − p̂₂)²/(n₁n₂) ],,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Meaning of p‑value,,,,
+QuestionText,What does the *p‑value* represent in this test?,,,,
+Points,3,,,,
+Option,0,Probability H₀ is true,,,
+Option,100,Probability of the observed (or more extreme) data assuming H₀ is true,,,
+Option,0,1 − confidence level,,,
+Option,0,Chosen significance level,,,
+,,,,,
+NewQuestion,M,,,,
+Title,Understanding Hypothesis Tests,,,,
+QuestionText,Match the core concepts of hypothesis testing to their descriptions.,,,,
+Points,3,,,,
+Scoring,AllOrNothing,,,,
+Choice,1,Null Hypothesis (H₀),,
+Choice,2,Alternative Hypothesis (Hₐ),,
+Choice,3,Critical Value,,
+Match,1,"The default assumption or claim being tested, often representing the status quo or 'no change'. ",,
+Match,2,The research hypothesis; what we suspect might be true if the default assumption is rejected.,,
+Match,3,The cut-off point on the test statistic's distribution that defines the rejection region for the null hypothesis.,,
+,,,,,
+NewQuestion,O,,,,
+Title,CI steps,,,,
+QuestionText,Put the steps for building a confidence interval in order.,,,,
+Points,2,,,,
+Scoring,AllOrNothing,,,,
+Item,Compute p̂₁ and p̂₂,,,,
+Item,Find the standard error (SE),,,,
+Item,Multiply SE by z* to get the margin of error,,,,
+Item,Form (p̂₁ − p̂₂) ± MOE,,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Vaccination Rate Confidence Interval,,,,
+QuestionText,"A public health survey investigated vaccination coverage differences between populations. In the urban sample, **120** out of **400** respondents reported being vaccinated (yielding a sample proportion p̂₁ = 0.30). In the rural sample, **125** out of **500** respondents were vaccinated (p̂₂ = 0.25).
+
+The observed difference in these sample proportions is Δ = p̂₁ - p̂₂ = +0.05.
+
+Based on this data, what is the plausible range for the *true difference* in vaccination proportions ($p_1 - p_2$) between the underlying urban and rural populations? Select the correct 95% confidence interval below, rounded to three decimal places.",,,,
+Points,2,,,,
+Option,100,"[ -0.009, +0.109 ]",,,
+Option,0,"[ −0.050, +0.150 ]",,,
+Option,0,"[ +0.009, +0.109 ]",,,
+Option,0,"[ −0.109, +0.009 ]",,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Interpreting Field Experiment Confidence Interval,,,,
+QuestionText,"Field experiments test interventions in real-world settings to understand their causal effects. In this study, researchers wanted to see if the way information was framed could influence voter support for environmental policy.
+
+To estimate the effect of messaging on voter opinion, a randomized experiment was conducted. Group 1 received an SMS message using a **specific policy framing** (e.g., highlighting potential job creation from the bill); out of 800 voters in this group, **200** subsequently expressed support for a climate bill (sample proportion p̂₁ = 0.25). Group 2 (the control group) received a neutral reminder message (e.g., simply stating 'Vote on the climate bill next Tuesday'); out of 600 voters, **180** supported the bill (sample proportion p̂₂ = 0.30).
+
+The observed difference in support rates (treatment - control) is Δ = p̂₁ - p̂₂ = -0.05.
+
+A 95% confidence interval for the true difference in population proportions ($p_1 - p_2$) was calculated as **[ -0.097, -0.003 ]**. Based *only* on this confidence interval and using a 5% significance level (α = 0.05), what conclusion can be drawn about the effectiveness of the policy-framing message compared to the neutral reminder?",,,,
+Points,2,,,,
+Option,100,The neutral reminder (Group 2) generated *significantly higher* support than the policy framing (Group 1).,,,
+Option,0,There is *no statistically significant difference* in support between the two message types.,,,
+Option,0,The policy framing (Group 1) generated *significantly higher* support than the neutral reminder (Group 2).,,,
+Option,0,The result is inconclusive because the confidence interval includes zero.,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Vaccination Rate Comparison: z-statistic,,,,
+QuestionText,"A public health department is investigating whether there is a statistically significant difference in COVID-19 vaccination rates between urban and rural populations in their jurisdiction. They collected the following sample data:
+* **Urban Sample:** 120 out of 400 residents were vaccinated (p̂₁ = 0.30)
+* **Rural Sample:** 125 out of 500 residents were vaccinated (p̂₂ = 0.25)
+
+To formally test the null hypothesis that the true population proportions are equal (H₀: $p_1 = p_2$, meaning $p_1 - p_2 = 0$), calculate the appropriate *pooled two-proportion z-test statistic*. Assume the samples are independent.
+
+Select the value below that best matches your calculation, rounded to two decimal places.",,,,
+Points,2,,,,
+Option,100,+1.67,,,
+Option,0,+1.28,,,
+Option,0,+2.33,,,
+Option,0,−1.67,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Field Experiment: z-statistic Calculation,,,,
+QuestionText,"Recall the randomized field experiment investigating voter support for a climate bill, comparing a **policy-framing SMS message** (Group 1) against a **neutral reminder** (Group 2). The sample data was:
+* Group 1 (Policy Framing): 200/800 supported (p̂₁ = 0.25)
+* Group 2 (Neutral): 180/600 supported (p̂₂ = 0.30)
+
+We previously constructed a confidence interval to estimate the difference between these groups ($p_1 - p_2$). Now, let's calculate the **test statistic** needed to formally test the null hypothesis that there is no difference in the true population proportions ($H_0: p_1 = p_2$) against the two-sided alternative ($H_a: p_1 \neq p_2$).
+
+Compute the pooled two-proportion z-test statistic. Select the value below that best matches your result, rounded to two decimal places.",,,,
+Points,2,,,,
+Option,100,-2.08,,,
+Option,0,−1.64,,,
+Option,0,+2.08,,,
+Option,0,−2.58,,,
+,,,,,
