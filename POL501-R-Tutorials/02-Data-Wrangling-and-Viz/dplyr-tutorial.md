@@ -183,9 +183,9 @@ df_filtered_count <- df %>%
 
 **Explanation:**
 
-1.  `filter(age > 30)` selects the rows where the `age` column is greater than
-    30.
-2.  `nrow()` counts how many rows remain after filtering.
+1. `filter(age > 30)` selects the rows where the `age` column is greater than
+   30.
+2. `nrow()` counts how many rows remain after filtering.
 
 ### **Multiple Logical Conditions**
 
@@ -241,10 +241,10 @@ df_grouped_count <- df %>%
 
 **Explanation:**
 
-1.  `group_by(gender)` divides the data into groups based on the values in the
-    `gender` column.
-2.  `summarise(count = n())` creates a new summary column called `count` that
-    holds the number of rows for each group (i.e., for each gender).
+1. `group_by(gender)` divides the data into groups based on the values in the
+   `gender` column.
+2. `summarise(count = n())` creates a new summary column called `count` that
+   holds the number of rows for each group (i.e., for each gender).
 
 ### **Grouping with Multiple Variables**
 
@@ -297,13 +297,13 @@ and finally sorted in descending order by `avg_income`.
 
 ## Summary of the Main Verbs
 
-1.  **`filter()`**: Subsets rows.
-2.  **`select()`**: Subsets columns.
-3.  **`mutate()`**: Adds or modifies columns.
-4.  **`summarise()`**: Collapses rows into a summary.
-5.  **`group_by()`**: Groups data for summary or other grouped operations.
-6.  **`arrange()`**: Sorts rows.
-7.  **`join` functions**: Combine data frames based on common keys.
+1. **`filter()`**: Subsets rows.
+2. **`select()`**: Subsets columns.
+3. **`mutate()`**: Adds or modifies columns.
+4. **`summarise()`**: Collapses rows into a summary.
+5. **`group_by()`**: Groups data for summary or other grouped operations.
+6. **`arrange()`**: Sorts rows.
+7. **`join` functions**: Combine data frames based on common keys.
 
 These verbs enable a fluent, readable style of data manipulation when used
 together with the pipe operator `%>%`.

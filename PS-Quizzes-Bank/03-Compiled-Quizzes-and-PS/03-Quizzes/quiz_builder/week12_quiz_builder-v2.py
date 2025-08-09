@@ -1,4 +1,3 @@
-import os
 import math
 from quiz_csv_builder_v2 import (
     QuestionBank,
@@ -17,7 +16,6 @@ Quiz CSV Builder – Week 12 (political‑science version)
 Mixed question types (MC + Matching + Ordering) with practical, survey/field‑experiment contexts.
 Run from the same directory that contains *quiz_csv_builder.py*.
 """
-
 
 
 bank = QuestionBank()
