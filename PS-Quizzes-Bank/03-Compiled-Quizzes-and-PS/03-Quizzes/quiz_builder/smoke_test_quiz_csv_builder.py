@@ -1,10 +1,3 @@
-import os
-
-# path = r"C:\Users\Ignacio\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
-path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"  # Notebook path
-os.chdir(path)
-
-# smoke_test_quiz_csv_builder.py
 from quiz_csv_builder import (
     QuestionBank,
     ShortAnswer,
@@ -14,6 +7,13 @@ from quiz_csv_builder import (
     TrueFalse,
     TFOption,
 )
+import os
+
+# path = r"C:\Users\Ignacio\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
+path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"  # Notebook path
+os.chdir(path)
+
+# smoke_test_quiz_csv_builder.py
 
 bank = QuestionBank()
 bank.add(

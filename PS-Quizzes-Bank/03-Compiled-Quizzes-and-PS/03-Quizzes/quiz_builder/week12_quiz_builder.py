@@ -1,17 +1,5 @@
-"""
-Quiz CSV Builder – Week 12 (political‑science version)
-=====================================================
-Mixed question types (MC + Matching + Ordering) with practical, survey/field‑experiment contexts.
-Run from the same directory that contains *quiz_csv_builder.py*.
-"""
-
 import os
-
-# path = r"C:\Users\Ignacio\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
-path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"  # Notebook path
-os.chdir(path)
-
-
+import math
 from quiz_csv_builder_v2 import (
     QuestionBank,
     MultipleChoice,
@@ -21,7 +9,15 @@ from quiz_csv_builder_v2 import (
     Ordering,
     OrderingItem,
 )
-import math
+
+"""
+Quiz CSV Builder – Week 12 (political‑science version)
+=====================================================
+Mixed question types (MC + Matching + Ordering) with practical, survey/field‑experiment contexts.
+Run from the same directory that contains *quiz_csv_builder.py*.
+"""
+
+
 
 bank = QuestionBank()
 
