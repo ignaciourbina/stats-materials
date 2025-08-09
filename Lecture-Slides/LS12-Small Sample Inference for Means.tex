@@ -6,7 +6,7 @@
 % ------------------------------------------------------------
 \title{Introduction to Statistical Methods in Political Science}
 \subtitle{Lecture 12: Small‑Sample Inference for Means: Student‑\textit{t} Toolbox}
-\author{Ignacio Urbina \texorpdfstring{\\ \vspace{0.3em}}{ } 
+\author{Ignacio Urbina \texorpdfstring{\\ \vspace{0.3em}}{ }
         \scriptsize \textcolor{gray}{Ph.D.\ Candidate}}
 \date{}
 
@@ -26,8 +26,8 @@
 \small
 A survey team intercepts \textbf{12} early voters leaving a rural precinct.  They record time‑in‑booth (minutes) to study wait‑time equity. Longer time-in-booth may signal inefficiencies, understaffing, or barriers to quick voting (e.g., confusing ballots, slow machines).
 \begin{itemize}
-  \item Population SD \(\sigma\) is \emph{unknown}.  
-  \item Sample histogram shows minor right‑skew and an outlier at 14 min.  
+  \item Population SD \(\sigma\) is \emph{unknown}.
+  \item Sample histogram shows minor right‑skew and an outlier at 14 min.
   \item Question: Can we still make a reasonably justified inference about the true mean wait time?
 \end{itemize}
 \pause
@@ -44,10 +44,10 @@ Neither is true here \(\Longrightarrow\) enter Student‑\textit{t}.
 \frametitle{What actually changes when \(n\) is small?}
 \begin{columns}[T]
 \column{.43\textwidth}
-\small 
+\small
 \begin{itemize}
-  \item We swap \(\sigma\) for the noisier estimate \(s\).  
-  \item That extra “plug‑in” noise fattens the tails of our test statistic.  
+  \item We swap \(\sigma\) for the noisier estimate \(s\).
+  \item That extra “plug‑in” noise fattens the tails of our test statistic.
   \item We can't rely on the ``plug-in principle'' (Law of Large Numbers doesn't hold).
   \item Student‑\textit{t} distribution captures this inflation with \textbf{degrees of freedom}:
         \[
@@ -116,8 +116,8 @@ Neither is true here \(\Longrightarrow\) enter Student‑\textit{t}.
 \begin{columns}
 \column{.53\textwidth}
 \begin{itemize}
-  \item With \(n<30\) a single high outlier can wreck validity.  
-  \item Always inspect a \textbf{histogram} and \textbf{QQ‑plot}.  
+  \item With \(n<30\) a single high outlier can wreck validity.
+  \item Always inspect a \textbf{histogram} and \textbf{QQ‑plot}.
   \item Rule of thumb: mild skew is tolerable for \(n\ge 15\); heavy skew/outliers call for non‑parametrics or resampling.
 \end{itemize}
 \column{.45\textwidth}
@@ -193,7 +193,7 @@ Neither is true here \(\Longrightarrow\) enter Student‑\textit{t}.
 \textbf{Result:}
 \[
 \frac{\bar{x}-\mu}{s/\sqrt{n}}
- \sim t_{\,df=n-1} 
+ \sim t_{\,df=n-1}
 \]
 \vspace{-0.5em}
 \begin{itemize}
@@ -213,7 +213,7 @@ Neither is true here \(\Longrightarrow\) enter Student‑\textit{t}.
 \;}
 \]
 \begin{itemize}
-  \item \textbf{Degrees of freedom} \(df=n-1\).  
+  \item \textbf{Degrees of freedom} \(df=n-1\).
   \item \textbf{Critical value} \(t^{\ast}\) comes from a table or software.  It depends on both $df$ and $\alpha$.
   \item \textbf{Interpretation} follows the familiar “We are 95\% confident …”.
 \end{itemize}
@@ -224,13 +224,13 @@ Neither is true here \(\Longrightarrow\) enter Student‑\textit{t}.
 \frametitle{Question – How does \(t^{\ast}\) compare with \(z^{\ast}\)?}
 Suppose \(\alpha=0.05\).
 \begin{enumerate}[A.]
-  \item \(t^{\ast}_{\,19}\) is \textbf{smaller} than \(z^{\ast}=1.96\)  
-  \item \(t^{\ast}_{\,19}\) is \textbf{equal to} \(z^{\ast}\)  
-  \item \(t^{\ast}_{\,19}\) is \textbf{larger} than \(z^{\ast}\)  
-  \item It cannot be determined because \(t^{\ast}\) depends on the sample’s standard deviation, whereas \(z^{\ast}\) does not  
+  \item \(t^{\ast}_{\,19}\) is \textbf{smaller} than \(z^{\ast}=1.96\)
+  \item \(t^{\ast}_{\,19}\) is \textbf{equal to} \(z^{\ast}\)
+  \item \(t^{\ast}_{\,19}\) is \textbf{larger} than \(z^{\ast}\)
+  \item It cannot be determined because \(t^{\ast}\) depends on the sample’s standard deviation, whereas \(z^{\ast}\) does not
 \end{enumerate}
 \pause
-\textcolor{gray}{(Answer: C; heavier tails)}  
+\textcolor{gray}{(Answer: C; heavier tails)}
 \end{frame}
 
 % .................................................................
@@ -243,8 +243,8 @@ Suppose \(\alpha=0.05\).
 \column{.40\textwidth}
 \textbf{Goal}: assess mean contributions, based on our sample of 18 local donors, by constructing a 90\% confidence interval for the mean donation.
 \begin{itemize}
-  \item \(n=18\), \(\bar x=\$42.8\), \(s=\$9.2\).  
-  \item 90\% confidence wanted (\(\alpha=0.10\)).  
+  \item \(n=18\), \(\bar x=\$42.8\), \(s=\$9.2\).
+  \item 90\% confidence wanted (\(\alpha=0.10\)).
 \end{itemize}
 \pause
 \textbf{Solution:}
@@ -296,7 +296,7 @@ CI:\; \(\$42.8 \pm 3.8 = (\$39.0,\ \$46.6)\).
 \begin{frame}
 \frametitle{Worked Example — Average Time in Booth}
 \small
-\textit{Rural exit‑poll revisit.}  
+\textit{Rural exit‑poll revisit.}
 
 \vspace{0.5em}
 In response to concerns about unequal voting experiences, electoral officials assert that average time spent in the voting booth should not exceed \textbf{6 minutes}. They claim that rural polling stations are operating efficiently and equitably.
@@ -306,8 +306,8 @@ Activists, skeptical of this claim, conduct an informal audit by collecting a sm
 
 \vspace{0.5em}
 \begin{itemize}
-  \item Sample mean: \(\bar x = 7.8\) minutes  
-  \item Sample standard deviation: \(s = 3.1\) minutes  
+  \item Sample mean: \(\bar x = 7.8\) minutes
+  \item Sample standard deviation: \(s = 3.1\) minutes
   \item Officials’ claim: \(\mu = 6\) minutes (true average time)
 \end{itemize}
 
@@ -363,7 +363,7 @@ Activists, skeptical of this claim, conduct an informal audit by collecting a sm
 \frametitle{Why Use Paired Measurements?}
 \small
 \vspace{-0.3em}
-\textbf{Context:} In many research settings, it's hard to detect a treatment effect when individual baseline differences are large.  
+\textbf{Context:} In many research settings, it's hard to detect a treatment effect when individual baseline differences are large.
 \\[0.6em]
 \textbf{Solution:} \textbf{Pairing} allows each subject (or unit) to serve as their own control.
 
@@ -414,14 +414,14 @@ Activists, skeptical of this claim, conduct an informal audit by collecting a sm
   \centering
   \textbf{Sampling Distribution}\\[-1em]
   \[
-    \frac{\bar d - d}{s_d/\sqrt{n}} 
+    \frac{\bar d - d}{s_d/\sqrt{n}}
     \;\sim\;
     t_{\,df=n-1}
   \]
 
   \column{0.32\textwidth}
   \centering
-  $\quad \text{\hspace{2em}}$\textbf{Sample SD}\\[-0.5em] 
+  $\quad \text{\hspace{2em}}$\textbf{Sample SD}\\[-0.5em]
    \[ \quad  \quad \quad
     s_d
     = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (d_i - \bar d)^2}
@@ -456,10 +456,10 @@ Activists, skeptical of this claim, conduct an informal audit by collecting a sm
 \hline
 \(
 \bar d = \frac{1}{n}\sum_{i=1}^n d_i
-\) & 
+\) &
 \(
 \frac{\bar d - d}{s_d/\sqrt{n}} \sim t_{\,df=n-1}
-\) & 
+\) &
 \(
 s_d = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (d_i - \bar d)^2}
 \) \\
@@ -494,14 +494,14 @@ T = \frac{\bar d - \mu_{d,0}}{s_d/\sqrt n}
 \;\sim\; t_{\,df=n-1}
 \]
 \begin{itemize}
-    \item \(\mu_{d,0}\) is the \emph{null hypothesized} mean difference (often 0 for “no change”).  
+    \item \(\mu_{d,0}\) is the \emph{null hypothesized} mean difference (often 0 for “no change”).
 \end{itemize}
 \begin{block}{Key assumptions}
 \begin{itemize}
-  \item Differences \(d_i\) are \emph{independent}.  
+  \item Differences \(d_i\) are \emph{independent}.
   \item  Sample size for \(df\) is the count of \emph{pairs}, not raw observations.
-  \item The distribution of \(d_i\) is \emph{approximately Normal} (check histogram/QQ‐plot).  
-  \item For CI: same as test, plus choice of confidence level \(1-\alpha\).  
+  \item The distribution of \(d_i\) is \emph{approximately Normal} (check histogram/QQ‐plot).
+  \item For CI: same as test, plus choice of confidence level \(1-\alpha\).
 \end{itemize}
 \end{block}
 \end{frame}
@@ -511,8 +511,8 @@ T = \frac{\bar d - \mu_{d,0}}{s_d/\sqrt n}
 \begin{columns}[T]
   \column{.55\textwidth}
   \small
-  Ten matched counties → \(n=10\).  
-  \(\bar d=-1.8\) pp, \(s_d=2.7\) pp; \textbf{Task:} Compute 95 \% confidence interval.  
+  Ten matched counties → \(n=10\).
+  \(\bar d=-1.8\) pp, \(s_d=2.7\) pp; \textbf{Task:} Compute 95 \% confidence interval.
   \pause
 
   \begin{align*}
@@ -520,12 +520,12 @@ T = \frac{\bar d - \mu_{d,0}}{s_d/\sqrt n}
       SE = \frac{2.7}{\sqrt{10}}\approx0.85, \\
       ME = 2.262\times0.85\approx1.9
   \end{align*}
-  
+
   CI:\; \(-1.8\pm1.9 = (-3.7,\;0.1)\) pp
 
   \vspace{1ex}
   \textbf{Take‑away}: 95\% CI = (-3.7 pp, +0.1 pp): a zero increase can’t be excluded.
-  
+
   \column{.4\textwidth}
   \includegraphics[width=\textwidth]{Figures/paired_diff.pdf}
 \end{columns}
@@ -574,9 +574,9 @@ Reject \(H_0\)? → \(T = 2.27 > t^{\ast}_{\,8} = 1.86\) → \textbf{Yes}.
 % ------------------------------------------------------------------
 \begin{frame}
 \frametitle{Addendum -- Inference for Paired Differences (Large $n$)}
-\small 
+\small
 
-\textbf{Scenario:} You observe two measurements on each unit (e.g., before vs after treatment)  
+\textbf{Scenario:} You observe two measurements on each unit (e.g., before vs after treatment)
 and compute the difference $d_i = x_{\text{after},i} - x_{\text{before},i}$.
 
 \vspace{0.6em}
@@ -630,8 +630,8 @@ and compute the difference $d_i = x_{\text{after},i} - x_{\text{before},i}$.
 
 \textbf{What makes this different from one-sample inference?}
 \begin{itemize}
-  \item Two samples = two sources of variability  
-  \item Independence between groups is critical  
+  \item Two samples = two sources of variability
+  \item Independence between groups is critical
   \item Assumptions about spread (equal vs unequal variance) influence the method
 \end{itemize}
 
@@ -668,16 +668,16 @@ But with small samples:
 \begin{frame}
 \frametitle{When \& How to Pool Variances}
 
-\textbf{Equal‐variance assumption}  
-\(\sigma_1^2 = \sigma_2^2 = \sigma^2\) in the populations.  
+\textbf{Equal‐variance assumption}
+\(\sigma_1^2 = \sigma_2^2 = \sigma^2\) in the populations.
 A quick screen: variance (or SD) ratio $<2$ \textit{and} similar histograms.
 
 \vspace{0.5em}
 \textbf{Pooled estimate of the common SD}
 \[
-s_{pooled}^2 = 
+s_{pooled}^2 =
 s_p^2
-= 
+=
 \frac{(n_1-1)s_1^{2} + (n_2-1)s_2^{2}}
      {\,n_1+n_2-2\,},
 \qquad
@@ -766,11 +766,11 @@ Use pooled‐SD version only when diagnostics support equal population variances
 \frametitle{Example — Civics Quiz Scores: Honors vs Regular}
 \small
 \begin{itemize}
-    \item \textbf{Research context:} Instructor wants to know if an enriched honors curriculum leads to higher civics‐quiz performance than the standard curriculum  
-    \item \textbf{Data:} 20‐question multiple‐choice quiz (0–100 scale), administered simultaneously to two sections in Spring term  
-    \item \textbf{Goal:} Estimate and test the difference in true mean scores between honors vs.\ regular students  
-    \item Honors class: \(n_1=12,\ \bar x_1=77.3,\ s_1=8.4\)  
-    \item Regular class: \(n_2=15,\ \bar x_2=70.1,\ s_2=7.1\)  
+    \item \textbf{Research context:} Instructor wants to know if an enriched honors curriculum leads to higher civics‐quiz performance than the standard curriculum
+    \item \textbf{Data:} 20‐question multiple‐choice quiz (0–100 scale), administered simultaneously to two sections in Spring term
+    \item \textbf{Goal:} Estimate and test the difference in true mean scores between honors vs.\ regular students
+    \item Honors class: \(n_1=12,\ \bar x_1=77.3,\ s_1=8.4\)
+    \item Regular class: \(n_2=15,\ \bar x_2=70.1,\ s_2=7.1\)
     \item Hypothesis test: \(H_0: \mu_1-\mu_2 = 0\) vs.\ two‑sided \(H_a\) at \(\alpha=0.05\)
 \end{itemize}
 \end{frame}
@@ -781,7 +781,7 @@ Use pooled‐SD version only when diagnostics support equal population variances
 \frametitle{Calculations}
 
 \[
-SE=\sqrt{\frac{8.4^2}{12}+\frac{7.1^2}{15}}=3.29, 
+SE=\sqrt{\frac{8.4^2}{12}+\frac{7.1^2}{15}}=3.29,
 \quad T=\frac{77.3-70.1}{3.29}=2.19
 \]
 \vspace{-0.3em}
@@ -790,7 +790,7 @@ df_{\text{Welch}} &=
 \frac{(8.4^2/12 + 7.1^2/15)^2}{\tfrac{8.4^4}{12^2\cdot11} + \tfrac{7.1^4}{15^2\cdot14}}
 \ \approx\ 20.7
 \end{align*}
-Two‑tailed critical value: \(t^{\ast}_{0.975,\,20}=2.086\).  
+Two‑tailed critical value: \(t^{\ast}_{0.975,\,20}=2.086\).
 Since \(2.19>2.086\) we \textbf{reject} \(H_0\).
 \vspace{0.3em}
 
@@ -801,8 +801,8 @@ Since \(2.19>2.086\) we \textbf{reject} \(H_0\).
 \begin{frame}
 \frametitle{Common traps with two‑sample t}
 \begin{itemize}
-  \item \textbf{Heteroskedasticity}: ignoring unequal variances shrinks \(SE\).  
-  \item \textbf{Imbalanced $n$}: smaller group sample size drives \(df\); watch power.  
+  \item \textbf{Heteroskedasticity}: ignoring unequal variances shrinks \(SE\).
+  \item \textbf{Imbalanced $n$}: smaller group sample size drives \(df\); watch power.
   \item \textbf{Multiple testing}: comparing many sub‑groups inflates Type I error (adjust \(\alpha\) or use FDR).
 \end{itemize}
 \end{frame}
@@ -848,12 +848,11 @@ $\displaystyle T=\frac{(\bar x_1-\bar x_2)-\Delta_0}{s_p\sqrt{\frac{1}{n_1}+\fra
 \end{table}
 \vspace{0.4em}
 \begin{itemize}
-  \item Always check independence \emph{and} approximate Normal shape.  
-  \item Use Welch unless equal‑variance assumption is defensible.  
+  \item Always check independence \emph{and} approximate Normal shape.
+  \item Use Welch unless equal‑variance assumption is defensible.
   \item Report \(df\) and \(p\)-value to two decimals.
 \end{itemize}
 \end{frame}
 
 
 \end{document}
-

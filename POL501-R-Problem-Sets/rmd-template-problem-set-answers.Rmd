@@ -2,7 +2,7 @@
 title: "POL501 - Problem Set 1"
 author: "Solutions"
 date: "`r Sys.Date()`"  # Automatically sets the current date
-output: 
+output:
   pdf_document:
     toc: true         # Table of contents
     toc_depth: 2      # Depth of headers in TOC
@@ -98,7 +98,7 @@ par(pin = c(4, 2.5))  # Example: 4 inches wide, 2.5 inches tall
 plot(
   candidate_data$Campaign_Spending, # variable on the x-axis
   candidate_data$Total_Votes_Won, # y-axis variable
-  xlab = "Campaign Spending ($)", 
+  xlab = "Campaign Spending ($)",
   ylab = "Total Votes Won",
   main = "Relationship between Campaign Spending and Total Votes Won",
   pch = 19, col = "blue"
@@ -182,9 +182,9 @@ sd_trust <- sd(df$social_trust_index)
 
 # Print the results
 cat("Base R Summary Statistics:\n")
-cat("Number of Social Activities - Mean:", mean_activities, 
+cat("Number of Social Activities - Mean:", mean_activities,
     ", Median:", median_activities, ", SD:", sd_activities, "\n")
-cat("Social Trust Index - Mean:", mean_trust, 
+cat("Social Trust Index - Mean:", mean_trust,
     ", Median:", median_trust, ", SD:", sd_trust, "\n")
 
 ```
@@ -274,7 +274,7 @@ bin_breaks_trust <- seq(min_trust, max_trust, length.out = 6)  # 5 bins require 
 ggplot(df, aes(x = number_of_social_activities)) +
   geom_histogram(breaks = bin_breaks_activities, fill = "lightblue", color = "black") +
   labs(title = "Histogram of Number of Social Activities",
-       x = "Number of Social Activities", 
+       x = "Number of Social Activities",
        y = "Frequency") +
   theme_minimal()
 
@@ -282,7 +282,7 @@ ggplot(df, aes(x = number_of_social_activities)) +
 ggplot(df, aes(x = social_trust_index)) +
   geom_histogram(breaks = bin_breaks_trust, fill = "lightgreen", color = "black") +
   labs(title = "Histogram of Social Trust Index",
-       x = "Social Trust Index", 
+       x = "Social Trust Index",
        y = "Frequency") +
   theme_minimal()
 
@@ -323,7 +323,7 @@ ggplot(df, aes(x = number_of_social_activities, y = social_trust_index)) +
 
 ### Part (d)
 
-**Hypothesis:** There is a non-linear relationship between the number of social activities and social trust levels. Initially, more social activities correlate with higher social trust, but after reaching a peak, further increases in social activities are associated with a decrease in social trust. 
+**Hypothesis:** There is a non-linear relationship between the number of social activities and social trust levels. Initially, more social activities correlate with higher social trust, but after reaching a peak, further increases in social activities are associated with a decrease in social trust.
  - Initially, increased social activities may help build community bonds and trust as more interactions occur.
  - However, beyond a certain threshold, too many social activities could become overwhelming, leading to stress or a feeling of obligatory participation, which might reduce overall trust levels.
  - This indicates the importance of balancing the number of social activities to maintain optimal levels of social trust within communities.

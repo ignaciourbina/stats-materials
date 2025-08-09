@@ -17,9 +17,9 @@ head(piracy)
 
 
 #_____ Only Work With Subset _____#
-p <- piracy[piracy$stance %in% c("leaning no", "no", "yes") 
-            & piracy$party != " I" 
-            & !is.na(piracy$money_pro) 
+p <- piracy[piracy$stance %in% c("leaning no", "no", "yes")
+            & piracy$party != " I"
+            & !is.na(piracy$money_pro)
             & !is.na(piracy$money_con), ]
 p$stance <- factor(p$stance)
 p$party <- factor(p$party)
@@ -81,5 +81,3 @@ tab <- round(
 colnames(tab)  <- c("Pro, Yes", "Pro, No", "Con, Yes", "Con, No")
 row.names(tab) <- c("Mean", "St Dev", "n")
 tab
-
-

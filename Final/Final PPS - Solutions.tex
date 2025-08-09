@@ -8,7 +8,7 @@
 \usepackage{float}
 \usepackage{url}
 \usepackage{enumitem}
-\usepackage{hyperref} 
+\usepackage{hyperref}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
@@ -38,7 +38,7 @@
 
 \begin{enumerate}
 
-  \item \textbf{Variable Classification}  
+  \item \textbf{Variable Classification}
   \begin{center}
   \begin{tabular}{|l|l|}
   \hline
@@ -113,8 +113,8 @@
 
 \textbf{Questions}:
 \begin{enumerate}
-  \item \textbf{Independence of Events}  
-  
+  \item \textbf{Independence of Events}
+
         \[
           P(A)=0.50,\;P(B)=0.40,\;P(A\cap B)=0.20
         \]
@@ -122,7 +122,7 @@
         \[
           P(A\cap B)=P(A)\,P(B)=0.5\times0.4=0.20,
         \]
-        which matches the observed intersection.  
+        which matches the observed intersection.
         \textbf{Answer: (A)} The analyst \emph{is} correct.
 
   \item \textbf{Two Smokers in a Sample of Two}.  Suppose $A$ is the first person sampled, and $B$ is the second. Since we are conducting random sampling, the outcome we observe for $A$ will be independent of the outcome for $B$ (and vice versa).
@@ -145,7 +145,7 @@
         \]
         \textbf{Answer: (B)} \(0.375\).
 
-\item \textbf{AI‐Written Essay Given a Positive Flag}  
+\item \textbf{AI‐Written Essay Given a Positive Flag}
 Let
 \[
 A = \{\text{essay is AI‐written}\},\quad
@@ -188,14 +188,14 @@ P(A\mid+)
 
 \begin{enumerate}
 %---------------------------------------------------------------
-\item \textbf{Standard Normal / Z–scores}  
+\item \textbf{Standard Normal / Z–scores}
       \begin{enumerate}
         \item[(a)] \(Z=\dfrac{85-78}{6}=1.17\).
         \item[(b)] \(P(X\ge 85)=1-CDF_X(1.17)=1-\Phi(1.17)=1-0.8789\approx 0.121\).
       \end{enumerate}
 
 %---------------------------------------------------------------
-\item \textbf{Normal Approximation for \(\bar X\) (\(n=64\))}  
+\item \textbf{Normal Approximation for \(\bar X\) (\(n=64\))}
       \begin{enumerate}
         \item[(a)] We are given $X\sim N(\mu, \sigma^2)$. Thus, we know $E[\bar X ] = \mu$, and $SE(\bar X )= \sigma / \sqrt{n}$. \newline Therefore, \(\bar X\sim\mathcal N\!\bigl(78,\;(\sigma/\sqrt n)^2\bigr)=\mathcal N(78,(6/\sqrt{64})^2)=\mathcal N(78,0.75^2)\). Hence,
         $$\bar X \sim \mathcal N(78,0.75^2) $$
@@ -207,14 +207,14 @@ P(A\mid+)
       \end{enumerate}
 
 %---------------------------------------------------------------
-\item \textbf{Bernoulli r.v.\ (\(p=0.12\))}  
+\item \textbf{Bernoulli r.v.\ (\(p=0.12\))}
       \begin{enumerate}
         \item[(a)] PMF:\; \(P(C=1)=0.12,\;P(C=0)=0.88\).
         \item[(b)] \(\mathbb E[C]=p=0.12,\qquad\operatorname{Var}(C)=p(1-p)=0.1056\).
       \end{enumerate}
 
 %---------------------------------------------------------------
-\item \textbf{Binomial\; \(Y\sim\mathrm{Bin}(15,\,0.12)\)}  
+\item \textbf{Binomial\; \(Y\sim\mathrm{Bin}(15,\,0.12)\)}
   \begin{enumerate}
     \item[(a)] To find the probability of exactly 3 clicks:
           \[
@@ -236,7 +236,7 @@ P(A\mid+)
 
 
 %---------------------------------------------------------------
-\item \textbf{Game Payout \(W\)}  
+\item \textbf{Game Payout \(W\)}
       \begin{enumerate}
         \item[(a)] \(\mathbb E[W]= \sum_{i}  w_i \cdot \Pr(W=w_i) = 5(0.60)+10(0.30)+25(0.10)=\$8.50\).
         \item[(b)] On average, a large number of plays would net about \$8.50 per game.
@@ -244,7 +244,7 @@ P(A\mid+)
       \end{enumerate}
 
 %---------------------------------------------------------------
-\item \textbf{CDF of \(Z\)}  
+\item \textbf{CDF of \(Z\)}
   \begin{center}
   \begin{tabular}{c|c|c}
     $z$ & $p_Z(z)$ & $CDF_Z(z) = \Pr(Z \le z)$ \\
@@ -271,24 +271,24 @@ P(A\mid+)
 
 
 %---------------------------------------------------------------
-\item \textbf{Difference \(D=X_j-X_i\)}  
+\item \textbf{Difference \(D=X_j-X_i\)}
       \[
         \mathbb E[D]= \mathbb E[X_j] - \mathbb E[X_i]= \mu-\mu=0,\qquad
         \operatorname{Var}(D)=V[X_j] + V[X_i]=\sigma^2+\sigma^2=2\sigma^2.
       \]
 
 %---------------------------------------------------------------
-\item \textbf{Midpoint \(M=\tfrac12(X_i+X_j)\)}  
+\item \textbf{Midpoint \(M=\tfrac12(X_i+X_j)\)}
       \[
         \operatorname{Var}(M)
-        = \left(\frac{1}{2}\right)^2\operatorname{Var}(X_i+X_j) 
+        = \left(\frac{1}{2}\right)^2\operatorname{Var}(X_i+X_j)
         = \bigl(\tfrac12\bigr)^2(V[X_i]+V[X_j])
         =
         \bigl(\tfrac12\bigr)^2\bigl(\sigma^2+\sigma^2\bigr)=\sigma^2/2.
       \]
 
 %---------------------------------------------------------------
-\item \textbf{Sample Proportion \(\hat p\) (\(n=200,\;p=0.48\))}  
+\item \textbf{Sample Proportion \(\hat p\) (\(n=200,\;p=0.48\))}
       \begin{enumerate}
         \item[(a)] \(\mu_{\hat p}=0.48,\quad
                      \mathrm{SE}_{\hat p}=\sqrt{\dfrac{0.48(0.52)}{200}}\approx 0.0353.\)
@@ -351,17 +351,17 @@ P(A\mid+)
 % -------------------------------------------------------------
 \item \emph{Framing the responsibility}
 \begin{enumerate}[label=(\alph*)]
-    \item 
+    \item
     $\hat{p}_1 = 0.43,\ n = 4610$ \\
     $SE = \sqrt{\frac{0.43(1 - 0.43)}{4610}} \approx 0.0073$ \\
     CI: $0.43 \pm 1.96 \cdot 0.0073 = (0.4157,\ 0.4443)$
 
-    \item 
+    \item
     $\hat{p}_2 = 0.67$ \\
     $SE = \sqrt{\frac{0.67(1 - 0.67)}{4610}} \approx 0.0069$ \\
     CI: $0.67 \pm 1.96 \cdot 0.0069 = (0.6565,\ 0.6835)$
 
-    \item 
+    \item
     Claim: Majority $\Rightarrow$ $> 0.50$ \\
     \textbf{Very responsible}: CI entirely below 0.50 $\Rightarrow$ \textbf{Not supported} \\
     \textbf{At least somewhat responsible}: CI entirely above 0.50 $\Rightarrow$ \textbf{Supported}
@@ -373,9 +373,9 @@ P(A\mid+)
   \item $\displaystyle \hat p = \frac{2904}{4334}=0.6701,\quad SE=\sqrt{\frac{\hat p(1-\hat p)}{n}}=\sqrt{\frac{0.6701\cdot0.3299}{4334}}\approx0.00714$\\
         $95\%\,CI:\;0.6701\pm1.96(0.00714)=(0.6561,\;0.6841)$
   \item The 60\% threshold lies below the interval’s lower bound (0.6561), so the true support is credibly above 60\%.
-  \item Test “well over two‐thirds” ($p_0=2/3$):  
+  \item Test “well over two‐thirds” ($p_0=2/3$):
         $H_0:p=2/3,\;H_A:p>2/3$\\
-        $SE_0=\sqrt{\frac{(2/3)(1/3)}{4334}}\approx0.00716,\quad 
+        $SE_0=\sqrt{\frac{(2/3)(1/3)}{4334}}\approx0.00716,\quad
          z=\frac{0.6701-0.6667}{0.00716}\approx0.47$\\
         $p\text{-value}=1-\Phi(0.47)\approx0.32>0.05\;\Rightarrow$ fail to reject $H_0$.
 \end{enumerate}
@@ -383,29 +383,29 @@ P(A\mid+)
 %-------------------------------------------------------------
 \item \emph{Is there a gender gap in belief about AI emotions?}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     $H_0: p_{\rm men}=p_{\rm women}\quad(H_0:p_{\rm men}-p_{\rm women}=0)$\\
     $H_A: p_{\rm men}\neq p_{\rm women}$
-  \item 
+  \item
     $n_1=n_2=2434/2=1217,\;\hat p_1=0.26 \text{ (men)},\;\hat p_2=0.16\text{ (woman)}$\\
     pooled $\displaystyle \hat p=\frac{x_1+x_2}{n_1+n_2}=\frac{\hat p_1n_1+\hat p_2n_2}{n_1+n_2}=0.21$\\
     $SE=\sqrt{\hat p(1-\hat p)\Bigl(\frac1{n_1}+\frac1{n_2}\Bigr)}\approx0.0165$\\
     $z=\frac{0.26-0.16}{0.0165}\approx6.06,\quad p\text{-value}\approx1.4\times10^{-9}<0.05\,$
-  \item 
+  \item
     Reject $H_0$.  There is strong evidence of a gender gap in beliefs.  Men are about 10 pp more likely than women to believe computers will feel emotions.
 \end{enumerate}
 
 %-------------------------------------------------------------
 \item \emph{Remote vs.\ on‑campus learning outcomes.}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     $n_1=180,\ x_1=139,\ \hat p_1=139/180=0.7722$ (online)\\
     $n_2=150,\ x_2=123,\ \hat p_2=123/150=0.8200$ (on‑campus)\\
     pooled $\displaystyle \hat p=\frac{139+123}{180+150}=0.7939$\\
     $\displaystyle SE=\sqrt{\hat p(1-\hat p)\Bigl(\frac1{n_1}+\frac1{n_2}\Bigr)}
       =\sqrt{0.7939\cdot0.2061\,(1/180+1/150)}\approx0.0446$\\
     $\displaystyle z=\frac{\hat p_2-\hat p_1}{SE}=\frac{0.8200-0.7722}{0.0446}\approx1.07$
-  \item 
+  \item
     $H_0:p_2=p_1,\ H_A:p_2>p_1$; at $\alpha=0.10,\ z_{crit}=1.28$.  Since $z=1.07<1.28$, fail to reject $H_0$.\\
     No statistically significant evidence (at 10\% level) that on‑campus pass rate is higher.
 \end{enumerate}
@@ -413,7 +413,7 @@ P(A\mid+)
 %-------------------------------------------------------------
 \item \emph{Vaccine acceptance across age groups.}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     $n_1=700,\ x_1=427,\ \hat p_1=427/700=0.6100$ (age 18–34)\\
     $n_2=860,\ x_2=536,\ \hat p_2=536/860=0.6233$ (age 55+)\\
     $d=\hat p_1-\hat p_2=-0.0133$\\
@@ -421,19 +421,19 @@ P(A\mid+)
        =\sqrt{\frac{0.61\cdot0.39}{700}+\frac{0.6233\cdot0.3767}{860}}\approx0.0248$\\
     $z^*=2.576$ for 99\% CI, margin of error ($MoE$) $z^* \times SE=2.576\cdot0.0248\approx0.0638$\\
     $\displaystyle CI:d\pm MoE=(-0.0133\pm0.0638)=(-0.0771,\;0.0505)$
-  \item 
-    The 99\% CI for (younger – older) is approximately \(-7.7\%\) to \(+5.1\%\).  
-    It includes 0, so there is no clear difference: younger adults may be up to 7.7 pp less willing or up to 5.1 pp more willing than older adults.  
+  \item
+    The 99\% CI for (younger – older) is approximately \(-7.7\%\) to \(+5.1\%\).
+    It includes 0, so there is no clear difference: younger adults may be up to 7.7 pp less willing or up to 5.1 pp more willing than older adults.
 \end{enumerate}
 
 %-------------------------------------------------------------
 \item \emph{Margin of Error and Design Effects in Public Opinion Polls}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     $SE_{\rm SRS}=\sqrt{\frac{0.5\,(1-0.5)}{1500}}\approx0.01291$
-  \item 
+  \item
     $MoE_{\rm SRS}=z^*\cdot SE_{\rm SRS}=z^*\cdot 0.01291$
-  \item 
+  \item
     $MoE_{\rm real}=z^*\,SE_{\rm real},$ \quad $SE_{\rm real}=\sqrt{\mathrm{DEFF}}\times SE_{\rm SRS}$, \quad  $MoE_{\rm SRS}=z^*\,SE_{\rm SRS}$ \\
     $\frac{MoE_{\rm real}}{MoE_{\rm SRS}}
       =\frac{z^*\times SE_{\rm real}}{z^*\times SE_{\rm SRS}}
@@ -443,50 +443,50 @@ P(A\mid+)
 \frac{MoE_{\rm real}}{MoE_{\rm SRS}} = \sqrt{DEFF}
     \;\Rightarrow\;
     \mathrm{DEFF}=\Bigl(\frac{MoE_{\rm real}}{{MoE_{\rm SRS}} }\Bigr)^2$
-  \item 
-    $z^*=1.96$ gives 
+  \item
+    $z^*=1.96$ gives
     $MoE_{\rm SRS}=1.96\times0.01291\approx0.02530$.\\
     With $MoE_{\rm real}=0.031$,
     \[
       \mathrm{DEFF}=\Bigl(\frac{0.031}{1.96\times0.01291}\Bigr)^2\approx1.50
     \]
-  \item 
-    $\mathrm{DEFF}\approx1.50$ means the actual SE is $\sqrt{1.50}\approx1.225$ times larger than under SRS.  
+  \item
+    $\mathrm{DEFF}\approx1.50$ means the actual SE is $\sqrt{1.50}\approx1.225$ times larger than under SRS.
     Real‐world design features (clustering, weighting) inflate uncertainty by about 22.5\% over simple random sampling.
 \end{enumerate}
 
 %-------------------------------------------------------------
 \item \emph{Margin of What, Exactly? — Part II}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     With $DEFF\approx 1.50$, $SE_{\rm real}=\sqrt{1.50}\times\sqrt{\tfrac{0.52\cdot0.48}{1500}}\approx0.01580$.\\
     $MoE=1.96\times0.01580\approx0.0310$.\\
     $95\%$‑CI: $0.52\pm0.0310=(0.4890,\;0.5510)$.
-  \item 
+  \item
     No—the published $MoE$ applies to the overall sample, given the overall $DEF$ and the $SE$ for the full sample size. Subgroup CIs require their own $SE$ and $DEFF$.
-  \item 
+  \item
     Smaller‐\(n\) subgroups yield larger SE (and thus larger MoE) since $SE \text{ is proportional to }1/\sqrt{n}$ (i.e., inversely proportion to $\sqrt{n}$ -- as $n$ grows, $SE$ becomes smaller) and design effects may differ by subgroup.
-  \item 
+  \item
     A $\pm 5\%$ MoE could result from fewer respondents or a higher DEFF (e.g.\ stronger clustering or heavier weights). Wider MoE makes narrow differences (e.g.\ 48\% vs 52\%) statistically indistinguishable.
-  \item 
+  \item
     MoE omits non‑sampling errors: questionnaire wording, nonresponse bias, sampling coverage gaps (e.g., self-selection), weighting procedures, etc., which also affect accuracy.
 \end{enumerate}
 
 % ------------------------------------------------------------------
 \item \emph{Partisan optimism about AI?}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     Democrats: $p_1=0.12+0.26=0.38$ \quad (of $n_1=351$)\\
     Republicans: $p_2=0.07+0.39=0.46$ \quad (of $n_2=293$)
-  \item 
+  \item
     $H_0:p_1=p_2,\ H_A:p_1\neq p_2$\\
     counts: $x_1=\mathrm{round}(0.38\times 351)=133,\ x_2=\mathrm{round}(0.46\times 293)=135$\\
     pooled $\displaystyle \hat p=\frac{x_1+x_2}{n_1+n_2}=\frac{133+135}{351+293}=0.4161$\\
     $SE=\sqrt{\hat p(1-\hat p)\Bigl(\frac1{351}+\frac1{293}\Bigr)}\approx0.03901$\\
     $z=\frac{0.38-0.46}{0.03901}\approx -2.051,\ p\approx0.0403<0.05$
-  \item 
+  \item
     Reject $H_0$.  There is statistically significant evidence of a partisan difference in optimism about AI.
-  \item 
+  \item
     Yes—the data support “Republicans are more optimistic” (46\% vs.\ 38\%, $p<0.05$).  Statistical significance means the 8pp gap is unlikely under no­-difference; rhetorical significance concerns whether an 8pp gap is substantively important.
 \end{enumerate}
 
@@ -506,53 +506,53 @@ P(A\mid+)
 
 \item \textbf{An urban planning problem (Z‐approximation)}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     $SE=\dfrac{1.25}{\sqrt{1000}}\approx0.03953,\quad z_{.995}=2.576$\\
     $MoE=2.576\times0.03953\approx0.1018$\\
     $99\%\,CI:\;3.00\pm0.1018=(2.8982,\;3.1018)$
-  \item 
+  \item
     $H_0:\mu\le2.8\ vs.\ H_a:\mu>2.8$\\
     $z=\frac{\bar{x}-\mu_0}{SE}=\frac{3.00-2.8}{0.03953}\approx5.06,\ p\!<0.0001\;\Rightarrow$ reject $H_0$ ($z=5.06 > z_{.995}=2.576$)
-  \item 
+  \item
     Total pop CI: $1200\times(2.8982,\;3.1018)=(3478,\;3722)$ persons
-  \item 
+  \item
     Sampling uncertainty means average household size could be as low as 2.90 or as high as 3.10, so plan school capacity for roughly 3,478–3,722 residents rather than a single point estimate.
 \end{enumerate}
 
 % --------------------------------------------------------------------------------
 \item \emph{Reducing Emergency Room Wait Times: Policy Evaluation via Hypothesis Testing}
 \begin{enumerate}[label=(\alph*)]
-  \item 
-    Let $d_i = x_{i,\rm new}-x_{i,\rm old}$.  Negative $d_i$ means a reduction.  
+  \item
+    Let $d_i = x_{i,\rm new}-x_{i,\rm old}$.  Negative $d_i$ means a reduction.
     \[
       H_0:\mu_d \ge -15
       \quad\text{vs.}\quad
       H_A:\mu_d < -15
     \]
     $H_0$ says the new protocol reduces wait by at most 15 min (insufficient), $H_A$ says it reduces by more than 15 min (policy goal).
-  \item 
+  \item
     $SE = \frac{s_d}{\sqrt{n}}=\frac{47.5}{\sqrt{1000}}\approx1.5021$ min,\\
     $z=\frac{\bar d-(-15)}{SE}=\frac{-18.2+15}{1.5021}\approx-2.13$.
-  \item 
+  \item
     One‐sided $p$‑value $=P(Z<-2.13)\approx0.0166$ (CLT $\Rightarrow$ $\bar d\sim N(\mu_d,SE^2)$).
-  \item 
+  \item
     $p\,\text{-value}=0.0166<0.05\;\Rightarrow$ reject $H_0$.  There is significant evidence the protocol reduces wait by more than 15 min.
-  \item 
-    Plainly: “The data show the new triage cuts average ER waits by over 15 minutes ($p\,\text{-value}\approx0.017$), so implementing it permanently is justified.” 
+  \item
+    Plainly: “The data show the new triage cuts average ER waits by over 15 minutes ($p\,\text{-value}\approx0.017$), so implementing it permanently is justified.”
 \end{enumerate}
 
 % --------------------------------------------------------------------------------
 \item \emph{Partisan Affect: Feeling Thermometer Scores}
 \begin{enumerate}[label=(\alph*)]
-  \item 
+  \item
     $H_0:\mu_{\rm Dem}=\mu_{\rm Rep}\quad vs.\quad H_A:\mu_{\rm Dem}\neq\mu_{\rm Rep}$ (two‐sided)
-  \item 
+  \item
     $SE=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}=\sqrt{\frac{21.5^2}{520}+\frac{22.1^2}{495}}\approx1.3695$
-  \item 
-    $z=\frac{\bar x_{Dem} - \bar x_{Rep}  - 0}{SE}=\frac{48.3-62.4}{1.3695}\approx-10.30,\quad p\text{-value}<0.0001$  
-  \item 
+  \item
+    $z=\frac{\bar x_{Dem} - \bar x_{Rep}  - 0}{SE}=\frac{48.3-62.4}{1.3695}\approx-10.30,\quad p\text{-value}<0.0001$
+  \item
     $p<0.05\, \Rightarrow$ reject $H_0$.  Significant difference (Rejection region criteria: $|-10.30|=10.30>1.96$).
-  \item 
+  \item
     Republicans rate the Court about 14.1 points warmer than Democrats—a highly significant partisan gap.
 \end{enumerate}
 
@@ -637,5 +637,3 @@ P(A\mid+)
 % ------------------------------------------------------------------
 
 \end{document}
-
-

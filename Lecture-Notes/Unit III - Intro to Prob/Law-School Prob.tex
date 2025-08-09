@@ -37,7 +37,7 @@ P(\text{no acceptances}) &= P(\text{Rejected School \#1, Rej. \#2,$\cdots$, Rej.
  &= (0.85) (0.85) \cdots (0.85) = (0.85)^n.
 \end{align*}
 
-Then, let $S$ be the sample space. Let $a_i\in \{0,1\}$ be the application outcome from school $i$, such that $a_i=0$ if school $i$ rejected the application, and $a_i=1$ if it accepted it. Thus, an element of the sample space $\omega \in S$, is a \emph{n}-tuple such that $\omega = (a_1, a_2, \cdots, a_n)$. Using basic combinatorics, we can tell that there are $2^n$ outcomes in the sample space $S$. 
+Then, let $S$ be the sample space. Let $a_i\in \{0,1\}$ be the application outcome from school $i$, such that $a_i=0$ if school $i$ rejected the application, and $a_i=1$ if it accepted it. Thus, an element of the sample space $\omega \in S$, is a \emph{n}-tuple such that $\omega = (a_1, a_2, \cdots, a_n)$. Using basic combinatorics, we can tell that there are $2^n$ outcomes in the sample space $S$.
 
 Given this large sample space, there are multiple ways in which at least one element $a_i$ in $\omega$ is equal to one.\footnote{Another way to put it is that there are multiple combinations of $a_i$ such that $\sum_{i=1}^{n}a_i \geq 1$. For instance, if you apply to three schools, $n=3$, then one way to get accepted to at least one is $\omega_1=(1,0,0)$, another is $\omega_2=(1,0,1)$, etc.} Yet, counting such outcomes one by one to compute $P(\text{at least one acceptance})$ is a very tedious task. We can do better by using the complement rule.\footnote{Recall the complement rule: $P(A) = 1 - P(A^c)$.} Let's break down the sample space into two sets: $B$ and $B^c$. We define $B$ as the collections of outcomes in which \emph{at least one school accepted the application}.\footnote{Or, using a more formal notation, $B = \{\omega |\omega \in S, \text{there exists at least one $a_i=1$ in $\omega$} \} $.} Thus, by definition, $B \cup B^c = S$, implying $P(B) + P(B^c) = 1$. Hence,
 
@@ -56,7 +56,7 @@ Thus, the probability of receiving at least one acceptance is:
 P(\text{at least one acceptance}) = 1 - (0.85)^n.
 \]
 
-This formula allows us to compute the probability of success for different values of \( n \). 
+This formula allows us to compute the probability of success for different values of \( n \).
 
 \section{Examining the Assumption of Independence}
 

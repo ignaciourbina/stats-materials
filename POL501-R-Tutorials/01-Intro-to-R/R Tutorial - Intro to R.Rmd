@@ -1,7 +1,7 @@
 ---
 title: "Introduction to R"
 author: "POL-501"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -91,7 +91,7 @@ logical_vector <- c(TRUE, FALSE, TRUE, FALSE)
 print(logical_vector)  # This will output "TRUE FALSE TRUE FALSE".
 ```
 
-## Boolean in R 
+## Boolean in R
 R has logical operators to perform operations involving booleans (TRUE and FALSE).
 
 ```{r}
@@ -132,10 +132,10 @@ head(studentdata) # Print first few rows
 # Use the '$' to select one column name. For example:
 print(studentdata$Score) # We print the column (variable) with student scores.
 
-print(studentdata$Gender) 
+print(studentdata$Gender)
 
-# What's the content of my dataframe? 
-str(studentdata) # Look at the components, structure of the dataframe 
+# What's the content of my dataframe?
+str(studentdata) # Look at the components, structure of the dataframe
 
 ```
 
@@ -214,11 +214,11 @@ Visualization broadens the understanding of data by highlighting patterns and di
 
 ```{r}
 # A scatter plot between Age and Score of students.
-plot(studentdata$Age, studentdata$Score, 
+plot(studentdata$Age, studentdata$Score,
      main = "Age vs Score", xlab = "Age", ylab = "Score")
 
 # A histogram represents 'Age' distribution among the students.
-hist(studentdata$Age, 
+hist(studentdata$Age,
      main = "Age Distribution", xlab = "Age in Years", col = "green")
 
 ```
@@ -257,12 +257,12 @@ str(USArrests)
 
 This output provides us crucial information about our dataset, such as there are 50 observations (rows) and 4 variables (columns).
 
-Subsetting in R is a way to extract parts of your data from larger data structures based on certain conditions, generally done using the square bracket notation [row, col]. The concept works on principles of rows and columns, similar to how we understand data in a spreadsheet. Here, 'row' and 'col' represent the indices of the rows and columns respectively. 
+Subsetting in R is a way to extract parts of your data from larger data structures based on certain conditions, generally done using the square bracket notation [row, col]. The concept works on principles of rows and columns, similar to how we understand data in a spreadsheet. Here, 'row' and 'col' represent the indices of the rows and columns respectively.
 
-For instance, if we have a dataset 'USArrests', we can extract data from the second row and third column by specifying the indices as USArrests[2, 3]. In more realistic scenarios, you will want to subset data based on certain conditions, which is where logical subsetting is useful. 
+For instance, if we have a dataset 'USArrests', we can extract data from the second row and third column by specifying the indices as USArrests[2, 3]. In more realistic scenarios, you will want to subset data based on certain conditions, which is where logical subsetting is useful.
 
 ### Basic Subsetting
-Subsetting is accomplished primarily through the use of square brackets []. 
+Subsetting is accomplished primarily through the use of square brackets [].
 
 ```{r}
 # To select the 'Murder' column from the USArrests dataset, we can use
@@ -286,9 +286,9 @@ print(tenth_state_assault)
 ### Condition-Based Subsetting
 Quite often, we want to subset our data based on certain conditions. To achieve this, we can use logical conditions inside our square brackets.
 
-The condition needs to generate a list of boolean (TRUE/FALSE) values of equal length to the number of rows in the data structure. This list tells R which rows to keep (for TRUE) and which to exclude (for FALSE). 
+The condition needs to generate a list of boolean (TRUE/FALSE) values of equal length to the number of rows in the data structure. This list tells R which rows to keep (for TRUE) and which to exclude (for FALSE).
 
-We can create these logical conditions manually or use a logical statement. For example, we might want to subset rows of the dataset where the 'Murder' rate is above 5. We can create a logical condition 'logical_condition <- USArrests[,"Murder"] > 5', which returns a list of TRUE or FALSE values for each row, depending on whether that row's 'Murder' rate is higher than 5. Subsequently, we subset the dataframe using this logical_condition: 'high_murder_rate <- USArrests[logical_condition ,]'. 
+We can create these logical conditions manually or use a logical statement. For example, we might want to subset rows of the dataset where the 'Murder' rate is above 5. We can create a logical condition 'logical_condition <- USArrests[,"Murder"] > 5', which returns a list of TRUE or FALSE values for each row, depending on whether that row's 'Murder' rate is higher than 5. Subsequently, we subset the dataframe using this logical_condition: 'high_murder_rate <- USArrests[logical_condition ,]'.
 
 This entire process can be concisely written in one line as 'high_murder_rate <- USArrests[USArrests[,"Murder"] > 5,]'.
 
@@ -296,17 +296,17 @@ This entire process can be concisely written in one line as 'high_murder_rate <-
 ```{r}
 # Suppose we want only the entries of states that have a murder rate more than 5 per 100,000. We can achieve this by applying a condition on the 'Murder' column.
 
-# First, start by creating a vector with the logical condition. 
+# First, start by creating a vector with the logical condition.
 logical_condition <- USArrests[,"Murder"] > 5
 ```
 
-This vector has the same number of rows than our dataset, and has the value TRUE whenever $Murder > 5$, and FALSE otherwise. 
+This vector has the same number of rows than our dataset, and has the value TRUE whenever $Murder > 5$, and FALSE otherwise.
 
 Then, we can select the rows of the dataset by subsetting on the logical values of this vector as follows:
 
 ```{r}
 # Apply the desired subsetting
-high_murder_rate <- USArrests[logical_condition,] 
+high_murder_rate <- USArrests[logical_condition,]
 
 # Printing the first few rows of the states with high murder rate data.
 print(head(high_murder_rate))
@@ -317,7 +317,7 @@ We can do the two steps, in one compact line of code in which we obtain 'high_mu
 
 ```{r}
 # Suppose we want only the entries of states that have a murder rate more than 5 per 100,000. We can achieve this by applying a condition on the 'Murder' column.
-high_murder_rate <- USArrests[USArrests[,"Murder"] > 5,] 
+high_murder_rate <- USArrests[USArrests[,"Murder"] > 5,]
 
 # Printing the first few rows of the states with high murder rate data.
 print(head(high_murder_rate))
@@ -329,7 +329,7 @@ This gives us a dataset that only includes states that have a murder rate exceed
 When dealing with diverse datasets like USArrests, we often require subsets based on multiple conditions. R allows for complex subsetting using `&` (and) or `|` (or) operators.
 
 ```{r}
-# Suppose we want data of states that not only have a high murder rate, but also have an Assault rate more than 150. 
+# Suppose we want data of states that not only have a high murder rate, but also have an Assault rate more than 150.
 
 high_murder_and_assault <- USArrests[USArrests[,"Murder"] > 5 & USArrests[,"Assault"] > 150,]
 
@@ -360,7 +360,7 @@ In R, the `$` sign is a special operator used for accessing and manipulating col
 When you use the `$` sign with a data frame, it follows the syntax:
 
 ```{r eval=FALSE}
-# Code to create a new variable 
+# Code to create a new variable
 data_frame$column_name <- "(some valid expression)"
 ```
 
@@ -426,5 +426,3 @@ print(summary_stats)
 The summary() function provides us with the minimum, maximum, mean, and quartile values for the crime score.
 
 Now we have examined the USArrests dataset using various statistical methods including data subsetting, renaming variables, scaling data, creating histograms and getting summary statistics.
-
-

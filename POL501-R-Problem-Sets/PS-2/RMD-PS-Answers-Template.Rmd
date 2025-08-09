@@ -2,7 +2,7 @@
 title: "POL501 - Answers to Problem Set 2"
 author: "Student Name (REPLACE)"
 date: "`r Sys.Date()`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -55,7 +55,7 @@ table(df_clean$PARTY)
 cat('\n Tabulation of INTFREQ: ')
 table(df_clean$INTFREQ)
 cat('\n Tabulation of RADIO: ')
-table(df_clean$RADIO) 
+table(df_clean$RADIO)
 cat('\n Tabulation of ECON1MOD: ')
 table(df_clean$ECON1MOD)
 cat('\n Tabulation of INFRASPEND: ')
@@ -100,7 +100,7 @@ prob_rep_dem <- n_rep_dem / n_total_q1
 # - This gives the proportion of respondents who are either Republican or Democrat, which is the probability of interest.
 
 # Step 4: Display the result
-print(paste("Probability of identifying as Democrat or Republican:", 
+print(paste("Probability of identifying as Democrat or Republican:",
             round(prob_rep_dem, 2)))
 # Explanation:
 # - `print()` outputs the result to the console.
@@ -109,7 +109,7 @@ print(paste("Probability of identifying as Democrat or Republican:",
 # - The result is a message that shows the calculated probability, rounded to two decimal places.
 
 ```
-The probability of identifying as Democrat or Republican is equal to `r 100*round(prob_rep_dem,2)` percent. This was computed by counting the respondents which classified as Democrat **OR** Republican. This is justified since Democrat and Republican are mutually exclusive categories. Then, we take the total of Democrats OR republicans divided by the total number of cases. 
+The probability of identifying as Democrat or Republican is equal to `r 100*round(prob_rep_dem,2)` percent. This was computed by counting the respondents which classified as Democrat **OR** Republican. This is justified since Democrat and Republican are mutually exclusive categories. Then, we take the total of Democrats OR republicans divided by the total number of cases.
 In other words, **Probability of Democrat or Republican = (Democrats + Republicans)/(Total Respondents)**
 
 
@@ -118,16 +118,16 @@ In other words, **Probability of Democrat or Republican = (Democrats + Republica
 n_total_q2 <- nrow(df_clean)
 
 n_radio_yes <- df_clean %>%
-  filter(RADIO == 1) %>% 
+  filter(RADIO == 1) %>%
   nrow()
 
 n_inter_constantly <- df_clean %>%
-  filter(INTFREQ == 1) %>% 
-  nrow() 
+  filter(INTFREQ == 1) %>%
+  nrow()
 
 n_radio_yes_AND_inter_constantly <- df_clean %>%
   filter(RADIO == 1 & INTFREQ == 1) %>%  # the character '&' serves as the logical AND (in the dyplr package)
-  nrow() 
+  nrow()
 
 ## Now using the previous calculations we can compute the following probabilities... (you take it from here)
 

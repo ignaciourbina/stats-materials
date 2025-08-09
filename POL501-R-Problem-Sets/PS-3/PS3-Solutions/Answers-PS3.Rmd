@@ -2,14 +2,14 @@
 title: "POL501 - Problem Set 3"
 author: "Solutions"
 date: "`r Sys.Date()`"
-output: 
+output:
   pdf_document:
     toc: true
     toc_depth: 2
     keep_tex: true  # Optional, keeps the .tex file for inspection
 fontsize: 11pt
 geometry: "left=1in,right=1in,top=1in,bottom=1in"
-header-includes: 
+header-includes:
   - \usepackage{fvextra}
   - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines, breakanywhere, commandchars=\\\{\}}
 ---
@@ -38,7 +38,7 @@ library(BSDA)
   * Each sub-letter in Question 1 is worth **0.5 point** (Total of 2.5 points)
   * Each sub-letter in Question 2 is worth **0.5 points** (Total of 1.5 points)
   * Each sub-letter in Question 3 is worth **0.5 points** (Total of 2.5 points)
-  
+
 - **Grading Guidelines**:
   * Full credit will be awarded for fully correct answers that closely match the provided solutions included in this document.
   * Partial credit will be given for incomplete or partially incorrect answers/justifications.
@@ -66,7 +66,7 @@ load('dataframe-pew.RData')
 
 **Important**:
 
-- You must place this RMD file in the same folder in which you have the data. 
+- You must place this RMD file in the same folder in which you have the data.
 - Then, you will be able to load the dataset into memory. The name of the dataset as an R object is `df_clean`.
 
 As a preliminary recommended step, and to make sure we understand how the variables are coded and their distribution, let's start by describing the data using summary statistics.
@@ -85,7 +85,7 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
 
   # Extract the data column
   data_column <- data[[var_name]]
-  
+
   # Validate inputs (method, var_name)
   if (!(method %in% c("t", "z"))) {
     stop("Method must be either 't' or 'z'.")
@@ -93,30 +93,30 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
   if (!(var_name %in% colnames(data))) {
     stop("var_name must be the name of a column in the data frame.")
   }
-  
+
   # Calculate sample statistics
   sample_mean <- mean(data_column, na.rm = TRUE)
   sample_sd <- sd(data_column, na.rm = TRUE)
   n <- length(na.omit(data_column))
   standard_error <- sample_sd / sqrt(n)
-  
+
   # Set alpha for confidence level
   alpha <- 1 - confidence_level
-  
+
   # Calculate the critical value based on the selected method
   if (method == "t") {
     critical_value <- qt(1 - alpha / 2, df = n - 1)  # t-distribution critical value
   } else {
     critical_value <- qnorm(1 - alpha / 2)  # z-distribution critical value
   }
-  
+
   # Calculate margin of error (MOE)
   margin_of_error <- critical_value * standard_error
-  
+
   # Calculate confidence interval bounds
   lower_bound <- sample_mean - margin_of_error
   upper_bound <- sample_mean + margin_of_error
-  
+
   # Prepare output as a named vector
   output <- c(
     `Sample Mean of` = var_name,
@@ -141,26 +141,26 @@ First, recall the coding of `CRIMESAFE` responses. The question asked: ***How wo
  * 3 = Somewhat safe;
  * 4 = Not too safe;
  * 5 = Not at all safe
- 
+
 
 ```{r q1-a, echo=TRUE}
 # Question 1.a: Use the function `confidence_interval` to compute the mean of `CRIMESAFE` with a 95% confidence level. Interpret the confidence interval appropriately.
-crimesafe_CI_z_95 <- confidence_interval(data=df_clean, 
-                                         var_name='CRIMESAFE', 
+crimesafe_CI_z_95 <- confidence_interval(data=df_clean,
+                                         var_name='CRIMESAFE',
                                          confidence_level = 0.95, method = "t")
 print(crimesafe_CI_z_95)
 kable(crimesafe_CI_z_95, format='latex', caption = "95\\% CI for the mean of `CRIMESAFE`")
 ```
 
 **Explanation/Justification**:
-The average score for CRIMESAFE is 2.575, with a 95% confidence interval ranging from 2.552 to 2.598. This means we can be 95% confident that the true average perception of safety in the area falls within this range. Since the scale ranges from 1 (Extremely Safe) to 5 (Not at All Safe), a score of 2.575 indicates that most people feel their area is somewhere between "Very Safe" and "Somewhat Safe." The narrow margin of error (0.023) suggests the estimate is precise, giving us strong confidence in this result. 
+The average score for CRIMESAFE is 2.575, with a 95% confidence interval ranging from 2.552 to 2.598. This means we can be 95% confident that the true average perception of safety in the area falls within this range. Since the scale ranges from 1 (Extremely Safe) to 5 (Not at All Safe), a score of 2.575 indicates that most people feel their area is somewhere between "Very Safe" and "Somewhat Safe." The narrow margin of error (0.023) suggests the estimate is precise, giving us strong confidence in this result.
 
 ## Answer to (1.b)
 
 ```{r q1-b, echo=TRUE}
 # Question 1.b: Use the function `confidence_interval` to compute the mean of `CRIMESAFE` with a 99% confidence level
-crimesafe_CI_z_99 <- confidence_interval(data=df_clean, 
-                                         var_name='CRIMESAFE', 
+crimesafe_CI_z_99 <- confidence_interval(data=df_clean,
+                                         var_name='CRIMESAFE',
                                          confidence_level = 0.99, method = "t")
 print(crimesafe_CI_z_99)
 kable(crimesafe_CI_z_99, format='latex',caption = "99\\% CI for the mean of `CRIMESAFE`")
@@ -180,10 +180,10 @@ table(df_clean$PARTY)
 
 # Filter rows and create subsamples
 df_dems <- df_clean %>%
-  filter(PARTY==2) 
+  filter(PARTY==2)
 
 df_rep <- df_clean %>%
-  filter(PARTY==1) 
+  filter(PARTY==1)
 ```
 
 **Explanation/Justification**:
@@ -203,8 +203,8 @@ Thus, using `filter()` we select the rows matching Republicans and Democrats. Th
 
 ```{r q1-d-part1, echo=TRUE}
 # Question 1.d: Compute the sample mean for `CRIMESAFE` and 95% confidence intervals for Democrats and Republicans
-crimesafe_CI_z_95_dems <- confidence_interval(data=df_dems, 
-                                         var_name='CRIMESAFE', 
+crimesafe_CI_z_95_dems <- confidence_interval(data=df_dems,
+                                         var_name='CRIMESAFE',
                                          confidence_level = 0.95, method = "t")
 cat('\nResults for Democrats:\n')
 print(crimesafe_CI_z_95_dems)
@@ -212,8 +212,8 @@ kable(crimesafe_CI_z_95_dems, format='latex', caption = "95\\% CI for the mean o
 ```
 
 ```{r q1-d-part2, echo=TRUE}
-crimesafe_CI_z_95_reps <- confidence_interval(data=df_rep, 
-                                         var_name='CRIMESAFE', 
+crimesafe_CI_z_95_reps <- confidence_interval(data=df_rep,
+                                         var_name='CRIMESAFE',
                                          confidence_level = 0.95, method = "t")
 cat('\nResults for Republicans:\n')
 print(crimesafe_CI_z_95_reps)
@@ -252,12 +252,12 @@ ggplot(df_combined_CI, aes(x = Group, y = Estimate)) +
     x = "Political Affiliation",
     y = "Perception of Community Safety (CRIMESAFE)"
   ) +
-  theme_minimal() + 
+  theme_minimal() +
   ylim(2.4, 2.7)  # Set the y-axis limits here
 ```
 
 **Explanation/Justification**:
-The plot shows that the 95\% confidence intervals for Democrats ([2.486, 2.566]) and Republicans ([2.556, 2.637]) represent the range within which their true mean perceptions of neighborhood safety likely fall. While these intervals overlap slightly, this does not automatically imply that the difference in their true means is not statistically significant. Intuitively, a smaller overlap does indicate a lower likelihood that the true means of the two groups are the same. Yet, overlap of confidence intervals is not a definitive test of significance and can lead to misinterpretation. To properly assess whether the difference in perceptions is statistically meaningful, a confidence interval for the difference in means between the two groups should be calculated. 
+The plot shows that the 95\% confidence intervals for Democrats ([2.486, 2.566]) and Republicans ([2.556, 2.637]) represent the range within which their true mean perceptions of neighborhood safety likely fall. While these intervals overlap slightly, this does not automatically imply that the difference in their true means is not statistically significant. Intuitively, a smaller overlap does indicate a lower likelihood that the true means of the two groups are the same. Yet, overlap of confidence intervals is not a definitive test of significance and can lead to misinterpretation. To properly assess whether the difference in perceptions is statistically meaningful, a confidence interval for the difference in means between the two groups should be calculated.
 
 ___
 # Question 2 - Solutions
@@ -286,10 +286,10 @@ df_clean <- df_clean %>%
 
 # Re-Create subsamples for Democrats and Republicans (Now the subsamples include the new variable)
 df_dems <- df_clean %>%
-  filter(PARTY==2) 
+  filter(PARTY==2)
 
 df_rep <- df_clean %>%
-  filter(PARTY==1) 
+  filter(PARTY==1)
 
 # Describe the mean of the new variable - entire sample
 print("Proportion of Respondents Who Selected `Not too safe` OR `Not at all safe` (entire sample):")
@@ -306,8 +306,8 @@ mean(df_rep$notsafe_binary)
 # Create a summary dataframe
 summary_df <- data.frame(
   Group = c("Entire Sample", "Democrats", "Republicans"),
-  Proportion = c('mean_fullsample'=mean(df_clean$notsafe_binary), 
-                 'mean_dems'=mean(df_dems$notsafe_binary), 
+  Proportion = c('mean_fullsample'=mean(df_clean$notsafe_binary),
+                 'mean_dems'=mean(df_dems$notsafe_binary),
                  'mean_reps'=mean(df_rep$notsafe_binary))
 )
 rownames(summary_df) <- NULL # Remove row "ID names"
@@ -334,7 +334,7 @@ n_sample_size <- nrow(df_dems)
 
 # Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)
 SD_null_hypot <- sqrt(prop_null_hypothesis*(1-prop_null_hypothesis))
-  
+
 # Run the z-test to test if the mean is significantly different from the sample proportion for Republicans
 #   The function will compute in the background the correct Standard Error.
 z_test_result <- z.test(
@@ -348,7 +348,7 @@ print(z_test_result)
 ```
 
 **Explanation/Justification**:
-For the Democratic subsample, the z-test results in a z-value of **1.6121** and a p-value of **0.1069**. Since the p-value is greater than both the 5% (\(0.05\)) and 1% (\(0.01\)) significance levels, we fail to reject the null hypothesis. This means there is insufficient evidence to conclude that the true proportion of Democrats who feel unsafe is significantly different from the sample proportion observed for Republicans. 
+For the Democratic subsample, the z-test results in a z-value of **1.6121** and a p-value of **0.1069**. Since the p-value is greater than both the 5% (\(0.05\)) and 1% (\(0.01\)) significance levels, we fail to reject the null hypothesis. This means there is insufficient evidence to conclude that the true proportion of Democrats who feel unsafe is significantly different from the sample proportion observed for Republicans.
 
 
 ## Answer to (2.c)
@@ -364,7 +364,7 @@ n_sample_size <- nrow(df_rep) # UPDATED CODE LINE
 
 # Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)
 SD_null_hypot <- sqrt(prop_null_hypothesis*(1-prop_null_hypothesis))
-  
+
 # Run the z-test to test if the mean is significantly different from the sample proportion for Democrats
 z_test_result <- z.test(
   x = df_rep$notsafe_binary, # Here we declare the variable for our sample
@@ -377,7 +377,7 @@ print(z_test_result)
 ```
 
 **Explanation/Justification**:
-For the Republican subsample, the z-test yields a z-value of **-1.4109** and a p-value of **0.1583**. Since the p-value is greater than both the 5% (\(0.05\)) and 1% (\(0.01\)) significance levels, we fail to reject the null hypothesis. This indicates there is insufficient evidence to conclude that the true proportion of Republicans who feel unsafe is significantly different from the sample proportion observed for Democrats. 
+For the Republican subsample, the z-test yields a z-value of **-1.4109** and a p-value of **0.1583**. Since the p-value is greater than both the 5% (\(0.05\)) and 1% (\(0.01\)) significance levels, we fail to reject the null hypothesis. This indicates there is insufficient evidence to conclude that the true proportion of Republicans who feel unsafe is significantly different from the sample proportion observed for Democrats.
 
 
 ___
@@ -412,7 +412,7 @@ p_hat <- mean(mock_data_q3$support_policy) # Observed Sample Proportion
 # Define the null hypothesis proportion
 p_0 <- 0.43
 
-# Compute the sample size 
+# Compute the sample size
 n <- nrow(mock_data_q3)
 
 # Calculate the standard ERROR under the null (Appropiate SE assuming H0 is true)
@@ -424,17 +424,17 @@ cat("Standard Error: ", round(standard_error_null_hypothesis, 3), "\n")
 ```
 
 **Explanation/Justification**:
-The sample proportion (\( \hat{p} \)) is **0.4**, meaning that 40% of respondents in the sample support the policy. The standard error under the null hypothesis (\( SE_{H_0} \)) is **0.084**, which measures the expected variability of the sample proportion if the true proportion in the population is equal to the null hypothesis proportion (\( p_0 = 0.43 \)). 
+The sample proportion (\( \hat{p} \)) is **0.4**, meaning that 40% of respondents in the sample support the policy. The standard error under the null hypothesis (\( SE_{H_0} \)) is **0.084**, which measures the expected variability of the sample proportion if the true proportion in the population is equal to the null hypothesis proportion (\( p_0 = 0.43 \)).
 
 ## Answer to (3.b)
 
-- **Null Hypothesis (\(H_0\)):**  
-  The true population proportion of respondents who support the policy is equal to 0.43.  
+- **Null Hypothesis (\(H_0\)):**
+  The true population proportion of respondents who support the policy is equal to 0.43.
   Mathematically: \(H_0: p = 0.43\).
 
-- **Alternative Hypothesis (\(H_a\)):**  
-  The true population proportion of respondents who support the policy is not equal to 0.43 (i.e., it could be higher or lower).  
-  Mathematically: \(H_a: p \neq 0.43\).  
+- **Alternative Hypothesis (\(H_a\)):**
+  The true population proportion of respondents who support the policy is not equal to 0.43 (i.e., it could be higher or lower).
+  Mathematically: \(H_a: p \neq 0.43\).
 
 This is a two-tailed test because we are interested in whether the true proportion differs from 0.43 in either direction, not just whether it is greater or less than 0.43. The significance level (\( \alpha \)) is set at 1%, which corresponds to a 99% confidence level for the test.
 
@@ -447,7 +447,7 @@ p_0 <- 0.43
 # Define sample proportion (copy and paste code above)
 p_hat <- mean(mock_data_q3$support_policy) # Observed Sample Proportion
 
-# Define Standard Error Under the Null 
+# Define Standard Error Under the Null
 SE_H0 <- sqrt( ( p_0*(1 - p_0) )/n )  # SE assuming the null hypothesis
 
 # Calculate the z-test statistic
@@ -471,7 +471,7 @@ critical_value <- qnorm( 1 - (alpha / 2) )  # You can learn more about the funct
 z_statistic <- (p_hat - p_0)/SE_H0   # Replace with the code used above
 
 # Calculate the p-value. HINT: Use `pnorm(abs(z_statistic), lower.tail = FALSE)` to compute Pr(Z > |Z_obs|).
-p_value <- 2*(pnorm(abs(z_statistic), lower.tail = FALSE)) 
+p_value <- 2*(pnorm(abs(z_statistic), lower.tail = FALSE))
 
 # Print the critical value and p-value
 cat("Critical Value: ", round(critical_value, 3), "\n")
@@ -482,7 +482,7 @@ cat("P-value: ", round(p_value, 3), "\n")
 **Explanation/Justification**:
 The **critical value** at a 1% significance level (\(\alpha = 0.01\)) for a two-tailed test is **2.576**. This means that for the null hypothesis to be rejected, the z-test statistic would need to fall outside the range of \([-2.576, 2.576]\). However, the calculated z-test statistic is **-0.358**, which lies well within this range, indicating that the observed sample proportion is not significantly different from the hypothesized proportion.
 
-The p-value of **0.72** means that, if the true population proportion were 0.43, there is a 72% probability of observing a result as extreme as (or more extreme than) the one in the sample due to random chance alone. Since the p-value is much larger than the 1% significance level (\(p > 0.01\)), we fail to reject the null hypothesis. 
+The p-value of **0.72** means that, if the true population proportion were 0.43, there is a 72% probability of observing a result as extreme as (or more extreme than) the one in the sample due to random chance alone. Since the p-value is much larger than the 1% significance level (\(p > 0.01\)), we fail to reject the null hypothesis.
 
 ## Answer to (3.e)
 
@@ -514,7 +514,7 @@ n_sample_size <- respondents
 
 # Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)
 SD_null_hypot <- sqrt( prop_null_hypothesis*(1-prop_null_hypothesis) )   # The formula for SD does not include the sample size
-  
+
 # Run the z-test to test if the mean is significantly different from the sample proportion for Democrats
 z_test_result <- z.test(
   x = mock_data_q3$support_policy,
@@ -528,5 +528,3 @@ print(z_test_result)
 # Print p-value
 print(z_test_result$p.value)
 ```
-
-

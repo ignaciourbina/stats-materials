@@ -16,29 +16,36 @@ bin_labels = np.array(["[1 , 3)", "[3 , 5)", "[5 , 7)", "[7 , 9)", "[9 , 11]"])
 
 # Compute bin counts using NumPy
 bin_counts = [
-    np.sum((data_list >= bins[i]) & (data_list < bins[i + 1])) if i < len(bins) - 2
-    else np.sum((data_list >= bins[i]) & (data_list <= bins[i + 1])) 
+    (
+        np.sum((data_list >= bins[i]) & (data_list < bins[i + 1]))
+        if i < len(bins) - 2
+        else np.sum((data_list >= bins[i]) & (data_list <= bins[i + 1]))
+    )
     for i in range(len(bins) - 1)
 ]
 
 # Print table in readable format
 print("\nHistogram Bin Counts Table")
 print("-----------------------------------------------------------------")
-print(f"{'Bin':<10}{'Lower Limit':<15}{'Upper Limit':<15}{'Width':<10}{'Bin Label':<10}{'Count':<10}")
+print(
+    f"{'Bin':<10}{'Lower Limit':<15}{'Upper Limit':<15}{'Width':<10}{'Bin Label':<10}{'Count':<10}"
+)
 print("-----------------------------------------------------------------")
 for i in range(len(bins) - 1):
-    print(f"Bin {i+1:<7}{bins[i]:<15}{bins[i+1]:<15}{2:<10}{bin_labels[i]:<10}{bin_counts[i]:<10}")
+    print(
+        f"Bin {i+1:<7}{bins[i]:<15}{bins[i+1]:<15}{2:<10}{bin_labels[i]:<10}{bin_counts[i]:<10}"
+    )
 
 # Create bar plot for histogram representation
 plt.figure(figsize=(8, 5))
-plt.bar(bins[:-1], bin_counts, width=2, edgecolor='black', align='edge', alpha=0.7)
+plt.bar(bins[:-1], bin_counts, width=2, edgecolor="black", align="edge", alpha=0.7)
 
 # Labeling
-plt.xlabel('Value')
-plt.ylabel('Frequency')
-plt.title('Histogram of Z')
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Histogram of Z")
 plt.xticks(bins)
-plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.grid(axis="y", linestyle="--", alpha=0.7)
 
 # Show plot
 plt.show()
@@ -69,7 +76,6 @@ print(f"{'IQR':<15}{iqr_value:<15.2f}")
 print("-------------------------------------------------")
 
 
-
 ##############
 ## Question 2
 ##############
@@ -84,8 +90,8 @@ np.random.seed(42)
 n = 2000
 
 # Generate Sample Green: Bimodal, symmetric
-green1 = np.random.normal(loc=-2, scale=1, size=n//2)
-green2 = np.random.normal(loc=2, scale=1, size=n//2)
+green1 = np.random.normal(loc=-2, scale=1, size=n // 2)
+green2 = np.random.normal(loc=2, scale=1, size=n // 2)
 sample_green = np.concatenate([green1, green2])
 
 # Generate Sample Red: Unimodal, symmetric
@@ -100,9 +106,11 @@ sample_green += np.random.normal(scale=noise_factor, size=n)
 sample_red += np.random.normal(scale=noise_factor, size=n)
 sample_blue += np.random.normal(scale=noise_factor, size=n)
 
+
 # Function to rescale each sample to a 0-100 range
 def rescale_0_100(sample):
     return 100 * (sample - np.min(sample)) / (np.max(sample) - np.min(sample))
+
 
 # Apply rescaling
 sample_green = rescale_0_100(sample_green)
@@ -113,7 +121,7 @@ sample_blue = rescale_0_100(sample_blue)
 scaled_samples = {
     "Sample Green": sample_green,
     "Sample Red": sample_red,
-    "Sample Blue": sample_blue
+    "Sample Blue": sample_blue,
 }
 
 # Define colors
@@ -123,11 +131,18 @@ colors = ["green", "red", "blue"]
 fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
 
 for ax, (label, sample), color in zip(axes, scaled_samples.items(), colors):
-    counts, bins, patches = ax.hist(sample, bins=30, color=color, edgecolor='black', histtype='stepfilled', alpha=0.7)
+    counts, bins, patches = ax.hist(
+        sample,
+        bins=30,
+        color=color,
+        edgecolor="black",
+        histtype="stepfilled",
+        alpha=0.7,
+    )
 
     # Add transparent dashed vertical lines between bars
     for b in bins:
-        ax.axvline(b, color='black', linestyle='dashed', linewidth=0.5, alpha=0.5)
+        ax.axvline(b, color="black", linestyle="dashed", linewidth=0.5, alpha=0.5)
 
     ax.set_title(label)
     ax.set_xlabel("Scaled Value (0-100)")

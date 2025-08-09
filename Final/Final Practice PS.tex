@@ -8,7 +8,7 @@
 \usepackage{float}
 \usepackage{url}
 \usepackage{enumitem}
-\usepackage{hyperref} 
+\usepackage{hyperref}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
@@ -40,7 +40,7 @@
 \section{Midterm Topics}
 
 % ------------------------------------------------------------------
-%  INTRO TO DATA AND DESCRIPTIVE STATS — PRACTICE PROBLEMS  
+%  INTRO TO DATA AND DESCRIPTIVE STATS — PRACTICE PROBLEMS
 % ------------------------------------------------------------------
 
 \subsection{Understanding Data and Summary Statistics}
@@ -54,7 +54,7 @@
 
 \textbf{Questions}:
 \begin{enumerate}
-    \item \textbf{Variable Classification}  
+    \item \textbf{Variable Classification}
     The table below lists several variables collected in a student survey. For each, classify the variable as \emph{categorical} or \emph{numerical}. If categorical, specify whether it is \emph{nominal} or \emph{ordinal}; if numerical, state whether it is \emph{discrete} or \emph{continuous}.
 
     \begin{center}
@@ -83,19 +83,19 @@
     \begin{tikzpicture}
     % Axis
     \draw[->] (0,0) -- (8,0) node[anchor=west] {Hours};
-    
+
     % Whiskers
     \draw (1,0.1) -- (1,-0.1); % Min
     \draw (7,0.1) -- (7,-0.1); % Max
     \draw (1,0) -- (2,0); % Left whisker
     \draw (6,0) -- (7,0); % Right whisker
-    
+
     % Box
     \draw[fill=gray!20] (2,-0.3) rectangle (6,0.3);
-    
+
     % Median
     \draw[thick] (4, -0.3) -- (4, 0.3);
-    
+
     % Labels
     \node[below] at (1, -0.3) {1};
     \node[below] at (2, -0.3) {2};
@@ -127,7 +127,7 @@
       % Axes
       \draw[->] (0,0) -- (7,0) node[anchor=west] {Income (\$100s)};
       \draw[->] (0,0) -- (0,6.5) node[anchor=south east] {Frequency};
-    
+
       % Bars  (heights doubled)
       \draw[fill=gray!40] (0.5,0) rectangle (1.5,6);
       \draw[fill=gray!40] (1.5,0) rectangle (2.5,5);
@@ -135,20 +135,20 @@
       \draw[fill=gray!40] (3.5,0) rectangle (4.5,3);
       \draw[fill=gray!40] (4.5,0) rectangle (5.5,2);
       \draw[fill=gray!40] (5.5,0) rectangle (6.5,1);
-    
+
       % x-axis ticks and labels
       \foreach \x in {1,...,6}{
         \draw (\x,0) -- (\x,0.1);
         \node[below] at (\x,-0.1) {\x};
       }
-    
+
       % y-axis ticks and labels
       \foreach \y in {1,...,6}{
         \draw (0,\y) -- (-0.1,\y) node[left]{\y};
       }
     \end{tikzpicture}
     \end{center}
-    
+
 
     \begin{enumerate}
         \item Compute the median. Compute the mean (use the weighted mean formula).
@@ -166,7 +166,7 @@ The side-by-side box plots below summarise weekly study-hours for two groups of 
   % Each row is one group; PGFPlots will transpose so that every *column*
   % becomes a separate box plot.
   \begin{filecontents*}{twogroups.csv}
-  2,2,3,4,4,6,8,11   % Group A (right-skewed) 
+  2,2,3,4,4,6,8,11   % Group A (right-skewed)
   1,2,3,4,4,5,6,7    % Group B (roughly symmetric)
   \end{filecontents*}
 
@@ -191,19 +191,19 @@ The side-by-side box plots below summarise weekly study-hours for two groups of 
   ]
     % left box: column 1 (Group A)
     \addplot+[boxplot, fill=blue,fill opacity=0.4,draw=black]  table[y index=1] {\datatransposed};
-    
+
     % right box: column 2 (Group B)
     \addplot+[boxplot, fill=red,fill opacity=0.4,draw=black]   table[y index=2] {\datatransposed};
-    
+
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 \begin{itemize}
-  \item Compare the two distributions in terms of \emph{shape, center, and spread}.  
+  \item Compare the two distributions in terms of \emph{shape, center, and spread}.
         % Note in particular that both groups have the same median (4 hours) but Group A shows a much longer right tail, indicating greater variability and positive skewness.
 \end{itemize}
-% ----------------------------------------------------------------------------- 
+% -----------------------------------------------------------------------------
 \item \textbf{Interpreting a Scatter Plot with Two Groups} \\
 The scatter plot below shows the relationship between Study Hours and GPA for two groups of students.
 
@@ -258,9 +258,9 @@ xA,yA,xB,yB
 \textbf{Use the graph to answer the following:}
 \begin{enumerate}
     \item Compute the \textbf{average GPA} and \textbf{average Study Hours} for each group. Interpret these averages in the context of student performance.
-    
+
     \item Based on the scatter plot, describe the \textbf{association between Study Hours and GPA}. Is the association positive, negative, nonlinear, or are the variables independent? Support your answer using evidence from the plot.
-    
+
     \item Which group shows a \textbf{stronger association} between Study Hours and GPA? Explain your reasoning.
 \end{enumerate}
 
@@ -360,29 +360,29 @@ Republicans rating Democrats & 3,407 & 17.7 & 15.0 & 0.0 & 20.9 & 0.0 & 0.0 & 30
     \end{enumerate}
     \item A public health study finds that 20\% of adults smoke. What is the probability that in a random sample of two adults, both smoke, assuming independence?
     \begin{enumerate}
-        \item[(A)] 0.20  
-        \item[(B)] 0.40  
-        \item[(C)] 0.04  
-        \item[(D)] 0.80  
+        \item[(A)] 0.20
+        \item[(B)] 0.40
+        \item[(C)] 0.04
+        \item[(D)] 0.80
     \end{enumerate}
-    \item Suppose your friend flips a fair coin three times. What is the probability of getting exactly two heads? 
+    \item Suppose your friend flips a fair coin three times. What is the probability of getting exactly two heads?
     \begin{enumerate}
-        \item[(A)] 0.25  
-        \item[(B)] 0.375  
-        \item[(C)] 0.5  
-        \item[(D)] 0.75  
+        \item[(A)] 0.25
+        \item[(B)] 0.375
+        \item[(C)] 0.5
+        \item[(D)] 0.75
     \end{enumerate}
 \item An AI tool is designed to detect whether student essays are AI-generated. It analyzes a submitted essay and flags it as ``AI-generated" or ``Human-written." The tool has the following characteristics:
     \begin{itemize}
         \item If an essay is actually AI-generated, the tool correctly flags it 92\% of the time (true positive rate).
         \item If an essay is actually written by a human, the tool incorrectly flags it as AI-generated 8\% of the time (false positive rate).
-        \item In a given semester, it is estimated that 35\% of submitted essays are AI-generated. 
+        \item In a given semester, it is estimated that 35\% of submitted essays are AI-generated.
     \end{itemize}
     If the AI tool flags an essay as "AI-generated," what is the probability that the essay was actually written by AI?
     \begin{enumerate}
-        \item[(A)] 0.35 
-        \item[(B)] 0.80 
-        \item[(C)] 0.86 
+        \item[(A)] 0.35
+        \item[(B)] 0.80
+        \item[(C)] 0.86
         \item[(D)] 0.92
     \end{enumerate}
 \end{enumerate}
@@ -405,80 +405,80 @@ Republicans rating Democrats & 3,407 & 17.7 & 15.0 & 0.0 & 20.9 & 0.0 & 0.0 & 30
 \begin{enumerate}
     %---------------------------------------------------------------
     \item \textbf{Standard Normal\,:  Z–scores}  \\
-          An exam score $X$ is normally distributed with $\mu = 78$ and $\sigma = 6$.  
+          An exam score $X$ is normally distributed with $\mu = 78$ and $\sigma = 6$.
           \begin{enumerate}
-              \item[(a)] Find the $Z$–score for a student who scored $85$.  
-              \item[(b)] Using the CDF of the standard normal, compute $P(X \ge 85)$.  
+              \item[(a)] Find the $Z$–score for a student who scored $85$.
+              \item[(b)] Using the CDF of the standard normal, compute $P(X \ge 85)$.
           \end{enumerate}
 
     %---------------------------------------------------------------
     \item \textbf{Normal Approximation}  \\
-          Let $\bar{X}$ be the mean of an i.i.d.\ sample of size $n=64$ taken from the distribution in Problem~1.  
+          Let $\bar{X}$ be the mean of an i.i.d.\ sample of size $n=64$ taken from the distribution in Problem~1.
           \begin{enumerate}
-              \item[(a)] State the sampling distribution of $\bar{X}$ (mean and standard error).  
-              \item[(b)] What is the probability $\Pr(\bar{X}\geq 80)$? Use the CLT and the standard normal CDF.  
-              \item[(b)] What is the probability $\Pr(\bar{X}\leq 76)$? Use the CLT and the standard normal CDF.  
+              \item[(a)] State the sampling distribution of $\bar{X}$ (mean and standard error).
+              \item[(b)] What is the probability $\Pr(\bar{X}\geq 80)$? Use the CLT and the standard normal CDF.
+              \item[(b)] What is the probability $\Pr(\bar{X}\leq 76)$? Use the CLT and the standard normal CDF.
           \end{enumerate}
 
     %---------------------------------------------------------------
     \item \textbf{Bernoulli R.V.\ Basics}  \\
-          A political ad in instagram is clicked with probability $p=0.12$.  Let $C$ be the indicator ($C=1$ if clicked, $0$ otherwise).  
+          A political ad in instagram is clicked with probability $p=0.12$.  Let $C$ be the indicator ($C=1$ if clicked, $0$ otherwise).
           \begin{enumerate}
-              \item[(a)] Write the Probability Mass Function (PMF) of $C$.  
-              \item[(b)] Compute $\mathbb{E}[C]$ and $\operatorname{Var}(C)$.  
+              \item[(a)] Write the Probability Mass Function (PMF) of $C$.
+              \item[(b)] Compute $\mathbb{E}[C]$ and $\operatorname{Var}(C)$.
           \end{enumerate}
 
     %---------------------------------------------------------------
     \item \textbf{Binomial Probability}  \\
-          An online campaign delivers $n=15$ independent \emph{ad impressions} to different users.  
-          Each individual impression results in a click with probability $p = 0.12$, independently of all other impressions.  
+          An online campaign delivers $n=15$ independent \emph{ad impressions} to different users.
+          Each individual impression results in a click with probability $p = 0.12$, independently of all other impressions.
           Let $Y$ be the random variable denoting the total number of clicks recorded in those 15 impressions, so that
           \[
           Y \sim \text{Binomial}\!\bigl(n=15,\,p=0.12\bigr).
           \]
           \begin{enumerate}
-            \item[(a)] Compute the probability of observing \emph{exactly} three clicks, $\Pr(Y = 3)$.  
-            \item[(b)] Compute the probability of observing \emph{at most} one click, $\Pr(Y \le 1)$.  
-            \item[(c)] Compute the probability of observing \emph{more than} one click, $\Pr(Y > 1)$.  
+            \item[(a)] Compute the probability of observing \emph{exactly} three clicks, $\Pr(Y = 3)$.
+            \item[(b)] Compute the probability of observing \emph{at most} one click, $\Pr(Y \le 1)$.
+            \item[(c)] Compute the probability of observing \emph{more than} one click, $\Pr(Y > 1)$.
           \end{enumerate}
-    
+
     %---------------------------------------------------------------
     \item \textbf{Expected Value of a Discrete r.v.}  \\
-          A game pays \$5, \$10, or \$25 with probabilities $0.60$, $0.30$, and $0.10$, respectively.  
+          A game pays \$5, \$10, or \$25 with probabilities $0.60$, $0.30$, and $0.10$, respectively.
           \begin{enumerate}
-              \item[(a)] Let $W$ be the game's payout.  Compute $\mathbb{E}[W]$.  
+              \item[(a)] Let $W$ be the game's payout.  Compute $\mathbb{E}[W]$.
               \item[(b)] Provide an intuitive interpretation of $\mathbb{E}[W]$ using plain language.
-              \item[(c)] Compute $\operatorname{Var}(W)$.  
+              \item[(c)] Compute $\operatorname{Var}(W)$.
           \end{enumerate}
 
     %---------------------------------------------------------------
     \item \textbf{CDF Interpretation}  \\
-          A discrete r.v.\ $Z$  can take on values $z \in \{0,1,2,3\}$ with pmf $p_Z(z=0)=0.1$, $p_Z(z=1)=0.4$, $p_Z(z=2)=0.3$, $p_Z(z=3)=0.2$.  
+          A discrete r.v.\ $Z$  can take on values $z \in \{0,1,2,3\}$ with pmf $p_Z(z=0)=0.1$, $p_Z(z=1)=0.4$, $p_Z(z=2)=0.3$, $p_Z(z=3)=0.2$.
           \begin{enumerate}
-              \item[(a)] Write the cumulative distribution function $F_Z(z)$.  
-              \item[(b)] Use $F_Z$ to compute $\Pr(1<Z\le 3)$.  
+              \item[(a)] Write the cumulative distribution function $F_Z(z)$.
+              \item[(b)] Use $F_Z$ to compute $\Pr(1<Z\le 3)$.
           \end{enumerate}
 
     %---------------------------------------------------------------
     \item \textbf{A Basic Linear Combination\,—\,Mean and Variance - Part I}  \\
-        Let \( X_1, X_2, \dots, X_n \) be independent and identically distributed (i.i.d.) random variables with mean \( \mu \) and variance \( \sigma^2 \). Suppose two distinct observations \( i \ne j \) are selected at random, and we define their difference as \( D = X_j - X_i \).  
-        
+        Let \( X_1, X_2, \dots, X_n \) be independent and identically distributed (i.i.d.) random variables with mean \( \mu \) and variance \( \sigma^2 \). Suppose two distinct observations \( i \ne j \) are selected at random, and we define their difference as \( D = X_j - X_i \).
+
         Derive expressions for \( \mathbb{E}[D] \) and \( \operatorname{Var}(D) \) in terms of \( \mu \) and \( \sigma^2 \).
 
 %---------------------------------------------------------------
 \item \textbf{A Basic Linear Combination\,—\,Mean and Variance - Part II}  \\
-    Let \( X_1, X_2, \dots, X_n \) be independent and identically distributed (i.i.d.) random variables with mean \( \mu \) and variance \( \sigma^2 \). Suppose two distinct observations \( i \ne j \) are selected at random, and we define their midpoint as \( M = \frac{1}{2}(X_i + X_j) \).  
-    
+    Let \( X_1, X_2, \dots, X_n \) be independent and identically distributed (i.i.d.) random variables with mean \( \mu \) and variance \( \sigma^2 \). Suppose two distinct observations \( i \ne j \) are selected at random, and we define their midpoint as \( M = \frac{1}{2}(X_i + X_j) \).
+
     Derive expressions for \( \mathbb{E}[M] \) and \( \operatorname{Var}(M) \) in terms of \( \mu \) and \( \sigma^2 \).
 
 
     %---------------------------------------------------------------
     \item \textbf{Distribution of a Sample Proportion}  \\
-          In a survey $n=200$ voters are asked if they favor a policy ($1=$yes, $0=$no).  Let $\hat{p}$ be the sample proportion favouring it.  
-          Suppose the true population proportion is $p=0.48$.  
+          In a survey $n=200$ voters are asked if they favor a policy ($1=$yes, $0=$no).  Let $\hat{p}$ be the sample proportion favouring it.
+          Suppose the true population proportion is $p=0.48$.
           \begin{enumerate}
-              \item[(a)] Give the mean and standard error of $\hat{p}$.  
-              \item[(b)] Approximate $\Pr(\hat{p}\ge 0.55)$ using the normal approximation to the binomial and a $Z$–score.  
+              \item[(a)] Give the mean and standard error of $\hat{p}$.
+              \item[(b)] Approximate $\Pr(\hat{p}\ge 0.55)$ using the normal approximation to the binomial and a $Z$–score.
           \end{enumerate}
 
 \end{enumerate}
@@ -509,8 +509,8 @@ Below are six questions that highlight the role of \emph{estimators} in making i
         \item[(C)] To forecast the probability for a range of values for the population using only observed frequencies.
         \item[(D)] To use sample data to approximate a population quantity and acknowledge possible sampling variation.
         \end{enumerate}
-    \item \textbf{Consider the following statement:} \newline 
-        \emph{``Since any estimate is one possible result from a single sample, we shouldn’t trust it as there is no way to know how representative it is.”} \newline 
+    \item \textbf{Consider the following statement:} \newline
+        \emph{``Since any estimate is one possible result from a single sample, we shouldn’t trust it as there is no way to know how representative it is.”} \newline
         Which of the following best evaluates the truth and reasoning of this statement?
         \begin{enumerate}
         \item[(A)] The statement is \textbf{True}, because estimates are inherently unreliable and can’t be evaluated.
@@ -524,7 +524,7 @@ Below are six questions that highlight the role of \emph{estimators} in making i
         \item[(B)] How well it accounts for the fact that the sample proportion can vary due to random sampling.
         \item[(C)] Whether 52\% is larger than every other statistic we might collect.
         \item[(D)] How to reduce the sample size so the estimate becomes simpler to calculate.
-        \end{enumerate} 
+        \end{enumerate}
     \item  \textbf{3. When we call $X$ a \emph{random variable} that underlies our observed data points $x_i$, what do we mean in the context of making estimates?}
         \begin{enumerate}
         \item[(A)] We treat each $x_i$ as a random draw from a distribution, helping us formalize the behavior of an estimator using $x_i$.
@@ -575,20 +575,20 @@ Below are six questions that highlight the role of \emph{estimators} in making i
 \item  \emph{Framing the responsibility} \\
       A YouGov survey conducted on April 7, 2025, asked $n = 4{,}610$ U.S.\ adults how responsible they believe President Donald Trump is for the stock market. Of those surveyed, $43\%$ said he is \emph{very responsible}, and an additional $24\%$ said he is \emph{somewhat responsible}.\footnote{\textbf{Source:} YouGov. “How responsible, or not responsible, is President Donald Trump for the stock market?” April 7, 2025. Retrieved from \href{https://today.yougov.com/topics/politics/survey-results/daily/2025/04/07/6be5c/3}{today.yougov.com}}
       \begin{enumerate}[label=(\alph*)]
-         \item Compute a 95\% confidence interval for the proportion of U.S.\ adults who say Trump is \textbf{very responsible}.  
-         \item Compute a 95\% confidence interval for the proportion who say he is \textbf{at least somewhat responsible} (i.e., \emph{very} or \emph{somewhat} responsible).  
+         \item Compute a 95\% confidence interval for the proportion of U.S.\ adults who say Trump is \textbf{very responsible}.
+         \item Compute a 95\% confidence interval for the proportion who say he is \textbf{at least somewhat responsible} (i.e., \emph{very} or \emph{somewhat} responsible).
          \item Some media outlets claim “a majority of Americans believe Trump is responsible for the stock market.” Based on your intervals, evaluate whether that claim is supported. How does the conclusion differ depending on which group (very vs. at least somewhat) is analyzed?
       \end{enumerate}
 
 %-------------------------------------------------------------
-\item \emph{A super majority support?} \\ A February 2025 national survey by YouGov of $n=4{,}334$ U.S.\ adults found that $2{,}904$ respondents 
+\item \emph{A super majority support?} \\ A February 2025 national survey by YouGov of $n=4{,}334$ U.S.\ adults found that $2{,}904$ respondents
       said they would support amending the Constitution to set a maximum age (e.g.\ 75) for federal elected officials.\footnote{\textbf{Source:} YouGov. “Do you support or oppose setting a maximum age for elected officials?” Daily Question, February 21, 2025. Retrieved from \url{https://today.yougov.com/topics/politics/survey-results/daily/2025/02/21/a75c8/3}}
       \begin{enumerate}[label=(\alph*)]
-         \item Compute a 95\% confidence interval for the true proportion of U.S.\ adults who favor the amendment.  
-         \item Does the interval include the 60\% mark commonly cited as a “super‑majority” threshold?  Interpret.  
+         \item Compute a 95\% confidence interval for the true proportion of U.S.\ adults who favor the amendment.
+         \item Does the interval include the 60\% mark commonly cited as a “super‑majority” threshold?  Interpret.
          \item A group of politicians claims “well over two‑thirds” of voters favour the amendment.  Test this claim at $\alpha=0.05$.
       \end{enumerate}
-      
+
 %-------------------------------------------------------------
 \item \emph{Is there a gender gap in belief about AI emotions?} \\
       A June 2022 YouGov poll asked $n = 2{,}434$ U.S.\ adults whether they believe computers will ever experience feelings and emotions. Among male respondents, $26\%$ said “yes”; among female respondents, $16\%$ said “yes.” Assume the sample was evenly split between men and women.\footnote{\textbf{Source:} YouGov. “Do you think computers will ever experience feelings and emotions?” June 14, 2022. Retrieved from \href{https://today.yougov.com/}{today.yougov.com}}
@@ -598,14 +598,14 @@ Below are six questions that highlight the role of \emph{estimators} in making i
          \item Conduct a two-proportion $z$-test at the $\alpha = 0.05$ significance level.
          \item Interpret the result in context. Is there convincing statistical evidence of a gender gap in this belief? How large is the difference, practically speaking?
       \end{enumerate}
-      
+
 %-------------------------------------------------------------
 \item  \emph{Remote vs.\ on‑campus learning outcomes.} \\
-      Among 180 students who took a course fully online, 139 passed the final exam;  
+      Among 180 students who took a course fully online, 139 passed the final exam;
       of 150 similar students who took the same course on campus, 123 passed.
       \begin{enumerate}[label=(\alph*)]
-          \item Compute the pooled standard error and the $z$ statistic for testing equality of pass rates.  
-          \item At $\alpha=0.10$, do the data provide evidence that the on‑campus format yields a higher pass rate? 
+          \item Compute the pooled standard error and the $z$ statistic for testing equality of pass rates.
+          \item At $\alpha=0.10$, do the data provide evidence that the on‑campus format yields a higher pass rate?
       \end{enumerate}
 
 %-------------------------------------------------------------
@@ -613,8 +613,8 @@ Below are six questions that highlight the role of \emph{estimators} in making i
       A survey of 700 adults aged 18–34 finds 427 willing to take a new booster, while
       536 of 860 adults aged 55 + say the same.
       \begin{enumerate}[label=(\alph*)]
-          \item Give a 99\% confidence interval for the difference in acceptance proportions (younger minus older).  
-          \item Interpret the interval in context—be explicit about direction and magnitude.  
+          \item Give a 99\% confidence interval for the difference in acceptance proportions (younger minus older).
+          \item Interpret the interval in context—be explicit about direction and magnitude.
       \end{enumerate}
 
 %-------------------------------------------------------------
@@ -632,14 +632,14 @@ Below are six questions that highlight the role of \emph{estimators} in making i
     SE_{\text{real}} = \sqrt{\text{DEFF}} \cdot SE_{\text{SRS}}
     \]
     The design effect quantifies how much the actual sampling variance exceeds the variance expected under SRS.
-    
+
     \noindent\textbf{Question Statement and Problems:} \\
     An \emph{Economist/YouGov} poll conducted June 24–26, 2018, reports results from a sample of $n = 1{,}500$ U.S.\ adults, with a stated margin of error of $\pm 3.1\%$.%
     \footnote{\textbf{Source:} \emph{The Economist}/YouGov Poll, June 24–26, 2018. Retrieved from \url{https://today.yougov.com/sports/articles/21100-not-much-world-cup-excitement-us}}
-    
+
     \begin{enumerate}
         \item[(a)] Assume $p_0 = 0.5$ as a conservative benchmark of the population proportion. Compute the standard error under the SRS assumption, $SE_{\text{SRS}}$.
-    
+
         \item[(b)] Using your result from (a), express the theoretical margin of error under the SRS assumption, $MoE_{\text{SRS}}$, in terms of a generic critical value $z^*$.
 
         \item[(c)] Write both \( \text{MoE}_{\text{real}} \) and \( \text{MoE}_{\text{SRS}} \) as \( z^* \cdot SE \), and substitute \( SE_{\text{real}} = \sqrt{\text{DEFF}} \cdot SE_{\text{SRS}} \) into the expression for \( \text{MoE}_{\text{real}} \). Then form the ratio \( \frac{\text{MoE}_{\text{real}}}{\text{MoE}_{\text{SRS}}} \), cancel common terms, and show that it equals \( \sqrt{\text{DEFF}} \). Finally, square both sides and use your answer from part (b) to derive a formula for \( \text{DEFF} \) as a function of $\text{MoE}_{\text{real}}$, $z^*$, and $\text{SE}_{\text{SRS}}$.
@@ -655,9 +655,9 @@ Below are six questions that highlight the role of \emph{estimators} in making i
 %-------------------------------------------------------------
 \item  \emph{Margin of What, Exactly? — Part II}. \\
     In the previous question, you explored how the margin of error (MoE) reflects the uncertainty around sample estimates under both simple random sampling and more realistic survey designs, and how it connects to the standard error and design effect (DEFF). You also worked with an example from an Economist/YouGov poll conducted June 24–26, 2018, which reported a margin of error of $\pm 3.1\%$ for a sample of $n = 1{,}500$ U.S. adults.
-    
+
     In this part, we shift from the mathematical mechanics of margin of error to its practical interpretation. Poll results are often cited in the media or used to inform decision-making, but the reported MoE applies under specific assumptions—and not uniformly to all figures in the report.
-    
+
     \begin{enumerate}[label=(\alph*)]
     \item One question found that 52\% of respondents said they do not personally know anyone who is an illegal immigrant. How should we interpret the margin of error in this context? What interval captures the plausible range for this percentage in the U.S. adult population at the 95\% confidence level? \footnote{Remember to account for the found design effect ($DEFF$) on the $SE(\hat{p})$ in the previous question, when you compute the $SE$ for $\hat{p}=0.52$.}
     \item Does the reported margin of error apply to all values in the poll (e.g., subgroups like “men under 30”)? Why or why not?
@@ -694,8 +694,8 @@ Below are six questions that highlight the role of \emph{estimators} in making i
 \begin{enumerate} % ---------------------------
 
 \item \textbf{An urban planning problem} \\
-Suffolk County plans to redevelop a large brownfield site into \(\mathbf{1\,200}\) single‑family homes.  
-Suppose the county’s \emph{Comprehensive Plan 2015} assumed an average of \(\boldsymbol{\mu_0 = 2.8}\) persons per household when sizing roads, utilities, and schools.  
+Suffolk County plans to redevelop a large brownfield site into \(\mathbf{1\,200}\) single‑family homes.
+Suppose the county’s \emph{Comprehensive Plan 2015} assumed an average of \(\boldsymbol{\mu_0 = 2.8}\) persons per household when sizing roads, utilities, and schools.
 To check whether this benchmark is still valid, planners survey a simple random sample of \(n = 1\,000\) nearby households and record the number of people living in each. The following are the results of this survey.\footnote{\textbf{Sources:} U.S. Census Bureau. “Selected Social Characteristics in the United States,” ACS 1-Year Estimates (Table DP02), Suffolk County, NY, 2023. \href{https://data.census.gov/table/ACSDP1Y2023.DP02?q=DP02&g=050XX00US36103&d=ACS+1-Year+Estimates+Data+Profiles}{data.census.gov}}
 \[
 \bar{x}=3.00 \quad\text{persons}\qquad
@@ -703,7 +703,7 @@ s = 1.25 \quad\text{persons}
 \]
 \begin{enumerate}[label=(\alph*)]
   \item Construct a 99\% confidence interval for the true mean household size \(\mu\). Interpret the interval both in technical terms and in plain language.
-  \item Using \(\alpha = 0.01\), test the hypothesis that the average household size still equals or is below the old planning figure:  
+  \item Using \(\alpha = 0.01\), test the hypothesis that the average household size still equals or is below the old planning figure:
         \[
            H_0\!: \mu \le 2.8
            \quad\text{vs.}\quad
@@ -721,31 +721,31 @@ s = 1.25 \quad\text{persons}
         \]
         (Note: Negative values reflect \emph{reductions} in wait times.) \\
         County officials have stated they will \textbf{only implement the new protocol permanently if the data show that average wait times have decreased by at least 15 minutes}, with statistical evidence at the 5\% level.
-        
+
         \begin{enumerate}[label=(\alph*)]
           \item State the null and alternative hypotheses clearly in terms of the \textbf{true average difference} in wait time \(\mu_d\). Explain in words what each hypothesis represents in the context of this policy decision.\footnote{Think carefully: Is this a one-sided or two-sided test? Additionally, note that you are explicitly required to analyze $d_i = x_{i,new} - x_{i,old}$, where $i$ is a patient. Hence, $\mu_d<0$ implies a \emph{reduction} in waiting time.}
-        
+
           \item Compute the standard error of the sample mean difference. Then compute the test statistic for this hypothesis test ($z$-test).
-        
+
           \item Compute the corresponding \textbf{p-value} for the test statistic. State any assumptions you use.
-        
+
           \item Based on the p-value and the 5\% significance level, make a formal decision about the hypothesis. Should county officials proceed with the new policy?
-        
+
           \item In one or two sentences, interpret the result in plain language for a policy audience. What does the analysis tell us about the new protocol’s effect on ER wait times?
         \end{enumerate}
-        
+
 % -------------------------------------------------------------------------------
 \item \textbf{Partisan Affect: Feeling Thermometer Scores} \\[0.5em]
     In national surveys like the American National Election Study (ANES), respondents are often asked to rate their feelings toward political groups or figures on a \emph{“feeling thermometer”} scale from 0 to 100. A score of 100 means the respondent feels very warm or favorable toward the group, while a score of 0 means very cold or unfavorable feelings.
-    
+
     A researcher wants to test whether there is a statistically significant difference in how Democrats and Republicans feel about the Supreme Court.
-    
+
     Suppose two large independent random samples were drawn from recent survey data:
     \begin{itemize}
         \item $n_1 = 520$ Democrats: $\bar{x}_1 = 48.3$, $s_1 = 21.5$
         \item $n_2 = 495$ Republicans: $\bar{x}_2 = 62.4$, $s_2 = 22.1$
     \end{itemize}
-    
+
     \begin{enumerate}[label=(\alph*)]
         \item State the null and alternative hypotheses. Is this a one-sided or two-sided test? Explain.
         \item Compute the standard error for the difference in sample means.
@@ -753,7 +753,7 @@ s = 1.25 \quad\text{persons}
         \item At the $\alpha = 0.05$ level, does the data provide evidence of a significant difference in average feelings toward the Supreme Court between Democrats and Republicans?
         \item Interpret the result in plain language. What does this suggest about partisan attitudes toward the Supreme Court?
     \end{enumerate}
-    
+
 \end{enumerate}
 
 % ------------------------------------------------------------------
@@ -855,8 +855,8 @@ s_p^2 = \frac{(n_T - 1)s_T^2 + (n_C - 1)s_C^2}{n_T + n_C - 2}
 
 %---------------------------------------------------------------
 \item \textbf{Sum of Independent Bernoulli R.V.s}  \\
-      Each of 5 users independently clicks on a political ad with probability $p = 0.05$.  
-      Let $C_i$ be the indicator variable for whether user $i$ clicked the ad ($C_i = 1$ if clicked, $0$ otherwise), for $i = 1, \dots, 5$.  
+      Each of 5 users independently clicks on a political ad with probability $p = 0.05$.
+      Let $C_i$ be the indicator variable for whether user $i$ clicked the ad ($C_i = 1$ if clicked, $0$ otherwise), for $i = 1, \dots, 5$.
       Define the total number of clicks as the random variable:
       \[
         Y = C_1 + C_2 + C_3 + C_4 + C_5
@@ -914,9 +914,9 @@ The side-by-side box plots below summarise weekly study-hours for two groups of 
 \end{center}
 
 \begin{itemize}
-  \item Compare the two distributions in terms of \emph{shape, center, and spread}.  
+  \item Compare the two distributions in terms of \emph{shape, center, and spread}.
         Note in particular that both groups have the same median (4 hours) but
         Group A shows a much longer right tail, indicating greater variability
         and positive skewness.
 \end{itemize}
-% ----------------------------------------------------------------------------- 
+% -----------------------------------------------------------------------------

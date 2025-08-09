@@ -2,14 +2,14 @@
 title: "POL501 - Problem Set 1"
 author: "Answers to Questions"
 date: "`r Sys.Date()`"
-output: 
+output:
   pdf_document:
     toc: true
     toc_depth: 2
     keep_tex: true  # Optional, keeps the .tex file for inspection
 fontsize: 11pt
 geometry: "left=1in,right=1in,top=1in,bottom=1in"
-header-includes: 
+header-includes:
   - \usepackage{fvextra}
   - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines, breakanywhere, commandchars=\\\{\}}
 ---
@@ -35,7 +35,7 @@ library(formatR)
 - **Scoring Breakdown**:
   * Questions 1 through 5 are worth **1 point each**.
   * Question 6 is worth **2 points** (0.25 each letter part).
-  
+
 - **Grading Guidelines**:
   * Full credit will be awarded for answers that closely match the provided solutions.
   * Partial credit will be given for incomplete or partially incorrect answers/justifications.
@@ -108,7 +108,7 @@ We can confirm this by also plotting the two variables in a scatter plot.
 ```{r}
 # Create the dataframe
 candidate_data <- data.frame(
-  Candidate_Names = c("Candidate A", "Candidate B", "Candidate C", 
+  Candidate_Names = c("Candidate A", "Candidate B", "Candidate C",
                       "Candidate D"),
   Total_Votes_Won = c(10000, 15000, 8000, 12000),
   Campaign_Spending = c(500000, 300000, 700000, 400000)
@@ -122,8 +122,8 @@ par(pin = c(4, 2.5))  # Example: 4 inches wide, 2.5 inches tall
 
 # Plot the relationship between Total Votes and Campaign Spending
 plot(x=candidate_data$Campaign_Spending,
-  y=candidate_data$Total_Votes_Won, 
-  xlab = "Campaign Spending ($)", 
+  y=candidate_data$Total_Votes_Won,
+  xlab = "Campaign Spending ($)",
   ylab = "Total Votes Won",
   main = "Relationship between Campaign Spending and Total Votes Won",
   pch = 19, col = "blue"
@@ -183,11 +183,11 @@ We can create a dataframe and use dyplyr or base R to do the calculations.
 
 ```{r, tidy=TRUE}
 # Create the data vectors
-neighborhood_id <- c("N1", "N2", "N3", "N4", "N5", "N6", "N7", "N8", "N9", 
+neighborhood_id <- c("N1", "N2", "N3", "N4", "N5", "N6", "N7", "N8", "N9",
                      "N10", "N11")
-number_of_social_activities <- c(1.0, 2.9, 4.8, 6.7, 8.6, 10.5, 12.4, 14.3, 
+number_of_social_activities <- c(1.0, 2.9, 4.8, 6.7, 8.6, 10.5, 12.4, 14.3,
                                  16.2, 18.1, 20.0)
-social_trust_index <- c(21.48, 48.90, 76.20, 96.73, 96.87, 98.58, 102.14, 
+social_trust_index <- c(21.48, 48.90, 76.20, 96.73, 96.87, 98.58, 102.14,
                         85.35, 59.21, 37.10, 1.20)
 
 # Create the dataframe
@@ -214,9 +214,9 @@ sd_trust <- sd(df$social_trust_index)
 
 # Print the results
 cat("Base R Summary Statistics:\n")
-cat("Number of Social Activities - Mean:", mean_activities, 
+cat("Number of Social Activities - Mean:", mean_activities,
     ", Median:", median_activities, ", SD:", sd_activities, "\n")
-cat("Social Trust Index - Mean:", mean_trust, 
+cat("Social Trust Index - Mean:", mean_trust,
     ", Median:", median_trust, ", SD:", sd_trust, "\n")
 
 ```
@@ -296,23 +296,23 @@ library(ggplot2)
 # Manually specify bin boundaries for Number of Social Activities
 min_activities <- 0  # Minimum theoretical value
 max_activities <- max(df$number_of_social_activities)  # Max value from the data
-bin_breaks_activities <- seq(min_activities, max_activities, 
+bin_breaks_activities <- seq(min_activities, max_activities,
                              length.out = 6)  # 5 bins require 6 boundaries
 
 # Manually specify bin boundaries for Social Trust Index
 min_trust <- 0  # Minimum theoretical value
 max_trust <- max(df$social_trust_index)  # Maximum value from the data
-bin_breaks_trust <- seq(min_trust, max_trust, 
+bin_breaks_trust <- seq(min_trust, max_trust,
                         length.out = 6)  # 5 bins require 6 boundaries
 ```
 
 ```{r, tidy=TRUE}
 # Histogram for Number of Social Activities with manually specified bins
 ggplot(df, aes(x = number_of_social_activities)) +
-  geom_histogram(breaks = bin_breaks_activities, fill = "lightblue", 
+  geom_histogram(breaks = bin_breaks_activities, fill = "lightblue",
                  color = "black") +
   labs(title = "Histogram of Number of Social Activities",
-       x = "Number of Social Activities", 
+       x = "Number of Social Activities",
        y = "Frequency") +
   theme_minimal()
 ```
@@ -320,10 +320,10 @@ ggplot(df, aes(x = number_of_social_activities)) +
 ```{r, tidy=TRUE}
 # Histogram for Social Trust Index with manually specified bins
 ggplot(df, aes(x = social_trust_index)) +
-  geom_histogram(breaks = bin_breaks_trust, fill = "lightgreen", 
+  geom_histogram(breaks = bin_breaks_trust, fill = "lightgreen",
                  color = "black") +
   labs(title = "Histogram of Social Trust Index",
-       x = "Social Trust Index", 
+       x = "Social Trust Index",
        y = "Frequency") +
   theme_minimal()
 ```
@@ -334,7 +334,7 @@ ggplot(df, aes(x = social_trust_index)) +
     - The histogram shows a roughly symmetric distribution.
     - The data is concentrated around the mean.
     - The distribution is unimodal.
-    
+
  - Social Trust Levels:
     - The histogram shows a skewed distribution, likely left-skewed.
     - There is a high concentration of data points at higher trust levels, with a tail extending towards lower trust levels.
@@ -368,7 +368,7 @@ ggplot(df, aes(x = number_of_social_activities, y = social_trust_index)) +
 
 ### Part (d)
 
-**Hypothesis:** There is a non-linear relationship between the number of social activities and social trust levels. Initially, more social activities correlate with higher social trust, but after reaching a peak, further increases in social activities are associated with a decrease in social trust. 
+**Hypothesis:** There is a non-linear relationship between the number of social activities and social trust levels. Initially, more social activities correlate with higher social trust, but after reaching a peak, further increases in social activities are associated with a decrease in social trust.
 
  - Initially, increased social activities may help build community bonds and trust as more interactions occur.
  - However, beyond a certain threshold, too many social activities could become overwhelming, leading to stress or a feeling of obligatory participation, which might reduce overall trust levels.

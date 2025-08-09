@@ -21,7 +21,7 @@ As a campaign organizer, you are preparing to host a political event. The event 
 \begin{table}[h!]
 \centering
 \begin{tabular}{c|c}
-    \hline 
+    \hline
     Attendees ($A$) & Probability ($P(A = a)$) \\
     \hline
     $A < 50$ & 0 \\
@@ -31,7 +31,7 @@ As a campaign organizer, you are preparing to host a political event. The event 
     200 & 0.25 \\
     250 & 0.15 \\
     $A > 250$ & 0 \\
-    \hline 
+    \hline
 \end{tabular}
 \caption{Probability Mass Function of Attendees.}
 \end{table}
@@ -75,10 +75,10 @@ Compute the probability mass function of the total cost, $C$. In other words, fo
 \fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
 As defined above, $C = 70A + 20000$. Because each value of $A$ is mapped to only one value of $C$ we can use the probabilities for the $PMF_A(a)$. So for each value of $A$, we can calculate $C$, and use the given probabilities: \newline}
 
-\centering 
+\centering
 \textcolor{dblue}{
 \begin{tabular}{c|c|c}
-    \hline 
+    \hline
     $A$ & $C$ & $P_C(c)$ \\
     \hline
     50 & \$23,500 & 0.10 \\
@@ -103,7 +103,7 @@ Compute the cumulative distribution function of the total cost, $C$. In other wo
         \centering
     \textcolor{dblue}{
     \begin{tabular}{c|l}
-    \hline 
+    \hline
     $c$ & $P_C(C\leq c)$ \\
     \hline
     \$23,500 & 0.10 \\
@@ -130,7 +130,7 @@ Calculate the expected value of the total cost of the event. \emph{Justify your 
     \[
     E(C) = \$2,350 + \$5,400 + \$9,150 + \$8,500 + \$5,625 = \$31,025
     \]
-    Thus, the expected total cost of the event is \$31,025. \vspace{1em} \newline 
+    Thus, the expected total cost of the event is \$31,025. \vspace{1em} \newline
     Alternatively, we could have used the following rule for expectations of linear combinations: $E[aX+b] = aE[X] + b$. In our case, $E[C] = 70 E[A] + 20,000 =  70 \cdot 157.5 + 20,000 =  \$31,025$}
 }}
 \end{center}
@@ -148,7 +148,7 @@ Your supervisor has indicated that the maximum budget for the event is \$35,000.
 
 \subsubsection*{(g) Determine the Deviation Range (1 point)}
 
-Suppose you communicate to your supervisor the value of the expected cost of the event. She wonders whether the typical deviation from that cost is such that \$35,000 is outside or inside of that typical deviation range. 
+Suppose you communicate to your supervisor the value of the expected cost of the event. She wonders whether the typical deviation from that cost is such that \$35,000 is outside or inside of that typical deviation range.
 
 To answer this question, calculate the standard deviation of the total cost and find the range defined by the expected value plus and minus one standard deviation ($\mu + \sigma$ and $\mu - \sigma$). Determine whether \$35,000 is inside this interval. \emph{Justify your answer}.
 
@@ -156,7 +156,7 @@ To answer this question, calculate the standard deviation of the total cost and 
     \fbox{\parbox{0.98\textwidth}{\textcolor{dblue}{
     The standard deviation of the total cost is calculated using the formula for standard deviation of a probability distribution:
     $$\sigma = \sqrt{\sum_{\forall i} [C_i - E(C)]^2 \cdot P_C(C_i)}$$
-    We apply this formula to our values: 
+    We apply this formula to our values:
     \begin{align*}
     \sigma &=\sqrt{(23,500-31,025)^2 \cdot 0.10 + (27,000-31,025)^2 \cdot 0.20 + (30,500-31,025)^2 \cdot 0.30 + \cdots } \\
     & \quad \quad \overline{\cdots + (34,000-31,025)^2 \cdot 0.25 + (37,500 - 31,025)^2 \cdot 0.15} \\

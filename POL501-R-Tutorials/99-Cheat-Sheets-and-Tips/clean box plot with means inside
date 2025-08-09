@@ -26,14 +26,14 @@ group_means <- opinion_data %>%
 
 # Create box plot with means
 ggplot(opinion_data, aes(x = age_group, y = opinion_score)) +
-  geom_boxplot(fill = "lightblue", color = "darkblue", 
+  geom_boxplot(fill = "lightblue", color = "darkblue",
                # Extend whiskers to 1.5 * IQR
                position = position_dodge(width = 0.8)) +
   # Add mean points inside box
-  geom_point(data = group_means, 
-             aes(x = age_group, y = group_mean), 
-             color = "red", 
-             size = 3, 
+  geom_point(data = group_means,
+             aes(x = age_group, y = group_mean),
+             color = "red",
+             size = 3,
              shape = 8) +
   labs(
     title = "Public Opinion Across Age Groups",

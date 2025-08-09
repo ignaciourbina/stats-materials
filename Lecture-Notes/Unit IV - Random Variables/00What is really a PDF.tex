@@ -54,35 +54,35 @@ P(a \leq X \leq b) = \int_a^b f_X(x) \, dx =
 \begin{center}
     \begin{tikzpicture}
       \begin{axis}[
-          no markers, 
-          domain=-4:4, 
+          no markers,
+          domain=-4:4,
           samples=100,
-          axis lines*=left, 
+          axis lines*=left,
           xlabel={$x$},
           ylabel={$f_X(x)$},
-          height=6cm, 
+          height=6cm,
           width=\linewidth,
-          xtick={-2,0.5}, 
+          xtick={-2,0.5},
           xticklabels={$-2$, $0.5$},
           ytick=\empty,
-          enlargelimits=false, 
-          clip=false, 
+          enlargelimits=false,
+          clip=false,
           axis on top,
           grid = major
         ]
-        
+
         % Fill area between -2 and 0.5 under the normal curve
         \addplot [
-          fill=blue!30, 
+          fill=blue!30,
           domain=-2:0.5
-        ] 
+        ]
         {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
 
         % Draw the standard normal curve
         \addplot [
-          very thick, 
+          very thick,
           domain=-4:4
-        ] 
+        ]
         {1/sqrt(2*pi)*exp(-x^2/2)};
       \end{axis}
     \end{tikzpicture}

@@ -2,14 +2,14 @@
 title: "POL501 - Problem Set 2"
 author: "Answers to Questions"
 date: "`r Sys.Date()`"
-output: 
+output:
   pdf_document:
     toc: true
     toc_depth: 2
     keep_tex: true  # Optional, keeps the .tex file for inspection
 fontsize: 11pt
 geometry: "left=1in,right=1in,top=1in,bottom=1in"
-header-includes: 
+header-includes:
   - \usepackage{fvextra}
   - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines, breakanywhere, commandchars=\\\{\}}
 ---
@@ -34,7 +34,7 @@ library(psych)
 - **Scoring Breakdown**:
   * Each sub-letter in Question 1 is worth **1 point** (Total of 5 points)
   * Each sub-letter in Question 2 is worth **0.5 points** (Total of 3 points)
-  
+
 - **Grading Guidelines**:
   * Full credit will be awarded for answers that closely match the provided solutions.
   * Partial credit will be given for incomplete or partially incorrect answers/justifications.
@@ -84,7 +84,7 @@ n_rep_OR_dem <- df_clean %>%
 prob_rep_OR_dem <- n_rep_OR_dem / n_total_q1
 
 # Step 4: Display the result
-cat(paste("Probability of identifying as Democrat or Republican:", 
+cat(paste("Probability of identifying as Democrat or Republican:",
             round(prob_rep_OR_dem, 2)))
 
 ```
@@ -150,7 +150,7 @@ n_total_q1c <- nrow(df_clean)  # This is the total number of respondents in the 
 # Construct binary variable for CRIMESAFE and MOREGUNIMPACT given the question prompt
 df_clean <- df_clean %>%
   mutate(somwhsafe_or_safer = if_else(CRIMESAFE %in% c(1,2,3), 1, 0),
-         guns_more_crime = if_else(MOREGUNIMPACT == 1, 1, 0) 
+         guns_more_crime = if_else(MOREGUNIMPACT == 1, 1, 0)
          )
 
 # Step 2: Count respondents with both somwhsafe_or_safer==1 (event A) AND guns_more_crime==1 (event B)
@@ -178,35 +178,35 @@ be...
  * 1 = More crime;
  * 2 = Less crime;
  * 3 = No difference
- 
-A key step then is defining the binary variables per question prompt requirements. 
+
+A key step then is defining the binary variables per question prompt requirements.
 
 **Binary Variable Definitions**:
 
-1. **Binary Variable for Safety (`somwhsafe_or_safer`)**: 
+1. **Binary Variable for Safety (`somwhsafe_or_safer`)**:
    This variable is 1 if the respondent describes their community as "somewhat safe" or safer, otherwise 0.
 
-   $$ 
-   \texttt{somwhsafe\_or\_safer} = 
-   \begin{cases} 
+   $$
+   \texttt{somwhsafe\_or\_safer} =
+   \begin{cases}
       1 & \text{if } CRIMESAFE \in \{1, 2, 3\} \\
       0 & \text{if } CRIMESAFE \in \{4, 5\}
    \end{cases}
    $$
 
-2. **Binary Variable for Gun Impact (`guns_more_crime`)**: 
+2. **Binary Variable for Gun Impact (`guns_more_crime`)**:
    This variable is 1 if the respondent believes that more Americans owning guns would lead to more crime, otherwise 0.
 
-   $$ 
-   \texttt{guns\_more\_crime} = 
-   \begin{cases} 
+   $$
+   \texttt{guns\_more\_crime} =
+   \begin{cases}
       1 & \text{if } MOREGUNIMPACT = 1 \\
       0 & \text{if } MOREGUNIMPACT \in \{2, 3\}
    \end{cases}
    $$
 
 These definitions reflect how we classified each respondent into binary categories based on their responses to the survey questions.
- 
+
 The probability that a respondent believes there would be more crime if more Americans owned guns and describes their community as somewhat safe or safer is equal to `r 100*round(prob_q1c,2)` percent. We used the classical probability definition:
 $$\Pr(A\text{ and }B) = \frac{\text{Cases with both A and B}}{\text{Total Cases in Sample Space}}$$
 This calculation shows how we determine the likelihood that both events occur simultaneously.
@@ -238,7 +238,7 @@ print(paste0("The probability is: ", round(prob_A_given_B,3)))
 ```
 
 **Explanation**: Define **Event B** as "respondent describes their community as somewhat safe or safer." Additionally, define **Event A** as "they believe there would be more crime if more Americans owned guns."
-Then, 
+Then,
 $$\Pr(A | B) = \frac{P(A\text{ and }B)}{P(B)}$$
 Thus, given that a respondent describes their community as somewhat safe or safer, the probability that they believe there would be more crime if more Americans owned guns is equal to `r 100*round(prob_A_given_B,2)` percent. This conditional probability helps us understand the likelihood of one event occurring given the occurrence of another event.
 
@@ -249,7 +249,7 @@ Create a 2x2 table examining the relationship between:
 
  * Perceptions of economic conditions in the community (grouped as “Excellent/Good” vs. “Only fair/Poor”)
  * Support for increasing government spending on roads and bridges (grouped as “Increase a lot/little” vs. “Stay the same/Decrease”)
- 
+
 Using this table, calculate the conditional probability that a respondent supports increased spending, given that they perceive economic conditions as Excellent or Good.
 
 ```{r 1e, echo=TRUE}
@@ -264,15 +264,15 @@ df_clean <- df_clean %>%
 contingency_table <- df_clean %>%
   group_by(econ_excell_good, incrspend_alot_alittle) %>%
   summarise(count = n()) %>%
-  ungroup() 
+  ungroup()
 
 print(contingency_table)
 
 # We need some changes to get it to the correct 2x2 format
 contingency_table <- contingency_table %>%
-  mutate(econ_excell_good = if_else(econ_excell_good==1, 
+  mutate(econ_excell_good = if_else(econ_excell_good==1,
                                     'Econ: Excellent/Good', 'Econ: Only fair/Poor'),
-         incrspend_alot_alittle = if_else(incrspend_alot_alittle==1, 
+         incrspend_alot_alittle = if_else(incrspend_alot_alittle==1,
                                           'Spend: Increase a lot/little', 'Spend: Stay the same/Decrease')) %>%
   tidyr::spread(econ_excell_good, count, fill = 0)  # Spread into a wide format table
 
@@ -290,7 +290,7 @@ n_tot_incr_spend_AND_econ_good <- contingency_table %>%
 conditional_prob_incrspend_given_econ_good <- n_tot_incr_spend_AND_econ_good / n_tot_econ_good
 
 # Print the conditional probability as a percentage
-cat(paste0("Conditional Probability of supporting increased spending \ngiven Excellent/Good economic conditions: ", 
+cat(paste0("Conditional Probability of supporting increased spending \ngiven Excellent/Good economic conditions: ",
             round(conditional_prob_incrspend_given_econ_good * 100, 2), "%"))
 
 ```
@@ -311,7 +311,7 @@ cat(paste0("Conditional Probability of supporting increased spending \ngiven Exc
  * 2 = Good;
  * 3 = Only fair;
  * 4 = Poor
-  
+
 Then, the probability that a respondent supports increased spending, given that they perceive economic conditions as Excellent or Good is equal to `r round(conditional_prob_incrspend_given_econ_good * 100, 2)`% percent. By grouping economic perceptions and support for spending, we can better understand how positive economic outlooks influence support for public investment.
 
 ___
@@ -439,4 +439,3 @@ print(paste0("Probability that the cost exceeds the budget: ", round(prob_exceed
 ```
 
 **Explanation**: The probability that the cost exceeds the allocated monthly budget of $30,000,000 is calculated by finding the complement of the CDF up to that value. This tells us the likelihood that the costs will surpass the budget constraints. We find that the probability that the maximum budget is exceeded is `r 100*round(prob_exceeds_budget, 2)`%.
-

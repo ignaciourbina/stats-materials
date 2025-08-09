@@ -5,11 +5,17 @@ Created on Sun May 25 19:04:27 2025
 @author: ignac
 """
 
-path = r'F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder'
+path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
 import os
+
 os.chdir(path)
 
-from Module_quiz_csv_builder_py import QuestionBank, MultipleChoice, MCOption, WrittenResponse
+from Module_quiz_csv_builder_py import (
+    QuestionBank,
+    MultipleChoice,
+    MCOption,
+    WrittenResponse,
+)
 
 bank = QuestionBank()
 
@@ -21,10 +27,10 @@ q1 = MultipleChoice(
     points=3,
     html_used=True,
     options=[
-        MCOption("0.55", 100,   html_used=True),
-        MCOption("0.45", 0,   html_used=True),
-        MCOption("0.475", 0,   html_used=True),
-        MCOption("0.075", 0,   html_used=True),
+        MCOption("0.55", 100, html_used=True),
+        MCOption("0.45", 0, html_used=True),
+        MCOption("0.475", 0, html_used=True),
+        MCOption("0.075", 0, html_used=True),
     ],
 )
 
@@ -42,10 +48,10 @@ q2 = MultipleChoice(
     points=3,
     html_used=True,
     options=[
-        MCOption("0.29", 0,   html_used=True),
-        MCOption("0.5", 0,   html_used=True),
-        MCOption("0.57", 0,   html_used=True),
-        MCOption("0.67", 100,   html_used=True),
+        MCOption("0.29", 0, html_used=True),
+        MCOption("0.5", 0, html_used=True),
+        MCOption("0.57", 0, html_used=True),
+        MCOption("0.67", 100, html_used=True),
     ],
 )
 
@@ -69,7 +75,6 @@ intro = WrittenResponse(
 </ul>""",
     points=0,
     html_used=True,
-      
 )
 
 q3 = WrittenResponse(
@@ -77,7 +82,6 @@ q3 = WrittenResponse(
     question_text=r"""<p>Create a bar chart (graph) for each city's ideological scores based on the frequency table above. Describe the general shape of each distribution.</p>""",
     points=3,
     html_used=True,
-      
 )
 
 q4 = WrittenResponse(
@@ -85,7 +89,6 @@ q4 = WrittenResponse(
     question_text=r"""<p>Both cities have almost the same mean ideological score and fairly similar standard deviations. Does this mean the ideological distributions are similar? Justify your response by interpreting each distribution's shape.</p>""",
     points=3,
     html_used=True,
-      
 )
 
 q5 = WrittenResponse(
@@ -93,7 +96,6 @@ q5 = WrittenResponse(
     question_text=r"""<p>In plain language, what can we learn about the distribution of ideological placements for each city? What are the main takeaways?</p>""",
     points=3,
     html_used=True,
-      
 )
 
 flood_intro = WrittenResponse(
@@ -106,7 +108,7 @@ flood_intro = WrittenResponse(
 <tr><td><b>Probability</b></td><td>0.70</td><td>0.20</td><td>0.08</td><td>0.02</td></tr>
 </table>""",
     points=0,
-    html_used=True
+    html_used=True,
 )
 
 
@@ -116,7 +118,6 @@ q6 = WrittenResponse(
     question_text=r"""<p>Let C be the random variable representing the yearly flood-related <em>cost</em> for an uninsured property in this region. Compute the expected value E[C].</p>""",
     points=2,
     html_used=True,
-      
 )
 
 q7 = WrittenResponse(
@@ -124,7 +125,6 @@ q7 = WrittenResponse(
     question_text=r"""<p>In plain language, explain what E[C] means in this context. What should a homeowner understand from this number, even if they don’t expect a flood every year?</p>""",
     points=2,
     html_used=True,
-      
 )
 
 q8 = WrittenResponse(
@@ -132,7 +132,6 @@ q8 = WrittenResponse(
     question_text=r"""<p>Suppose a person is considering buying flood insurance for their home. They are willing to get insurance only if the <em>amount they pay each year</em> for it is less than the expected yearly cost of flood damage. If they are offered insurance that costs <strong>$4,000 per year</strong>, should they take it? Fully justify and explain your answer.</p>""",
     points=1,
     html_used=True,
-      
 )
 
 # Intro
@@ -140,7 +139,7 @@ spicy_intro = WrittenResponse(
     title="Spicy Food Preference Survey Intro",
     question_text=r"""<p>Suppose a survey of <b>n = 2,000</b> U.S. adults asked whether they enjoy eating spicy food (recorded as “yes”) or not (recorded as “no”). Among the <b>600</b> respondents with <b>foreign-born parents</b>, <b>330</b> said “yes.” Among the <b>1,400</b> respondents with <b>U.S.-born parents</b>, <b>700</b> said “yes.”</p>""",
     points=0,
-    html_used=True
+    html_used=True,
 )
 
 
@@ -150,7 +149,6 @@ q9 = WrittenResponse(
     question_text=r"""<p>State appropriate null and alternative hypotheses to <em>test whether there is a difference in spicy food preference between adults with foreign-born parents and those with U.S.-born parents</em>. Use mathematical notation and define each term used in your notation.</p>""",
     points=10,
     html_used=True,
-      
 )
 
 q10 = WrittenResponse(
@@ -159,7 +157,6 @@ q10 = WrittenResponse(
 <p>Clearly show: <strong>(I)</strong> The formulas used, along with the substituted values; <strong>(II)</strong> The resulting z-statistic; <strong>(III)</strong> Either the critical value or the p-value (<strong>Choose only one</strong>); <strong>(IV)</strong> A clear conclusion: reject or fail to reject the null hypothesis.</p>""",
     points=10,
     html_used=True,
-      
 )
 
 q11 = WrittenResponse(
@@ -167,7 +164,6 @@ q11 = WrittenResponse(
     question_text=r"""<p>Interpret the result in context. Is there convincing statistical evidence of a difference in preference for spicy food based on parental background? Explain in plain language.</p>""",
     points=5,
     html_used=True,
-      
 )
 
 # Inference Concepts and Applications Section
@@ -177,11 +173,23 @@ q12 = MultipleChoice(
     points=10,
     html_used=True,
     options=[
-        MCOption("There is a 95% chance that the true proportion is between 0.41 and 0.49.", 0,   ),
-        MCOption("The estimated sample proportion of voters who opposed the policy is 0.45, since it is in the middle of the interval.", 100,   ),
-        MCOption("At least 90% of all voters are against the policy.", 0,   ),
-        MCOption("We are 95% confident that the true population proportion of voters supporting the policy is between 0.51 and 0.59.", 0,   ),
-    ]
+        MCOption(
+            "There is a 95% chance that the true proportion is between 0.41 and 0.49.",
+            0,
+        ),
+        MCOption(
+            "The estimated sample proportion of voters who opposed the policy is 0.45, since it is in the middle of the interval.",
+            100,
+        ),
+        MCOption(
+            "At least 90% of all voters are against the policy.",
+            0,
+        ),
+        MCOption(
+            "We are 95% confident that the true population proportion of voters supporting the policy is between 0.51 and 0.59.",
+            0,
+        ),
+    ],
 )
 
 q13 = MultipleChoice(
@@ -190,11 +198,23 @@ q13 = MultipleChoice(
     points=10,
     html_used=True,
     options=[
-        MCOption("Between 60.1% and 63.9% of all voters support Candidate Y.", 100,   ),
-        MCOption("Based on the interval, candidate Y will surely win because more than half of the voters support them.", 0,   ),
-        MCOption("Between 57% and 67% of all voters support Candidate Y.", 0,   ),
-        MCOption("Between 58.3% and 65.7% of all voters support Candidate Y.", 0,   ),
-    ]
+        MCOption(
+            "Between 60.1% and 63.9% of all voters support Candidate Y.",
+            100,
+        ),
+        MCOption(
+            "Based on the interval, candidate Y will surely win because more than half of the voters support them.",
+            0,
+        ),
+        MCOption(
+            "Between 57% and 67% of all voters support Candidate Y.",
+            0,
+        ),
+        MCOption(
+            "Between 58.3% and 65.7% of all voters support Candidate Y.",
+            0,
+        ),
+    ],
 )
 
 q14 = MultipleChoice(
@@ -203,11 +223,23 @@ q14 = MultipleChoice(
     points=10,
     html_used=True,
     options=[
-        MCOption("H₀: x̄₁ = x̄₂, Hₐ: x̄₁ ≠ x̄₂", 0,   ),
-        MCOption("H₀: μ₁ = μ₂, Hₐ: μ₁ ≠ μ₂", 100,   ),
-        MCOption("H₀: μ₁ ≠ μ₂, Hₐ: μ₁ = μ₂", 0,   ),
-        MCOption("H₀: p₁ = p₂, Hₐ: p₁ ≠ p₂", 0,   ),
-    ]
+        MCOption(
+            "H₀: x̄₁ = x̄₂, Hₐ: x̄₁ ≠ x̄₂",
+            0,
+        ),
+        MCOption(
+            "H₀: μ₁ = μ₂, Hₐ: μ₁ ≠ μ₂",
+            100,
+        ),
+        MCOption(
+            "H₀: μ₁ ≠ μ₂, Hₐ: μ₁ = μ₂",
+            0,
+        ),
+        MCOption(
+            "H₀: p₁ = p₂, Hₐ: p₁ ≠ p₂",
+            0,
+        ),
+    ],
 )
 
 coffee_intro = WrittenResponse(
@@ -215,7 +247,7 @@ coffee_intro = WrittenResponse(
     question_text=r"""<p>A human resources analyst at a mid-sized tech company wants to estimate the average number of cups of coffee employees drink per day. The company has 120 employees. The analyst randomly samples 10 employees and records the following number of cups consumed on a typical workday:</p>
 <p><b>Data:</b> { 2, 3, 1, 4, 2, 3, 2, 5, 3, 4 }</p>""",
     points=0,
-    html_used=True
+    html_used=True,
 )
 
 
@@ -226,7 +258,6 @@ q15 = WrittenResponse(
 <p><b>Data:</b> { 2, 3, 1, 4, 2, 3, 2, 5, 3, 4 }</p>""",
     points=10,
     html_used=True,
-      
 )
 
 q16 = WrittenResponse(
@@ -235,7 +266,6 @@ q16 = WrittenResponse(
 <p>Clearly show: <strong>(I)</strong> The formulas used, along with the substituted values; <strong>(II)</strong> Degrees of freedom (df) used; <strong>(III)</strong> The appropriate Critical t-value used to construct the interval; <strong>(IV)</strong> Your final confidence interval.</p>""",
     points=10,
     html_used=True,
-      
 )
 
 q17 = WrittenResponse(
@@ -243,11 +273,32 @@ q17 = WrittenResponse(
     question_text=r"""<p>Provide an intuitive interpretation of the confidence interval using plain language.</p>""",
     points=5,
     html_used=True,
-      
 )
 
 # Add all to bank
-bank.add(q1, q2, intro, q3, q4, q5, flood_intro, q6, q7, q8, spicy_intro, q9, q10, q11, q12, q13, q14, coffee_intro, q15, q16, q17)
+bank.add(
+    q1,
+    q2,
+    intro,
+    q3,
+    q4,
+    q5,
+    flood_intro,
+    q6,
+    q7,
+    q8,
+    spicy_intro,
+    q9,
+    q10,
+    q11,
+    q12,
+    q13,
+    q14,
+    coffee_intro,
+    q15,
+    q16,
+    q17,
+)
 
 # Export the full quiz to CSV
 bank.export_csv("full_quiz.csv")

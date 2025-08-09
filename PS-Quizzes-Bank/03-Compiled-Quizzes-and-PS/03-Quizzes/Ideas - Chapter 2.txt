@@ -1,5 +1,5 @@
 Ideas for quantiles questions:
 Have two distributions with same Q_3 and Q_2, but second one has a much lower Q_1.
-Use made up samples of income from two counties. 
-Calculate IQR. 
-Ask: which sample data represents a more inequal distribution? 
+Use made up samples of income from two counties.
+Calculate IQR.
+Ask: which sample data represents a more inequal distribution?

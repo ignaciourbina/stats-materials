@@ -129,7 +129,7 @@ pairwise_result
 
 ### Interpretation
 
-The Bonferroni correction adjusts the significance level for each test. This ensures that the overall Type I error rate remains controlled. 
+The Bonferroni correction adjusts the significance level for each test. This ensures that the overall Type I error rate remains controlled.
 
 - **Purpose**: The table provides pairwise comparisons of mean scores between groups (Lectures A, B, and C) using t-tests with a pooled standard deviation and Bonferroni-adjusted p-values.
 
@@ -166,7 +166,7 @@ ggplot(data_lecture, aes(x = Lecture, y = Score)) +
 
 1. **ANOVA Results**:
    - The ANOVA test indicated significant differences between group means.
-   
+
 2. **Pairwise Comparisons**:
    - Pairwise t-tests with Bonferroni correction showed significant differences only between Lecture B and Lecture C.
 
@@ -182,7 +182,7 @@ ANOVA and post-hoc analyses can also be applied to datasets involving proportion
 
 ### Scenario
 
-We want to test if there is a significant difference in the proportion of successes between three groups in an experiment. 
+We want to test if there is a significant difference in the proportion of successes between three groups in an experiment.
 
 - **Group Details**:
   - **Group A**: 100 observations, success rate = 0.3.
@@ -287,7 +287,7 @@ For instance:
 
 1. **ANOVA Results**:
    - The ANOVA test determines if there are overall differences in success proportions between groups.
-   
+
 2. **Pairwise Comparisons**:
    - Post-hoc pairwise tests with Bonferroni correction pinpoint specific group differences.
 

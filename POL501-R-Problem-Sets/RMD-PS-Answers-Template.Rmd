@@ -2,7 +2,7 @@
 title: "POL501 - Answers to Problem Set 2"
 author: "Student Name (REPLACE)"
 date: "`r Sys.Date()`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2

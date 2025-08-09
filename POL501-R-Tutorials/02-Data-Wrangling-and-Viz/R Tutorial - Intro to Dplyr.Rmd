@@ -1,7 +1,7 @@
 ---
 title: "Introduction to dplyr"
 author: "POL-501"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -34,8 +34,8 @@ knitr::opts_knit$set(root.dir = "C:/Users/Ignacio/Dropbox/PhD SBU/06_Teaching/00
 # install.packages("dplyr")
 
 # Load libraries
-library(haven)  
-library(dplyr)  
+library(haven)
+library(dplyr)
 ```
 
 ### Setting the Working Directory
@@ -80,8 +80,8 @@ We will use the `mutate()` and `factor()` functions to recode the `VOTED_ATPCONG
 df_subset <- df_subset %>%
   mutate(VOTED_ATPCONG_W117 = factor(VOTED_ATPCONG_W117,
                                       levels = c(1, 2, 3),
-                                      labels = c("Did not vote", 
-                                                 "Planned to vote but couldn’t", 
+                                      labels = c("Did not vote",
+                                                 "Planned to vote but couldn’t",
                                                  "Definitely voted")))
 ```
 
@@ -94,9 +94,9 @@ Similarly, we recode `VTCOUNT_OWN_W117`.
 df_subset <- df_subset %>%
   mutate(VTCOUNT_OWN_W117 = factor(VTCOUNT_OWN_W117,
                                    levels = c(1, 2, 3, 4),
-                                   labels = c("Very confident", 
-                                              "Somewhat confident", 
-                                              "Not too confident", 
+                                   labels = c("Very confident",
+                                              "Somewhat confident",
+                                              "Not too confident",
                                               "Not at all confident")))
 ```
 
@@ -109,11 +109,11 @@ We now recode `ATTENDPERSON2_W117`.
 df_subset <- df_subset %>%
   mutate(ATTENDPERSON2_W117 = factor(ATTENDPERSON2_W117,
                                      levels = c(1, 2, 3, 4, 5, 6),
-                                     labels = c("More than once a week", 
-                                                "Once a week", 
-                                                "Once or twice a month", 
-                                                "A few times a year", 
-                                                "Seldom", 
+                                     labels = c("More than once a week",
+                                                "Once a week",
+                                                "Once or twice a month",
+                                                "A few times a year",
+                                                "Seldom",
                                                 "Never")))
 ```
 
@@ -128,10 +128,10 @@ Recode the `F_AGECAT` variable into readable age ranges.
 df_subset <- df_subset %>%
   mutate(F_AGECAT = factor(F_AGECAT,
                            levels = c(1, 2, 3, 4, 99),
-                           labels = c("18-29", 
-                                      "30-49", 
-                                      "50-64", 
-                                      "65+", 
+                           labels = c("18-29",
+                                      "30-49",
+                                      "50-64",
+                                      "65+",
                                       "Refused")))
 ```
 
@@ -144,8 +144,8 @@ Recode the `F_GENDER` variable.
 df_subset <- df_subset %>%
   mutate(F_GENDER = factor(F_GENDER,
                            levels = c(1, 2, 3, 99),
-                           labels = c("Man", 
-                                      "Woman", 
+                           labels = c("Man",
+                                      "Woman",
                                       "Other",
                                       "Refused")))
 ```
@@ -159,9 +159,9 @@ Finally, recode the `F_EDUCCAT` variable.
 df_subset <- df_subset %>%
   mutate(F_EDUCCAT = factor(F_EDUCCAT,
                             levels = c(1, 2, 3, 99),
-                            labels = c("College graduate+", 
-                                       "Some college", 
-                                       "H.S. graduate or less", 
+                            labels = c("College graduate+",
+                                       "Some college",
+                                       "H.S. graduate or less",
                                        "Refused")))
 ```
 
@@ -183,7 +183,7 @@ Optionally, we can view the first few rows to verify the recoding worked as expe
 head(df_subset)
 ```
 
-With this, you have successfully recoded categorical variables and formatted demographic variables using `dplyr`. Understanding these basic yet powerful functions will enable you to manipulate your datasets more effectively in R. This concludes our introduction to `dplyr`. 
+With this, you have successfully recoded categorical variables and formatted demographic variables using `dplyr`. Understanding these basic yet powerful functions will enable you to manipulate your datasets more effectively in R. This concludes our introduction to `dplyr`.
 
 
 # Introduction to dplyr
@@ -343,4 +343,3 @@ edu_voting_confidence
 This pipeline will group the data by `F_EDUCCAT` (education levels) and `VTCOUNT_OWN_W117` (voting confidence), summarize the counts in each group, and then arrange the results for easier interpretation.
 
 By understanding these key functions and how to use pipes to combine them, you'll be able to manipulate and analyze your data more effectively. This concludes our comprehensive introduction to `dplyr`. Explore these functions further to enhance your data analysis skills in R.
-

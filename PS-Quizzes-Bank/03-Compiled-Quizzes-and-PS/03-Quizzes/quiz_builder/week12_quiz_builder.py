@@ -7,16 +7,19 @@ Run from the same directory that contains *quiz_csv_builder.py*.
 
 import os
 
-#path = r"C:\Users\Ignacio\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
-path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder" # Notebook path
+# path = r"C:\Users\Ignacio\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
+path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"  # Notebook path
 os.chdir(path)
 
 
 from quiz_csv_builder_v2 import (
     QuestionBank,
-    MultipleChoice, MCOption,
-    Matching, MatchingPair,
-    Ordering, OrderingItem,
+    MultipleChoice,
+    MCOption,
+    Matching,
+    MatchingPair,
+    Ordering,
+    OrderingItem,
 )
 import math
 
@@ -25,6 +28,7 @@ bank = QuestionBank()
 # ---------------------------------------------------------------------------
 # Helper functions (internal only)
 # ---------------------------------------------------------------------------
+
 
 def pooled_z(n1, x1, n2, x2):
     """Two‑sample z for H₀: p₁ = p₂ (pooled SE)."""
@@ -40,6 +44,7 @@ def ci_diff95(n1, x1, n2, x2):
     diff = p1 - p2
     z = 1.96
     return diff - z * se, diff + z * se
+
 
 # ---------------------------------------------------------------------------
 # Data sets used in Q 7 – Q 10
@@ -112,7 +117,10 @@ bank.add(
         question_text="What does the *p‑value* represent in this test?",
         options=[
             MCOption("Probability H₀ is true", 0),
-            MCOption("Probability of the observed (or more extreme) data assuming H₀ is true", 100),
+            MCOption(
+                "Probability of the observed (or more extreme) data assuming H₀ is true",
+                100,
+            ),
             MCOption("1 − confidence level", 0),
             MCOption("Chosen significance level", 0),
         ],
@@ -122,17 +130,31 @@ bank.add(
 
 ## 5 ##
 pairs = [
-    MatchingPair(1, "Null Hypothesis (H₀)", "The default assumption or claim being tested, often representing the status quo or 'no change'. "),
-    MatchingPair(2, "Alternative Hypothesis (Hₐ)", "The research hypothesis; what we suspect might be true if the default assumption is rejected."),
-    MatchingPair(3, "Critical Value", "The cut-off point on the test statistic's distribution that defines the rejection region for the null hypothesis."),
+    MatchingPair(
+        1,
+        "Null Hypothesis (H₀)",
+        "The default assumption or claim being tested, often representing the status quo or 'no change'. ",
+    ),
+    MatchingPair(
+        2,
+        "Alternative Hypothesis (Hₐ)",
+        "The research hypothesis; what we suspect might be true if the default assumption is rejected.",
+    ),
+    MatchingPair(
+        3,
+        "Critical Value",
+        "The cut-off point on the test statistic's distribution that defines the rejection region for the null hypothesis.",
+    ),
 ]
-bank.add(Matching(
-    title="Understanding Hypothesis Tests",
-    question_text="Match the core concepts of hypothesis testing to their descriptions.",
-    pairs=pairs,
-    scoring="AllOrNothing",
-    points=3
-))
+bank.add(
+    Matching(
+        title="Understanding Hypothesis Tests",
+        question_text="Match the core concepts of hypothesis testing to their descriptions.",
+        pairs=pairs,
+        scoring="AllOrNothing",
+        points=3,
+    )
+)
 
 ## 6 ##
 steps = [
@@ -141,14 +163,22 @@ steps = [
     OrderingItem("Multiply SE by z* to get the margin of error"),
     OrderingItem("Form (p̂₁ − p̂₂) ± MOE"),
 ]
-bank.add(Ordering(title="CI steps", question_text="Put the steps for building a confidence interval in order.", items=steps, scoring="AllOrNothing", points=2))
+bank.add(
+    Ordering(
+        title="CI steps",
+        question_text="Put the steps for building a confidence interval in order.",
+        items=steps,
+        scoring="AllOrNothing",
+        points=2,
+    )
+)
 
 # ---------------------------------------------------------------------------
 # 7. Practical CI – Vaccination survey
 # ---------------------------------------------------------------------------
 bank.add(
     MultipleChoice(
-        title="Vaccination Rate Confidence Interval", # Slightly more descriptive title
+        title="Vaccination Rate Confidence Interval",  # Slightly more descriptive title
         question_text=(
             # Adds context about the survey's purpose
             "A public health survey investigated vaccination coverage differences between populations. "
@@ -162,7 +192,9 @@ bank.add(
             "Based on this data, what is the plausible range for the *true difference* in vaccination proportions ($p_1 - p_2$) between the underlying urban and rural populations? Select the correct 95% confidence interval below, rounded to three decimal places."
         ),
         options=[
-            MCOption(f"[ {A_ci_low:+.3f}, {A_ci_high:+.3f} ]", 100), # Added spaces for readability
+            MCOption(
+                f"[ {A_ci_low:+.3f}, {A_ci_high:+.3f} ]", 100
+            ),  # Added spaces for readability
             MCOption("[ −0.050, +0.150 ]", 0),
             MCOption("[ +0.009, +0.109 ]", 0),
             MCOption("[ −0.109, +0.009 ]", 0),
@@ -192,10 +224,22 @@ bank.add(
             "Based *only* on this confidence interval and using a 5% significance level (α = 0.05), what conclusion can be drawn about the effectiveness of the policy-framing message compared to the neutral reminder?"
         ),
         options=[
-            MCOption("The neutral reminder (Group 2) generated *significantly higher* support than the policy framing (Group 1).", 100),
-            MCOption("There is *no statistically significant difference* in support between the two message types.", 0),
-            MCOption("The policy framing (Group 1) generated *significantly higher* support than the neutral reminder (Group 2).", 0),
-            MCOption("The result is inconclusive because the confidence interval includes zero.", 0),
+            MCOption(
+                "The neutral reminder (Group 2) generated *significantly higher* support than the policy framing (Group 1).",
+                100,
+            ),
+            MCOption(
+                "There is *no statistically significant difference* in support between the two message types.",
+                0,
+            ),
+            MCOption(
+                "The policy framing (Group 1) generated *significantly higher* support than the neutral reminder (Group 2).",
+                0,
+            ),
+            MCOption(
+                "The result is inconclusive because the confidence interval includes zero.",
+                0,
+            ),
         ],
         points=2,
     )
@@ -206,7 +250,7 @@ bank.add(
 # ---------------------------------------------------------------------------
 bank.add(
     MultipleChoice(
-        title="Vaccination Rate Comparison: z-statistic", # Slightly more descriptive title
+        title="Vaccination Rate Comparison: z-statistic",  # Slightly more descriptive title
         question_text=(
             # Added context about the goal: testing for a significant difference
             "A public health department is investigating whether there is a statistically significant difference in COVID-19 vaccination rates between urban and rural populations in their jurisdiction. They collected the following sample data:\n"
@@ -234,7 +278,7 @@ bank.add(
 # ---------------------------------------------------------------------------
 bank.add(
     MultipleChoice(
-        title="Field Experiment: z-statistic Calculation", # Adjusted title
+        title="Field Experiment: z-statistic Calculation",  # Adjusted title
         question_text=(
             # Explicitly refers back to the experiment and its context
             "Recall the randomized field experiment investigating voter support for a climate bill, comparing a **policy-framing SMS message** (Group 1) against a **neutral reminder** (Group 2). The sample data was:\n"
@@ -261,4 +305,6 @@ bank.add(
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     csv_path = bank.export_csv("week12_quiz_final.csv")
-    print(f"✔  Brightspace‑ready CSV written to: {csv_path}\nQuestions: {len(list(bank))}")
+    print(
+        f"✔  Brightspace‑ready CSV written to: {csv_path}\nQuestions: {len(list(bank))}"
+    )

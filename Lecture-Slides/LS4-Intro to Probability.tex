@@ -8,12 +8,12 @@
 \usepackage{booktabs}
 
 \usepackage{pgfplots}
-% Nice color sets, see see http://colorbrewer2.org/	
+% Nice color sets, see see http://colorbrewer2.org/
 \usepgfplotslibrary{colorbrewer}
 % initialize Set1-4 from colorbrewer (we're comparing 4 classes),
-\pgfplotsset{compat = 1.18, cycle list/Set1-8} 
+\pgfplotsset{compat = 1.18, cycle list/Set1-8}
 % Tikz is loaded automatically by pgfplots
-\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer}
 % provides \pgfplotstabletranspose
 \usepackage{pgfplotstable}
 
@@ -50,7 +50,7 @@
         \pause
         \item Likelihood and probability reflect our belief about the chances of events occurring.
         \pause
-        \item Examples: 
+        \item Examples:
         \begin{itemize}
             \item We can say very confidently that the sun will rise tomorrow or ``\emph{there is a very high probability the sun will rise tomorrow}." \pause
             \item We can say very confidently that in the middle of summer, it won't snow or ``\emph{There is a low probability of snow in the middle of summer}."
@@ -65,7 +65,7 @@
         \pause
         \item Our expectations about likely events influence our actions and planning.
         \pause
-        \item Examples: 
+        \item Examples:
         \begin{itemize}
             \item Planning an outdoor event based on the weather forecast. \pause
             \item Buy a stock based on its price forecast. \pause
@@ -77,7 +77,7 @@
 
 \begin{frame}
     \frametitle{What is a Random Process?}
-    
+
 \definitionbox{Random Process $(Def.)$}{A random process is one where the outcome is uncertain before it happens.}
 \pause
 
@@ -113,7 +113,7 @@
 \end{frame}
 
 \begin{comment}
-    
+
 \begin{frame}
     \frametitle{Example: Weather as a Random Process}
     \begin{itemize}
@@ -184,7 +184,7 @@
         \pause
         \item An event is a set of possible outcomes.
         \begin{itemize}
-            \item \textbf{Rolling a die}: 
+            \item \textbf{Rolling a die}:
             \begin{itemize}
                 \item \emph{Outcome:} Getting a 6 when throwing a die. \item \emph{Event:} Getting an even number when rolling a die (2, 4, or 6).
             \end{itemize}
@@ -193,7 +193,7 @@
                 \item \emph{Outcome:} Candidate A wins narrowly.
                 \item \emph{Event:} Candidate A wins (including both ``Wins by a landslide'' and ``Wins narrowly'').
             \end{itemize}
-            
+
         \end{itemize}
         \end{itemize}
 
@@ -205,12 +205,12 @@
     \begin{figure}
         \centering
         \makebox[\textwidth]{ % Expands the box to the full width
-            \includegraphics[width=1.2\textwidth]{Figures/538-2024-Projections-cropped.pdf} 
+            \includegraphics[width=1.2\textwidth]{Figures/538-2024-Projections-cropped.pdf}
         }
         \vspace{-1.5em}
         {\footnotesize \caption{Source: \href{https://abcnews.go.com/538/538s-final-forecasts-2024-election/story?id=115511051}{538}}
         }
-        
+
     \end{figure}
 
 \end{frame}
@@ -233,7 +233,7 @@
             \begin{itemize}
                 \item Event A: Any candidate from Party X wins $\{X_1, X_2, \cdots\}$ \pause
                 \item Event B: Any candidate from Party Y wins $\{Y_1, Y_2, Y_3, \cdots\}$ \pause
-                \item These events are disjoint because they do not share any outcomes. 
+                \item These events are disjoint because they do not share any outcomes.
             \end{itemize}
         \end{itemize}
     \end{itemize}
@@ -259,7 +259,7 @@
             \end{itemize}
         \end{itemize}
     \end{itemize}
-    
+
 \end{frame}
 
 \section{Set Theory Basics}
@@ -270,7 +270,7 @@
     \textbf{Definition:} A set is a collection of well-defined, unordered objects called elements or members.  \pause
 
     \textbf{Explicit Set Definition:} A (finite) set can be defined by explicitly specifying all of its elements between curly braces, known as set braces \{\}. \pause
-    
+
     For example,
     \begin{itemize}
         \item $A = \{1, 2, 3, 4, 5, 6\}$\pause
@@ -279,7 +279,7 @@
         \item $D=\{h,t\}$ (outcomes of a coin toss: heads, tails)\pause
         \item $ S = \{\{h, h\},\{h, t\},\{t, h\},\{t, t\}\} $ (outcomes of two coin tosses)
     \end{itemize}
-    
+
 \end{frame}
 
 \begin{frame}{Set Theory - Basic Definitions}
@@ -298,7 +298,7 @@
 
 % Slide 4
 \begin{frame}{Set Theory Basics}
-    Define the sets 
+    Define the sets
     \begin{itemize}
         \item $A = \{\text{Banana, Apple, Orange, Watermelon}\}$, \pause
         \item $B = \{\text{Orange, Plum, Grapes, Apple}\}$. \pause
@@ -321,7 +321,7 @@
 \frametitle{Definitions of Probability}
 \begin{itemize}
     \item \textbf{Frequentist Definition}
-\end{itemize}    
+\end{itemize}
 
 \definitionbox{Definition}{The probability of an event is the proportion of times the event would occur if we observed the random process an infinite number of times. }
 \pause
@@ -336,7 +336,7 @@
 \frametitle{Definitions of Probability}
 \begin{itemize}
     \item \textbf{Classical Definition}
-\end{itemize}    
+\end{itemize}
 
 \definitionbox{Definition}{The probability of an event is the number of ways it can happen divided by the total number of possible outcomes, assuming all outcomes are equally likely.}
 \pause
@@ -409,8 +409,8 @@
     \] \pause
     Now, we need to ask the question: \
     \begin{itemize}
-        \item \emph{If the actual population proportion is 0.45, how likely is it that we’d get a sample proportion of 0.53?} \pause 
-        \item If the answer is “\emph{fairy likely},” the initial claim is reasonable. If not, we reject it.  \pause 
+        \item \emph{If the actual population proportion is 0.45, how likely is it that we’d get a sample proportion of 0.53?} \pause
+        \item If the answer is “\emph{fairy likely},” the initial claim is reasonable. If not, we reject it.  \pause
     \end{itemize}
     Learning about probability allows us to answer such questions.
 \end{frame}
@@ -510,8 +510,8 @@
 \vspace{2cm}
 
 \textcolor{gray}{\scriptsize An axiom in mathematics is a foundational statement assumed to be true, serving as a building block for the branch of mathematics in question. In probability and statistics, our theory is based upon three axioms.}
-   
-    
+
+
 \end{frame}
 
 % Slide 6
@@ -534,7 +534,7 @@
     A probability distribution assigns a probability \( P(a) \) to each outcome \( a \) in the sample space such that:\pause
     \begin{itemize}
         \item \( P(a) \geq 0 \) for each outcome \( a \)\pause
-        \item The sum of probabilities for all outcomes is 1, \( \sum_{a \in S} P(a) = 1 \) \pause \nonumberfootnote{\tiny The symbol $\in$ is used to construct a statement in set theory notation, and it means ``belongs to'' or ``is an element of.'' Imagine the set $S=\{a,b,c,d\}$, therefore the statement ``$a \in S$'' is true because $a$ is an element of $S$.} 
+        \item The sum of probabilities for all outcomes is 1, \( \sum_{a \in S} P(a) = 1 \) \pause \nonumberfootnote{\tiny The symbol $\in$ is used to construct a statement in set theory notation, and it means ``belongs to'' or ``is an element of.'' Imagine the set $S=\{a,b,c,d\}$, therefore the statement ``$a \in S$'' is true because $a$ is an element of $S$.}
     \end{itemize}
 
 \end{frame}
@@ -545,23 +545,23 @@
         % Left rectangle: Sample Space S
         \node[draw, rectangle, minimum width=3cm, minimum height=5cm] (S) at (0,0) {};
         \node at (0,2) {Sample Space \(S\)};
-        
+
         % Elements in S
         \node (a) at (-1,1) {\(a\)};
         \node (b) at (-1,0) {\(b\)};
         \node (c) at (-1,-1) {\(c\)};
         \node (d) at (-1,-2) {\(d\)};
-        
+
         % Right rectangle: Range [0,1]
         \node[draw, rectangle, minimum width=3cm, minimum height=5cm] (R) at (6,0) {};
         \node at (6,2) {Range \([0,1]\)};
-        
+
         % Probability values inside R
         \node (pa) at (7,1) {\(0.2\)};
         \node (pb) at (7,0) {\(0.3\)};
         \node (pc) at (7,-1) {\(0.1\)};
         \node (pd) at (7,-2) {\(0.4\)};
-        
+
         % Arrows indicating the mapping P: S -> [0,1]
         \draw[->] (a) -- (pa) node[midway, above] {\(P(a)\)};
         \draw[->] (b) -- (pb) node[midway, above] {\(P(b)\)};
@@ -674,7 +674,7 @@
 \end{itemize}
 \end{frame}
 
-% Slide 7.3 --- REPLACE THE EXAMPLE, USE SURVEY DATA INSTEAD 
+% Slide 7.3 --- REPLACE THE EXAMPLE, USE SURVEY DATA INSTEAD
 \begin{frame}{Summary of Dyadic (pairwise) Interactions}
     \begin{table}
     \centering
@@ -717,7 +717,7 @@
             % Diagram label
             \node at (0,3.8) {Non-empty Intersection};
         \end{tikzpicture}
-        \pause 
+        \pause
         % Right Column: No Intersection
         \column{0.5\textwidth}
         \begin{tikzpicture}[scale=0.8, every node/.style={font=\small}]
@@ -814,14 +814,14 @@
         Hypothetical \textbf{Dataset:} Comparative sample of countries. \\
         \textbf{Variables:} 1) Regime type (Democratic vs. Not Democratic), 2) Level of Economic Inequality (High vs. Low).
         \vspace{0.5em}
-        
+
         \begin{table}[hbtp]
         \centering
         \scriptsize
         \settowidth\tymin{\textbf{Inequality}}
         \setlength\extrarowheight{2pt}
             \begin{tabulary}{1.0\textwidth}{lCCC}
-            
+
                 \toprule
                 & \multicolumn{2}{c}{\textbf{Inequality}} & \textbf{Row Totals} \\
                 \cmidrule(lr){2-3}
@@ -851,25 +851,25 @@
         \item \(P(B) = 0.58\) (Probability of having low inequality),\pause
         \item \(P(A \cap B) = 0.42\) (Probability of being both Democratic and having low inequality).\pause
     \end{itemize}
-    
+
     Using the general addition rule:
     \[
     P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.60 + 0.58 - 0.42 = 0.76
     \]
-    
+
     Thus, if we select a random country from the sample, the probability that it is either Democratic or has Low Inequality is 76\%.
 \end{frame}
 
 
 \begin{comment}
-    
-% Solve a problem 
+
+% Solve a problem
 \begin{frame}{Example.}
     \begin{minipage}{0.4\textwidth}
         \scriptsize
         Hypothetical \textbf{Dataset:} All countries (each country is one observation). \\
         \textbf{Variables:} 1) Ranking of economic inequality (ordinal), 2) Whether the country is classified as a democracy (nominal).
-        
+
     \begin{table}[hbtp]
         \centering
         \tiny
@@ -890,7 +890,7 @@
         \captionsetup{font=tiny}
         \caption{\tiny Joint Probability Distribution of Regimes and Economic Inequality}
     \end{table}
-    
+
     \end{minipage}
     \begin{minipage}{0.2\textwidth}
         % Placeholder for future content
@@ -949,7 +949,7 @@
         \item We draw two marbles \textbf{without replacement}.
         \item We want the probability of drawing a blue marble first, then a red marble.
     \end{itemize}
-    
+
     \textbf{Calculation:}
     \begin{itemize}
         \item Probability of drawing a blue marble first: \(\displaystyle \frac{4}{10}\).
@@ -1029,7 +1029,7 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
         \item Also, \(P(\text{Not}_1) = 0.6\).\pause
         \item Thus, \(P(\text{Invest}_2 \cap \text{Not}_1) = 0.6 \times 0.3 = 0.18\).
     \end{itemize}
-    
+
 \end{frame}
 
 % Slide 1: Independent Events - Definitions and Properties
@@ -1058,14 +1058,14 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
 
 % Slide 2: Independent Events - Alternative Definition
 \begin{frame}{Independent Events - \emph{Alternative} Definition}
-    
+
     \begin{itemize}
          \item Given the previous result, events \(A\) and \(B\) are \textbf{independent events} if and only if:\pause
     \[
     P(A \cap B) = P(A) \times P(B)
     \]
     \vspace{-0.5cm}
-    
+
     \pause
         \item Otherwise, \(A\) and \(B\) are called \textbf{dependent events}.\pause
         \item Recall that the ``if and only if" in the definition means that the if-then statement works in both directions, in ther words:\pause
@@ -1108,7 +1108,7 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
 \end{frame}
 
 % Slide for Probability of the Complement
-\begin{frame}{Probability of the Complement}  
+\begin{frame}{Probability of the Complement}
 
     \begin{block}{Derivation}
         Consider an event \(A\) and its complement \(A^c\). Since \(A\) and \(A^c\) are mutually exclusive and exhaustive, the addition rule gives:\pause
@@ -1128,7 +1128,7 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
 \end{frame}
 
 \begin{frame}{Example: Law School Applications}
-    \emph{Suppose a student estimates a 15\% chance of being accepted by any given law school. Assuming acceptance decisions are independent, how many schools should they apply to have a probability of getting accepted to at least one school be higher than 80\%?} 
+    \emph{Suppose a student estimates a 15\% chance of being accepted by any given law school. Assuming acceptance decisions are independent, how many schools should they apply to have a probability of getting accepted to at least one school be higher than 80\%?}
     \pause
 \vspace{1em}
 \footnotesize
@@ -1136,17 +1136,17 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
     Let \( A \) be the event of being accepted to one particular school, so:
     \[
     P(A) = 0.15, \quad P(A^c) = 0.85.
-    \] 
+    \]
     \pause
     If the student applies to \( n \) schools (assuming independent decisions), the probability of being rejected by all schools is:
     \[
     P(\text{no acceptances}) = (0.85) \times (0.85) \cdots \times (0.85)  = (0.85)^n.
-    \] 
+    \]
     \pause
     Therefore, the probability of at least one acceptance is:
     \[
     P(\text{at least one acceptance}) = 1 - (0.85)^n.
-    \] 
+    \]
     \pause
     We want this probability to be at least 80\%. If try for different $n$ we see that 10 is the minimum number of applications such that $P(\text{at least one}) \geq 0.80$
 \end{frame}
@@ -1154,7 +1154,7 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
 
 
 \begin{frame}{Probability of Acceptance to At Least One School}
-    
+
 \makebox[\textwidth]{
     \begin{tikzpicture}
         \begin{axis}[
@@ -1207,7 +1207,7 @@ We can use the following rule: $P(A \cap B) = P(A) \cdot P(B|A) $
 \end{frame}
 
 \begin{frame}{Law of Total Probability - Example}
-    
+
 Define the events $B$ and $A$. We can split the event $B$ into two cases 1) $B$ and $A$ happen, and 2) $B$ and $A^c$ (not $A$) happens.  \newline
 \vspace{0.5em}
 
@@ -1218,7 +1218,7 @@ Consider the following example. Assume $N_W$ current senators are woman. Define 
     \item Total Woman Senators = \# (Woman \& Older than 80) + \# (Woman \& Younger than 80).
     \item Assume that $N$ is the total number of senators. Then,
     \item $\frac{N_W}{N} = \frac{N_{W\cap O}}{N}+ \frac{N_{W\cap O^c}}{N}$
-    \item $P(W) = P(W \cap O) + P(W \cap O^c)$. 
+    \item $P(W) = P(W \cap O) + P(W \cap O^c)$.
 \end{itemize}
 \end{frame}
 

@@ -25,15 +25,15 @@
 
 \section*{What Are We Doing? Where Are We Going With All of This?}
 
-In the first week of the course, we introduced the core idea of \textbf{statistical inference}. Broadly speaking, statistical inference is the process of using data from a sample to make informed conclusions about a larger population. 
+In the first week of the course, we introduced the core idea of \textbf{statistical inference}. Broadly speaking, statistical inference is the process of using data from a sample to make informed conclusions about a larger population.
 
-To make this idea more concrete, consider a typical public opinion headline: 
+To make this idea more concrete, consider a typical public opinion headline:
 
 \begin{quote}
     \textit{``A slight majority of Americans approve of how the president is handling the economy (52\% vs. 48\%).''}
 \end{quote}
 
-Suppose this result comes from a survey conducted on a sample of 1,200 individuals. The key statistical inference question here is: 
+Suppose this result comes from a survey conducted on a sample of 1,200 individuals. The key statistical inference question here is:
 
 \begin{quote}
     \textit{To what extent should we believe that this observed difference reflects a real difference in the population — and not simply a result of randomness in the sampling process?}
@@ -58,19 +58,19 @@ The path toward statistical inference begins by laying a solid conceptual and ma
 
 \begin{itemize}[leftmargin=1.5em]
     \item We began by learning vocabulary and key terms — how to describe variables, distinguish between numerical and categorical types, and understand what a dataset represents in terms of populations, samples, and measurements.
-    
+
     \item We discussed how the presence of \textbf{randomness} forces us to think carefully about the uncertainty in any quantity we compute from sample data. Even something as basic as the sample mean carries uncertainty because it is based on one particular sample, not the full population.
-    
+
     \item Before attempting to make conclusions about populations, we first focused on understanding and describing our sample. This led us to \textbf{descriptive statistics} — tools to summarize the distribution of a variable using measures of center (mean, median, mode), spread (standard deviation, IQR, range), and position (quantiles, percentiles). We also looked at visualizations like histograms, bar plots, and boxplots to gain intuition about data distributions.
-    
+
     \item To begin moving toward inference, we introduced the idea of a \textbf{random process}. We defined basic concepts like outcomes, sample spaces, and events. These ideas gave us a framework to talk about uncertainty more precisely.
-    
+
     \item From there, we studied the basic rules and definitions of classical \textbf{probability theory}. We learned about disjoint and independent events, complementary events, unions and intersections, and the fundamental addition and multiplication rules. This probabilistic language allows us to reason rigorously about chance.
-    
+
     \item Then we made a key conceptual shift: from thinking about discrete outcomes or events, to thinking about \textbf{numeric quantities that arise from random processes}. This led us to define the concept of a \textbf{random variable}.
-    
+
     \item A random variable is a numerical outcome of a random process. It allows us to model randomness quantitatively. We learned to distinguish between \textbf{discrete} and \textbf{continuous} random variables, to define their probability (PMF for a discrete) or density (PDF, for a continuous) functions, and to compute probabilities using these functions.
-    
+
     \item Random variables are especially powerful because they let us generalize our reasoning and leverage the algebra of numbers. It is often easier and more flexible to work with numeric representations of randomness than with sets and events. Random variables form the backbone of statistical modeling.
 \end{itemize}
 
@@ -178,9 +178,9 @@ This captures how much the values of $X$ deviate, on average, from the populatio
     \textit{Expectation is the bridge between probability theory and statistical inference.}
 \end{quote}
 
-Everything we aim to estimate in applied statistics — averages, spreads, proportions — are ultimately expectations taken over the distribution of the underlying random variables. 
+Everything we aim to estimate in applied statistics — averages, spreads, proportions — are ultimately expectations taken over the distribution of the underlying random variables.
 
-By framing data as realizations of random variables, we gain access to the machinery of probability theory. This allows us to define and interpret key \textbf{population parameters} — such as the mean and variance — with mathematical precision. 
+By framing data as realizations of random variables, we gain access to the machinery of probability theory. This allows us to define and interpret key \textbf{population parameters} — such as the mean and variance — with mathematical precision.
 
 \subsection*{Why This Matters}
 
@@ -188,7 +188,7 @@ Once we understand our data as outcomes of random variables, we can begin to ask
 
 \textbf{This is the core challenge of statistical inference:} we want to reason about the uncertainty that comes from sampling, while typically having access to only one sample. So, how do we bridge that gap? \textit{We do it by introducing mathematical theory.}
 
-We adopt modeling assumptions about the data-generating process. We describe the behavior of our variables using probability distributions. And we rely on powerful mathematical results — expectations, laws of large numbers, central limit theorems — to tell us how sample statistics are likely to behave under those assumptions. It is this structure that allows us to move from a single observed sample to general conclusions about populations. 
+We adopt modeling assumptions about the data-generating process. We describe the behavior of our variables using probability distributions. And we rely on powerful mathematical results — expectations, laws of large numbers, central limit theorems — to tell us how sample statistics are likely to behave under those assumptions. It is this structure that allows us to move from a single observed sample to general conclusions about populations.
 
 \begin{quote}
     \textit{The theory of random variables gives us the tools to think about sampling variation, even when we only observe one sample.}

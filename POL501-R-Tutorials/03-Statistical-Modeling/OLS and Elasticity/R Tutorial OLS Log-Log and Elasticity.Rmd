@@ -2,7 +2,7 @@
 title: "R Tutorial - Linear Regression and Log-Log Specifications"
 author: "POL 501"
 date: "`r Sys.Date()`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -255,7 +255,7 @@ d \ln(Y) = \frac{dY}{Y}.
 #### Interpretation
 
 - **Infinitesimal Changes**: The equation \( d \ln(Y) = \frac{dY}{Y} \) shows that the infinitesimal change in \( \ln(Y) \) is equal to the proportional (or percentage) infinitesimal change in \( Y \).
-  
+
 - **Application to Elasticities**: In economics, this property underlies the calculation of elasticities in regression models. It implies that small proportional changes in \( Y \) correspond directly to small absolute changes in \( \ln(Y) \).
 
 ---
@@ -283,4 +283,3 @@ For small but finite changes \( \Delta Y \), we can approximate:
   \]
 
 - **Validity for Small \( \Delta Y \):** The approximation holds when \( \Delta Y \) is small relative to \( Y \), ensuring higher-order terms are negligible.
-

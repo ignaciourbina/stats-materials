@@ -1,10 +1,10 @@
-Simple Problem. 
+Simple Problem.
 Assume an ambulance time follows a normal distribution with...
 Using a Z score transformation, and the following CDF for a standard normal
 find the probability that...
 
 
-Suppose x follows a uniform distribution. 
+Suppose x follows a uniform distribution.
 ... Some statement about can we use the CLT if we have a large sample.
 
 

@@ -7,7 +7,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
 ### 1. **`filter()`**: Subsetting rows based on conditions
    - **Purpose**: It filters rows in a data frame by keeping only those that meet specified logical conditions.
    - **Logic**: `filter()` works on rows and returns a new data frame with only the rows that satisfy the condition.
-   
+
    ```r
    df_filtered <- filter(df, condition)
    ```
@@ -20,7 +20,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
 ### 2. **`select()`**: Selecting columns
    - **Purpose**: Selects a subset of columns from a data frame.
    - **Logic**: You provide the names of the columns you want to keep, and `select()` returns a new data frame with only those columns.
-   
+
    ```r
    df_selected <- select(df, column1, column2)
    ```
@@ -33,7 +33,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
 ### 3. **`mutate()`**: Creating new columns or modifying existing ones
    - **Purpose**: Adds new columns or modifies existing ones by applying functions to the data.
    - **Logic**: `mutate()` operates column-wise. You provide the transformations (e.g., math operations, function applications), and `mutate()` returns the data frame with the new or changed columns.
-   
+
    ```r
    df_mutated <- mutate(df, new_column = existing_column * 2)
    ```
@@ -46,7 +46,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
 ### 4. **`summarise()`**: Summarizing data
    - **Purpose**: Reduces multiple rows down to a single summary statistic, such as a mean or a total.
    - **Logic**: `summarise()` works by collapsing data based on the computation you specify (e.g., mean, sum, max).
-   
+
    ```r
    df_summary <- summarise(df, summary_column = mean(column1))
    ```
@@ -59,7 +59,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
 ### 5. **`group_by()`**: Grouping data for summary purposes
    - **Purpose**: Groups rows by one or more columns, which is useful for performing grouped operations (e.g., calculating the mean for each group).
    - **Logic**: `group_by()` doesn’t change the data by itself but sets the stage for other operations (like `summarise()`) to act on groups.
-   
+
    ```r
    df_grouped <- group_by(df, group_column)
    ```
@@ -79,7 +79,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
 ### 6. **`arrange()`**: Sorting rows
    - **Purpose**: Reorders the rows of a data frame based on the values of one or more columns.
    - **Logic**: `arrange()` sorts rows in ascending (default) or descending order.
-   
+
    ```r
    df_arranged <- arrange(df, column1)
    ```
@@ -100,7 +100,7 @@ Here are the **main verbs** in `dplyr` and the logic behind each:
      - `inner_join()`: Keeps only the rows with matching keys in both data frames.
      - `left_join()`: Keeps all rows from the left data frame and matches from the right, filling in `NA` when there is no match.
      - `right_join()`, `full_join()`: These work similarly, depending on which side (left or right) or whether you want to include all rows from both.
-   
+
    ```r
    df_joined <- left_join(df1, df2, by = "key_column")
    ```

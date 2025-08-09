@@ -8,7 +8,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usetikzlibrary{intersections} 
+\usetikzlibrary{intersections}
 \usepgfplotslibrary{fillbetween}
 
 % thinner table rules
@@ -65,11 +65,11 @@
             of=pdfcurve and xaxis, % Specify the paths to fill between
             soft clip={domain=-3.8:\zstar} % Limit the filling range horizontally
         ];
-        
+
         % Plot the PDF curve (thick black line, drawn on top of the fill)
         \addplot [thick, color=black, domain=-3.8:3.8, samples=150] % More samples for smoothness
             {1/(sqrt(2*pi))*exp(-x^2/2)};
-        
+
         % Draw a minimal x-axis line
         \draw [color=black] (axis cs:-3.8,0) -- (axis cs:3.8,0);
 
@@ -90,7 +90,7 @@
     \centering
     % Using the original title for the table as requested
     \vspace{1em}
-    \textbf{Common Critical Values -- Exact Values} \\ \textbf{(up to the 4th decimal):} \\ 
+    \textbf{Common Critical Values -- Exact Values} \\ \textbf{(up to the 4th decimal):} \\
     \vspace{0.8em} % Adjusted space for potentially longer title
     \small % Make table font smaller to fit comfortably
     \setlength{\tabcolsep}{4pt} % Adjust column separation for the table
@@ -156,7 +156,7 @@
 \textbf{Reminders:}
 \begin{itemize}
     \item Note that $P(Z\geq z^*) = 1 -  CDF(z^*)$.
-    \item Because the $z$--distribution is symmetrical: $CDF(-|z^*|) = 1 - CDF(|z^*|)$. 
+    \item Because the $z$--distribution is symmetrical: $CDF(-|z^*|) = 1 - CDF(|z^*|)$.
     \begin{itemize}
         \item For instance, $CDF(-1.96) = 1 - CDF(1.96)=0.025$.
         \item For instance, $CDF(-1.6449) = 1 - CDF(1.6449)=0.05$.

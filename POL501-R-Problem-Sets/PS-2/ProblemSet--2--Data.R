@@ -1,6 +1,6 @@
 ## Setting Up the Environment
 install.packages(pacman) # Package Manager
-pacman::p_load(dplyr, ggplot2, haven) 
+pacman::p_load(dplyr, ggplot2, haven)
 
 ## Setting Up the Directory
 setwd("C:/Users/Ignacio/Dropbox/PhD SBU/06_Teaching/00_POL-501/Problem Sets/PS-2/")
@@ -52,7 +52,7 @@ save(df_clean, file = "dataframe-ps2.RData")
 
 table(df_clean$PARTY)
 table(df_clean$INTFREQ)
-table(df_clean$RADIO) 
+table(df_clean$RADIO)
 table(df_clean$ECON1MOD)
 table(df_clean$INFRASPEND)
 table(df_clean$MOREGUNIMPACT)
@@ -71,7 +71,5 @@ n_rep_dem <- df_clean %>%
 prob_rep_dem <- n_rep_dem / n_total_q1
 
 # Display the result
-print(paste("Probability of identifying as Democrat or Republican:", 
+print(paste("Probability of identifying as Democrat or Republican:",
             round(prob_rep_dem,2)))
-
-

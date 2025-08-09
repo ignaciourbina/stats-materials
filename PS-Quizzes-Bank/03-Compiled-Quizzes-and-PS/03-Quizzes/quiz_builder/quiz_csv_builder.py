@@ -56,6 +56,7 @@ from typing import List, Optional
 
 BLANK4 = ["", "", "", ""]
 
+
 @dataclass
 class Question:
     new_question_code: str = field(init=False, default="")
@@ -67,13 +68,19 @@ class Question:
     hint: Optional[str] = None
     feedback: Optional[str] = None
     explicit_id: Optional[str] = None
+
     def _type_rows(self) -> List[List[str]]:
         raise NotImplementedError
+
     def to_rows(self) -> List[List[str]]:
-        rows=[["NewQuestion", self.new_question_code, *BLANK4]]
+        rows = [["NewQuestion", self.new_question_code, *BLANK4]]
         if self.explicit_id:
             rows.append(["ID", self.explicit_id, *BLANK4])
-        rows+=[["Title", self.title, *BLANK4],["QuestionText", self.question_text, *BLANK4],["Points", str(self.points), *BLANK4]]
+        rows += [
+            ["Title", self.title, *BLANK4],
+            ["QuestionText", self.question_text, *BLANK4],
+            ["Points", str(self.points), *BLANK4],
+        ]
         if self.difficulty is not None:
             rows.append(["Difficulty", str(self.difficulty), *BLANK4])
         if self.image:
@@ -86,81 +93,119 @@ class Question:
         rows.append(["", "", "", "", ""])
         return rows
 
+
 @dataclass
 class WrittenResponse(Question):
     initial_text: Optional[str] = None
     answer_key: Optional[str] = None
+
     def __post_init__(self):
-        self.new_question_code="WR"
+        self.new_question_code = "WR"
+
     def _type_rows(self):
-        rows=[]
+        rows = []
         if self.initial_text is not None:
             rows.append(["InitialText", self.initial_text, *BLANK4])
         if self.answer_key is not None:
             rows.append(["AnswerKey", self.answer_key, *BLANK4])
         return rows
 
+
 @dataclass
 class ShortAnswer(Question):
-    best_answer: str=""
-    regexp: bool=False
-    case_sensitive: bool=False
-    rows: int=1
-    cols: int=40
+    best_answer: str = ""
+    regexp: bool = False
+    case_sensitive: bool = False
+    rows: int = 1
+    cols: int = 40
+
     def __post_init__(self):
         if not self.best_answer:
             raise ValueError("best_answer required")
-        self.new_question_code="SA"
+        self.new_question_code = "SA"
+
     def _type_rows(self):
-        flag="regexp" if self.regexp else ("sensitive" if self.case_sensitive else "insensitive")
-        return [["InputBox", str(self.rows), str(self.cols), "", ""],["Answer", "", self.best_answer, flag, ""]]
+        flag = (
+            "regexp"
+            if self.regexp
+            else ("sensitive" if self.case_sensitive else "insensitive")
+        )
+        return [
+            ["InputBox", str(self.rows), str(self.cols), "", ""],
+            ["Answer", "", self.best_answer, flag, ""],
+        ]
+
 
 @dataclass
 class MatchingPair:
-    choice_no:int
-    choice_text:str
-    match_text:str
+    choice_no: int
+    choice_text: str
+    match_text: str
+
 
 @dataclass
 class Matching(Question):
-    pairs: List[MatchingPair]=field(default_factory=list)
-    scoring: str="AllOrNothing"
+    pairs: List[MatchingPair] = field(default_factory=list)
+    scoring: str = "AllOrNothing"
+
     def __post_init__(self):
-        self.new_question_code="M"
+        self.new_question_code = "M"
+
     def _type_rows(self):
-        rows=[["Scoring", self.scoring, *BLANK4]]
+        rows = [["Scoring", self.scoring, *BLANK4]]
         for p in self.pairs:
             rows.append(["Choice", str(p.choice_no), p.choice_text, "", ""])
         for p in self.pairs:
             rows.append(["Match", str(p.choice_no), p.match_text, "", ""])
         return rows
 
+
 @dataclass
 class MCOption:
-    text:str
-    percent:int
-    feedback: Optional[str]=None
-    html_used: bool=False
+    text: str
+    percent: int
+    feedback: Optional[str] = None
+    html_used: bool = False
+
     def to_row(self):
-        html_flag="HTML" if self.html_used else ""
-        fb_flag="HTML" if self.feedback and self.html_used else ""
-        return ["Option", str(self.percent), self.text, html_flag, self.feedback or "", fb_flag]
+        html_flag = "HTML" if self.html_used else ""
+        fb_flag = "HTML" if self.feedback and self.html_used else ""
+        return [
+            "Option",
+            str(self.percent),
+            self.text,
+            html_flag,
+            self.feedback or "",
+            fb_flag,
+        ]
+
 
 @dataclass
 class MultipleChoice(Question):
-    options: List[MCOption]=field(default_factory=list)
+    options: List[MCOption] = field(default_factory=list)
+
     def __post_init__(self):
-        self.new_question_code="MC"
+        self.new_question_code = "MC"
+
     def _type_rows(self):
         return [o.to_row() for o in self.options]
+
 
 @dataclass
 class TFOption:
     is_true: bool
-    credit:int
-    feedback: Optional[str]=None
+    credit: int
+    feedback: Optional[str] = None
+
     def to_row(self):
-        return ["True" if self.is_true else "False", str(self.credit), self.feedback or "", "", ""]
+        return [
+            "True" if self.is_true else "False",
+            str(self.credit),
+            self.feedback or "",
+            "",
+            "",
+        ]
+
 
 @dataclass
 class TrueFalse(Question):
@@ -183,61 +228,82 @@ class TrueFalse(Question):
         # True row first, then False row — each already returns 6 columns
         return [self.true_row.to_row(), self.false_row.to_row()]
 
+
 @dataclass
 class MSOption:
-    text:str
+    text: str
     correct: bool
-    feedback: Optional[str]=None
-    html_used: bool=False
+    feedback: Optional[str] = None
+    html_used: bool = False
+
     def to_row(self):
-        html_flag="HTML" if self.html_used else ""
-        fb_flag="HTML" if self.feedback and self.html_used else ""
-        return ["Option", "1" if self.correct else "0", self.text, html_flag, self.feedback or "", fb_flag]
+        html_flag = "HTML" if self.html_used else ""
+        fb_flag = "HTML" if self.feedback and self.html_used else ""
+        return [
+            "Option",
+            "1" if self.correct else "0",
+            self.text,
+            html_flag,
+            self.feedback or "",
+            fb_flag,
+        ]
+
 
 @dataclass
 class MultiSelect(Question):
-    options: List[MSOption]=field(default_factory=list)
-    scoring: str="AllOrNothing"
+    options: List[MSOption] = field(default_factory=list)
+    scoring: str = "AllOrNothing"
+
     def __post_init__(self):
-        self.new_question_code="MS"
+        self.new_question_code = "MS"
+
     def _type_rows(self):
-        rows=[["Scoring", self.scoring, *BLANK4]]
+        rows = [["Scoring", self.scoring, *BLANK4]]
         rows.extend(o.to_row() for o in self.options)
         return rows
 
+
 @dataclass
 class OrderingItem:
-    text:str
-    feedback: Optional[str]=None
-    html_used: bool=False
+    text: str
+    feedback: Optional[str] = None
+    html_used: bool = False
+
     def to_row(self):
-        html_flag="HTML" if self.html_used else ""
-        fb_flag="HTML" if self.feedback and self.html_used else ""
+        html_flag = "HTML" if self.html_used else ""
+        fb_flag = "HTML" if self.feedback and self.html_used else ""
         return ["Item", self.text, html_flag, self.feedback or "", fb_flag]
+
 
 @dataclass
 class Ordering(Question):
-    items: List[OrderingItem]=field(default_factory=list)
-    scoring:str="AllOrNothing"
+    items: List[OrderingItem] = field(default_factory=list)
+    scoring: str = "AllOrNothing"
+
     def __post_init__(self):
-        self.new_question_code="O"
+        self.new_question_code = "O"
+
     def _type_rows(self):
-        rows=[["Scoring", self.scoring, *BLANK4]]
+        rows = [["Scoring", self.scoring, *BLANK4]]
         rows.extend(i.to_row() for i in self.items)
         return rows
 
+
 class QuestionBank:
     def __init__(self):
-        self._questions: List[Question]=[]
-    def add(self,*questions:Question):
+        self._questions: List[Question] = []
+
+    def add(self, *questions: Question):
         self._questions.extend(questions)
-    def export_csv(self, path:str|Path, encoding:str="utf-8-sig")->Path:
-        p=Path(path).expanduser().resolve()
+
+    def export_csv(self, path: str | Path, encoding: str = "utf-8-sig") -> Path:
+        p = Path(path).expanduser().resolve()
         p.parent.mkdir(parents=True, exist_ok=True)
         with p.open("w", newline="", encoding=encoding) as f:
-            w=csv.writer(f)
+            w = csv.writer(f)
             for q in self._questions:
                 w.writerows(q.to_rows())
         return p
+
     def __iter__(self):
         return iter(self._questions)

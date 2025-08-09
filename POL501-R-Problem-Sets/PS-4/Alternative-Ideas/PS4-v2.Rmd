@@ -194,4 +194,3 @@ confint(lm_model)
 *Interpretation*:
 - The p-value associated with the slope coefficient **...**, indicating **...** relationship between `log_gdp_per_capita` and `education_expenditure`.
 - The 95% confidence interval provides a range of plausible values for the slope coefficient, offering insights into the strength and direction of the relationship. We interpret this confidence interval as saying that **...**
-

@@ -2,7 +2,7 @@
 title: "Problem Set 4"
 author: "REPLACE HERE WITH YOUR NAME"
 date: "`r Sys.Date()`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -16,7 +16,7 @@ library(kableExtra)
 library(ggplot2)
 library(psych)
 
-# Set up the working directory 
+# Set up the working directory
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(root.dir = "F:\\Dropbox\\PhD SBU\\06_Teaching\\00_POL-501\\Applied-Cases\\Effects of Women Leadership") # Set root directory for all chunks
 
@@ -154,5 +154,3 @@ From the regression output, identify the test statistic and p-value for the esti
 At the 5% significance level, can we reject the null hypothesis? Interpret and explain the conclusion of the hypothesis test.
 
 **Answer:**
-
-

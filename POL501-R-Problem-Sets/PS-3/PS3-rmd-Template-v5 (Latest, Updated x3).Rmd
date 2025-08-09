@@ -2,7 +2,7 @@
 title: "POL501 - Answers to Problem Set 3"
 author: "STUDENT NAME -V5 template fixed (REPLACE WITH YOUR NAME HERE)"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -11,11 +11,11 @@ geometry: "left=1in,right=1in,top=1in,bottom=1in"
 
 ```{r setup, include=FALSE}
 # Load necessary libraries
-library(dplyr) 
-library(tidyverse) 
+library(dplyr)
+library(tidyverse)
 library(haven) # read multiple format of datasets
 library(ggplot2) # plots
-library(formatR) 
+library(formatR)
 library(psych) # for summary stats and others
 library(kableExtra) # For tables
 library(BSDA) # for stats tests
@@ -31,7 +31,7 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
 
   # Extract the data column
   data_column <- data[[var_name]]
-  
+
   # Validate inputs (method, var_name)
   if (!(method %in% c("t", "z"))) {
     stop("Method must be either 't' or 'z'.")
@@ -39,30 +39,30 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
   if (!(var_name %in% colnames(data))) {
     stop("var_name must be the name of a column in the data frame.")
   }
-  
+
   # Calculate sample statistics
   sample_mean <- mean(data_column, na.rm = TRUE)
   sample_sd <- sd(data_column, na.rm = TRUE)
   n <- length(na.omit(data_column))
   standard_error <- sample_sd / sqrt(n)
-  
+
   # Set alpha for confidence level
   alpha <- 1 - confidence_level
-  
+
   # Calculate the critical value based on the selected method
   if (method == "t") {
     critical_value <- qt(1 - alpha / 2, df = n - 1)  # t-distribution critical value
   } else {
     critical_value <- qnorm(1 - alpha / 2)  # z-distribution critical value
   }
-  
+
   # Calculate margin of error (MOE)
   margin_of_error <- critical_value * standard_error
-  
+
   # Calculate confidence interval bounds
   lower_bound <- sample_mean - margin_of_error
   upper_bound <- sample_mean + margin_of_error
-  
+
   # Prepare output as a named vector
   output <- c(
     `Sample Mean of` = var_name,
@@ -97,7 +97,7 @@ getwd()
 
 **Important**:
 
-- You must place this RMD file in the same folder in which you have the data. 
+- You must place this RMD file in the same folder in which you have the data.
 - Then, you will be able to load the dataset into memory. The name of the dataset as an R object is `df_clean`.
 
 ```{r q1-setup-2, echo=TRUE}
@@ -192,7 +192,7 @@ ggplot(df_combined_CI, aes(x = Group, y = Estimate)) +
     x = "Political Affiliation",
     y = "Perception of Community Safety (CRIMESAFE)"
   ) +
-  theme_minimal() + 
+  theme_minimal() +
   ylim(2.4, 2.7)  # Set the y-axis limits here
 ```
 
@@ -247,7 +247,7 @@ n_sample_size <- nrow(df_dems)
 
 # Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)
 SD_null_hypot <- 'Replace with the formula for the standard DEVIATION'
-  
+
 # Run the z-test to test if the mean is significantly different from the sample proportion for Republicans
 #   The function will compute in the background the correct Standard Error.
 z_test_result <- z.test(
@@ -277,7 +277,7 @@ n_sample_size <- nrow(df_rep) # UPDATED CODE LINE
 
 # Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)
 SD_null_hypot <- 'Replace with the formula for the standard DEVIATION'
-  
+
 # Run the z-test to test if the mean is significantly different from the sample proportion for Democrats
 z_test_result <- z.test(
   x = df_rep$notsafe_binary, # Here we declare the variable for our sample
@@ -326,7 +326,7 @@ p_hat <- mean(mock_data_q3$support_policy) # Observed Sample Proportion
 # Define the null hypothesis proportion
 p_0 <- "REPLACE WITH YOUR CODE HERE"
 
-# Compute the sample size 
+# Compute the sample size
 n <- "REPLACE WITH YOUR CODE HERE"
 
 # Calculate the standard error under the null
@@ -354,7 +354,7 @@ p_0 <- "REPLACE WITH YOUR CODE HERE"
 # Define sample proportion (copy and paste code above)
 p_hat <- "REPLACE WITH YOUR CODE HERE"
 
-# Define Standard Error Under the Null 
+# Define Standard Error Under the Null
 SE_H0 <- "REPLACE WITH YOUR CODE HERE"
 
 # Calculate the z-test statistic
@@ -376,7 +376,7 @@ critical_value <- qnorm( 1 - (alpha / 2) )  # You can learn more about the funct
 z_statistic <- "REPLACE WITH YOUR CODE HERE"   # Replace with the code used above
 
 # Calculate the p-value. HINT: Use `pnorm(abs(z_statistic), lower.tail = FALSE)` to compute Pr(Z > |Z_obs|).
-p_value <- "REPLACE WITH YOUR CODE HERE (check the lecture notes to find the appropiate formula) (HINT: use `pnorm(abs(z_statistic), lower.tail = FALSE)` to compute Pr(Z > |Z_obs|)." 
+p_value <- "REPLACE WITH YOUR CODE HERE (check the lecture notes to find the appropiate formula) (HINT: use `pnorm(abs(z_statistic), lower.tail = FALSE)` to compute Pr(Z > |Z_obs|)."
 
 # Print the critical value and p-value
 cat("Critical Value: ", round(critical_value, 3), "\n")
@@ -403,7 +403,7 @@ n_sample_size <- respondents
 
 # Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)
 SD_null_hypot <- sqrt( prop_null_hypothesis*(1-prop_null_hypothesis) )   # The formula for SD does not include the sample size
-  
+
 # Run the z-test to test if the mean is significantly different from the sample proportion for Democrats
 z_test_result <- z.test(
   x = mock_data_q3$support_policy,

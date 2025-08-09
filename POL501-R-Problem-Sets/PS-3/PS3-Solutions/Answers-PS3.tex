@@ -246,7 +246,7 @@ multiple times just by providing new inputs.
 
   \CommentTok{\# Extract the data column}
 \NormalTok{  data\_column }\OtherTok{\textless{}{-}}\NormalTok{ data[[var\_name]]}
-  
+
   \CommentTok{\# Validate inputs (method, var\_name)}
   \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\NormalTok{(method }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"t"}\NormalTok{, }\StringTok{"z"}\NormalTok{))) \{}
     \FunctionTok{stop}\NormalTok{(}\StringTok{"Method must be either \textquotesingle{}t\textquotesingle{} or \textquotesingle{}z\textquotesingle{}."}\NormalTok{)}
@@ -254,30 +254,30 @@ multiple times just by providing new inputs.
   \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\NormalTok{(var\_name }\SpecialCharTok{\%in\%} \FunctionTok{colnames}\NormalTok{(data))) \{}
     \FunctionTok{stop}\NormalTok{(}\StringTok{"var\_name must be the name of a column in the data frame."}\NormalTok{)}
 \NormalTok{  \}}
-  
+
   \CommentTok{\# Calculate sample statistics}
 \NormalTok{  sample\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data\_column, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{  sample\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(data\_column, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(}\FunctionTok{na.omit}\NormalTok{(data\_column))}
 \NormalTok{  standard\_error }\OtherTok{\textless{}{-}}\NormalTok{ sample\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n)}
-  
+
   \CommentTok{\# Set alpha for confidence level}
 \NormalTok{  alpha }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ confidence\_level}
-  
+
   \CommentTok{\# Calculate the critical value based on the selected method}
   \ControlFlowTok{if}\NormalTok{ (method }\SpecialCharTok{==} \StringTok{"t"}\NormalTok{) \{}
 \NormalTok{    critical\_value }\OtherTok{\textless{}{-}} \FunctionTok{qt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ alpha }\SpecialCharTok{/} \DecValTok{2}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)  }\CommentTok{\# t{-}distribution critical value}
 \NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
 \NormalTok{    critical\_value }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ alpha }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)  }\CommentTok{\# z{-}distribution critical value}
 \NormalTok{  \}}
-  
+
   \CommentTok{\# Calculate margin of error (MOE)}
 \NormalTok{  margin\_of\_error }\OtherTok{\textless{}{-}}\NormalTok{ critical\_value }\SpecialCharTok{*}\NormalTok{ standard\_error}
-  
+
   \CommentTok{\# Calculate confidence interval bounds}
 \NormalTok{  lower\_bound }\OtherTok{\textless{}{-}}\NormalTok{ sample\_mean }\SpecialCharTok{{-}}\NormalTok{ margin\_of\_error}
 \NormalTok{  upper\_bound }\OtherTok{\textless{}{-}}\NormalTok{ sample\_mean }\SpecialCharTok{+}\NormalTok{ margin\_of\_error}
-  
+
   \CommentTok{\# Prepare output as a named vector}
 \NormalTok{  output }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
     \StringTok{\textasciigrave{}}\AttributeTok{Sample Mean of}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ var\_name,}
@@ -324,7 +324,7 @@ terms of crime?}}\$
 \end{Shaded}
 
 \begin{verbatim}
-## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound 
+## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound
 ##    "CRIMESAFE"        "2.575"        "0.023"        "2.552"        "2.598"
 \end{verbatim}
 
@@ -377,7 +377,7 @@ estimate is precise, giving us strong confidence in this result.
 \end{Shaded}
 
 \begin{verbatim}
-## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound 
+## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound
 ##    "CRIMESAFE"        "2.575"         "0.03"        "2.545"        "2.606"
 \end{verbatim}
 
@@ -433,8 +433,8 @@ community with a high degree of confidence.
 \end{Shaded}
 
 \begin{verbatim}
-## 
-##    1    2    3    4 
+##
+##    1    2    3    4
 ## 1514 1795 1345  545
 \end{verbatim}
 
@@ -487,7 +487,7 @@ corresponds to respondents who selected \(1 = Republican\).
 \end{Shaded}
 
 \begin{verbatim}
-## 
+##
 ## Results for Democrats:
 \end{verbatim}
 
@@ -498,7 +498,7 @@ corresponds to respondents who selected \(1 = Republican\).
 \end{Shaded}
 
 \begin{verbatim}
-## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound 
+## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound
 ##    "CRIMESAFE"        "2.526"         "0.04"        "2.486"        "2.566"
 \end{verbatim}
 
@@ -539,7 +539,7 @@ Upper CI Bound & 2.566\\
 \end{Shaded}
 
 \begin{verbatim}
-## 
+##
 ## Results for Republicans:
 \end{verbatim}
 
@@ -550,7 +550,7 @@ Upper CI Bound & 2.566\\
 \end{Shaded}
 
 \begin{verbatim}
-## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound 
+## Sample Mean of       Estimate            MOE Lower CI Bound Upper CI Bound
 ##    "CRIMESAFE"        "2.596"        "0.041"        "2.556"        "2.637"
 \end{verbatim}
 
@@ -620,7 +620,7 @@ less safe compared to Democrats.
     \AttributeTok{x =} \StringTok{"Political Affiliation"}\NormalTok{,}
     \AttributeTok{y =} \StringTok{"Perception of Community Safety (CRIMESAFE)"}
 \NormalTok{  ) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{ylim}\NormalTok{(}\FloatTok{2.4}\NormalTok{, }\FloatTok{2.7}\NormalTok{)  }\CommentTok{\# Set the y{-}axis limits here}
 \end{Highlighting}
 \end{Shaded}
@@ -821,7 +821,7 @@ neighborhoods as relatively safe.
 
 \CommentTok{\# Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)}
 \NormalTok{SD\_null\_hypot }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(prop\_null\_hypothesis}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prop\_null\_hypothesis))}
-  
+
 \CommentTok{\# Run the z{-}test to test if the mean is significantly different from the sample proportion for Republicans}
 \CommentTok{\#   The function will compute in the background the correct Standard Error.}
 \NormalTok{z\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{z.test}\NormalTok{(}
@@ -836,16 +836,16 @@ neighborhoods as relatively safe.
 \end{Shaded}
 
 \begin{verbatim}
-## 
+##
 ##  One-sample z-Test
-## 
+##
 ## data:  df_dems$notsafe_binary
 ## z = 1.6121, p-value = 0.1069
 ## alternative hypothesis: true mean is not equal to 0.0984148
 ## 95 percent confidence interval:
 ##  0.0959693 0.1235293
 ## sample estimates:
-## mean of x 
+## mean of x
 ## 0.1097493
 \end{verbatim}
 
@@ -870,7 +870,7 @@ different from the sample proportion observed for Republicans.
 
 \CommentTok{\# Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)}
 \NormalTok{SD\_null\_hypot }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(prop\_null\_hypothesis}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prop\_null\_hypothesis))}
-  
+
 \CommentTok{\# Run the z{-}test to test if the mean is significantly different from the sample proportion for Democrats}
 \NormalTok{z\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{z.test}\NormalTok{(}
   \AttributeTok{x =}\NormalTok{ df\_rep}\SpecialCharTok{$}\NormalTok{notsafe\_binary, }\CommentTok{\# Here we declare the variable for our sample}
@@ -884,16 +884,16 @@ different from the sample proportion observed for Republicans.
 \end{Shaded}
 
 \begin{verbatim}
-## 
+##
 ##  One-sample z-Test
-## 
+##
 ## data:  df_rep$notsafe_binary
 ## z = -1.4109, p-value = 0.1583
 ## alternative hypothesis: true mean is not equal to 0.1097493
 ## 95 percent confidence interval:
 ##  0.08266981 0.11415978
 ## sample estimates:
-## mean of x 
+## mean of x
 ## 0.0984148
 \end{verbatim}
 
@@ -1170,7 +1170,7 @@ chunk:}\label{optional-verify-your-previous-result-running-the-following-chunk}
 
 \CommentTok{\# Calculate the standard DEVIATION for the null hypothesis (replace with the correct formula)}
 \NormalTok{SD\_null\_hypot }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{( prop\_null\_hypothesis}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{prop\_null\_hypothesis) )   }\CommentTok{\# The formula for SD does not include the sample size}
-  
+
 \CommentTok{\# Run the z{-}test to test if the mean is significantly different from the sample proportion for Democrats}
 \NormalTok{z\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{z.test}\NormalTok{(}
   \AttributeTok{x =}\NormalTok{ mock\_data\_q3}\SpecialCharTok{$}\NormalTok{support\_policy,}
@@ -1184,16 +1184,16 @@ chunk:}\label{optional-verify-your-previous-result-running-the-following-chunk}
 \end{Shaded}
 
 \begin{verbatim}
-## 
+##
 ##  One-sample z-Test
-## 
+##
 ## data:  mock_data_q3$support_policy
 ## z = -0.3585, p-value = 0.72
 ## alternative hypothesis: true mean is not equal to 0.43
 ## 95 percent confidence interval:
 ##  0.2359842 0.5640158
 ## sample estimates:
-## mean of x 
+## mean of x
 ##       0.4
 \end{verbatim}
 

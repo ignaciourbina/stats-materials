@@ -10,12 +10,12 @@
 \usepackage{booktabs}
 
 \usepackage{pgfplots}
-% Nice color sets, see see http://colorbrewer2.org/	
+% Nice color sets, see see http://colorbrewer2.org/
 \usepgfplotslibrary{colorbrewer}
 % initialize Set1-4 from colorbrewer (we're comparing 4 classes),
-\pgfplotsset{compat = 1.18, cycle list/Set1-8} 
+\pgfplotsset{compat = 1.18, cycle list/Set1-8}
 % Tikz is loaded automatically by pgfplots
-\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer}
 % provides \pgfplotstabletranspose
 \usepackage{pgfplotstable}
 
@@ -61,7 +61,7 @@
             \node (data) {Observed Data};
             \node (assumptions) [right of=data, xshift=4cm] {Assumptions};
             \node (experiments) [right of=assumptions, xshift=4cm] {Simulated Experiments};
-            
+
             \draw[->, thick] (data) -- (assumptions);
             \draw[->, thick] (assumptions) -- (experiments);
         \end{tikzpicture}
@@ -130,7 +130,7 @@
     \begin{figure}
         \centering
         \makebox[\textwidth]{ % Expands the box to the full width
-            \includegraphics[width=1.0\textwidth]{Figures/Coin_Flips_Sim.pdf} 
+            \includegraphics[width=1.0\textwidth]{Figures/Coin_Flips_Sim.pdf}
         }
     \end{figure}
 
@@ -139,13 +139,13 @@
 % Results
 \begin{frame}{Simulation Results}
     \begin{itemize}
-    \item In our simulation, 368 of the 1,000 samples had six heads or more. 
+    \item In our simulation, 368 of the 1,000 samples had six heads or more.
         \item Estimated probability of getting 60\% heads or more: \textbf{0.368}.
         \begin{align*}
             \Pr( \text{Getting 60\% Heads in Sample of N=10} ) = \dfrac{368}{1000}
         \end{align*}
         \item This means that in a fair coin setup, this outcome happens 36.8\% of the time.
-        \item Code for the simulation:  
+        \item Code for the simulation:
         { \href{https://www.mycompiler.io/view/CV5dVUsHky0}{https://www.mycompiler.io/view/CV5dVUsHky0}
         }
     \end{itemize}

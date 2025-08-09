@@ -17,145 +17,145 @@
 \hline
 \textbf{Name} & \textbf{Formula} & \textbf{Additional Notes} \\
 \hline
-Sample Mean 
-& $\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$ 
+Sample Mean
+& $\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$
 & $x_i$: observation, $n$: sample size \\
 \hline
-Relative Frequency 
-& $\displaystyle f_i = (F_i) /n =  (\text{Abs. Freq. of }x_i)/n $ 
+Relative Frequency
+& $\displaystyle f_i = (F_i) /n =  (\text{Abs. Freq. of }x_i)/n $
 & $f_i$: relative frequency of $x_i$ \\
 \hline
-Weighted Mean 
-& $\displaystyle \bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i} \quad\text{and if } w_i=f_i;\;\bar{x}_w = \sum_{i=1}^{n} f_i \cdot x_i$ 
+Weighted Mean
+& $\displaystyle \bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i} \quad\text{and if } w_i=f_i;\;\bar{x}_w = \sum_{i=1}^{n} f_i \cdot x_i$
 & $w_i$: weight, $f_i$: relative frequency \\
 \hline
 Sample Variance
-& $\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2$ 
+& $\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2$
 &  (with Bessel's Correction)  \\
 \hline
 Weighted Variance
-& $\displaystyle s_w^2 = \frac{1}{n-1}\sum_{i=1}^{n} F_i\,\cdot\,(x_i - \bar{x})^2$ 
+& $\displaystyle s_w^2 = \frac{1}{n-1}\sum_{i=1}^{n} F_i\,\cdot\,(x_i - \bar{x})^2$
 & $F_i$: weight as absolute freq. (w/ Bessel's Corr.)  \\
 \hline
-Std. Deviation 
-& $\displaystyle s = \sqrt{s^2}$ 
+Std. Deviation
+& $\displaystyle s = \sqrt{s^2}$
 & \\
 \hline
-Range 
-& $\text{Range}=\displaystyle x_{\max} - x_{\min}$ 
+Range
+& $\text{Range}=\displaystyle x_{\max} - x_{\min}$
 & \\
 \hline
-Quartiles 
-& $\displaystyle Q_1 = X_{\left(\frac{n+1}{4}\right)},\quad Q_2 = \text{Median},\quad Q_3 = X_{\left(\frac{3(n+1)}{4}\right)}$ 
+Quartiles
+& $\displaystyle Q_1 = X_{\left(\frac{n+1}{4}\right)},\quad Q_2 = \text{Median},\quad Q_3 = X_{\left(\frac{3(n+1)}{4}\right)}$
 & For even $n$, average adjacent ranks (i.e.,  \( Q_j =[X_{(k)} + X_{(k+1)}]/2\)) \\
 \hline
-Interquartile Range 
-& $\displaystyle IQR = Q_3 - Q_1$ 
+Interquartile Range
+& $\displaystyle IQR = Q_3 - Q_1$
 & \\
 \hline
-Median 
-& $\displaystyle \tilde{x} = 
+Median
+& $\displaystyle \tilde{x} =
    \begin{cases}
    X_{\left(\frac{n+1}{2}\right)}, & \text{odd }n\\[6pt]
    [X_{(\frac{n}{2})}+X_{(\frac{n}{2}+1)}]/2, & \text{even }n
-   \end{cases}$ 
+   \end{cases}$
 & Where $X_{(k)}$ represents the $k$-th ranked obs. \\
 \hline
-Outlier 
-& Values outside $\displaystyle [\,Q_1 - 1.5 \cdot IQR,\;Q_3 + 1.5 \cdot IQR\,]$ 
+Outlier
+& Values outside $\displaystyle [\,Q_1 - 1.5 \cdot IQR,\;Q_3 + 1.5 \cdot IQR\,]$
 & \\
 \hline
-Coeff. of Variation 
-& $\displaystyle CV = s / \bar{x}$ 
+Coeff. of Variation
+& $\displaystyle CV = s / \bar{x}$
 & \\
 \hline
-Bin Size (Histogram) 
-& $\displaystyle \text{Bin Width} = \text{Range} / K $ 
+Bin Size (Histogram)
+& $\displaystyle \text{Bin Width} = \text{Range} / K $
 & $K$: number of bins \\
 \hline
-Mutually Exclusive 
-& $\displaystyle E_1 \cap E_2 = \varnothing$ 
+Mutually Exclusive
+& $\displaystyle E_1 \cap E_2 = \varnothing$
 & Also def. as: ``\emph{Disjoint Events}." \\
 \hline
-Classical Probability 
+Classical Probability
 & $\displaystyle P(E) = |E| / |S|$. $|E|$: total elements in $E$, $|S|$: total outcomes.
 &  Applies when each outcome is equally likely. $S$ is the sample space, $E$ is an event. \\
 \hline
-Joint Probability 
-& $\displaystyle P(A \cap B) =  |A \cap B| / |S|$ 
+Joint Probability
+& $\displaystyle P(A \cap B) =  |A \cap B| / |S|$
 & Probability that both $A$ and $B$ occur \\
 \hline
-Conditional Probability 
-& $\displaystyle P(A \mid B) = P(A \cap B)/P(B)$ 
+Conditional Probability
+& $\displaystyle P(A \mid B) = P(A \cap B)/P(B)$
 & \\
 \hline
-Independence 
-& $P(A \mid B)=P(A)$ or $P(B \mid A)=P(B)$ 
+Independence
+& $P(A \mid B)=P(A)$ or $P(B \mid A)=P(B)$
 &    \\
 \hline
-Multiplication Rule 
-& $\displaystyle P(A \cap B) = P(A \mid B) \, \cdot \,P(B) =  P(B \mid A) \, \cdot \,P(A)$ 
+Multiplication Rule
+& $\displaystyle P(A \cap B) = P(A \mid B) \, \cdot \,P(B) =  P(B \mid A) \, \cdot \,P(A)$
 & If $A, B$ are indep. then, $P(A \cap B)=P(A) P(B)$.  \\
 \hline
-Addition Rule 
-& $\displaystyle P(A \cup B) = P(A)+P(B)-P(A \cap B)$ 
+Addition Rule
+& $\displaystyle P(A \cup B) = P(A)+P(B)-P(A \cap B)$
 & If $A,B$ are disjoint then, $P(A\cap B)=0$ \\
 \hline
-Complement 
-& $\displaystyle P(A^c) = 1 - P(A)$ 
+Complement
+& $\displaystyle P(A^c) = 1 - P(A)$
 & Derived from $P(S)=P(A \cup A^c)=1$ \\
 \hline
-Law of Total Probability 
-& $\displaystyle P(A) = \sum_{i} P(A \cap B_i)= \sum_{i} P(A \mid B_i)\,P(B_i)$ 
+Law of Total Probability
+& $\displaystyle P(A) = \sum_{i} P(A \cap B_i)= \sum_{i} P(A \mid B_i)\,P(B_i)$
 & $\{B_i\}$ is a partition of $S$, i.e. $B_1\cup B_2\cup \cdots B_K=S$, and for any $i,j$: $B_j \cup B_i=\varnothing$. \\
 \hline
-Bayes' Theorem 
-& $\displaystyle P(B \mid A) = [P(A \mid B)\,P(B)]/P(A)$ 
+Bayes' Theorem
+& $\displaystyle P(B \mid A) = [P(A \mid B)\,P(B)]/P(A)$
 & You can replace $P(A)$ using the law of total prob. \\
 \hline
-PMF (Discrete) 
+PMF (Discrete)
 & $\displaystyle P(X = x)$ $\quad \quad \rightarrow \quad $ Probabilty of $X=x$.
 & Note: $\displaystyle
 P(X = x) = |\{ s \in S \mid X(s) = x \}|/|S|, \quad \text{if } \forall s \in S, P(s) = 1/|S|$ \\
 \hline
-CDF (Discrete) 
-& $\displaystyle F(x) = CDF(x) = P(X \le x) = \sum_{t \le x} P(X = t)$ 
+CDF (Discrete)
+& $\displaystyle F(x) = CDF(x) = P(X \le x) = \sum_{t \le x} P(X = t)$
 & Note, $P(a< X\le b) =CDF(b)-CDF(a)$. $P(X>c)=1-CDF(c)$. \\
 \hline
-Expectation (Discrete) 
-& $\displaystyle E(X) = \sum x \, P(X=x)$ 
+Expectation (Discrete)
+& $\displaystyle E(X) = \sum x \, P(X=x)$
 & Note, $E(aX+bY+c)=aE(X)+bE(Y)+c$ \\
 \hline
-Variance (Discrete) 
-& $\displaystyle V(X) = \sum (x - E(X))^2 \, P(X=x)$ 
+Variance (Discrete)
+& $\displaystyle V(X) = \sum (x - E(X))^2 \, P(X=x)$
 & Note, $SD(X)=\sqrt{V(X)}$. If $X,Y$ are indep.; $V(aX+bY+c)=a^2V(X)+b^2V(Y)$ \\
 \hline
-Uniform (Discrete) 
+Uniform (Discrete)
 & $\displaystyle P(X = x) = 1/n$
 & $x \in \{1,2,\ldots,n\}$. $ E(X) = \frac{n+1}{2},\;
    V(X) = \frac{n^2 - 1}{12}$  \\
 \hline
-Bernoulli 
+Bernoulli
 & $\displaystyle P(X = x) = p^x (1-p)^{1-x} $
 & $x\in\{0,1\}$. $ E(X) = p,\;
    V(X) = p(1-p)$  \\
 \hline
-Binomial 
-& $\displaystyle P(X = x) = \binom{n}{x}\,p^x(1-p)^{n-x}$ 
+Binomial
+& $\displaystyle P(X = x) = \binom{n}{x}\,p^x(1-p)^{n-x}$
 &  $x \in \{1,2,\ldots,n\}$. $E(X)=np,\;V(X)=np(1-p)$ \\
 \hline
-Normal PDF 
+Normal PDF
 & $\displaystyle f(x) = \frac{1}{\sigma\sqrt{2\pi}}\,
-   e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ 
+   e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
 & $E(X)=\mu,\;V(X)=\sigma^2$. Std. normal: $\mu=0,\;\sigma=1$ \\
 \hline
-Z-score 
-& $\displaystyle Z = (X - \mu)/\sigma$ 
+Z-score
+& $\displaystyle Z = (X - \mu)/\sigma$
 & Note that, given $Z_{x^*,\bar{x},s}$, we can find $x^*= \bar{x}+s\cdot Z$. \\
 \hline
-Normal Probability 
-& $\displaystyle P(X \le x) 
-   = P\!\Bigl(Z \le (X - \mu)/\sigma \Bigr)$ 
+Normal Probability
+& $\displaystyle P(X \le x)
+   = P\!\Bigl(Z \le (X - \mu)/\sigma \Bigr)$
 & Use standard normal CDF tables \\
 \hline
 \end{tabular}

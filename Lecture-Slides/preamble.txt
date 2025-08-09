@@ -19,10 +19,10 @@
 \usetikzlibrary{trees, positioning, shapes, arrows.meta} % Added arrows.meta for better arrowheads if needed
 \usepackage{calc}        % For arithmetic operations with counters and dimensions
 \usepackage{pgfplots}    % For creating plots
-\usepgfplotslibrary{colorbrewer} % Nice color sets, see see http://colorbrewer2.org/	
+\usepgfplotslibrary{colorbrewer} % Nice color sets, see see http://colorbrewer2.org/
 \pgfplotsset{compat = 1.18, cycle list/Set1-8}  % Set compatibility mode for pgfplots | % initialize Set1-4 from colorbrewer (we're comparing 4 classes)
 % Tikz is loaded automatically by pgfplots
-\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer}
 \usepackage{pgfplotstable} % provides \pgfplotstabletranspose
 
 \usepackage{filecontents}  % To create files on the fly
@@ -55,7 +55,7 @@
 }
 
 % Removes navigation symbols from the bottom of the slides
-\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{navigation symbols}{}
 
 % Define the wrapper function for non-numbered footnotes
 \newcommand{\nonumberfootnote}[1]{

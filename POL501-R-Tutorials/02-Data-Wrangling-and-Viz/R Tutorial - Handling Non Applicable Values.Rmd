@@ -2,7 +2,7 @@
 title: "Handling Non-Applicable Survey Values"
 author: "POL 501"
 date: "`r Sys.Date()`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -51,7 +51,7 @@ Here are common types of non-applicable values in a survey context:
 
 ### **Typical Handling in R**
 1. Identify the non-applicable values specific to the survey (e.g., `-1`, `97`, etc.).
-2. Replace them with `NA` for compatibility with analytical functions. 
+2. Replace them with `NA` for compatibility with analytical functions.
 
 
 ## Mock Dataset

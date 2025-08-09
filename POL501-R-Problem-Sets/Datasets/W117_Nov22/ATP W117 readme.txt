@@ -1,10 +1,10 @@
 PEW RESEARCH CENTER
-Wave 117 American Trends Panel 
+Wave 117 American Trends Panel
 Dates: Nov. 16, 2022 - Nov. 27, 2022
-Mode: Web 
+Mode: Web
 Sample: Full panel
 Language: English and Spanish
-N=11,377 
+N=11,377
 
 ***************************************************************************************************************************
 NOTES
@@ -20,10 +20,10 @@ WATCHREAS_OE1_W117
 WATCHREAS_OE2_W117
 WATCHREAS_OE3_W117
 
-W117 included questions used in a longitudinal analysis in the report, "How the Pandemic Has Affected Attendance at U.S. Religious Services." If you would like to replicate the longitudinal analysis in this report, please contact us. 
+W117 included questions used in a longitudinal analysis in the report, "How the Pandemic Has Affected Attendance at U.S. Religious Services." If you would like to replicate the longitudinal analysis in this report, please contact us.
 
 ***************************************************************************************************************************
-WEIGHTS 
+WEIGHTS
 
 There are two weights in the W117 dataset
 
@@ -34,7 +34,7 @@ WEIGHT_W117_VOTE is a special weight that includes a benchmark for turnout and t
 Releases from this survey:
 
 December 1, 2022 "Public Has Modest Expectations for Washington’s Return to Divided Government"
-https://www.pewresearch.org/politics/2022/12/01/public-has-modest-expectations-for-washingtons-return-to-divided-government/#:~:text=Americans%20largely%20expect%20the%20partisan,improve%20in%20the%20next%20year.   
+https://www.pewresearch.org/politics/2022/12/01/public-has-modest-expectations-for-washingtons-return-to-divided-government/#:~:text=Americans%20largely%20expect%20the%20partisan,improve%20in%20the%20next%20year.
 
 March 28, 2023 "How the Pandemic Has Affected Attendance at U.S. Religious Services"
 https://www.pewresearch.org/religion/2023/03/28/how-the-pandemic-has-affected-attendance-at-u-s-religious-services/
@@ -42,14 +42,5 @@ https://www.pewresearch.org/religion/2023/03/28/how-the-pandemic-has-affected-at
 June 2, 2023 "Online Religious Services Appeal to Many Americans, but Going in Person Remains More Popular"
 https://www.pewresearch.org/religion/2023/06/02/online-religious-services-appeal-to-many-americans-but-going-in-person-remains-more-popular/
 
-September 6, 2023 "Why some Americans prefer to go to religious services in person and others prefer to watch virtually" 
+September 6, 2023 "Why some Americans prefer to go to religious services in person and others prefer to watch virtually"
 https://www.pewresearch.org/short-reads/2023/09/06/why-some-americans-prefer-to-go-to-religious-services-in-person-and-others-prefer-to-watch-virtually/
-
-
-
-
-
-
-
-
-

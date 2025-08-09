@@ -30,5 +30,5 @@ V. Measures of Variability
    B. Explanation of sample variance formula and its calculation in practice using Titanic data
    C. Discussion on the purpose of measures of variability in analyzing Titanic dataset
    D. Examples from the Titanic dataset illustrating variability
-   E. Guidance on how to calculate the variance manually using the Titanic dataset 
+   E. Guidance on how to calculate the variance manually using the Titanic dataset
    F. Brief summary and final thoughts on using statistical measures for Titanic data analysis.

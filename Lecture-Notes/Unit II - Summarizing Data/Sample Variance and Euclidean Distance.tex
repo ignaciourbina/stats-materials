@@ -12,7 +12,7 @@
 
 \section{The Pythagorean Theorem in Two Dimensions}
 
-Before we explore the connection between variance and distance, let’s recall the classic Pythagorean theorem. 
+Before we explore the connection between variance and distance, let’s recall the classic Pythagorean theorem.
 
 In a 2D plane, given a right triangle with legs of lengths \(a\) and \(b\), and a hypotenuse of length \(c\), the Pythagorean theorem states:
 
@@ -32,28 +32,28 @@ This theorem is the foundation of the Euclidean distance formula, which measures
   % Draw coordinate axes
   \draw[->] (-0.5,0) -- (5,0) node[right] {$x$};
   \draw[->] (0,-0.5) -- (0,5) node[above] {$y$};
-  
+
   % Define example points A and B (coordinates are chosen for illustration)
   \coordinate (A) at (1.5,3.5);
   \coordinate (B) at (4,1);
-  
+
   % Draw points A and B
   \filldraw[blue] (A) circle (2pt) node[above left] {$A(x_1,x_2)$};
   \filldraw[red] (B) circle (2pt) node[below right] {$B(y_1,y_2)$};
-  
+
   % Compute the projection point C to form a right triangle.
   % Here C has the x-coordinate of B and the y-coordinate of A.
   \coordinate (C) at (4,3.5);
-  
+
   % Draw the legs of the triangle (dashed lines)
   \draw[dashed] (A) -- (C) -- (B);
-  
+
   % Draw the hypotenuse (thick line)
   \draw[thick] (A) -- (B) node[midway, above, sloped] {$d(A,B)$};
-  
+
   % Draw a small square at point C to denote the right angle
   \draw (C) rectangle ++(-0.3,-0.3);
-  
+
   % Optionally, label the lengths of the legs (absolute differences)
   \node at ($(A)!0.5!(C)$) [above] {$|x_1-y_1|$};
   \node at ($(C)!0.5!(B)$) [right] {$|x_2-y_2|$};
@@ -94,7 +94,7 @@ Squaring both sides gives:
 The sample variance is defined as:
 
 \begin{equation}
-    s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2. \\ 
+    s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2. \\
 \end{equation}
 
 Comparing with our squared distance formula, we see that:
@@ -111,7 +111,7 @@ Now we can take the square root on both sides of the equation to get the sample 
     s = \sqrt{\frac{d^2}{n-1}} = \frac{d}{\sqrt{n-1}}  .
 \end{equation}
 
-Geometrically, this indicates that the sample standard deviation represents the typical Euclidean distance of the data points from the sample mean (after adjusting for the sample size), providing a direct measure of spread in the original units. This provides an intuitive geometric interpretation of variance: \emph{it measures the spread of points around their average in terms of squared distance}. 
+Geometrically, this indicates that the sample standard deviation represents the typical Euclidean distance of the data points from the sample mean (after adjusting for the sample size), providing a direct measure of spread in the original units. This provides an intuitive geometric interpretation of variance: \emph{it measures the spread of points around their average in terms of squared distance}.
 
 Moreover, since the sample standard deviation is the square root of the variance, it directly represents the typical Euclidean distance from the sample mean, offering an easily interpretable measure of dispersion in the same units as the data.
 

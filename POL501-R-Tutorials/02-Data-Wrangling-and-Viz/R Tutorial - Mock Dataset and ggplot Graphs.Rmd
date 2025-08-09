@@ -1,7 +1,7 @@
 ---
 title: "Create a Mock Dataframe and Plotting Graphs"
 author: "POL-501"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -49,7 +49,7 @@ mock_data <- tibble(
   opinion_7 = sample(1:7, N_sample, replace = TRUE),  # Random values for 7-point scale
   age_group = sample(c('18-29', '30-44', '45-64', '65+'), N_sample, replace = TRUE),  # Age groups
   gender = sample(c('Male', 'Female', 'Non-binary'), N_sample, replace = TRUE),  # Gender categories
-  income = runif(N_sample, min = 40, max = 120) # Annual Income Levels 
+  income = runif(N_sample, min = 40, max = 120) # Annual Income Levels
 )
 
 # Display the first few rows of the dataset
@@ -74,8 +74,8 @@ mock_data <- tibble(
 - **Key Characteristics**:
   - **Compact printing**: Tibble limits the number of rows and columns printed by default, which makes it cleaner for large datasets.
   - **Variable Handling**: Tibbles don't change variable types (e.g., converting strings to factors) unless explicitly told to do so.
-  
-- **How to Modify for Future Use**: 
+
+- **How to Modify for Future Use**:
   To change the number of rows or variables in the dataset, simply modify the arguments passed within the `tibble()` function. For example, if you need more observations, change `1000` to a larger number.
 
 #### 2. `runif()`
@@ -90,7 +90,7 @@ opinion_100 = runif(1000, min = 0, max = 100)
   - `min`: The minimum value of the generated numbers (0 in this case).
   - `max`: The maximum value of the generated numbers (100 in this case).
 
-- **How to Modify for Future Use**: 
+- **How to Modify for Future Use**:
   To change the range of the opinion scale, adjust the `min` and `max` values. For example, `runif(1000, min = 1, max = 10)` would generate values between 1 and 10.
 
 #### 3. `sample()`
@@ -107,7 +107,7 @@ gender = sample(c('Male', 'Female', 'Non-binary'), 1000, replace = TRUE)
   - `size`: The number of elements to select. In this case, we are selecting `1000` elements to match the number of observations.
   - `replace`: Logical value indicating whether sampling is done with replacement. Here, we use `replace = TRUE`, which allows repeated values (since each category can appear multiple times).
 
-- **How to Modify for Future Use**: 
+- **How to Modify for Future Use**:
   - To change the values being sampled (e.g., to use a different opinion scale), modify the `x` argument. For example, to change `opinion_7` to a 5-point scale, use `sample(1:5, 1000, replace = TRUE)`.
   - To change the categories in `age_group` or `gender`, modify the vectors being passed to the `x` argument (e.g., add more age categories or change the gender options).
 
@@ -118,7 +118,7 @@ The `set.seed()` function ensures that random number generation produces the sam
 set.seed(123)
 ```
 
-- **How to Modify for Future Use**: 
+- **How to Modify for Future Use**:
   You can change the number passed to `set.seed()` to generate different sets of random numbers. However, using the same seed will always generate the same random numbers, which is crucial if you want your analysis to be reproducible by others.
 
 
@@ -151,7 +151,7 @@ With a few modifications, we can make this histogram to look better:
 ```{r}
 # Histogram of 100-point opinion scale by age group with custom aesthetics
 ggplot(mock_data, aes(x = opinion_100)) +
-  geom_histogram(bins = 20, 
+  geom_histogram(bins = 20,
                  fill = "lightgray",          # Light gray fill color
                  color = "black",             # Black border color
                  linetype = "dashed") +       # Dashed border lines
@@ -166,7 +166,7 @@ Let's say we want to do 10 bins instead of 20, we need to modify the option `bin
 ```{r}
 # Histogram of 100-point opinion scale by age group with custom aesthetics
 ggplot(mock_data, aes(x = opinion_100)) +
-  geom_histogram(bins = 10, 
+  geom_histogram(bins = 10,
                  fill = "lightgray",          # Light gray fill color
                  color = "black",             # Black border color
                  linetype = "dashed") +       # Dashed border lines
@@ -250,7 +250,7 @@ ggplot(mock_data, aes(x = age_group, y = opinion_100, fill = age_group)) +
 Lastly, we create a scatterplot to examine the relationship between the two opinion variables.
 
 ```{r}
-# Scatterplot of income vs 100-point opinion scale 
+# Scatterplot of income vs 100-point opinion scale
 ggplot(mock_data, aes(x = opinion_100, y = opinion_7, color = age_group)) +
   geom_point(alpha = 0.6) +  # Add scatter points with some transparency
   labs(title = "Scatterplot: 100-point Opinion Scale vs 7-point Opinion Scale",

@@ -45,7 +45,7 @@
             \item Probability of getting an even number when throwing a die.  \pause
         \end{itemize}
         \item These probabilities help us understand the likelihood of events. \pause
-        \item To perform deeper statistical analysis, we need to quantify these events numerically. 
+        \item To perform deeper statistical analysis, we need to quantify these events numerically.
     \end{itemize}
 \end{frame}
 
@@ -63,7 +63,7 @@
             \item Graduate degree \pause
         \end{itemize}
         \item Instead of discrete categories, we can measure the number of years of schooling. \pause
-        \item This allows us to calculate statistics like the mean number of years of education. 
+        \item This allows us to calculate statistics like the mean number of years of education.
     \end{itemize}
 \end{frame}
 
@@ -78,7 +78,7 @@
             \item 50 = Neutral \pause
             \item 100 = Very warm or favorable \pause
         \end{itemize}
-        \item This allows us to calculate statistics like mean favorability. 
+        \item This allows us to calculate statistics like mean favorability.
     \end{itemize}
 \end{frame}
 
@@ -88,16 +88,16 @@
     \begin{itemize}
         \item We use \textbf{random variables} to numerically quantify events. \pause
         \item A random variable assigns a numerical value to each outcome in a sample space. \pause
-        
+
     \definitionbox{Random Variable $(Def.)$}{A random variable is a function that maps each outcome in the sample space $S$ to a specific numeric value.} \pause
-    
+
         \item Allows us to quantify events and analyze them numerically. \pause
         \item \textbf{In practice, we treat Random Variables as numeric variables} and manipulate them using specific algebra rules.
         \item Example: Tossing a coin, where heads are assigned a 1, and tails a 0. \pause
     \end{itemize}
 
 
-    
+
 \end{frame}
 
 % Slide 6: Types of Random Variables
@@ -125,7 +125,7 @@
         \[
         S = \{1, 2, 3, 4, 5, 6\}
         \]  \pause \vspace{-1.5em}
-        \item Define a random variable \( X \) as a function 
+        \item Define a random variable \( X \) as a function
             \[ X: S \rightarrow \{1, 2, 3, 4, 5, 6\} \]. \pause \vspace{-1.5em}
         \item \( X \) maps each outcome in the sample space to a numerical value. \pause
         \item Let $X=x$ be a specific value of $X$. Examples: \pause
@@ -144,7 +144,7 @@
         \item Define the sample space \( S \) for two dice as: \pause
         \begin{align*}
         S &= \big\{(i, j) \mid i, j \in \big\{1, 2, 3, 4, 5, 6\big\}\big\} \\
-          &= \big\{(1,1), (1,2), (1,2), \cdots, (2,1), (2,2), \cdots, (6,5), (6,6)\big\}    
+          &= \big\{(1,1), (1,2), (1,2), \cdots, (2,1), (2,2), \cdots, (6,5), (6,6)\big\}
         \end{align*}
         \pause \vspace{-1.5em}
         \item The sum of the two dice numbers can be represented by a random variable \( Z \). \pause
@@ -166,14 +166,14 @@
         \item Define the sample space \( S \) for two dice as: \pause
         \begin{align*}
         S &= \big\{(i, j) \mid i, j \in \big\{1, 2, 3, 4, 5, 6\big\}\big\} \\
-          &= \big\{(1,1), (1,2), (1,3), \cdots, (2,1), (2,2), \cdots, (6,5), (6,6)\big\}    
+          &= \big\{(1,1), (1,2), (1,3), \cdots, (2,1), (2,2), \cdots, (6,5), (6,6)\big\}
         \end{align*} \pause \vspace{-1.5em}
         \item The \myemph{total number of even dice obtained from throwing two dice} can be represented by a random variable \( V \). \pause
         \item Let $V=v$ be a specific value of $V$. Examples: \pause
         \begin{itemize}
             \item If the dice show (2, 3), then \( v = 1 + 0 = 1 \). \pause
             \item If the dice show (1, 6), then \( v = 0 + 1 = 1 \). \pause
-            \item If the dice show (4, 4), then \( v = 1 + 1 = 2 \). \pause 
+            \item If the dice show (4, 4), then \( v = 1 + 1 = 2 \). \pause
             \item If the dice show (3, 5), then \( v = 0 + 0 = 0 \). \pause
         \end{itemize}
     \end{itemize}
@@ -186,7 +186,7 @@
     \begin{itemize}
         \item Define the sample space \( S \) for throwing a coin as: \pause
         \begin{align*}
-        S = \big\{H, T\big\}    
+        S = \big\{H, T\big\}
         \end{align*} \pause \vspace{-1.5em}
         \item Define a random variable \( W \) as a function \( W: S \rightarrow \{0, 1\} \), where \( W \) represents the number of heads. \pause
         \item \( W \) maps each outcome in the sample space to the number of heads. \pause
@@ -206,7 +206,7 @@
         \begin{align*}
         S =& \big\{ (H, H, H), (H, H, T), (H, T, H), (H, T, T), (T, H, H),  \\
         & (T, H, T), (T, T, H), (T, T, T) \big\}
-        \end{align*}  
+        \end{align*}
         \vspace{-1.7em}
         \pause
         \item Define a random variable \( Y \) as a function \( Y: S \rightarrow \{0, 1, 2, 3\} \), where \( Y=y \) represents the number of heads. \pause
@@ -216,7 +216,7 @@
             \item If the coins show (H, H, T), then \( y = 2 \). \pause
             \item If the coins show (T, T, T), then \( y = 0 \). \pause
             \item If the coins show (H, H, H), then \( y = 3 \). \pause
-            \item If the coins show (T, H, T), then \( y = 1 \). 
+            \item If the coins show (T, H, T), then \( y = 1 \).
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -247,15 +247,15 @@
 \begin{frame}
     \frametitle{Definition of Probability for Discrete Random Variables}
 
-    
+
     \definitionbox{Probability for Discrete Random Variables $(Def.)$}{
     When each outcome in the sample space \( S \) is equally likely, the probability that a discrete random variable \( X \) takes the value \( x \) is given by the ratio of the number of outcomes in \( S \) where \( X = x \) to the total number of outcomes in \( S \).
-    } \pause 
+    } \pause
 
     \begin{itemize}
         \item For a discrete random variable \( X \) and a specific value \( x \): \pause
         \[
-        P(X = x) = \frac{\text{Number of favorable outcomes in which } X = x}{\text{Total number of possible outcomes}} 
+        P(X = x) = \frac{\text{Number of favorable outcomes in which } X = x}{\text{Total number of possible outcomes}}
         \] \pause \vspace{-1.0em}
         \item This is based on the classical definition of probability \pause
     \end{itemize}
@@ -287,11 +287,11 @@ Note that a \emph{discrete} random variable's probability distribution is often 
         \begin{align*}
         S =& \big\{ (H, H, H), (H, H, T), (H, T, H), (H, T, T), (T, H, H), \\\
         & (T, H, T), (T, T, H), (T, T, T) \big\}
-        \end{align*} 
+        \end{align*}
         \vspace{-1.7em}
         \pause
         \item Define random variable \( X \) as the number of heads. \pause
-        \item Probability Distribution (PMF): 
+        \item Probability Distribution (PMF):
         \begin{table}
             \centering
             \begin{tabular}{|c|c|}
@@ -332,7 +332,7 @@ Note that a \emph{discrete} random variable's probability distribution is often 
         \begin{tabular}{c|c}
             \toprule
             \( x \) & \( P(X=x) \) \\
-            \midrule \pause 
+            \midrule \pause
             0 & 0.05 \\
             1 & 0.10 \\
             2 & 0.10 \\
@@ -344,28 +344,28 @@ Note that a \emph{discrete} random variable's probability distribution is often 
             8 & 0.05 \\
             9 & 0.05 \\
             10 & 0.05 \\
-            \bottomrule 
-        \end{tabular} \pause 
+            \bottomrule
+        \end{tabular} \pause
     \end{minipage}%
     \begin{minipage}[t]{0.55\linewidth}
 
         \textbf{Probability Questions}
 
 \small
-What is the probability that  $X$ is... \newline 
-1. Greater than or equal to 8? \newline \vspace{-1.5em} \pause 
+What is the probability that  $X$ is... \newline
+1. Greater than or equal to 8? \newline \vspace{-1.5em} \pause
 \begin{align*}
-   & P(X \geq 8) = P(X=8) + P(X=9) + P(X=10) \\[0.1em]  
-   & = 0.05 + 0.05 + 0.05 = 0.15. \\[-2em] 
-\end{align*} \pause 
-2. Less than 5?  \newline \vspace{-1.5em} \pause 
-\begin{align*}  
+   & P(X \geq 8) = P(X=8) + P(X=9) + P(X=10) \\[0.1em]
+   & = 0.05 + 0.05 + 0.05 = 0.15. \\[-2em]
+\end{align*} \pause
+2. Less than 5?  \newline \vspace{-1.5em} \pause
+\begin{align*}
    & P(X < 5) = \\[0.1em]
    & = p_X(0) + p_X(1) + p_X(2) + p_X(3) + p_X(4) \\[0.1em]
-   & = 0.05 + 0.10 + 0.10 + 0.15 + 0.10 = 0.50. \\[-2em]  
-\end{align*} \pause 
-3. Between 3 and 7 inclusive?  \newline \vspace{-1.5em} \pause 
-\begin{align*}  
+   & = 0.05 + 0.10 + 0.10 + 0.15 + 0.10 = 0.50. \\[-2em]
+\end{align*} \pause
+3. Between 3 and 7 inclusive?  \newline \vspace{-1.5em} \pause
+\begin{align*}
    & P(3 \leq X \leq 7) = P(X=3) + P(4) + \cdots + P(7) \\
    & = 0.15 + 0.10 + 0.15 + 0.10 + 0.10 = 0.60.
 \end{align*}
@@ -441,7 +441,7 @@ What is the probability that  $X$ is... \newline
             P(X = 4) = \frac{1}{6}
             \]
         \end{itemize}
-        
+
         \item \textbf{Composite Event:} \pause
         \begin{itemize}
             \item Probability of rolling an even number (2, 4, or 6): \pause
@@ -449,7 +449,7 @@ What is the probability that  $X$ is... \newline
             P(x \text{ is even}) = P(X = 2) + P(X = 4) + P(X = 6) = \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{3}{6}
             \]
         \end{itemize}
-        
+
         \item \textbf{Multiple Disjoint Events:} \pause
         \begin{itemize}
             \item Probability of rolling a number less than 4 (1, 2, or 3): \pause
@@ -475,7 +475,7 @@ What is the probability that  $X$ is... \newline
         \item The Bernoulli distribution models a single trial with two outcomes: success (1) and failure (0). \pause
         \item For a random variable \( X \) with success probability \( p \): \pause
         \[
-        p_X(x) = \begin{cases} 
+        p_X(x) = \begin{cases}
         p & \text{if } x = 1 \\
         1 - p & \text{if } x = 0
         \end{cases}
@@ -494,7 +494,7 @@ What is the probability that  $X$ is... \newline
         \] \pause
         \item Let \( X \) be 1 if heads (H) and 0 if tails (T). If the coin is fair, the PMF is: \pause
         \[
-        p_X(x) = \begin{cases} 
+        p_X(x) = \begin{cases}
         0.5 & \text{if } x = 1 \\
         0.5 & \text{if } x = 0
         \end{cases}
@@ -512,7 +512,7 @@ What is the probability that  $X$ is... \newline
         \item According to 2020 US Census data, the probability \( p \) that a randomly selected person identifies as Latino/a/x is 0.189. \pause
         \item We can represent $X$ as a Bernoulli random variable : \pause
         \[
-        p_X(x) = \begin{cases} 
+        p_X(x) = \begin{cases}
         0.189 & \text{if } x = 1 \\
         0.811 & \text{if } x = 0
         \end{cases}
@@ -580,7 +580,7 @@ What is the probability that  $X$ is... \newline
     \begin{itemize}
         \setlength{\itemsep}{0pt} % Adjusts vertical spacing between items
         \item Define \( X \) as the number of Latinos in a sample of 10. This follows a binomial distribution: \( X \sim \text{Binomial}(N=10, p=0.189) \). \pause
-        
+
         \item \textbf{Probability of at least 1 Latino:} \pause
         \[
         P(X \geq 1) = 1 - P(X = 0)
@@ -588,7 +588,7 @@ What is the probability that  $X$ is... \newline
         \[
         P(X \geq 1) = 1 - 0.1231 \approx 0.8769
         \]
-        
+
         \item \textbf{Probability of at least 3 Latinos:} \pause
         \[
         P(X \geq 3) = 1 - P(X \leq 2)
@@ -596,7 +596,7 @@ What is the probability that  $X$ is... \newline
         \[
         P(X \geq 3) = 1 - 0.7107 \approx 0.2893
         \]
-        
+
         \item These probabilities show that there is an 87.69\% chance of having at least one Latino in the sample and a 28.93\% chance of having at least three.
     \end{itemize}
 \end{frame}
@@ -644,7 +644,7 @@ What is the probability that  $X$ is... \newline
         \item Mathematically, this is formally expressed using definite integrals:
         \[
         P(X\in [a,b]) = P(a \leq X \leq b) = \int_{a}^{b} f_X(x) \, \cdot dx
-        \] 
+        \]
     \end{itemize}
 \end{frame}
 
@@ -781,13 +781,13 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
             \item Height = $0.5 - 0 = 0.5$ \pause
             \item Area = $Base \times Height  = 0.5\times 0.5 = 0.25$
         \end{itemize}
-        \item Small triangle area: 
+        \item Small triangle area:
         \begin{itemize}
             \item Base = $1 - 0.5 = 0.5$ \pause
             \item Height = $1 - 0.5 = 0.5$ \pause
             \item Area = $\dfrac{1}{2}\times Base \times Height  = \dfrac{1}{2}\times 0.5 \times 0.5= 0.125$
         \end{itemize}
-        
+
         \item Thus,
         \[
         P(0.5 \leq X \leq 1) = 0.25 + 0.125 = 0.375
@@ -827,14 +827,14 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 
 % Slide: Area Calculation of Triangle and Remarks
 
- 
+
 
 \begin{frame}
 \frametitle{Area Under $f(x)=3x$}
     \begin{itemize}
-        \item The area under the line \(3x\) between \(x=0\) and \(x=1\) forms a triangle. 
-        \item The base of the triangle is \(1-0 = 1\). 
-        \item The height of the triangle is \(3 \times 1 = 3\). 
+        \item The area under the line \(3x\) between \(x=0\) and \(x=1\) forms a triangle.
+        \item The base of the triangle is \(1-0 = 1\).
+        \item The height of the triangle is \(3 \times 1 = 3\).
         \item Using the formula for the area of a triangle:  \pause
         \[
         \text{Area} = \frac{1}{2} \times \text{base} \times \text{height} = \frac{1}{2} \times 1 \times 3 = \frac{3}{2}
@@ -842,7 +842,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
         \item This means:
         \[
         \int_{0}^{1} 3x \, \cdot dx = \frac{3}{2}
-        \] 
+        \]
     \end{itemize}
 \end{frame}
 
@@ -865,9 +865,9 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \begin{frame}
 \frametitle{Example 2}
     \begin{itemize}
-        \item Define a random variable \(X\) that takes on values from 0 to 2. \pause 
+        \item Define a random variable \(X\) that takes on values from 0 to 2. \pause
         \item Suppose the PDF of \(X\) is \(f_X(x) = \frac{1}{2}x\) for \(0 \leq x \leq 2\). \pause
-        \item Graph of \(f_X(x) = \frac{1}{2}x\) from 0 to 2: \pause 
+        \item Graph of \(f_X(x) = \frac{1}{2}x\) from 0 to 2: \pause
     \end{itemize}
 
     \begin{tikzpicture}
@@ -901,8 +901,8 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
     \begin{itemize}
         \item The area under the curve \(f_X(x) = \frac{1}{2}x\) from \(x=0\) to \(x=2\) forms a right triangle.
         \item The base of the triangle is \(2-0 = 2\).
-        \item The height of the triangle is \(\frac{1}{2} \times 2 = 1\). \pause 
-        \item Using the formula for the area of a triangle: \pause 
+        \item The height of the triangle is \(\frac{1}{2} \times 2 = 1\). \pause
+        \item Using the formula for the area of a triangle: \pause
         \[
         \text{Area} = \frac{1}{2} \times \text{base} \times \text{height} = \frac{1}{2} \times 2 \times 1 = 1
         \] \pause
@@ -914,7 +914,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \begin{frame}
 \frametitle{Calculating Probability for an Interval}
     \begin{itemize}
-        \item To calculate the probability that \(X\) lies between 0.5 and 1.5: \pause 
+        \item To calculate the probability that \(X\) lies between 0.5 and 1.5: \pause
         \item We use one rectangle and one triangle to represent the area. \pause
     \end{itemize}
 
@@ -956,26 +956,26 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
         \node at (axis cs:-0.1,0.75) [anchor=east] {$0.75$};
         \end{axis}
     \end{tikzpicture}
-    
+
 \end{frame}
 
 % Slide: Calculating the Probability for an Interval
 \begin{frame}
 \frametitle{Calculating Probability for an Interval}
- 
+
     \begin{itemize}
         \item The area of the rectangle (base = 1.5 - 0.5 = 1, height = 0.25):
         \[
         \text{Area} = \text{base} \times \text{height} = 1 \times 0.25 = 0.25
-        \] \pause 
+        \] \pause
         \item The area of the triangle (base = 1.5 - 0.5 = 1, height = 0.75 - 0.25 = 0.5):
         \[
         \text{Area} = \frac{1}{2} \times \text{base} \times \text{height} = \frac{1}{2} \times 1 \times 0.5 = 0.25
-        \] \pause 
+        \] \pause
         \item Total area from 0.5 to 1.5:
         \[
         0.25 + 0.25 = 0.5
-        \] \pause 
+        \] \pause
         \item This means:
         \[
         P(0.5 \leq X \leq 1.5) = \int_{0.5}^{1.5} \frac{1}{2}x \, \cdot dx = 0.5
@@ -990,7 +990,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
         \item Consider the uniform distribution on the interval [0, 1]. \pause
         \item The PDF is: \pause
         \[
-        f_X(x) = \begin{cases} 
+        f_X(x) = \begin{cases}
         1 & \text{if } 0 \leq x \leq 1 \\
         0 & \text{otherwise}
         \end{cases}
@@ -1036,7 +1036,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
         P(0.75 < X) = 1 \times (1 - 0.75) = 0.25
         \]
     \end{itemize}
-    
+
     \begin{tikzpicture}
         \begin{axis}[
             axis lines = left,
@@ -1117,19 +1117,19 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \centering
 \begin{tikzpicture}
     \begin{axis}[
-        domain=-4:4, 
-        samples=100, 
-        axis lines=middle, 
-        xlabel=$x$, 
+        domain=-4:4,
+        samples=100,
+        axis lines=middle,
+        xlabel=$x$,
         ylabel={$f_X(x)$},
         every axis y label/.style={at=(current axis.above origin),anchor=south},
         every axis x label/.style={at=(current axis.right of origin),anchor=west},
-        height=7cm, 
+        height=7cm,
         width=12cm,
         xtick={-4,-3,...,4},
         ytick=\empty,
-        enlargelimits=false, 
-        clip=false, 
+        enlargelimits=false,
+        clip=false,
         axis on top,
         grid = major,
         grid style={dashed, gray!30}
@@ -1152,9 +1152,9 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \begin{tikzpicture}
     \begin{axis}[
         domain=-7:7, % Expanded x-axis range
-        samples=100, 
-        axis lines=middle, 
-        xlabel=$x$, 
+        samples=100,
+        axis lines=middle,
+        xlabel=$x$,
         ylabel={$f_X(x)$},
         every axis y label/.style={at=(current axis.above origin),anchor=south},
         every axis x label/.style={at=(current axis.right of origin),anchor=west},
@@ -1162,8 +1162,8 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
         width=\linewidth, % Fit the width of the slide
         xtick={-7,-6,...,7},
         ytick=\empty,
-        enlargelimits=false, 
-        clip=false, 
+        enlargelimits=false,
+        clip=false,
         axis on top,
         grid = major,
         grid style={dashed, gray!30},
@@ -1204,9 +1204,9 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \begin{tikzpicture}
     \begin{axis}[
         domain=-7:7, % Suitable range to show all distributions
-        samples=100, 
-        axis lines=middle, 
-        xlabel=$x$, 
+        samples=100,
+        axis lines=middle,
+        xlabel=$x$,
         ylabel={$f_X(x)$},
         every axis y label/.style={at=(current axis.above origin),anchor=south},
         every axis x label/.style={at=(current axis.right of origin),anchor=west},
@@ -1214,8 +1214,8 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
         width=\linewidth, % Fit the width of the slide
         xtick={-7,-6,...,7},
         ytick=\empty,
-        enlargelimits=false, 
-        clip=false, 
+        enlargelimits=false,
+        clip=false,
         axis on top,
         grid = major,
         grid style={dashed, gray!30},
@@ -1298,7 +1298,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \column{0.5\textwidth}
 \textbf{Continuous Random Variable (RV)}
 \begin{itemize}
-    \item Definition: 
+    \item Definition:
   \pause
 \end{itemize}
 \small{
@@ -1307,7 +1307,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \]}
   \pause
 \begin{itemize}
-    \item $f_X(t)$ is the probability density function (PDF) of $X$. 
+    \item $f_X(t)$ is the probability density function (PDF) of $X$.
     \item For here and after we will denote $F_X(x)$ by $CDF_X(x)$.
 \end{itemize}
 
@@ -1333,7 +1333,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \begin{tikzpicture}[scale=1] % Adjust scale if needed
   % Draw PMF and CDF
   \begin{axis}[
-    ybar, 
+    ybar,
     bar width=15pt,
     xlabel={$x$},
     ylabel={PMF and CDF},
@@ -1352,12 +1352,12 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \end{tikzpicture}
 
 \end{columns}
-    
+
 \end{frame}
 
 \begin{frame}
 \frametitle{Probability Rules Involving CDFs}
-\small 
+\small
 \begin{itemize}
   \setlength{\itemsep}{-10pt} % Adjust the value as needed
   \item We know that every PMF satisfies:
@@ -1377,7 +1377,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
   \pause
   \item Therefore:
   \[
-  \bm{ \textcolor{moonstoneblue!170}{P(a< X) = 1 - CDF_X(a)}}  
+  \bm{ \textcolor{moonstoneblue!170}{P(a< X) = 1 - CDF_X(a)}}
   \]
 \end{itemize}
 
@@ -1386,7 +1386,7 @@ A function $f_X(x)$ is a valid probability density function (PDF) of a continuou
 \begin{frame}
 \frametitle{Probability Rules with CDFs and Intervals}
 
-The previous derivation (proof) was shown \emph{just as an illustration}. Proceeding similarly, one can show the following rules apply. 
+The previous derivation (proof) was shown \emph{just as an illustration}. Proceeding similarly, one can show the following rules apply.
 \vspace{0.8em}
   \pause
 
@@ -1401,7 +1401,7 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
 \end{itemize}
 \vspace{0.7em}
   \pause
-\footnotesize 
+\footnotesize
 \textbf{Note:} These rules apply to both discrete and continuous random variables. \textcolor{moonstoneblue!170}{For continuous random variables, the symbols \(>\) and \(<\), as well as \(\geq\) and \(\leq\), are used interchangeably because there is no practical distinction between them}.
 
 \end{frame}
@@ -1426,19 +1426,19 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
 \centering
 \begin{tikzpicture}
     \begin{axis}[
-        domain=-4:4, 
-        samples=100, 
-        axis lines=middle, 
-        xlabel=$x$, 
+        domain=-4:4,
+        samples=100,
+        axis lines=middle,
+        xlabel=$x$,
         ylabel={$f_X(x)$},
         every axis y label/.style={at=(current axis.above origin),anchor=south},
         every axis x label/.style={at=(current axis.right of origin),anchor=west},
-        height=1\textwidth, 
+        height=1\textwidth,
         width=1.2\textwidth,
         xtick={-4,-3,...,4},
         ytick=\empty,
-        enlargelimits=false, 
-        clip=false, 
+        enlargelimits=false,
+        clip=false,
         axis on top,
         grid = major,
         grid style={dashed, gray!30}
@@ -1450,10 +1450,10 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
         ] {1/sqrt(2*pi) * exp(-x^2 / 2)};
         \node[below] at (axis cs: 0,0) {$0$};
       % Shade under curve left
-  \fill[blue, domain=-3.5:-1, variable=\x] 
-    (-3.5, 0) 
-    -- plot(\x,{exp(-\x*\x/2)/sqrt(2*pi)}) 
-    -- (-1, 0) 
+  \fill[blue, domain=-3.5:-1, variable=\x]
+    (-3.5, 0)
+    -- plot(\x,{exp(-\x*\x/2)/sqrt(2*pi)})
+    -- (-1, 0)
     -- cycle;
   % Labels for areas
   \node at (-3,0.2) {\textcolor{blue}{$CDF_X(-1)$}};
@@ -1477,19 +1477,19 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
 \centering
 \begin{tikzpicture}
     \begin{axis}[
-        domain=-4:4, 
-        samples=100, 
-        axis lines=middle, 
-        xlabel=$x$, 
+        domain=-4:4,
+        samples=100,
+        axis lines=middle,
+        xlabel=$x$,
         ylabel={$f_X(x)$},
         every axis y label/.style={at=(current axis.above origin),anchor=south},
         every axis x label/.style={at=(current axis.right of origin),anchor=west},
-        height=1\textwidth, 
+        height=1\textwidth,
         width=1.2\textwidth,
         xtick={-4,-3,...,4},
         ytick=\empty,
-        enlargelimits=false, 
-        clip=false, 
+        enlargelimits=false,
+        clip=false,
         axis on top,
         grid = major,
         grid style={dashed, gray!30}
@@ -1501,16 +1501,16 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
         ] {1/sqrt(2*pi) * exp(-x^2 / 2)};
         \node[below] at (axis cs: 0,0) {$0$};
       % Shade under curve left
-  \fill[blue, domain=-3.5:-2, variable=\x] 
-    (-3.5, 0) 
-    -- plot(\x,{exp(-\x*\x/2)/sqrt(2*pi)}) 
-    -- (-2, 0) 
+  \fill[blue, domain=-3.5:-2, variable=\x]
+    (-3.5, 0)
+    -- plot(\x,{exp(-\x*\x/2)/sqrt(2*pi)})
+    -- (-2, 0)
     -- cycle;
   % Shade under curve right
-  \fill[blue, domain=2:3.5, variable=\x] 
-    (2, 0) 
-    -- plot(\x,{exp(-\x*\x/2)/sqrt(2*pi)}) 
-    -- (3.5, 0) 
+  \fill[blue, domain=2:3.5, variable=\x]
+    (2, 0)
+    -- plot(\x,{exp(-\x*\x/2)/sqrt(2*pi)})
+    -- (3.5, 0)
     -- cycle;
   % Labels for areas
   \node at (-3,0.05) {\textcolor{blue}{$\alpha_1$}};
@@ -1541,10 +1541,10 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
 \end{columns}
 
 \begin{itemize}
-    \item e.g., if $x$ is a Std. Normal, then: 
+    \item e.g., if $x$ is a Std. Normal, then:
     $$0.023 = \alpha_1 = CDF_X(-2) = 1-CDF_X(2) = \alpha_2 = 0.023$$
 \end{itemize}
-\small 
+\small
 
 \end{frame}
 
@@ -1584,7 +1584,7 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
     ymin=0, ymax=0.3,
     ylabel={$p_X(x)$},
     xlabel={Values of X},
-    height=0.9\textwidth, 
+    height=0.9\textwidth,
     width=1\textwidth
 ]
 \addplot[fill=gray] coordinates {(1,0.1) (2,0.15) (3,0.25) (4,0.25) (5,0.15) (6,0.1)};
@@ -1601,7 +1601,7 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
 
 
 \begin{frame}{CDF of the Standard Normal}
-    - Teach how to compute probabilities with the standard normal    
+    - Teach how to compute probabilities with the standard normal
 \end{frame}
 
 
@@ -1610,7 +1610,7 @@ The previous derivation (proof) was shown \emph{just as an illustration}. Procee
 Changes:
 - Remove the useless slides on CDF(-1)
 - Update slides: Do a more weird PMF with 7 values. Actually, let's do a poisson. Do not show the PMF values, just CDF.
-- Add a slide using the probability rules using CDFs to compute probabilities given the CDF table. 
+- Add a slide using the probability rules using CDFs to compute probabilities given the CDF table.
 
 add to brightspace:
 https://www.tiktok.com/@veritasium/video/7352561248824806698
@@ -1623,4 +1623,3 @@ https://onlinestatbook.com/2/normal_distribution/history_normal.html
 https://medium.com/@will.a.sundstrom/the-origins-of-the-normal-distribution-f64e1575de29
 
 https://www.tandfonline.com/doi/abs/10.1080/0025570X.2006.11953386
-

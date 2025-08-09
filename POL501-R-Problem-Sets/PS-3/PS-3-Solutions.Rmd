@@ -2,7 +2,7 @@
 title: "POL501 - Solutions to Problem Set 3"
 author: "Introduction to Statistics"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
-output: 
+output:
   word_document:
     toc: true
     toc_depth: 2
@@ -22,7 +22,7 @@ library(BSDA)
 
 # Preliminary Setup.
 
-## Demonstration of the function `confidence_interval` to compute confidence intervals 
+## Demonstration of the function `confidence_interval` to compute confidence intervals
 
 First, we will start by defining a user defined function that will help us compute confidence intervals.
 
@@ -32,7 +32,7 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
 
   # Get the data column
   data_column <- data[[var_name]]
-  
+
   # Check if inputs (method, var_name) are valid
   if (!(method %in% c("t", "z"))) {
     stop("Method must be either 't' or 'z'.")
@@ -40,16 +40,16 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
   if (!(var_name %in% colnames(data)) ) {
     stop("var_name must a string value of one of the columns in the df.")
   }
-  
+
   # Calculate sample statistics
   sample_mean <- mean(data_column, na.rm = TRUE)
   sample_sd <- sd(data_column, na.rm = TRUE)
   n <- length(na.omit(data_column))
   standard_error <- sample_sd / sqrt(n)
-  
+
   # Set alpha for confidence level
   alpha <- 1 - confidence_level
-  
+
   # Calculate the critical value based on the selected method
   if (method == "t") {
     # t-distribution critical value
@@ -58,14 +58,14 @@ confidence_interval <- function(data, var_name, confidence_level = 0.95, method 
     # z-distribution critical value
     critical_value <- qnorm(1 - alpha / 2)
   }
-  
+
   # Calculate margin of error (MOE)
   margin_of_error <- critical_value * standard_error
-  
+
   # Calculate confidence interval bounds
   lower_bound <- sample_mean - margin_of_error
   upper_bound <- sample_mean + margin_of_error
-  
+
   # Prepare output as a named vector with dynamic variable name
   output <- c(
     `Sample Mean of` = {var_name},
@@ -149,7 +149,7 @@ print(merge_columns)
 # Display using a table in the word doc - using `kable` and `data.frame`
 kable(data.frame(merge_columns))
 ```
- 
+
 ## Demonstration of the command `z.test` to run hypothesis tests
 
 The `z.test` function is used to test the null hypothesis that the mean of a sample is equal to a hypothesized population mean. This test is appropriate when the sample size is large (typically n > 30) or the population standard deviation is known and the underlying random variable follows a normal distribution. We can run the test to determine if there is evidence to suggest that the sample mean differs from a specified value.
@@ -201,9 +201,9 @@ setwd("F:/Dropbox/PhD SBU/06_Teaching/00_POL-501/Problem Sets/PS-3")
 ## Confirm the working directory
 getwd()
 ```
-**Important**: 
+**Important**:
 
-- You must place this RMD file in the same folder in which you have the data. 
+- You must place this RMD file in the same folder in which you have the data.
 
 - Then, you will be able to load the dataset to memory. The name of the dataset as an R object is `df_clean`.
 
@@ -224,7 +224,7 @@ print(crimesafe_CI_z_95)
 ```
 
 **Explanation/Justification:**
-The confidence interval for CRIMESAFE at a 95% confidence level provides a range within which we can be 95% confident that the true mean perception of community safety falls. This interval helps estimate the general safety perception across the population based on our sample data. 
+The confidence interval for CRIMESAFE at a 95% confidence level provides a range within which we can be 95% confident that the true mean perception of community safety falls. This interval helps estimate the general safety perception across the population based on our sample data.
 
 From the variable's codebook we know that:
 
@@ -239,7 +239,7 @@ CRIMESAFE. How would you describe the area where you live, in terms of crime?
 Hence, we can conclude that the sample mean of 2.575, with a 95% confidence interval from 2.552 to 2.598, suggests that the general perception of community safety among respondents falls between "Very safe" (2) and "Somewhat safe" (3). Given that the mean is closer to 2, it indicates that respondents, on average, lean toward feeling that their area is relatively safe, though not without some concerns.
 
 This interval provides a reliable estimate of the population's perception of safety based on the sample. The small margin of error (MOE = 0.023) and narrow confidence interval imply that we have a precise estimate, giving us confidence in the stability of this perception across the surveyed population.
-  
+
 ## Answer to (1.b)
 ```{r, echo=TRUE}
 # Question 1.b: using the function `confidence_interval` compute the mean of `CRIMESAFE` using a 99% confidence level. Explain any differences you find from your answer in 1.a
@@ -251,13 +251,13 @@ print(crimesafe_CI_z_99)
 
 **Explanation/Justification:**
   (your justification goes here)
-  
+
 ## Answer to (1.c)
 ```{r, echo=TRUE}
 # Question 1.c: Using the `dyplr` command 'filter' create one data frame including a subsample for the responses of democrats, and another for republicans.
 
 df_dems <- df_clean %>% filter(PARTY == 2) #  "Democrat" == 2
-df_rep <- df_clean %>% filter(PARTY == 1) # "Republican" == 1 
+df_rep <- df_clean %>% filter(PARTY == 1) # "Republican" == 1
 
 ```
 
@@ -266,7 +266,7 @@ df_rep <- df_clean %>% filter(PARTY == 1) # "Republican" == 1
 
 ## Answer to (1.d)
 ```{r, echo=TRUE}
-# Question 1.d: Compute the sample mean for `CRIMESAFE` and 95% confidence intervals separately for the democrats subsample and the republican subsample 
+# Question 1.d: Compute the sample mean for `CRIMESAFE` and 95% confidence intervals separately for the democrats subsample and the republican subsample
 
 crimesafe_CI_z_95_dems <- confidence_interval(data = df_dems, var_name='CRIMESAFE', confidence_level = 0.95, method = "z")
 cat('\nResults for Democrats:\n')
@@ -283,13 +283,13 @@ print(crimesafe_CI_z_95_reps)
   (your justification goes here)
 
 
-## Answer to (1.e) - After completing (1.d) you just need to run this chunk and interpret the results. Your job here is the interpreation and explanaition. 
+## Answer to (1.e) - After completing (1.d) you just need to run this chunk and interpret the results. Your job here is the interpreation and explanaition.
 ```{r, echo=TRUE}
 # Question 1.e: Create one dataframe in which the first row includes the results of (1.d) for democrats and the second row for republican subsamples. Then, plot the results. Finally (and most importantly), interpret the results. Do the confidence intervals overlap, if so, what could this suggest?
 
 # Extract the values from the result to use in the plot
 combined_crimesafe_CI_95 <- cbind(c(Group='Democrats',
-                                    crimesafe_CI_z_95_dems), 
+                                    crimesafe_CI_z_95_dems),
                                   c(Group='Republicans',
                                     crimesafe_CI_z_95_reps))
 
@@ -314,7 +314,7 @@ ggplot(df_combined_CI, aes(x = Group, y = Estimate)) +
     x = "Political Affiliation",
     y = "Perception of Community Safety (CRIMESAFE)"
   ) +
-  theme_minimal() + 
+  theme_minimal() +
   ylim(2.4, 2.7)  # Set the y-axis limits here
 
 
@@ -322,7 +322,7 @@ ggplot(df_combined_CI, aes(x = Group, y = Estimate)) +
 
 **Explanation/Justification:**
   (your answer goes here)
-  
+
 
 ___
 # Question 2
@@ -341,7 +341,7 @@ df_clean <- df_clean %>%
   )
 
 df_dems <- df_clean %>% filter(PARTY == 2) #  "Democrat" == 2
-df_rep <- df_clean %>% filter(PARTY == 1) # "Republican" == 1 
+df_rep <- df_clean %>% filter(PARTY == 1) # "Republican" == 1
 
 # Describe the mean of the new variable
 mean(df_clean$notsafe_binary)
@@ -358,7 +358,7 @@ mean(df_rep$notsafe_binary)
 
   (your answer and interpretation of results goes here)
 
-## Answer to (2.b) - 
+## Answer to (2.b) -
 ```{r, echo=TRUE, eval=FALSE}
 # Question 2.b: Using the subsample for democrats, and the command z.test run a hypothesis test with 5 significance level (aka, 95% confidence level) with null hypothesis establishing that the true proportion for democrats that say their community is 'not too safe' or 'not at all safe' is diffeent than the sample propoortion estimate you got from the subsample of republicans.
 
@@ -367,7 +367,7 @@ n_sample_size <- nrow(df_dems)
 
 # Using `prop_null_hypothesis` and `n_sample_size` and `sqrt()` replace with the appropiate formula:
 standard_error_null_hypot <- 'Replace with the formula VALUE FOR THE TEST'
-  
+
 # Run the z-test on the age data to test if the mean is significantly different from the sample proportion for republicans
 z_test_result <- z.test(
   x = df_dems$CRIMESAFE,
@@ -386,7 +386,7 @@ print(z_test_result)
   (your answer and interpretation of results goes here)
 
 
-## Answer to (2.c) - 
+## Answer to (2.c) -
 ```{r, echo=TRUE, eval=FALSE}
 # Question 2.c: Using the subsample for republicans, and the command z.test run a hypothesis test with 1 significance level (aka, 99% confidence level) with null hypothesis establishing that the true proportion for republicans that say their community is 'not too safe' or 'not at all safe' is diffeent than the sample propoortion estimate you got from the subsample of democrats
 
@@ -395,7 +395,7 @@ n_sample_size <- nrow(df_dems)
 
 # Using `prop_null_hypothesis` and `n_sample_size_dems` and `sqrt()` replace with the appropiate formula:
 standard_error_null_hypot <- 'Replace with the formula VALUE FOR THE TEST'
-  
+
 # Run the z-test on the age data to test if the mean is significantly different from the sample proportion for republicans
 z_test_result <- z.test(
   x = df_dems$CRIMESAFE,
@@ -412,6 +412,3 @@ print(z_test_result)
 **Explanation/Justification:**
 
   (your answer and interpretation of results goes here)
-
-
-

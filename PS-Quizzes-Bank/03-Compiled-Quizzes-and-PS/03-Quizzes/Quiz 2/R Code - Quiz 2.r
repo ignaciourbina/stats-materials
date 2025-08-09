@@ -34,8 +34,8 @@ for(i in seq_along(bin_counts)) {
 
 # Prepare data for plotting:
 hist_df <- data.frame(
-  bin_lower = bins[-length(bins)], 
-  bin_upper = bins[-1], 
+  bin_lower = bins[-length(bins)],
+  bin_upper = bins[-1],
   count = bin_counts
 )
 
@@ -126,7 +126,7 @@ ggplot(df, aes(x = Value, fill = Sample)) +
   labs(x = "Scaled Value (0-100)", y = "Frequency", title = "Histograms of Samples") +
   coord_cartesian(xlim = c(0, 100)) +
   theme_minimal() +
-  theme(legend.position = "none") + 
+  theme(legend.position = "none") +
   theme(aspect.ratio = 9 / 16)  # Height / Width
 
 

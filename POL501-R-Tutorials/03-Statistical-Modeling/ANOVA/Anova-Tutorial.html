@@ -391,9 +391,9 @@ anova_result &lt;- aov(Value ~ Group, data = data)
 
 # Print ANOVA summary
 summary(anova_result)</code></pre>
-<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)
 ## Group        2   1627   813.6    40.4 3.89e-13 ***
-## Residuals   87   1752    20.1                     
+## Residuals   87   1752    20.1
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div id="interpretation" class="section level3">
@@ -451,9 +451,9 @@ anova_result_lecture &lt;- aov(Score ~ Lecture, data = data_lecture)
 
 # Print ANOVA summary
 summary(anova_result_lecture)</code></pre>
-<pre><code>##              Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+<pre><code>##              Df Sum Sq Mean Sq F value  Pr(&gt;F)
 ## Lecture       2   1990   995.2   6.019 0.00301 **
-## Residuals   161  26619   165.3                   
+## Residuals   161  26619   165.3
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <hr />
@@ -472,15 +472,15 @@ pairwise_result &lt;- pairwise.t.test(
 
 # Print pairwise test results
 pairwise_result</code></pre>
-<pre><code>## 
-##  Pairwise comparisons using t tests with pooled SD 
-## 
-## data:  data_lecture$Score and data_lecture$Lecture 
-## 
-##   A      B     
-## B 1.0000 -     
+<pre><code>##
+##  Pairwise comparisons using t tests with pooled SD
+##
+## data:  data_lecture$Score and data_lecture$Lecture
+##
+##   A      B
+## B 1.0000 -
 ## C 0.0045 0.0188
-## 
+##
 ## P value adjustment method: bonferroni</code></pre>
 <div id="interpretation-1" class="section level3">
 <h3>Interpretation</h3>
@@ -627,9 +627,9 @@ anova_result_bernoulli &lt;- aov(Success ~ Group, data = data_bernoulli)
 
 # Print ANOVA summary
 summary(anova_result_bernoulli)</code></pre>
-<pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+<pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)
 ## Group         2   8.82   4.410   19.79 8.54e-09 ***
-## Residuals   297  66.18   0.223                     
+## Residuals   297  66.18   0.223
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -653,15 +653,15 @@ pairwise_result_bernoulli &lt;- pairwise.t.test(
 
 # Print pairwise test results
 pairwise_result_bernoulli</code></pre>
-<pre><code>## 
-##  Pairwise comparisons using t tests with pooled SD 
-## 
-## data:  data_bernoulli$Success and data_bernoulli$Group 
-## 
-##   A       B     
-## B 0.0055  -     
+<pre><code>##
+##  Pairwise comparisons using t tests with pooled SD
+##
+## data:  data_bernoulli$Success and data_bernoulli$Group
+##
+##   A       B
+## B 0.0055  -
 ## C 3.4e-09 0.0055
-## 
+##
 ## P value adjustment method: bonferroni</code></pre>
 <hr />
 </div>

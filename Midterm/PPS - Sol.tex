@@ -40,12 +40,12 @@
 
 \begin{enumerate}
 \item \textbf{Measures of Central Tendency:}\begin{itemize}
-\item Mean: $\sum x_i / n = 54/ 18 = 3.0$. 
+\item Mean: $\sum x_i / n = 54/ 18 = 3.0$.
 \item Median: $(X_{(18/2)}+X_{(18/2+1)})/2=(X_{(9)}+X_{(10)})/2=(2+3)/2=2.5$
 \item Mode: 1 (the value with the highest absolute frequency)
-\item Interpretation: The average student in the sample spends three hours discussing politics with friends. The mean is higher than the median, but not by a significantly large amount. This suggest some degree of right-skewness in the distribution. We can also see this by looking at the mode, since the mode at 1 indicates a concentration at the lower end. Given there is some skweness, one could argue that the median should be preferred over the mean as a measure of central tendency. 
+\item Interpretation: The average student in the sample spends three hours discussing politics with friends. The mean is higher than the median, but not by a significantly large amount. This suggest some degree of right-skewness in the distribution. We can also see this by looking at the mode, since the mode at 1 indicates a concentration at the lower end. Given there is some skweness, one could argue that the median should be preferred over the mean as a measure of central tendency.
 \end{itemize}
-\item \textbf{Measures of Spread:}  
+\item \textbf{Measures of Spread:}
 \begin{itemize}
     \item Range: $\max(x_i)-\min(x_i)=7-1=6$
     \item Interquartile Range (IQR): $IQR=Q_3-Q_1=4-1=3$. The distance between the first quartile and the third is equal to 3 units (3 hours of discussions).
@@ -58,13 +58,13 @@
 
 \end{itemize}
 
-\item \textbf{Skewness and Outliers:}  
+\item \textbf{Skewness and Outliers:}
 \begin{itemize}
     \item Skewness: The distribution is right-skewed since the mean is greater than the median.
     \item Outliers: No extreme outliers were detected based on the 1.5 * IQR rule. In other words, there are no $x_i$ such that $x_i\geq Q_3+1.5IQR = 8.5$ or $x_i\leq Q_1 - 1.5IQR = -3.5$.
 \end{itemize}
 
-\item \textbf{Impact of New Data (Adding 15):}  
+\item \textbf{Impact of New Data (Adding 15):}
 \begin{itemize}
     \item New Mean: The mean will increase significantly because it is sensitive to extreme values. Adding 15, a value much higher than the rest of the data, pulls the average upward.
     \item New Median: The median will either remain the same or increase slightly, depending on where the new data point falls relative to the middle of the distribution. Since the median only depends on the middle-ranked values, one extreme value does not drastically affect it.
@@ -93,7 +93,7 @@
     \item \textbf{Question B:} \\
     \textbf{Solution:} Let \( E \) be the event that a student participates in at least one extracurricular activity. The probability that a randomly selected student from each school participates is:
     \[
-    P(E | A) = \frac{P(A \cap E)}{P(A)} = \frac{500}{1200} = 0.4167, \quad 
+    P(E | A) = \frac{P(A \cap E)}{P(A)} = \frac{500}{1200} = 0.4167, \quad
     P(E | B) =  \frac{P(B \cap E)}{P(B)} = \frac{400}{800} = 0.50
     \]
     Since \( P(E | B) > P(E | A) \), a randomly selected student from School B is more likely to participate in extracurricular activities than one from School A. Thus, the provided statement is \textbf{False}.
@@ -201,7 +201,7 @@
     P(M) = 1 - 0.90 = 0.10
     \]
     Thus, the probability that a randomly selected vote is miscounted is 0.10.
-    
+
     \item \textbf{Question C:} \\
     \textbf{Solution:} We use the \textbf{law of total probability} to determine the probability that a vote was truly cast for Candidate \( A \). Since a vote for \( A \) could have been either correctly counted as \( A \) or miscounted as \( B \), we sum these two probabilities:
     \[
@@ -211,9 +211,9 @@
     \[
     P(A^*) = (0.90 \times 0.55) + (0.10 \times 0.45) = 0.495 + 0.045 = 0.54
     \]
-    
+
     This calculation follows from the fact that we must account for both correctly counted and miscounted votes. The first term represents the fraction of Candidate \( A \)'s votes that were accurately recorded, while the second term accounts for votes originally cast for Candidate \( A \) but incorrectly attributed to \( B \). By summing these contributions, we obtain the adjusted proportion of votes that should belong to Candidate \( A \) in the final tally.
-    
+
 
     \item \textbf{Question D:} \\
     \textbf{Solution:} Similarly, using the \textbf{law of total probability}, we compute the probability that a vote was truly cast for Candidate \( B \):
@@ -266,7 +266,7 @@
 
 \begin{enumerate}
 
-    \item[(a)] \textbf{Expected total commission earnings:}  
+    \item[(a)] \textbf{Expected total commission earnings:}
     Using the linearity of expectation:
     \[
     E[Z] = E[0.05X + 0.10Y] = 0.05E[X] + 0.10E[Y]
@@ -277,7 +277,7 @@
     \]
     Thus, the expected total commission earnings are \$550.
 
-    \item[(b)] \textbf{Variance of total commission earnings:}  
+    \item[(b)] \textbf{Variance of total commission earnings:}
     Since \( X \) and \( Y \) are independent, the variance rule states:
     \[
     V(Z) = V(0.05X + 0.10Y) = (0.05^2)V(X) + (0.10^2)V(Y)
@@ -294,7 +294,7 @@
     \]
     Thus, the variance of total commission earnings is 6500.
 
-    \item[(c)] \textbf{Standard deviation of \( Z \):}  
+    \item[(c)] \textbf{Standard deviation of \( Z \):}
     The standard deviation is given by:
     \[
     \sigma_Z = \sqrt{V(Z)}
@@ -305,7 +305,7 @@
     \]
     Thus, the standard deviation of total commission earnings is \$80.62.
 
-    \item[(d)] \textbf{Z-score of 630.62:}  
+    \item[(d)] \textbf{Z-score of 630.62:}
     The Z-score is calculated as:
     \[
     Z_{\text{score}}(630.62) = \frac{630.62 - E[Z]}{\sigma_Z}
@@ -316,7 +316,7 @@
     \]
     Thus, 630.62 is exactly one standard deviation above the mean.
 
-    \item[(e)] \textbf{Probability of earning more than \$630.62:}  
+    \item[(e)] \textbf{Probability of earning more than \$630.62:}
     Since \( Z_{\text{score}}(630.62) = 1.00 \), we use the standard normal table:
     \[
     P(Z \leq 1.00) = 0.8413
@@ -333,7 +333,7 @@
 
 \begin{enumerate}
 
-    \item[(a)] \textbf{Expected number of participants:}  
+    \item[(a)] \textbf{Expected number of participants:}
     Using the definition of expected value for a discrete random variable:
     \[
     E[P] = \sum p_i \cdot \Pr(p_i)
@@ -347,14 +347,14 @@
     \]
     Thus, the expected number of participants is 104,000.
 
-    \item[(b)] \textbf{Total Monthly Cost as a Linear Combination:}  
+    \item[(b)] \textbf{Total Monthly Cost as a Linear Combination:}
     The total monthly cost \( C \) includes a fixed administrative cost and a variable cost per participant:
     \[
     C = 6,000,000 + 200P
     \]
     Since \( P \) is a random variable, this expresses \( C \) as a linear function of \( P \).
 
-    \item[(c)] \textbf{Probability Mass Function (PMF) of Total Monthly Cost:}  
+    \item[(c)] \textbf{Probability Mass Function (PMF) of Total Monthly Cost:}
     Using the computed values, the total cost outcomes and their probabilities are:
 
 \begin{table}[H]
@@ -375,7 +375,7 @@
 \end{table}
 
 
-    \item[(d)] \textbf{Expected Value of the Total Monthly Cost:}  
+    \item[(d)] \textbf{Expected Value of the Total Monthly Cost:}
     Using linearity of expectation:
     \[
     E[C] = 6,000,000 + 200E[P]
@@ -386,7 +386,7 @@
     \]
     Thus, the expected total monthly cost is \$26,800,000.
 
-    \item[(e)] \textbf{Cumulative Distribution Function (CDF) of Total Monthly Cost:}  
+    \item[(e)] \textbf{Cumulative Distribution Function (CDF) of Total Monthly Cost:}
     The cumulative probabilities for each cost level are:
 
     \begin{table}[H]
@@ -405,7 +405,7 @@
     \caption{Cumulative Distribution Function of Total Monthly Cost}
     \end{table}
 
-    \item[(f)] \textbf{Assessing Budget Constraints:}  
+    \item[(f)] \textbf{Assessing Budget Constraints:}
     The probability that the program’s cost exceeds \$30,000,000 is:
     \[
     P(C > 30,000,000) = P(C = 31,000,000) + P(C = 36,000,000)

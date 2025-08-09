@@ -466,25 +466,25 @@ saveRDS(pew_data, <span class="hljs-string">'dataframe-pew.RData'</span>)
 
 <span class="hljs-comment"># Inspect column (variables) names to understand what data is available.</span>
 colnames(pew_data)</code></pre>
-<pre><code class="hljs">##  [1] "RESPID"            "MODE"              "LANGUAGE"         
-##  [4] "LANGUAGEINITIAL"   "LANG_PREF"         "SURVEYSTARTDATE"  
+<pre><code class="hljs">##  [1] "RESPID"            "MODE"              "LANGUAGE"
+##  [4] "LANGUAGEINITIAL"   "LANG_PREF"         "SURVEYSTARTDATE"
 ##  [7] "SURVEYENDDATE"     "BWAVE"             "BIDENT1_GEOSTRATA"
-## [10] "ECON1MOD"          "ECON1BMOD"         "COMTYPE2"         
-## [13] "UNITY"             "CRIMESAFE"         "INFRASPEND"       
-## [16] "MOREGUNIMPACT"     "GAMBLERESTR"       "VET1"             
-## [19] "VOL12_CPS"         "EMINUSE"           "INTMOB"           
-## [22] "INTFREQ"           "INTFREQ_COLLAPSED" "RADIO"            
-## [25] "DEVICE1A"          "SMART2"            "NHISLL"           
-## [28] "RELIGCAT1"         "REGISTRATION"      "PARTY"            
-## [31] "PARTYLN"           "PARTYSUM"          "HISP"             
-## [34] "RACEMOD_1"         "RACEMOD_2"         "RACEMOD_3"        
-## [37] "RACEMOD_4"         "RACEMOD_5"         "RACEMOD_6"        
-## [40] "RACEMOD_99"        "RACEMOD_MIXEDOE"   "RACECMB"          
-## [43] "RACETHN"           "AGE"               "AGECAT"           
-## [46] "BIRTHPLACE"        "GENDER"            "MARITAL"          
-## [49] "EDUCATION"         "EDUCCAT"           "ADULTS"           
-## [52] "VOTED2020"         "VOTEGEN_POST"      "INC_SDT1"         
-## [55] "CREGION"           "DIVISION"          "METRO"            
+## [10] "ECON1MOD"          "ECON1BMOD"         "COMTYPE2"
+## [13] "UNITY"             "CRIMESAFE"         "INFRASPEND"
+## [16] "MOREGUNIMPACT"     "GAMBLERESTR"       "VET1"
+## [19] "VOL12_CPS"         "EMINUSE"           "INTMOB"
+## [22] "INTFREQ"           "INTFREQ_COLLAPSED" "RADIO"
+## [25] "DEVICE1A"          "SMART2"            "NHISLL"
+## [28] "RELIGCAT1"         "REGISTRATION"      "PARTY"
+## [31] "PARTYLN"           "PARTYSUM"          "HISP"
+## [34] "RACEMOD_1"         "RACEMOD_2"         "RACEMOD_3"
+## [37] "RACEMOD_4"         "RACEMOD_5"         "RACEMOD_6"
+## [40] "RACEMOD_99"        "RACEMOD_MIXEDOE"   "RACECMB"
+## [43] "RACETHN"           "AGE"               "AGECAT"
+## [46] "BIRTHPLACE"        "GENDER"            "MARITAL"
+## [49] "EDUCATION"         "EDUCCAT"           "ADULTS"
+## [52] "VOTED2020"         "VOTEGEN_POST"      "INC_SDT1"
+## [55] "CREGION"           "DIVISION"          "METRO"
 ## [58] "BASEWT"            "WEIGHT"</code></pre>
 <div id="problem-description" class="section level2">
 <h2>Problem Description</h2>
@@ -544,14 +544,14 @@ when expanding the analysis in the future.</p>
 pew_data &lt;- pew_data %&gt;%
   mutate(
     PARTY = as_factor(PARTY),  <span class="hljs-comment"># Convert PARTY to factor for easier interpretation</span>
-    
+
     <span class="hljs-comment"># Create dummy variables for Democrats and Republicans</span>
     Democrat = ifelse(PARTY == <span class="hljs-string">"Democrat"</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>),
     Republican = ifelse(PARTY == <span class="hljs-string">"Republican"</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>),
-    
+
     <span class="hljs-comment"># Define Frequent Internet User: `INTFREQ` values 1 and 2 represent frequent usage</span>
     Frequent_Internet_User = ifelse(INTFREQ %<span class="hljs-keyword">in</span>% c(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), <span class="hljs-number">1</span>, <span class="hljs-number">0</span>),
-    
+
     <span class="hljs-comment"># Define Age Cohorts for more meaningful analysis of age differences</span>
     Age_Cohort = case_when(
       AGE &gt;= <span class="hljs-number">18</span> &amp; AGE &lt;= <span class="hljs-number">29</span> ~ <span class="hljs-string">"18-29 \n(Young Adults)"</span>,
@@ -561,13 +561,13 @@ pew_data &lt;- pew_data %&gt;%
       AGE &gt;= <span class="hljs-number">65</span> ~ <span class="hljs-string">"65+ \n(Seniors)"</span>,
       <span class="hljs-literal">TRUE</span> ~ <span class="hljs-string">"Unknown"</span>  <span class="hljs-comment"># Handles missing or unexpected age values</span>
     ),
-    
+
     <span class="hljs-comment"># Handle non-valid values in CRIMESAFE (values above 97 are non-valid codes)</span>
     CRIMESAFE = case_when(
       CRIMESAFE &gt;= <span class="hljs-number">97</span> ~ <span class="hljs-literal">NA_real_</span>,
-      <span class="hljs-literal">TRUE</span> ~ CRIMESAFE 
+      <span class="hljs-literal">TRUE</span> ~ CRIMESAFE
     ),
-    
+
     <span class="hljs-comment"># Create a dummy variable indicating if AGE is above the median age</span>
     Age_Above_Median = ifelse(AGE &gt; median(AGE, na.rm = <span class="hljs-literal">TRUE</span>), <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)
 )
@@ -575,44 +575,44 @@ pew_data &lt;- pew_data %&gt;%
 <span class="hljs-comment"># Check the distribution of respondents in each cohort</span>
 <span class="hljs-comment"># This helps in understanding the sample size within each age category</span>
 table(pew_data$Age_Cohort)</code></pre>
-<pre><code class="hljs">## 
-##       18-29 \n(Young Adults)   30-39 \n(Early Middle Age) 
-##                          496                          768 
-##    40-49 \n(Late Middle Age) 50-64 \n(Pre-Retirement Age) 
-##                          829                         1482 
-##              65+ \n(Seniors) 
+<pre><code class="hljs">##
+##       18-29 \n(Young Adults)   30-39 \n(Early Middle Age)
+##                          496                          768
+##    40-49 \n(Late Middle Age) 50-64 \n(Pre-Retirement Age)
+##                          829                         1482
+##              65+ \n(Seniors)
 ##                         2051</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Inspect distributions of key categorical variables</span>
 <span class="hljs-comment"># Useful for understanding the balance of different groups in the dataset</span>
 
 <span class="hljs-comment"># Distribution of political party affiliation</span>
 table(pew_data$PARTY)</code></pre>
-<pre><code class="hljs">## 
-##                   Republican                     Democrat 
-##                         1606                         1912 
-##                  Independent               Something else 
-##                         1403                          566 
-## Don't know/Refused/Web blank 
+<pre><code class="hljs">##
+##                   Republican                     Democrat
+##                         1606                         1912
+##                  Independent               Something else
+##                         1403                          566
+## Don't know/Refused/Web blank
 ##                          139</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Count of Democrat dummy variable (0 = non-Democrat, 1 = Democrat)</span>
 table(pew_data$Democrat)</code></pre>
-<pre><code class="hljs">## 
-##    0    1 
+<pre><code class="hljs">##
+##    0    1
 ## 3714 1912</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Count of Republican dummy variable (0 = non-Republican, 1 = Republican)</span>
 table(pew_data$Republican)</code></pre>
-<pre><code class="hljs">## 
-##    0    1 
+<pre><code class="hljs">##
+##    0    1
 ## 4020 1606</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Count of frequent internet users (0 = Not frequent, 1 = Frequent)</span>
 table(pew_data$Frequent_Internet_User)</code></pre>
-<pre><code class="hljs">## 
-##    0    1 
+<pre><code class="hljs">##
+##    0    1
 ##  916 4710</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Distribution of CRIMESAFE ratings (perceptions of crime safety)</span>
 table(pew_data$CRIMESAFE)</code></pre>
-<pre><code class="hljs">## 
-##    1    2    3    4    5 
+<pre><code class="hljs">##
+##    1    2    3    4    5
 ##  476 2106 2422  487  122</code></pre>
 </div>
 <div id="summary-statistics" class="section level2">
@@ -773,8 +773,8 @@ ggplot(pew_data, aes(x = as.factor(CRIMESAFE))) +
 ggplot(pew_data %&gt;% filter(!is.na(CRIMESAFE)), aes(x = as.factor(Age_Cohort), y = CRIMESAFE)) +
   geom_boxplot() +
   stat_summary(fun = mean, geom = <span class="hljs-string">"crossbar"</span>, width = <span class="hljs-number">0.75</span>, color = <span class="hljs-string">"red"</span>, linewidth = <span class="hljs-number">0.2</span>) +  <span class="hljs-comment"># Add mean line within the box</span>
-  labs(title = <span class="hljs-string">"Boxplot of Perception of Safety by Age Cohort with Mean Line Inside Boxes"</span>, 
-       x = <span class="hljs-string">"Age Cohort"</span>, 
+  labs(title = <span class="hljs-string">"Boxplot of Perception of Safety by Age Cohort with Mean Line Inside Boxes"</span>,
+       x = <span class="hljs-string">"Age Cohort"</span>,
        y = <span class="hljs-string">"CRIMESAFE"</span>)</code></pre>
 <p><img role="img" src="data:image/png;base64,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" width="672"></p>
 </div>
@@ -798,28 +798,28 @@ t_test_crimesafe &lt;- t.test(CRIMESAFE ~ Republican, data = pew_data)
 <span class="hljs-comment"># Display t-test results</span>
 <span class="hljs-comment"># Look at the p-values to determine statistical significance</span>
 print(t_test_age)</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ##  Welch Two Sample t-test
-## 
+##
 ## data:  AGE by Republican
 ## t = -8.4195, df = 3121.8, p-value &lt; 2.2e-16
 ## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.524166 -3.437245
 ## sample estimates:
-## mean in group 0 mean in group 1 
+## mean in group 0 mean in group 1
 ##        54.70672        59.18742</code></pre>
 <pre class="r"><code class="hljs">print(t_test_crimesafe)</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ##  Welch Two Sample t-test
-## 
+##
 ## data:  CRIMESAFE by Republican
 ## t = -0.75854, df = 3123.5, p-value = 0.4482
 ## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.06621993  0.02927564
 ## sample estimates:
-## mean in group 0 mean in group 1 
+## mean in group 0 mean in group 1
 ##        2.580155        2.598627</code></pre>
 </div>
 <div id="additional-hypothesis-test-age-above-median" class="section level3">
@@ -835,16 +835,16 @@ t_test_crimesafe_age_median &lt;- t.test(CRIMESAFE ~ Age_Above_Median, data = pe
 
 <span class="hljs-comment"># Display t-test results</span>
 print(t_test_crimesafe_age_median)</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ##  Welch Two Sample t-test
-## 
+##
 ## data:  CRIMESAFE by Age_Above_Median
 ## t = 1.4889, df = 5606.1, p-value = 0.1366
 ## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.01061952  0.07768745
 ## sample estimates:
-## mean in group 0 mean in group 1 
+## mean in group 0 mean in group 1
 ##        2.601581        2.568047</code></pre>
 </div>
 <div id="z-tests" class="section level3">
@@ -862,7 +862,7 @@ doz_test &lt;- <span class="hljs-keyword">function</span>(data, x_var, group_var
   <span class="hljs-comment"># Separate data into two groups based on the group_var</span>
   group1_data &lt;- data[[x_var]][data[[group_var]] == <span class="hljs-number">1</span>]
   group2_data &lt;- data[[x_var]][data[[group_var]] == <span class="hljs-number">0</span>]
-  
+
   <span class="hljs-comment"># Calculate mean, standard deviation, and sample size for each group</span>
   mean1 &lt;- mean(group1_data, na.rm = <span class="hljs-literal">TRUE</span>)
   mean2 &lt;- mean(group2_data, na.rm = <span class="hljs-literal">TRUE</span>)
@@ -870,12 +870,12 @@ doz_test &lt;- <span class="hljs-keyword">function</span>(data, x_var, group_var
   sd2 &lt;- sd(group2_data, na.rm = <span class="hljs-literal">TRUE</span>)
   n1 &lt;- sum(!is.na(group1_data))
   n2 &lt;- sum(!is.na(group2_data))
-  
+
   <span class="hljs-comment"># Calculate the standard error and Z-score</span>
   se &lt;- sqrt((sd1^<span class="hljs-number">2</span> / n1) + (sd2^<span class="hljs-number">2</span> / n2))
   z &lt;- (mean1 - mean2) / se
   p_value &lt;- <span class="hljs-number">2</span> * (<span class="hljs-number">1</span> - pnorm(abs(z)))
-  
+
   <span class="hljs-comment"># Return a comprehensive list of all relevant values including group description</span>
   list(
     group1_mean = mean1,
@@ -897,31 +897,31 @@ print(<span class="hljs-string">'Z-Test for Differences of Means for AGE, for Re
 <pre class="r"><code class="hljs">doz_test(pew_data, x_var = <span class="hljs-string">"AGE"</span>, group_var = <span class="hljs-string">"Republican"</span>)</code></pre>
 <pre><code class="hljs">## $group1_mean
 ## [1] 59.18742
-## 
+##
 ## $group2_mean
 ## [1] 54.70672
-## 
+##
 ## $group1_sd
 ## [1] 17.71158
-## 
+##
 ## $group2_sd
 ## [1] 18.7964
-## 
+##
 ## $group1_n
 ## [1] 1606
-## 
+##
 ## $group2_n
 ## [1] 4020
-## 
+##
 ## $standard_error
 ## [1] 0.5321811
-## 
+##
 ## $z_score
 ## [1] 8.419513
-## 
+##
 ## $p_value
 ## [1] 0
-## 
+##
 ## $group_description
 ## [1] "Group is ID=1 if Republican = 1"</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Perform Z-test for CRIMESAFE with 'CRIMESAFE' as the variable of interest and 'Republican' as the grouping variable</span>
@@ -931,31 +931,31 @@ cat(<span class="hljs-string">"\n"</span>)</code></pre>
 <pre class="r"><code class="hljs">doz_test(pew_data, x_var = <span class="hljs-string">"CRIMESAFE"</span>, group_var = <span class="hljs-string">"Republican"</span>)</code></pre>
 <pre><code class="hljs">## $group1_mean
 ## [1] 2.598627
-## 
+##
 ## $group2_mean
 ## [1] 2.580155
-## 
+##
 ## $group1_sd
 ## [1] 0.8086497
-## 
+##
 ## $group2_sd
 ## [1] 0.861041
-## 
+##
 ## $group1_n
 ## [1] 1602
-## 
+##
 ## $group2_n
 ## [1] 4011
-## 
+##
 ## $standard_error
 ## [1] 0.02435212
-## 
+##
 ## $z_score
 ## [1] 0.7585434
-## 
+##
 ## $p_value
 ## [1] 0.4481257
-## 
+##
 ## $group_description
 ## [1] "Group is ID=1 if Republican = 1"</code></pre>
 <p>Note that we can also use functions from packages to run the Z test.
@@ -965,10 +965,10 @@ we defined the function above.</p>
 <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">require</span>(<span class="hljs-string">"BSDA"</span>)) install.packages(<span class="hljs-string">"BSDA"</span>)</code></pre>
 <pre><code class="hljs">## Loading required package: BSDA</code></pre>
 <pre><code class="hljs">## Loading required package: lattice</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ## Attaching package: 'BSDA'</code></pre>
 <pre><code class="hljs">## The following object is masked from 'package:datasets':
-## 
+##
 ##     Orange</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-keyword">library</span>(BSDA)
 <span class="hljs-comment"># Perform independent sample Z-tests to compare AGE and CRIMESAFE between Republicans and non-Republicans</span>
@@ -982,16 +982,16 @@ z_test_age &lt;- z.test(x = pew_data$AGE[pew_data$Republican == <span class="hlj
 
 <span class="hljs-comment"># Print Z-test result for AGE</span>
 print(z_test_age)</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ##  Two-sample z-Test
-## 
+##
 ## data:  pew_data$AGE[pew_data$Republican == 1] and pew_data$AGE[pew_data$Republican == 0]
 ## z = 8.4195, p-value &lt; 2.2e-16
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
 ##  3.437650 5.523762
 ## sample estimates:
-## mean of x mean of y 
+## mean of x mean of y
 ##  59.18742  54.70672</code></pre>
 <pre class="r"><code class="hljs"><span class="hljs-comment"># Z-test for CRIMESAFE between Republicans and non-Republicans</span>
 z_test_crimesafe &lt;- z.test(x = pew_data$CRIMESAFE[pew_data$Republican == <span class="hljs-number">1</span>],
@@ -1001,16 +1001,16 @@ z_test_crimesafe &lt;- z.test(x = pew_data$CRIMESAFE[pew_data$Republican == <spa
 
 <span class="hljs-comment"># Print Z-test result for CRIMESAFE</span>
 print(z_test_crimesafe)</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ##  Two-sample z-Test
-## 
+##
 ## data:  pew_data$CRIMESAFE[pew_data$Republican == 1] and pew_data$CRIMESAFE[pew_data$Republican == 0]
 ## z = 0.75854, p-value = 0.4481
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.02925714  0.06620142
 ## sample estimates:
-## mean of x mean of y 
+## mean of x mean of y
 ##  2.598627  2.580155</code></pre>
 </div>
 </div>
@@ -1126,9 +1126,9 @@ chi_square_test &lt;- chisq.test(age_crimesafe_table)
 
 <span class="hljs-comment"># Display the results</span>
 chi_square_test</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ##  Pearson's Chi-squared test
-## 
+##
 ## data:  age_crimesafe_table
 ## X-squared = 45.659, df = 16, p-value = 0.0001099</code></pre>
 </div>
@@ -1171,7 +1171,7 @@ summary_data &lt;- pew_data %&gt;%
 
 ggplot(summary_data, aes(x = Age_Cohort, y = mean_crimesafe)) +
   geom_point(size = <span class="hljs-number">3</span>) +
-  geom_errorbar(aes(ymin = mean_crimesafe - <span class="hljs-number">1.96</span> * se_crimesafe, 
+  geom_errorbar(aes(ymin = mean_crimesafe - <span class="hljs-number">1.96</span> * se_crimesafe,
                     ymax = mean_crimesafe + <span class="hljs-number">1.96</span> * se_crimesafe), width = <span class="hljs-number">0.2</span>) +
   labs(title = <span class="hljs-string">"Mean Perception of Crime Safety by Age Cohort"</span>,
        x = <span class="hljs-string">"Age Cohort"</span>,
@@ -1231,24 +1231,24 @@ lm_model &lt;- lm(CRIMESAFE ~ AGE, data = pew_data)
 <span class="hljs-comment"># Display the regression output</span>
 <span class="hljs-comment"># Look for the p-value and coefficients to understand if AGE significantly predicts CRIMESAFE</span>
 summary(lm_model)</code></pre>
-<pre><code class="hljs">## 
+<pre><code class="hljs">##
 ## Call:
 ## lm(formula = CRIMESAFE ~ AGE, data = pew_data)
-## 
+##
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.6279 -0.5865  0.3855  0.4269  2.4627 
-## 
+##     Min      1Q  Median      3Q     Max
+## -1.6279 -0.5865  0.3855  0.4269  2.4627
+##
 ## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
+##               Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)  2.6480729  0.0358097  73.948   &lt;2e-16 ***
-## AGE         -0.0011191  0.0006071  -1.844   0.0653 .  
+## AGE         -0.0011191  0.0006071  -1.844   0.0653 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
+##
 ## Residual standard error: 0.8462 on 5611 degrees of freedom
 ##   (13 observations deleted due to missingness)
-## Multiple R-squared:  0.0006053,  Adjusted R-squared:  0.0004272 
+## Multiple R-squared:  0.0006053,  Adjusted R-squared:  0.0004272
 ## F-statistic: 3.399 on 1 and 5611 DF,  p-value: 0.06531</code></pre>
 <pre class="r"><code class="hljs">kable(summary(lm_model)$coefficients, caption = <span class="hljs-string">"Regression Output for Linear Model"</span>)</code></pre>
 <table class="table table-condensed">

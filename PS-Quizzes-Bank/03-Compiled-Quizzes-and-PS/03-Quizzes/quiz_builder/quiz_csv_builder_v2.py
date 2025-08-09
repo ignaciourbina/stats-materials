@@ -50,18 +50,24 @@ from typing import List, Optional
 # Constant for blank columns in CSV rows
 BLANK4 = ["", "", "", ""]
 
+
 @dataclass
 class Question:
     """Base class for all question types."""
-    new_question_code: str = field(init=False, default="") # Code identifying the question type (e.g., "WR", "MC")
-    title: str                                            # Question title (optional in Brightspace, but good practice)
-    question_text: str                                    # The actual question text presented to the user
-    points: int = 1                                       # Points awarded for a correct answer
-    difficulty: Optional[int] = None                      # Difficulty level (1-10)
-    image: Optional[str] = None                           # Path or URL to an image associated with the question
-    hint: Optional[str] = None                            # Hint text available to the user
-    feedback: Optional[str] = None                        # General feedback shown after answering
-    explicit_id: Optional[str] = None                     # Explicit ID for the question (useful for linking)
+
+    new_question_code: str = field(
+        init=False, default=""
+    )  # Code identifying the question type (e.g., "WR", "MC")
+    title: str  # Question title (optional in Brightspace, but good practice)
+    question_text: str  # The actual question text presented to the user
+    points: int = 1  # Points awarded for a correct answer
+    difficulty: Optional[int] = None  # Difficulty level (1-10)
+    image: Optional[str] = None  # Path or URL to an image associated with the question
+    hint: Optional[str] = None  # Hint text available to the user
+    feedback: Optional[str] = None  # General feedback shown after answering
+    explicit_id: Optional[str] = (
+        None  # Explicit ID for the question (useful for linking)
+    )
 
     def _type_rows(self) -> List[List[str]]:
         """
@@ -86,7 +92,7 @@ class Question:
         rows += [
             ["Title", self.title, *BLANK4],
             ["QuestionText", self.question_text, *BLANK4],
-            ["Points", str(self.points), *BLANK4]
+            ["Points", str(self.points), *BLANK4],
         ]
 
         # Add optional fields if they exist
@@ -105,14 +111,16 @@ class Question:
             rows.append(["Feedback", self.feedback, *BLANK4])
 
         # Add a blank row as a separator between questions
-        rows.append(["", "", "", "", "", ""]) # Ensure 6 columns for the blank row
+        rows.append(["", "", "", "", "", ""])  # Ensure 6 columns for the blank row
         return rows
+
 
 @dataclass
 class WrittenResponse(Question):
     """Written Response (WR) question type."""
+
     initial_text: Optional[str] = None  # Pre-filled text in the response box
-    answer_key: Optional[str] = None    # Answer key for manual grading reference
+    answer_key: Optional[str] = None  # Answer key for manual grading reference
 
     def __post_init__(self):
         """Sets the question type code after initialization."""
@@ -127,14 +135,16 @@ class WrittenResponse(Question):
             rows.append(["AnswerKey", self.answer_key, *BLANK4])
         return rows
 
+
 @dataclass
 class ShortAnswer(Question):
     """Short Answer (SA) question type."""
-    best_answer: str = ""        # The primary correct answer
-    regexp: bool = False         # Use regular expression matching for the answer
-    case_sensitive: bool = False # Require case-sensitive matching
-    rows: int = 1                # Number of rows for the input box
-    cols: int = 40               # Number of columns for the input box
+
+    best_answer: str = ""  # The primary correct answer
+    regexp: bool = False  # Use regular expression matching for the answer
+    case_sensitive: bool = False  # Require case-sensitive matching
+    rows: int = 1  # Number of rows for the input box
+    cols: int = 40  # Number of columns for the input box
 
     def __post_init__(self):
         """Validates required fields and sets the question type code."""
@@ -145,24 +155,48 @@ class ShortAnswer(Question):
     def _type_rows(self):
         """Generates CSV rows specific to Short Answer questions."""
         # Determine the flag based on regexp and case sensitivity
-        flag = "regexp" if self.regexp else ("sensitive" if self.case_sensitive else "insensitive")
+        flag = (
+            "regexp"
+            if self.regexp
+            else ("sensitive" if self.case_sensitive else "insensitive")
+        )
         return [
-            ["InputBox", str(self.rows), str(self.cols), "", ""], # Defines the input box size
-            ["Answer", "100", self.best_answer, flag, ""]         # Defines the correct answer and matching flags (100% weight)
+            [
+                "InputBox",
+                str(self.rows),
+                str(self.cols),
+                "",
+                "",
+            ],  # Defines the input box size
+            [
+                "Answer",
+                "100",
+                self.best_answer,
+                flag,
+                "",
+            ],  # Defines the correct answer and matching flags (100% weight)
         ]
+
 
 @dataclass
 class MatchingPair:
     """Represents a single choice-match pair for Matching questions."""
-    choice_no: int       # Unique number identifying the choice
-    choice_text: str     # Text displayed for the choice
-    match_text: str      # Text displayed for the corresponding match
+
+    choice_no: int  # Unique number identifying the choice
+    choice_text: str  # Text displayed for the choice
+    match_text: str  # Text displayed for the corresponding match
+
 
 @dataclass
 class Matching(Question):
     """Matching (M) question type."""
-    pairs: List[MatchingPair] = field(default_factory=list) # List of choice-match pairs
-    scoring: str = "AllOrNothing"                           # Scoring method ("AllOrNothing", "RightMinusWrong", "EquallyWeighted")
+
+    pairs: List[MatchingPair] = field(
+        default_factory=list
+    )  # List of choice-match pairs
+    scoring: str = (
+        "AllOrNothing"  # Scoring method ("AllOrNothing", "RightMinusWrong", "EquallyWeighted")
+    )
 
     def __post_init__(self):
         """Sets the question type code."""
@@ -170,7 +204,7 @@ class Matching(Question):
 
     def _type_rows(self):
         """Generates CSV rows specific to Matching questions."""
-        rows = [["Scoring", self.scoring, *BLANK4]] # Add scoring method row
+        rows = [["Scoring", self.scoring, *BLANK4]]  # Add scoring method row
         # Add rows for each choice text
         for p in self.pairs:
             rows.append(["Choice", str(p.choice_no), p.choice_text, "", ""])
@@ -179,13 +213,15 @@ class Matching(Question):
             rows.append(["Match", str(p.choice_no), p.match_text, "", ""])
         return rows
 
+
 @dataclass
 class MCOption:
     """Represents a single option for Multiple Choice questions."""
-    text: str                 # Text of the option
-    percent: int              # Percentage points awarded if this option is chosen (100 for correct, 0 for incorrect)
-    feedback: Optional[str] = None # Feedback specific to this option
-    html_used: bool = False   # Indicates if the option text uses HTML
+
+    text: str  # Text of the option
+    percent: int  # Percentage points awarded if this option is chosen (100 for correct, 0 for incorrect)
+    feedback: Optional[str] = None  # Feedback specific to this option
+    html_used: bool = False  # Indicates if the option text uses HTML
 
     def to_row(self):
         """Generates the CSV row for this option."""
@@ -193,12 +229,21 @@ class MCOption:
         html_flag = "HTML" if self.html_used else ""
         fb_flag = "HTML" if self.feedback and self.html_used else ""
         # Ensure 6 columns are returned
-        return ["Option", str(self.percent), self.text, html_flag, self.feedback or "", fb_flag]
+        return [
+            "Option",
+            str(self.percent),
+            self.text,
+            html_flag,
+            self.feedback or "",
+            fb_flag,
+        ]
+
 
 @dataclass
 class MultipleChoice(Question):
     """Multiple Choice (MC) question type."""
-    options: List[MCOption] = field(default_factory=list) # List of options
+
+    options: List[MCOption] = field(default_factory=list)  # List of options
 
     def __post_init__(self):
         """Sets the question type code."""
@@ -208,29 +253,42 @@ class MultipleChoice(Question):
         """Generates CSV rows for each option."""
         return [o.to_row() for o in self.options]
 
+
 @dataclass
 class TFOption:
     """Represents either the True or False row for True/False questions."""
-    is_true: bool             # True if this represents the "True" answer, False otherwise
-    credit: int               # Percentage credit (usually 100 for the correct one, 0 for incorrect)
-    feedback: Optional[str] = None # Feedback specific to choosing True/False
+
+    is_true: bool  # True if this represents the "True" answer, False otherwise
+    credit: int  # Percentage credit (usually 100 for the correct one, 0 for incorrect)
+    feedback: Optional[str] = None  # Feedback specific to choosing True/False
 
     def to_row(self):
         """Generates the CSV row for this True/False option."""
         # Ensure 6 columns are returned
-        return ["True" if self.is_true else "False", str(self.credit), self.feedback or "", "", "", ""] # Added two blank strings
+        return [
+            "True" if self.is_true else "False",
+            str(self.credit),
+            self.feedback or "",
+            "",
+            "",
+            "",
+        ]  # Added two blank strings
+
 
 @dataclass
 class TrueFalse(Question):
     """True/False (TF) question type."""
+
     true_row: Optional[TFOption] = None  # Represents the "True" choice configuration
-    false_row: Optional[TFOption] = None # Represents the "False" choice configuration
+    false_row: Optional[TFOption] = None  # Represents the "False" choice configuration
 
     def __post_init__(self):
         """Validates inputs and sets the question type code."""
         # Basic validation
         if self.true_row is None or self.false_row is None:
-            raise ValueError("true_row and false_row must both be provided for TrueFalse questions")
+            raise ValueError(
+                "true_row and false_row must both be provided for TrueFalse questions"
+            )
         if not self.true_row.is_true:
             raise ValueError("true_row must have is_true=True")
         if self.false_row.is_true:
@@ -244,26 +302,39 @@ class TrueFalse(Question):
         # True row first, then False row
         return [self.true_row.to_row(), self.false_row.to_row()]
 
+
 @dataclass
 class MSOption:
     """Represents a single option for Multi-Select questions."""
-    text: str                 # Text of the option
-    correct: bool             # True if this option is part of the correct answer set
-    feedback: Optional[str] = None # Feedback specific to this option
-    html_used: bool = False   # Indicates if the option text uses HTML
+
+    text: str  # Text of the option
+    correct: bool  # True if this option is part of the correct answer set
+    feedback: Optional[str] = None  # Feedback specific to this option
+    html_used: bool = False  # Indicates if the option text uses HTML
 
     def to_row(self):
         """Generates the CSV row for this option."""
         html_flag = "HTML" if self.html_used else ""
         fb_flag = "HTML" if self.feedback and self.html_used else ""
         # Ensure 6 columns are returned
-        return ["Option", "100" if self.correct else "0", self.text, html_flag, self.feedback or "", fb_flag] # Changed "1"/"0" to "100"/"0" for clarity
+        return [
+            "Option",
+            "100" if self.correct else "0",
+            self.text,
+            html_flag,
+            self.feedback or "",
+            fb_flag,
+        ]  # Changed "1"/"0" to "100"/"0" for clarity
+
 
 @dataclass
 class MultiSelect(Question):
     """Multi-Select (MS) question type."""
-    options: List[MSOption] = field(default_factory=list) # List of options
-    scoring: str = "AllOrNothing"                         # Scoring method ("AllOrNothing", "RightMinusWrong", "RightOnly")
+
+    options: List[MSOption] = field(default_factory=list)  # List of options
+    scoring: str = (
+        "AllOrNothing"  # Scoring method ("AllOrNothing", "RightMinusWrong", "RightOnly")
+    )
 
     def __post_init__(self):
         """Sets the question type code."""
@@ -271,29 +342,46 @@ class MultiSelect(Question):
 
     def _type_rows(self):
         """Generates CSV rows for scoring and each option."""
-        rows = [["Scoring", self.scoring, *BLANK4]] # Add scoring method row
-        rows.extend(o.to_row() for o in self.options) # Add rows for each option
+        rows = [["Scoring", self.scoring, *BLANK4]]  # Add scoring method row
+        rows.extend(o.to_row() for o in self.options)  # Add rows for each option
         return rows
+
 
 @dataclass
 class OrderingItem:
     """Represents a single item to be ordered in Ordering questions."""
-    text: str                 # Text of the item
-    feedback: Optional[str] = None # Feedback specific to this item's position (rarely used)
-    html_used: bool = False   # Indicates if the item text uses HTML
+
+    text: str  # Text of the item
+    feedback: Optional[str] = (
+        None  # Feedback specific to this item's position (rarely used)
+    )
+    html_used: bool = False  # Indicates if the item text uses HTML
 
     def to_row(self):
         """Generates the CSV row for this item."""
         html_flag = "HTML" if self.html_used else ""
         fb_flag = "HTML" if self.feedback and self.html_used else ""
         # Ensure 6 columns are returned
-        return ["Item", self.text, html_flag, self.feedback or "", "", ""] # Added two blank strings
+        return [
+            "Item",
+            self.text,
+            html_flag,
+            self.feedback or "",
+            "",
+            "",
+        ]  # Added two blank strings
+
 
 @dataclass
 class Ordering(Question):
     """Ordering (O) question type."""
-    items: List[OrderingItem] = field(default_factory=list) # List of items in the correct order
-    scoring: str = "AllOrNothing"                           # Scoring method ("AllOrNothing", "RightMinusWrong", "EquallyWeighted")
+
+    items: List[OrderingItem] = field(
+        default_factory=list
+    )  # List of items in the correct order
+    scoring: str = (
+        "AllOrNothing"  # Scoring method ("AllOrNothing", "RightMinusWrong", "EquallyWeighted")
+    )
 
     def __post_init__(self):
         """Sets the question type code."""
@@ -301,12 +389,16 @@ class Ordering(Question):
 
     def _type_rows(self):
         """Generates CSV rows for scoring and each item."""
-        rows = [["Scoring", self.scoring, *BLANK4]] # Add scoring method row
-        rows.extend(i.to_row() for i in self.items) # Add rows for each item (in correct order)
+        rows = [["Scoring", self.scoring, *BLANK4]]  # Add scoring method row
+        rows.extend(
+            i.to_row() for i in self.items
+        )  # Add rows for each item (in correct order)
         return rows
+
 
 class QuestionBank:
     """Manages a collection of questions and exports them to CSV."""
+
     def __init__(self):
         """Initializes an empty question bank."""
         self._questions: List[Question] = []

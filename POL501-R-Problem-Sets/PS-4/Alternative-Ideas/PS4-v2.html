@@ -935,23 +935,23 @@ per capita and education expenditure.</li>
 <pre class="r"><code># Fit the linear model with log-transformed GDP per capita
 lm_model &lt;- lm(education_expenditure ~ log_gdp_per_capita, data = data)
 summary(lm_model)</code></pre>
-<pre><code>## 
+<pre><code>##
 ## Call:
 ## lm(formula = education_expenditure ~ log_gdp_per_capita, data = data)
-## 
+##
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.7715 -0.9715 -0.2682  0.6414  9.6792 
-## 
+##     Min      1Q  Median      3Q     Max
+## -3.7715 -0.9715 -0.2682  0.6414  9.6792
+##
 ## Coefficients:
-##                    Estimate Std. Error t value Pr(&gt;|t|)    
+##                    Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)          3.0486     0.7484   4.073 6.58e-05 ***
-## log_gdp_per_capita   0.1394     0.0835   1.670   0.0964 .  
+## log_gdp_per_capita   0.1394     0.0835   1.670   0.0964 .
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
+##
 ## Residual standard error: 1.707 on 209 degrees of freedom
-## Multiple R-squared:  0.01317,    Adjusted R-squared:  0.008446 
+## Multiple R-squared:  0.01317,    Adjusted R-squared:  0.008446
 ## F-statistic: 2.789 on 1 and 209 DF,  p-value: 0.09642</code></pre>
 <p><em>Interpretation</em>: - <strong>Intercept</strong>: Represents the
 expected education expenditure when <code>log_gdp_per_capita</code> is
@@ -1042,23 +1042,23 @@ coefficient.</li>
 
 # Model summary
 summary(lm_model)</code></pre>
-<pre><code>## 
+<pre><code>##
 ## Call:
 ## lm(formula = education_expenditure ~ log_gdp_per_capita, data = data)
-## 
+##
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.7715 -0.9715 -0.2682  0.6414  9.6792 
-## 
+##     Min      1Q  Median      3Q     Max
+## -3.7715 -0.9715 -0.2682  0.6414  9.6792
+##
 ## Coefficients:
-##                    Estimate Std. Error t value Pr(&gt;|t|)    
+##                    Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)          3.0486     0.7484   4.073 6.58e-05 ***
-## log_gdp_per_capita   0.1394     0.0835   1.670   0.0964 .  
+## log_gdp_per_capita   0.1394     0.0835   1.670   0.0964 .
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
+##
 ## Residual standard error: 1.707 on 209 degrees of freedom
-## Multiple R-squared:  0.01317,    Adjusted R-squared:  0.008446 
+## Multiple R-squared:  0.01317,    Adjusted R-squared:  0.008446
 ## F-statistic: 2.789 on 1 and 209 DF,  p-value: 0.09642</code></pre>
 <pre class="r"><code># Confidence interval
 confint(lm_model)</code></pre>

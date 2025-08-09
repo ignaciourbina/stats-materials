@@ -68,7 +68,7 @@ Now, let \( X \) represent the number of heads obtained in the two flips. In thi
 
 \textbf{PMF:}
 \[
-P(X = x) = 
+P(X = x) =
 \begin{cases}
     \frac{1}{4}, & \text{if } x = 0 \\
     \frac{1}{2}, & \text{if } x = 1 \\
@@ -78,7 +78,7 @@ P(X = x) =
 
 \textbf{CDF:}
 \[
-F_X(x) = 
+F_X(x) =
 \begin{cases}
     0, & \text{for } x < 0 \\
     \frac{1}{4}, & \text{for } 0 \leq x < 1 \\
@@ -116,11 +116,11 @@ Given \(n\) independent Bernoulli trials each with success probability \(p\), th
 \item \textbf{Variance}: \(\text{Var}(S_n) = np(1-p)\)
 \end{itemize}
 
-Note that since, for all \( X_i \in \{0, 1\} \), \( X_i \) follows a Bernoulli distribution. Think of \( X_i \) as a binary variable that equals 1 if some condition is met for observation \( i \), and 0 otherwise. For example, consider a scenario where we observe whether each individual in a survey owns a car. Here, \( X_i = 1 \) if individual \( i \) owns a car, and \( X_i = 0 \) otherwise.  Then, $\frac{S_n}{n} = \hat{p}$ represents the proportion of people that own a car in a sample of size $n$. Note, $\hat{p} =\frac{S_n}{n}= \frac{\sum_{\forall i}^{n}{X_i}}{n} =  \bar{X}_n $. This means that a proportion can be considered the average of the random variable $X_i  \in \{0, 1\} $ in a sample of size $n$. 
+Note that since, for all \( X_i \in \{0, 1\} \), \( X_i \) follows a Bernoulli distribution. Think of \( X_i \) as a binary variable that equals 1 if some condition is met for observation \( i \), and 0 otherwise. For example, consider a scenario where we observe whether each individual in a survey owns a car. Here, \( X_i = 1 \) if individual \( i \) owns a car, and \( X_i = 0 \) otherwise.  Then, $\frac{S_n}{n} = \hat{p}$ represents the proportion of people that own a car in a sample of size $n$. Note, $\hat{p} =\frac{S_n}{n}= \frac{\sum_{\forall i}^{n}{X_i}}{n} =  \bar{X}_n $. This means that a proportion can be considered the average of the random variable $X_i  \in \{0, 1\} $ in a sample of size $n$.
 
 
 \subsubsection*{Theorem: Law of Large Numbers}
-\emph{Theorem. Law of Large Numbers for the Sample Proportion.} Define a Bernoulli random variable \( X_i \in \{0, 1\} \), and the define \(p = S / n\) as the true proportion of observations in the population such that $X_i=1$. For a sample of independent and identically distributed $X_i$ (that is, $iid$ observations), as \(n \rightarrow \infty\), the sample mean \(\bar{X}_n = \frac{S_n}{n}\) converges almost surely to \(p\). \newline  
+\emph{Theorem. Law of Large Numbers for the Sample Proportion.} Define a Bernoulli random variable \( X_i \in \{0, 1\} \), and the define \(p = S / n\) as the true proportion of observations in the population such that $X_i=1$. For a sample of independent and identically distributed $X_i$ (that is, $iid$ observations), as \(n \rightarrow \infty\), the sample mean \(\bar{X}_n = \frac{S_n}{n}\) converges almost surely to \(p\). \newline
 
 In non-technical terms, the result means that as we observe more and more data (as the number of observations becomes very large), the average value we calculate from the data becomes increasingly closer to the true underlying value that we're trying to estimate. This happens with almost complete certainty, given enough $iid$ data.
 
@@ -139,7 +139,7 @@ Suppose we have a binomial random variable \( S_n = \sum_{i=1}^n X_i \) which is
 
 From the binomial distribution, we know that:
 \begin{itemize}
-    \item \( E(S_n) = np \) 
+    \item \( E(S_n) = np \)
     \item \( \text{Var}(S_n) = np(1-p) \)
 \end{itemize}
 
@@ -194,7 +194,7 @@ In practice, when calculating confidence intervals, we often use \( \hat{p}(1-\h
 
 A confidence interval (CI) provides a range of values within which we are fairly certain the true population parameter lies (e.g., proportion or mean). The goal of a CI is to give us an idea of how reliable our estimation of the population parameter is based on our sample data. Essentially, it helps us understand the level of uncertainty around our estimate and provides a window that likely captures the true value. Instead of simply providing one numeric estimate for the population parameter we seek to infer, a CI provides a set of plausible values for it.\footnote{In more technical terms, this means that instead of proposing a \emph{point estimate} the CI constructs a \footnote{set estimate} for the population parameter we seek to estimate.}
 
-Think of a confidence interval like a fishing net: after casting it into the ocean (collecting data), we pull it up with a range of different fish (possible estimates). A confidence interval tells us that, based on our sample, we can be fairly confident that the fish we're interested in—the true value—is somewhere inside our net \emph{most of the time}. It doesn't tell us exactly where, but it suggests a range of possible values with some degree of confidence.\footnote{A key conceptual point is that the procedure for constructing the upper and lower limits of a confidence interval (CI) is designed so that the interval captures the population parameter \emph{most of the time} across repeated samples. However, it does not indicate whether a specific confidence interval contains the population parameter. 
+Think of a confidence interval like a fishing net: after casting it into the ocean (collecting data), we pull it up with a range of different fish (possible estimates). A confidence interval tells us that, based on our sample, we can be fairly confident that the fish we're interested in—the true value—is somewhere inside our net \emph{most of the time}. It doesn't tell us exactly where, but it suggests a range of possible values with some degree of confidence.\footnote{A key conceptual point is that the procedure for constructing the upper and lower limits of a confidence interval (CI) is designed so that the interval captures the population parameter \emph{most of the time} across repeated samples. However, it does not indicate whether a specific confidence interval contains the population parameter.
 
 By construction, the CI is always centered on the sample estimate derived from the available sample data. Although the CI does not guarantee that the population parameter lies within a given interval, its width has an intuitive interpretation. A narrow width (a small distance between the lower and upper bounds) suggests that the population parameter is being estimated with high precision. While any single CI represents just one possible realization, it remains our best available estimate. If the width is small, we can generally expect the procedure to precisely narrow the range of plausible values where the population parameter lies.}
 
@@ -263,14 +263,14 @@ This interval provides an estimated range that we expect, with 95\% confidence, 
 
 \textbf{Statistical Confidence:}
 \begin{itemize}
-  \item \textbf{Claim:} When constructing the interval 
+  \item \textbf{Claim:} When constructing the interval
   \[\left[\hat{p} - 1.96\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + 1.96\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]\]
   we claim with 95\% confidence that it contains the true population proportion \( p \). This is because this interval construction method, if repeated across many samples, would result in intervals containing \( p \) approximately 95\% of the time. This is not the probability of \( p \) being in one specific interval, but a general reliability measure of this interval estimation method.
   \item \textbf{Interpretation of Confidence:} The statistical confidence thus relates to our trust in the method used to estimate \( p \), given the properties of the distribution shaped by the central limit theorem.
 \end{itemize}
 
 \newpage
-\appendix 
+\appendix
 
 
 \section*{Appendix: A Rigorous Derivation of the Confidence Interval for a Population Proportion}
@@ -304,7 +304,7 @@ Equivalently, the standardized statistic
 \]
 is approximately a standard normal random variable \(N(0,1)\).
 
-\textbf{Note on Large-Sample Conditions.} 
+\textbf{Note on Large-Sample Conditions.}
 The above approximation is reliable when \(n\) is large and \(p\) is not too close to 0 or 1. In practice, we replace the unknown \(p\) in the standard error by \(\hat{p}\). This leads to the so-called \emph{Wald confidence interval}. A common rule of thumb is that \(n\hat{p} \ge 10\) and \(n(1 - \hat{p}) \ge 10\) for the approximation to work reasonably well.
 
 \subsection*{Constructing the Confidence Interval}
@@ -315,7 +315,7 @@ To obtain a \((1-\alpha) \times 100\%\) confidence interval for \(p\), we use th
 \]
 where \(z_{\frac{\alpha}{2}}\) is the \(\alpha/2\) quantile of the standard normal distribution, and  \(z_{1-\frac{\alpha}{2}}\) is its \(1-\alpha/2\) quantile. In other words, \( \Pr(Z<z_{\frac{\alpha}{2}})=\alpha/2 \) and \( \Pr( Z < z_{1-\frac{\alpha}{2}} )=1-\alpha/2 \). Note that because of the symmetry of the standard normal distribution:
 \[
-\Pr(z_{\frac{\alpha}{2}})  = 1 - \Pr(z_{1-\frac{\alpha}{2}}) = \dfrac{\alpha}{2} \iff    z_{\frac{\alpha}{2}}  = - z_{1-\frac{\alpha}{2}} 
+\Pr(z_{\frac{\alpha}{2}})  = 1 - \Pr(z_{1-\frac{\alpha}{2}}) = \dfrac{\alpha}{2} \iff    z_{\frac{\alpha}{2}}  = - z_{1-\frac{\alpha}{2}}
 \]
 Hence,
 \[
@@ -334,7 +334,7 @@ For a 95\% confidence level, \(\alpha = 0.05\) and \(z_{1-\alpha/2} \approx 1.96
 
 Starting from
 \[
-  -1.96 
+  -1.96
   \;\le\;
   \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}}
   \;\le\;
@@ -356,9 +356,9 @@ Rewriting with this approximation yields
 \]
 Then, we solve for \(p\) by subtracting \(\hat{p}\) and then multiplying the inequality by $(-1)$:
 \[
-  \hat{p} - 1.96  \cdot \text{SE}(\hat{p}) 
+  \hat{p} - 1.96  \cdot \text{SE}(\hat{p})
   \;\le\;
-  p 
+  p
   \;\le\;
   \hat{p} + 1.96  \cdot \text{SE}(\hat{p}).
 \]
@@ -371,7 +371,7 @@ Thus, our approximate 95\% confidence interval for the proportion \(p\) is
   \quad
   \text{where}
   \quad
-  \text{SE}(\hat{p}) 
+  \text{SE}(\hat{p})
   \;=\;
   \sqrt{\frac{\hat{p}\,(1-\hat{p})}{n}}.
 \]
@@ -386,4 +386,3 @@ Thus, our approximate 95\% confidence interval for the proportion \(p\) is
 
 
 \end{document}
-

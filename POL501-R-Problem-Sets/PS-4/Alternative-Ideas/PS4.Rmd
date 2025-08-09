@@ -57,7 +57,7 @@ ggplot(data, aes(x = population, y = gdp_per_capita)) +
 - What kind of relationship do you observe between GDP per capita and population?
 - Is it linear, non-linear, or difficult to determine?
 
-**ANSWER:** 
+**ANSWER:**
 
 # Question 2: Simple Linear Regression
 

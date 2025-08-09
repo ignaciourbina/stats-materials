@@ -171,7 +171,7 @@ x,y
 \begin{itemize}
 \item We are often interested in describing a distribution by providing one value representing its center.  \pause % <-----|
 \item By ``center," we mean a numeric value that balances the distance between all the other points in the distribution in some specific way. \pause % <-----|
-\item Depending on a variable's specific type of distribution and the type of variable (categorical or numerical), we will use the \textbf{average}, \textbf{median}, or \textbf{mode} to best represent the center of the distribution. 
+\item Depending on a variable's specific type of distribution and the type of variable (categorical or numerical), we will use the \textbf{average}, \textbf{median}, or \textbf{mode} to best represent the center of the distribution.
 \end{itemize}
 \end{frame}
 
@@ -193,7 +193,7 @@ Where:
 \begin{frame}
 \frametitle{The Average: Some Notes}
 \begin{itemize}
-\item Why is the average useful? The average is useful because it provides a single measure summarising the entire dataset with just one value. 
+\item Why is the average useful? The average is useful because it provides a single measure summarising the entire dataset with just one value.
 \begin{itemize}
     \item This simplifies our understanding of and ability to work with data. Despite being affected by outliers, the average is still important in various statistical analyses.
 \end{itemize}
@@ -214,7 +214,7 @@ Where:
 \begin{frame}
 \frametitle{Example of Influence of Outliers}
 \begin{itemize}
-\item Imagine we have a sample size of $N_{\text{Sample 1}}=10$. We have measured a random sample of people’s yearly income. Assume we find $\bar{X}_{\text{Sample 1}} = 40,000$. 
+\item Imagine we have a sample size of $N_{\text{Sample 1}}=10$. We have measured a random sample of people’s yearly income. Assume we find $\bar{X}_{\text{Sample 1}} = 40,000$.
 \item Now consider another sample, this time of size $N_{\text{Sample 2}} = 1,000$. Assume we find that $\bar{X}_{\text{Sample 2}} = 42,500$.
 \item Assume in each sample, we forgot to include an additional data point: $X_{N+1} = 150,000$. How does the mean change in each case?
 \end{itemize}
@@ -236,8 +236,8 @@ Where:
 
 Here’s the general formula for the median depending on whether $N$ is odd or even:
 \begin{equation*}
-median(X) = 
-\begin{cases} 
+median(X) =
+\begin{cases}
 X_{\{\frac{N+1}{2}\}} & \text{if $N$ is odd} \\
 \frac{1}{2}(X_{\{\frac{N}{2}\}} + X_{\{\frac{N}{2} + 1\}}) & \text{if $N$ is even}
 \end{cases}
@@ -282,7 +282,7 @@ X_{\{\frac{N+1}{2}\}} & \text{if $N$ is odd} \\
 \begin{itemize}
 \item Sometimes we want to ask how likely is one specific value of a variable relative to others. This is particularly relevant for variables that take on integer values (nominal and ordinal categorical variables).
 \item \emph{Def.} \textbf{Absolute Frequency} of the value of a variable. The absolute frequency of a value is the count of the number of times that value occurs in the data set.
-\item \emph{Def.} \textbf{Relative frequency} of the value of a variable. The relative frequency of a value, $f_i$, is the proportion of the total number of data points that that value, $x_i$, represents. 
+\item \emph{Def.} \textbf{Relative frequency} of the value of a variable. The relative frequency of a value, $f_i$, is the proportion of the total number of data points that that value, $x_i$, represents.
 \begin{itemize}
     \item  It is calculated by dividing the absolute frequency of the value by the total number of data points.
 \end{itemize}
@@ -399,7 +399,7 @@ Very confident & 534 & 0.212 \\
 {\small \centering
 \begin{tabular}{|l|c|c|c|}
 \hline
-& \multicolumn{3}{c|}{Type of Frequency} \\ 
+& \multicolumn{3}{c|}{Type of Frequency} \\
 \cline{2-4}
 Confidence & Absolute & Relative ($f_i$) & Cumulative ($F_i$)  \\
 \hline
@@ -414,12 +414,12 @@ Very confident & 534 & 0.212 & 1.00 \\
 \end{frame}
 
 \begin{frame}{Simulation of 1,000 Throws of Four Coins}
-    \textbf{Introduction:} In this experiment, we simulate 1,000 independent throws of four fair coins. 
-    Each throw results in a certain number of heads (from 0 to 4). We analyze the distribution of the 
+    \textbf{Introduction:} In this experiment, we simulate 1,000 independent throws of four fair coins.
+    Each throw results in a certain number of heads (from 0 to 4). We analyze the distribution of the
     absolute and relative frequencies of these outcomes.
-    
+
     \vspace{1em}
-    
+
     \textbf{Steps of the Experiment:}
     \begin{itemize}
         \item Each throw consists of flipping 4 independent coins.
@@ -435,10 +435,10 @@ Very confident & 534 & 0.212 & 1.00 \\
 \end{frame}
 
 \begin{frame}{Simulation of 1,000 Throws of Four Coins}
-    \textbf{Results:} 
-    
+    \textbf{Results:}
+
     \vspace{1em}
-    
+
 {\small \centering
 \begin{tabular}{|p{0.11\textwidth}|p{0.15\textwidth}|p{0.15\textwidth}|
                     p{0.15\textwidth}|p{0.15\textwidth}|}
@@ -529,7 +529,7 @@ Very confident & 534 & 0.212 & 1.00 \\
     \item Therefore, when computing the mean, we want to account for these different relative frequencies. To do so, we use the weighted mean.
     \vspace{1em}
 \end{itemize}
-\emph{Def.} \textbf{Weighted Mean}.  
+\emph{Def.} \textbf{Weighted Mean}.
 Consider a given value of the variable \( x_i \), and let \( f_i \) be its relative frequency. The weighted mean is defined as:
 \begin{equation*}
 \bar{X}_w = \sum_{i=1}^{k} f_i \times x_i
@@ -546,11 +546,11 @@ where \( k \) represents the number of distinct values in the distribution.
     \item We numerically code the ordinal confidence levels as follows:
     \[
     x_i =
-    \begin{cases} 
+    \begin{cases}
         1, & \text{if respondent is ``Not at all confident"} \\
         2, & \text{if respondent is ``Not too confident"} \\
         3, & \text{if respondent is ``Somewhat confident"} \\
-        4, & \text{if respondent is ``Very confident"} 
+        4, & \text{if respondent is ``Very confident"}
     \end{cases}
     \]
     \item Then, we compute the weighted mean of this numeric confidence scale.
@@ -567,7 +567,7 @@ where \( k \) represents the number of distinct values in the distribution.
 
 \begin{itemize}
     \item Mean of all values in the population.
-    \item Formula: 
+    \item Formula:
     \[
     \mu = \frac{1}{N} \sum_{i=1}^{N} x_i
     \]
@@ -595,14 +595,14 @@ where \( k \) represents the number of distinct values in the distribution.
 \section{Measures of Position}
 \transitionslide{Measures of Position}
 
-\begin{frame} \frametitle{Measure of Position} 
-\begin{itemize} 
+\begin{frame} \frametitle{Measure of Position}
+\begin{itemize}
 \item \textbf{Definition:} A measure of position identifies the location of a specific value within a data set relative to the overall distribution.
-\item \textbf{Purpose:} Helps in understanding how a particular data point compares to the rest of the data. 
+\item \textbf{Purpose:} Helps in understanding how a particular data point compares to the rest of the data.
 \begin{itemize}
     \item They provide insight into where a data point lies (e.g., near the center, in the tail, or at an extreme) and facilitate comparisons across data sets.
 \end{itemize}
-\item \textbf{Examples:} 
+\item \textbf{Examples:}
 \begin{itemize}
     \item \textbf{Percentiles \& Quantiles:} Values that split the data into equal-sized groups.
 \end{itemize}
@@ -683,10 +683,10 @@ Assume we have income data from a randomly selected sample. Below are the comput
 \par
 }
 \vspace{1em} \pause % <-----|
-\textbf{Note:} 
+\textbf{Note:}
 \begin{itemize}
     \item If someone earns \$84{,}100, they are \textbf{above} \(Q_3\) (or ``\emph{in} the third quartile"), meaning they earn more than 75\% of the sample.
-    \item If someone earns \$23{,}500, they are \textbf{below} \(Q_1\) (or ``\emph{below} the first quartile"), meaning they earn less than 75\% of the sample (or ``are in the lowest 25\%"). 
+    \item If someone earns \$23{,}500, they are \textbf{below} \(Q_1\) (or ``\emph{below} the first quartile"), meaning they earn less than 75\% of the sample (or ``are in the lowest 25\%").
 \end{itemize}
 
 
@@ -724,7 +724,7 @@ Assume we have income data from a randomly selected sample. Below are the comput
 \begin{frame}
 \frametitle{Introduction to Measures of Dispersion}
 \begin{itemize}
-    \item \textbf{Definition:} Measures of dispersion describe a variable's the spread or variability. 
+    \item \textbf{Definition:} Measures of dispersion describe a variable's the spread or variability.
     \item \textbf{Purpose:} While measures of central tendency (like the mean or median) tell us about the center of the data, measures of dispersion help us understand the distribution's spread and how much individual data points deviate from the center.
 \end{itemize}
 \end{frame}
@@ -802,7 +802,7 @@ Assume we have income data from a randomly selected sample. Below are the comput
         \text{MAD} = \frac{\sum_{i=1}^N |x_i - \bar{x}|}{N}
     \end{equation*}
     \begin{itemize}
-        \item \textbf{Note:} While the MAD can be a useful statistic to describe the variation in the data, we almost always focus on the Standard Deviation instead because of its useful properties for inference. 
+        \item \textbf{Note:} While the MAD can be a useful statistic to describe the variation in the data, we almost always focus on the Standard Deviation instead because of its useful properties for inference.
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -814,7 +814,7 @@ Assume we have income data from a randomly selected sample. Below are the comput
     \[
         d = \sqrt{(x_i - \mu_x)^2 + (y_i - \mu_y)^2}.
     \]
-    
+
     \textbf{Why Squaring?}
     \begin{itemize}
         \item Squaring ensures all differences are positive, preventing cancellations.
@@ -822,7 +822,7 @@ Assume we have income data from a randomly selected sample. Below are the comput
         \item Variance follows the same principle: it measures spread using squared differences from the mean.
         \item The standard deviation (square root of variance) gives a measure in the original units, just like distance.
     \end{itemize}
-    
+
 \end{frame}
 
 

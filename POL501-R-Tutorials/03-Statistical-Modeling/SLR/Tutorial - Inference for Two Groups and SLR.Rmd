@@ -43,7 +43,7 @@ In this analysis, we aim to investigate the relationship between age (as an inde
 ### Hypothesis
 - **Independent Variable (IV):** Age (`AGE`)
 - **Dependent Variable (DV):** Perception of crime safety (`CRIMESAFE`)
-  
+
 The hypothesis to test is whether there exists a significant linear relationship between age and perceptions of safety.
 
 ## Variables
@@ -80,14 +80,14 @@ We start by creating dummy variables for political affiliation, frequent interne
 pew_data <- pew_data %>%
   mutate(
     PARTY = as_factor(PARTY),  # Convert PARTY to factor for easier interpretation
-    
+
     # Create dummy variables for Democrats and Republicans
     Democrat = ifelse(PARTY == "Democrat", 1, 0),
     Republican = ifelse(PARTY == "Republican", 1, 0),
-    
+
     # Define Frequent Internet User: `INTFREQ` values 1 and 2 represent frequent usage
     Frequent_Internet_User = ifelse(INTFREQ %in% c(1, 2), 1, 0),
-    
+
     # Define Age Cohorts for more meaningful analysis of age differences
     Age_Cohort = case_when(
       AGE >= 18 & AGE <= 29 ~ "18-29 \n(Young Adults)",
@@ -97,13 +97,13 @@ pew_data <- pew_data %>%
       AGE >= 65 ~ "65+ \n(Seniors)",
       TRUE ~ "Unknown"  # Handles missing or unexpected age values
     ),
-    
+
     # Handle non-valid values in CRIMESAFE (values above 97 are non-valid codes)
     CRIMESAFE = case_when(
       CRIMESAFE >= 97 ~ NA_real_,
-      TRUE ~ CRIMESAFE 
+      TRUE ~ CRIMESAFE
     ),
-    
+
     # Create a dummy variable indicating if AGE is above the median age
     Age_Above_Median = ifelse(AGE > median(AGE, na.rm = TRUE), 1, 0)
 )
@@ -175,8 +175,8 @@ ggplot(pew_data, aes(x = as.factor(CRIMESAFE))) +
 ggplot(pew_data %>% filter(!is.na(CRIMESAFE)), aes(x = as.factor(Age_Cohort), y = CRIMESAFE)) +
   geom_boxplot() +
   stat_summary(fun = mean, geom = "crossbar", width = 0.75, color = "red", linewidth = 0.2) +  # Add mean line within the box
-  labs(title = "Boxplot of Perception of Safety by Age Cohort with Mean Line Inside Boxes", 
-       x = "Age Cohort", 
+  labs(title = "Boxplot of Perception of Safety by Age Cohort with Mean Line Inside Boxes",
+       x = "Age Cohort",
        y = "CRIMESAFE")
 
 ```
@@ -226,7 +226,7 @@ doz_test <- function(data, x_var, group_var) {
   # Separate data into two groups based on the group_var
   group1_data <- data[[x_var]][data[[group_var]] == 1]
   group2_data <- data[[x_var]][data[[group_var]] == 0]
-  
+
   # Calculate mean, standard deviation, and sample size for each group
   mean1 <- mean(group1_data, na.rm = TRUE)
   mean2 <- mean(group2_data, na.rm = TRUE)
@@ -234,12 +234,12 @@ doz_test <- function(data, x_var, group_var) {
   sd2 <- sd(group2_data, na.rm = TRUE)
   n1 <- sum(!is.na(group1_data))
   n2 <- sum(!is.na(group2_data))
-  
+
   # Calculate the standard error and Z-score
   se <- sqrt((sd1^2 / n1) + (sd2^2 / n2))
   z <- (mean1 - mean2) / se
   p_value <- 2 * (1 - pnorm(abs(z)))
-  
+
   # Return a comprehensive list of all relevant values including group description
   list(
     group1_mean = mean1,
@@ -353,7 +353,7 @@ summary_data <- pew_data %>%
 
 ggplot(summary_data, aes(x = Age_Cohort, y = mean_crimesafe)) +
   geom_point(size = 3) +
-  geom_errorbar(aes(ymin = mean_crimesafe - 1.96 * se_crimesafe, 
+  geom_errorbar(aes(ymin = mean_crimesafe - 1.96 * se_crimesafe,
                     ymax = mean_crimesafe + 1.96 * se_crimesafe), width = 0.2) +
   labs(title = "Mean Perception of Crime Safety by Age Cohort",
        x = "Age Cohort",
@@ -405,7 +405,7 @@ summary(lm_model)
 kable(summary(lm_model)$coefficients, caption = "Regression Output for Linear Model")
 ```
 
-## Analysis 
+## Analysis
 
 The output provided is the summary of a simple linear regression model where `CRIMESAFE` (perception of crime safety) is the dependent variable, and `AGE` is the independent variable. Here’s a detailed breakdown of how to interpret each section of the output:
 
@@ -421,8 +421,8 @@ This indicates the model specification. It shows that we’re modeling `CRIMESAF
 ### Residuals
 ```r
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.6279 -0.5865  0.3855  0.4269  2.4627 
+##     Min      1Q  Median      3Q     Max
+## -1.6279 -0.5865  0.3855  0.4269  2.4627
 ```
 The residuals section provides a summary of the distribution of residuals (differences between observed and predicted values) for the model:
 
@@ -439,9 +439,9 @@ These values indicate the spread of residuals, which helps identify any skewness
 ### Coefficients
 ```r
 ## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
+##               Estimate Std. Error t value Pr(>|t|)
 ## (Intercept)  2.6480729  0.0358097  73.948   <2e-16 ***
-## AGE         -0.0011191  0.0006071  -1.844   0.0653 .  
+## AGE         -0.0011191  0.0006071  -1.844   0.0653 .
 ```
 
 The **Coefficients** table presents details on the intercept and the effect of `AGE` on `CRIMESAFE`:
@@ -483,7 +483,7 @@ The **Residual Standard Error** of `0.8462` represents the average distance that
 
 ### R-squared and Adjusted R-squared
 ```r
-## Multiple R-squared:  0.0006053,  Adjusted R-squared:  0.0004272 
+## Multiple R-squared:  0.0006053,  Adjusted R-squared:  0.0004272
 ```
 - **Multiple R-squared**: `0.0006053` indicates that approximately 0.06% of the variability in `CRIMESAFE` is explained by `AGE`, suggesting a weak relationship.
 - **Adjusted R-squared**: `0.0004272` adjusts the R-squared for the number of predictors in the model. Because this model has only one predictor, adjusted R-squared is almost the same as R-squared.
@@ -580,4 +580,3 @@ Interestingly, when we examine the data using a chi-square test of independence 
 The plotted means of `CRIMESAFE` across different age cohorts (as shown in the plot) provide further clarification. Younger adults (18-29) tend to report the highest levels of perceived insecurity (higher mean `CRIMESAFE` values), indicating that they feel more insecure. As age increases, the mean values for `CRIMESAFE` generally decrease, with older age cohorts reporting lower perceived insecurity. Middle-aged groups (30-64) show a gradual reduction in perceived insecurity, and seniors (65+) report the lowest insecurity, suggesting that they feel the most secure among the age groups.
 
 In summary, while linear regression analysis does not strongly support a linear relationship between age and crime safety perception, the chi-square test reveals a significant association between age groups and different levels of perceived insecurity. This association is complex and non-linear, as illustrated by the varying mean values across age cohorts in the plot. This suggests that age impacts perceptions of crime safety in nuanced ways that a simple linear model cannot fully capture: younger adults tend to feel more insecure, while older adults generally feel more secure.
-

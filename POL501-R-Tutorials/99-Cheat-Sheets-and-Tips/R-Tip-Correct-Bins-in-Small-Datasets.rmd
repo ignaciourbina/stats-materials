@@ -28,7 +28,7 @@ max_data <- max(data) # Minimum Value of the Data
 bin_breaks_10 <- seq(min_data, max_data, length.out = 10)
 
 # Create a histogram with 10 bins
-hist(data, breaks = bin_breaks_10, main = "Histogram of Uniformly Distributed Data", 
+hist(data, breaks = bin_breaks_10, main = "Histogram of Uniformly Distributed Data",
     xlab = "Value", col = "lightblue", border = "black")
 ```
 
@@ -59,6 +59,6 @@ hist(neighborhood_data$Number_of_Social_Activities, breaks = bin_breaks, main = 
 ```{r}
 
 # Create a histogram with 10 bins
-hist(neighborhood_data$Number_of_Social_Activities, breaks = 7, main = "Histogram", 
+hist(neighborhood_data$Number_of_Social_Activities, breaks = 7, main = "Histogram",
     xlab = "Value", col = "lightblue", border = "black")
 ```

@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Descriptive Stats"
-output: 
+output:
   html_document:
     code_folding: show
     theme:
@@ -170,7 +170,7 @@ To enhance the minimalistic and clean design, we can apply a few customizations 
 - Remove grid lines for a cleaner look.
 - Use a simple font.
 - Keep the color palette minimal and use grey tones.
-  
+
 This is achieved by using `theme_minimal()` and additional options to remove grid lines.
 
 ```{r, echo=TRUE}
@@ -217,7 +217,7 @@ ggplot(data, aes(x = logGDPPC, y = LifeExpectancy, color = region)) +
 #### Explanation:
 1. **`mutate(logGDPPC = log(GDPPC))`**: This line creates the new `logGDPPC` variable by applying the natural logarithm to `GDPPC`.
 2. **Scatter Plot of `logGDPPC` vs Life Expectancy**: We replace the `GDPPC` variable on the x-axis with `logGDPPC` to observe how life expectancy relates to the log of GDP per capita.
-   
+
 This transformation often reveals a clearer and more linear relationship between GDP per capita and life expectancy, improving the overall interpretability of the scatter plot.
 
 ### Visual Impact of Log Transformation:

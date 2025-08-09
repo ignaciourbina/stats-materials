@@ -19,12 +19,12 @@
 
 \usepackage{pgfplots}
 
-% Nice color sets, see see http://colorbrewer2.org/	
+% Nice color sets, see see http://colorbrewer2.org/
 \usepgfplotslibrary{colorbrewer}
 % initialize Set1-4 from colorbrewer (we're comparing 4 classes),
-\pgfplotsset{compat = 1.18, cycle list/Set1-8} 
+\pgfplotsset{compat = 1.18, cycle list/Set1-8}
 % Tikz is loaded automatically by pgfplots
-\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer}
 
 % provides \pgfplotstabletranspose
 \usepackage{pgfplotstable}
@@ -63,11 +63,11 @@
     \begin{itemize}
         \item \textbf{Key Terms:}
         \begin{itemize}
-            \item \textbf{Population Proportion (\( p \))}: 
+            \item \textbf{Population Proportion (\( p \))}:
             \[
                 p = \frac{\text{Number of successes in population}}{\text{Total population size}} = \frac{S}{N}
             \]
-            \item \textbf{Sample Proportion (\( \hat{p} \))}: 
+            \item \textbf{Sample Proportion (\( \hat{p} \))}:
             \[
                 \hat{p} = \frac{S_n}{n}
             \]
@@ -131,7 +131,7 @@ Note that any $X_k$ and $X_j$:
 \begin{itemize}
     \item Are identically distributed. So, $E[X_k]=E[X_j]=p$, and $V[X_k]=V[X_j]=p(1-p)$.
     \item Are independent. So, this implies the following variance of a linear combination of two values, $V((X_k + X_j)/2) = (1/4)\cdot V(X_k+X_j) = (1/4)\cdot [p(1-p) + p(1-p)] = \frac{p(1-p)}{2}$
-    
+
 \end{itemize}
 \end{frame}
 
@@ -139,14 +139,14 @@ Note that any $X_k$ and $X_j$:
 
 Population mean:
 \[
-\mathbb{E}[\hat{p}] 
+\mathbb{E}[\hat{p}]
 = \mathbb{E}\left[\frac{1}{n} \sum_{i=1}^n X_i\right]
 = \frac{1}{n} \sum_{i=1}^n \mathbb{E}[X_i]
 = p
 \]
 Variance:
 \[
-\text{Var}(\hat{p}) 
+\text{Var}(\hat{p})
 = \text{Var}\left(\frac{1}{n} \sum_{i=1}^n X_i\right)
 = \frac{1}{n^2} \sum_{i=1}^n \text{Var}(X_i)
 \]
@@ -301,7 +301,7 @@ Variance:
     \item For a 95\% CI:
        \[
     \text{MOE} = 1.96 \times \text{SE}(\hat{p}) = 1.96 \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
-    \] 
+    \]
         \item This interval provides an estimated range that, with 95\% confidence, contains the true population proportion \( p \).
     \end{itemize}
 \end{frame}
@@ -337,10 +337,10 @@ Variance:
         \begin{itemize}
             \item For a 99\% confidence interval, the critical value from the normal distribution is approximately \( Z = 2.576 \).
         \end{itemize}
-        
+
         \item \textbf{Estimate the Standard Error (SE):}
         \begin{itemize}
-            \item Use the sample proportion \( \hat{p} \) to estimate \( SE \): 
+            \item Use the sample proportion \( \hat{p} \) to estimate \( SE \):
             \[
             \text{SE} \approx \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
             \]
@@ -371,7 +371,7 @@ Variance:
         \item A public health survey finds that out of a sample of 400 people, 120 are vaccinated.
         \item We wish to calculate the 95\% and 99\% confidence intervals for the true proportion of vaccinated individuals in the population.
     \end{itemize}
-    
+
     \textbf{Given Data:}
     \begin{itemize}
         \item Sample size (\( n \)) = 400
@@ -389,7 +389,7 @@ Variance:
                                                                                                     &= \sqrt{0.000525} \\
                                                                                                     &\approx 0.023
 \end{align*}
-        
+
 
     \end{itemize}
 \end{frame}
@@ -471,7 +471,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             \item Often, we want to know if a certain belief or assumption about a population is likely to be true based on our sample data.
             \item For example, we might wonder, “Is the vaccination rate really 30\% in the general population, or is it different?”
         \end{itemize}
-        
+
         \item \textbf{Hypothesis Testing:} A systematic way to check if our data supports or refutes our initial belief.
         \begin{itemize}
             \item Imagine having a statement about a population—our hypothesis—and then using data to evaluate if there’s enough evidence to challenge that statement.
@@ -488,13 +488,13 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             \item One claim (the \textit{null hypothesis}) represents a baseline assumption, often suggesting "no change" or "no effect."
             \item The other claim (the \textit{alternative hypothesis}) suggests there’s a meaningful difference from the null.
         \end{itemize}
-        
-        \item \textbf{Gathering Evidence:} 
+
+        \item \textbf{Gathering Evidence:}
         \begin{itemize}
             \item Using sample data, we evaluate if there’s enough evidence to support or refute our baseline assumption.
             \item Just as in a courtroom, we start with a presumption (the null hypothesis is true) and only reject it if the evidence is strong.
         \end{itemize}
-        
+
         \item \textbf{Making a Decision:}
         \begin{itemize}
             \item If our sample data aligns well with the null hypothesis, we “fail to reject” it.
@@ -516,7 +516,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
 \[
         Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
 \]
-        
+
         \item \textbf{Defining Each Term:}
         \begin{itemize}
             \item $\hat{p}$: The \textbf{sample proportion}.
@@ -584,7 +584,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             \item Thus, if our result is in the rejection region, we are willing to reject \( H_0 \) because it fits our set threshold for "unusual" results.
         \end{itemize}
 
-    
+
     \end{itemize}
 \end{frame}
 
@@ -602,7 +602,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             \item Null hypothesis \( H_0: p = 0.49 \)
             \item Alternative hypothesis \( H_a: p \neq 0.49 \) (two-tailed test)
         \end{itemize}
-        
+
         \item \textbf{Significance Level:} Set \( \alpha = 0.05 \)
     \end{itemize}
 \end{frame}
@@ -611,17 +611,17 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
 \begin{frame}{Solution: Test Statistic and Conclusion}
     \begin{itemize}
         \item \textbf{Sample Proportion:} \( \hat{p} = 0.52 \)
-        
+
         \item \textbf{Standard Error (SE):}
 \[
         \text{SE} = \sqrt{\frac{p_0(1 - p_0)}{n}} = \sqrt{\frac{0.49 \times (1 - 0.49)}{1000}} \approx 0.0158
 \]
-        
+
         \item \textbf{Test Statistic:}
 \[
         Z = \frac{\hat{p} - p_0}{\text{SE}} = \frac{0.52 - 0.49}{0.0158} \approx 1.898
 \]
-        
+
         \item \textbf{Decision:}
         \begin{itemize}
             \item Since \( Z = 1.898 \) is within the range of \( [-1.96, 1.96] \), we \textbf{fail to reject} \( H_0 \) at \( \alpha = 0.05 \).
@@ -713,19 +713,19 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
 
 % Slide: Example - Compute P-value for One-Sided Test
 \begin{frame}{Example: Computing P-value for a One-Sided Test}
-\footnotesize 
+\footnotesize
     \textbf{Problem Statement:}
     \begin{itemize}
         \item A political poll indicates that 52\% of a sample of 1,000 voters support Candidate A.
         \item We wish to test if there is evidence that the true proportion supporting Candidate A is greater than 50\%.
     \end{itemize}
-    
+
     \textbf{Hypotheses:}
     \begin{itemize}
         \item Null hypothesis \( H_0: p = 0.50 \)
         \item Alternative hypothesis \( H_a: p > 0.50 \) (one-sided test)
     \end{itemize}
-    
+
     \textbf{Calculations:}
     \begin{itemize}
         \item Sample proportion \( \hat{p} = 0.52 \)
@@ -733,7 +733,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
         \item Test Statistic \( Z = \frac{\hat{p} - p_0}{\text{SE}} = \frac{0.52 - 0.50}{0.0158} \approx 1.265 \)
         \item P-value \( = P(Z \geq 1.265) = 1 - \Phi(1.265) \approx 0.103 \)
     \end{itemize}
-    
+
     \textbf{Conclusion:}
     \begin{itemize}
         \item At \( \alpha = 0.05 \), since \( \text{P-value} = 0.103 > 0.05 \), we \textbf{fail to reject} \( H_0 \).
@@ -789,8 +789,8 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
                 nodes near coords align={vertical},
             ]
                 \addplot coordinates {
-                    (0.45,2) (0.46,3) (0.47,5) (0.48,7) (0.49,9) 
-                    (0.50,10) (0.51,9) (0.52,7) (0.53,5) (0.54,3) 
+                    (0.45,2) (0.46,3) (0.47,5) (0.48,7) (0.49,9)
+                    (0.50,10) (0.51,9) (0.52,7) (0.53,5) (0.54,3)
                     (0.55,2)
                 };
                 % Overlay Gaussian curve
@@ -1044,7 +1044,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
         \item \(n = 200\) (sample size)
         \item \textbf{Confidence Level:} 95\%
     \end{itemize}
-    
+
     \textbf{Mathematical Steps:}
     \begin{enumerate}
         \item \textbf{Calculate Standard Error (SE):}
@@ -1067,7 +1067,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             \text{Rounded: } [0.533, 0.668]
         \]
     \end{enumerate}
-    
+
     \textbf{Conclusion:}
     \[
         \text{We are 95\% confident that the true proportion of vaccinated individuals is between } 53.3\% \text{ and } 66.8\%.
@@ -1095,9 +1095,9 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
                 \addplot [very thick, blue!50!black] {gauss(0.60, 0.0346)};
                 % Shade the confidence interval area
                 \addplot [
-                    domain=0.533:0.668, 
-                    samples=100, 
-                    fill=blue!20, 
+                    domain=0.533:0.668,
+                    samples=100,
+                    fill=blue!20,
                     fill opacity=0.5
                 ] {gauss(0.60, 0.0346)} \closedcycle;
             \end{axis}
@@ -1202,7 +1202,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             H_0: p = 0.50 \quad vs. \quad H_a: p \neq 0.50
         \]
     \end{itemize}
-    
+
     \textbf{Mathematical Steps:}
     \begin{enumerate}
         \item \textbf{Compute the Test Statistic (\( Z \)):}
@@ -1221,7 +1221,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             0.0046 < 0.05 \Rightarrow \text{Reject } H_0
         \]
     \end{enumerate}
-    
+
     \textbf{Conclusion:}
     \[
         \text{There is significant evidence to reject } H_0. \text{ The true vaccination rate } p \text{ is different from } 0.50.
@@ -1254,18 +1254,18 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
                     fill=red!30,
                     fill opacity=0.5
                 ] {gauss(0.50, 0.03535)} \closedcycle;
-                
+
                 \addplot [
                     domain=0:0.50 - 1.96*0.03535,
                     samples=100,
                     fill=red!30,
                     fill opacity=0.5
                 ] {gauss(0.50, 0.03535)} \closedcycle;
-                
+
                 % Mark the observed sample proportion p=0.60
                 \draw[thick, dashed, green!60!black] (axis cs:0.60,0) -- (axis cs:0.60, {gauss(0.50, 0.03535)});
                 \node[above] at (axis cs:0.60, {gauss(0.50, 0.03535)}) {\footnotesize \( \hat{p} = 0.60 \)};
-                
+
                 % Label p0=0.50
                 \draw[thick, dashed, blue!50!black] (axis cs:0.50,0) -- (axis cs:0.50, {gauss(0.50, 0.03535)});
                 \node[below] at (axis cs:0.50,0) {\footnotesize \( p_0 = 0.50 \)};
@@ -1334,12 +1334,12 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
                 \addplot [very thick, blue!50!black] {gauss(0.60, 0.0346)};
                 % Shade the confidence interval area
                 \addplot [
-                    domain=0.533:0.668, 
-                    samples=100, 
-                    fill=blue!20, 
+                    domain=0.533:0.668,
+                    samples=100,
+                    fill=blue!20,
                     fill opacity=0.5
                 ] {gauss(0.60, 0.0346)} \closedcycle;
-                
+
                 % Mark p0=0.50 outside the CI
                 \draw[thick, dashed, red!50!black] (axis cs:0.50,0) -- (axis cs:0.50, {gauss(0.60, 0.0346)});
                 \node[below] at (axis cs:0.50,0) {\footnotesize \( p_0 = 0.50 \)};
@@ -1413,7 +1413,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             H_0: p = 0.40 \quad vs. \quad H_a: p \neq 0.40
         \]
     \end{itemize}
-    
+
     \textbf{Mathematical Steps:}
     \begin{enumerate}
         \item \textbf{Calculate Standard Error (SE):}
@@ -1446,12 +1446,12 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
             \]
         \end{enumerate}
     \end{enumerate}
-    
+
     \textbf{Conclusion:}
     \[
         \text{Fail to reject } H_0. \text{ There is insufficient evidence to conclude that } p \neq 0.40.
     \]
-    
+
     \textbf{Mathematical Alignment:}
     \[
         p_0 = 0.40 \in \text{CI} = [0.370, 0.530] \Rightarrow \text{Do not reject } H_0
@@ -1500,7 +1500,7 @@ But note this is a \textbf{moot question}. We really care about $p$, not $\hat{p
 \end{document}
 
 
-The procedure for computing a confidence interval is a 
+The procedure for computing a confidence interval is a
 Set-valued correspondence.
 
 So is a random set-valued correspondence.
@@ -1562,7 +1562,7 @@ It’s single-valued in the sense that you get a unique interval — but it’s 
 
 What you’re describing is technically a:
 
-> �� **Set-valued function**  
+> �� **Set-valued function**
 > �� aka **Correspondence** (in math/econ language)
 
 Let me know if you want a visual or want to tie this into measurable correspondences or something more abstract!

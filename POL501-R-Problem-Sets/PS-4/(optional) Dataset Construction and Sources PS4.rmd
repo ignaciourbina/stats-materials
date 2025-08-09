@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-## Codebook 
+## Codebook
 
 This codebook describe the sources and the variables used to create the `csv` file `vdem_wdi_merged_df.csv`.
 
@@ -38,7 +38,7 @@ This codebook describe the sources and the variables used to create the `csv` fi
 ## Datasets Used
 
 ### VDEM (Varieties of Democracy) Dataset
-The **VDEM (Varieties of Democracy)** dataset is a comprehensive source of data that provides detailed information about the political and democratic characteristics of countries around the world. It includes a wide range of indicators related to political systems, governance, elections, civil liberties, and political representation. The dataset aims to capture the complex nature of democracies, tracking changes over time in different dimensions of democratic governance. 
+The **VDEM (Varieties of Democracy)** dataset is a comprehensive source of data that provides detailed information about the political and democratic characteristics of countries around the world. It includes a wide range of indicators related to political systems, governance, elections, civil liberties, and political representation. The dataset aims to capture the complex nature of democracies, tracking changes over time in different dimensions of democratic governance.
 
 - **Focus**: Political metrics, including governance, political freedoms, representation, and leadership.
 - **Usage in Analysis**: The dataset was used to analyze the presence of female leaders, representation in the legislature, and other political characteristics across countries from 1994 to 2014.
@@ -47,26 +47,26 @@ The **VDEM (Varieties of Democracy)** dataset is a comprehensive source of data 
 The **WDI (World Development Indicators)** dataset, published by the World Bank, is a key resource for global development data. It provides economic, social, and demographic statistics, offering insights into the development progress of nations. The dataset includes indicators on health, education, economic activity, population, and other developmental metrics that reflect the living conditions and quality of life in different countries.
 
 - **Focus**: Socioeconomic metrics, including health, economic performance, and social development indicators.
-- **Usage in Analysis**: The dataset was used to capture key socioeconomic indicators such as adolescent fertility rate, infant mortality rate, and life expectancy at birth, averaged over the years 2015-2018. These indicators were used to understand development outcomes following the political conditions captured by VDEM. 
+- **Usage in Analysis**: The dataset was used to capture key socioeconomic indicators such as adolescent fertility rate, infant mortality rate, and life expectancy at birth, averaged over the years 2015-2018. These indicators were used to understand development outcomes following the political conditions captured by VDEM.
 
 Together, the **VDEM** and **WDI** datasets provide a comprehensive view of both political and socioeconomic dimensions of countries, facilitating analysis of the linkages between political governance and development outcomes.
 
 
 ### World Bank - WDI, Selected Variables
 
-- **Life expectancy at birth, total (years)**  
+- **Life expectancy at birth, total (years)**
   - Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
-  - **ID**: SP.DYN.LE00.IN  
+  - **ID**: SP.DYN.LE00.IN
   - **Source**: ( 1 ) United Nations Population Division. World Population Prospects: 2022 Revision; or derived from male and female life expectancy at birth from sources such as: ( 2 ) Statistical databases and publications from national statistical offices; ( 3 ) Eurostat: Demographic Statistics.
 
-- **Adolescent fertility rate (births per 1,000 women ages 15-19)**  
+- **Adolescent fertility rate (births per 1,000 women ages 15-19)**
   - Adolescent fertility rate is the number of births per 1,000 women ages 15-19.
-  - **ID**: SP.ADO.TFRT 
+  - **ID**: SP.ADO.TFRT
   - **Source**: United Nations Population Division, World Population Prospects. Aggregation Method: Weighted average. General Comments: This is the Sustainable Development Goal indicator 3.7.2 [unstats.un.org/sdgs/metadata/]. Long Definition: Adolescent fertility rate is the number of births per 1,000 women ages 15-19. Periodicity: Annual.
 
-- **Mortality rate, infant (per 1,000 live births)**  
+- **Mortality rate, infant (per 1,000 live births)**
   - Infant mortality rate is the number of infants dying before reaching one year of age, per 1,000 live births in a given year.
-  - **ID**: SP.DYN.IMRT.IN  
+  - **ID**: SP.DYN.IMRT.IN
   - **Source**: Estimates developed by the UN Inter-agency Group for Child Mortality Estimation ( UNICEF, WHO, World Bank, UN DESA Population Division ) at childmortality.org.
 
 ### Variates of Democracy Dataset - VDEM, selected variables (The V-Dem Institute -Varieties of Democracy-. The headquarters of the project is based at the department of political science, University of Gothenburg, Sweden)
@@ -88,14 +88,14 @@ Together, the **VDEM** and **WDI** datasets provide a comprehensive view of both
 - **Variable Name**: `v2exfemhog`
   - **Description**: Gender of the head of government (A). This variable identifies the gender of the head of government.
   - **Question**: What is the gender of the head of government?
-  - **Clarification**: 
+  - **Clarification**:
     - If the head of government is a collective body, the gender of the person holding the most effective power over this body is recorded.
     - If no such individual exists, the response indicates whether any members of the collective body are female.
-  - **Responses**: 
+  - **Responses**:
     - 0: Male
     - 1: Female
   - **Scale**: Dichotomous.
-  - **Source(s)**: 
+  - **Source(s)**:
     - worldstatesmen.org
     - cf. Melander (2005)
     - Paxton and Hughes (2007)
@@ -120,7 +120,7 @@ Together, the **VDEM** and **WDI** datasets provide a comprehensive view of both
 
 ___
 
-## Pre-Processing Steps 
+## Pre-Processing Steps
 
 Here is a high-level overview of the steps taken to create the final cross-sectional dataset. These steps were carried out in an additional supplementary code script.
 
@@ -149,4 +149,3 @@ Here is a high-level overview of the steps taken to create the final cross-secti
    - Produced a summary table to show the distribution of western countries that had at least one female **Head of State** or **Head of Government** during **1994-2014**.
 
 The final cross-sectional dataset focuses on political and socioeconomic conditions around the year **2014**, enabling analysis of the impact of female political leadership on subsequent socioeconomic outcomes.
-
