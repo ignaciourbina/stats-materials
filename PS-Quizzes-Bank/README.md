@@ -43,4 +43,9 @@ This section provides PDF documents with worked-out solutions to problems, organ
 
 ## 03-Compiled-Quizzes-and-PS
 
-This section contains ready-to-use quizzes and problem sets, often from specific semesters or course iterations.
+This section contains ready-to-use quizzes and problem sets, often from specific semesters or course iterations. It is organized as follows:
+
+- **`03-Quizzes`**: Contains various quizzes, answer keys, and related materials, including a `quiz_builder` subdirectory with Python scripts for generating quizzes.
+- **`2024-Summer`**: Contains problem sets and quizzes specifically from the Summer 2024 session.
+- **`Answers-Files`**: Contains solutions and answer files for various problem sets.
+- **Problem Set Files**: A collection of `.tex` files for various problem sets (e.g., `PS-1.tex`, `PS-2.tex`, etc.) and their solutions.
