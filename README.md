@@ -1,6 +1,6 @@
 # 📊 Curated Course Materials for Statistics
 
-Welcome! This repository contains a comprehensive set of resources for teaching and learning statistics, meticulously developed by [Ignacio Urbina](https://iurbina.com). The materials are designed to make statistics accessible and engaging for students and educators alike.
+Welcome! This repository contains a comprehensive set of resources for teaching and learning statistics, developed by [Ignacio Urbina](https://ignacio-urbina.com). The materials are designed to make statistics accessible and engaging for students and educators alike.
 
 ---
 
