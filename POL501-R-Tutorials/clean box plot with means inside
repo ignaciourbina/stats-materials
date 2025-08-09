@@ -1,0 +1,47 @@
+library(ggplot2)
+library(dplyr)
+
+# Create mock dataset
+set.seed(123)
+age_groups <- c("18-24", "25-34", "35-44", "45-54", "55-64", "65+")
+opinion_data <- data.frame(
+  age_group = factor(rep(age_groups, each = 100), levels = age_groups),
+  opinion_score = c(
+    rnorm(100, mean = 6.5, sd = 2),   # 18-24
+    rnorm(100, mean = 7.2, sd = 1.8), # 25-34
+    rnorm(100, mean = 6.8, sd = 2),   # 35-44
+    rnorm(100, mean = 6.5, sd = 2.2), # 45-54
+    rnorm(100, mean = 6.0, sd = 2),   # 55-64
+    rnorm(100, mean = 5.5, sd = 2.1)  # 65+
+  )
+)
+
+###############################
+# Repurpose the following code:
+
+# Calculate mean for each group for dotted line
+group_means <- opinion_data %>%
+  group_by(age_group) %>%
+  summarise(group_mean = mean(opinion_score))
+
+# Create box plot with means
+ggplot(opinion_data, aes(x = age_group, y = opinion_score)) +
+  geom_boxplot(fill = "lightblue", color = "darkblue", 
+               # Extend whiskers to 1.5 * IQR
+               position = position_dodge(width = 0.8)) +
+  # Add mean points inside box
+  geom_point(data = group_means, 
+             aes(x = age_group, y = group_mean), 
+             color = "red", 
+             size = 3, 
+             shape = 8) +
+  labs(
+    title = "Public Opinion Across Age Groups",
+    x = "Age Group",
+    y = "Opinion Score"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )

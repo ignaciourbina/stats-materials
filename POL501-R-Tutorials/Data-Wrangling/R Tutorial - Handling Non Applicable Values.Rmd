@@ -1,0 +1,119 @@
+---
+title: "Handling Non-Applicable Survey Values"
+author: "POL 501"
+date: "`r Sys.Date()`"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Defining Non-Applicable Values in the Survey Context**
+
+In survey data, **non-applicable values** are responses that do not provide meaningful information for analysis. These values typically represent cases where a question was skipped, the respondent didn't understand or chose not to answer, or the response is irrelevant due to the survey's flow logic.
+
+Here are common types of non-applicable values in a survey context:
+
+---
+
+#### **1. Skipped Responses**
+   - Represented by negative integers or large numbers.
+   - Examples:
+     - `-1`: Legitimate skip (e.g., the question did not apply to the respondent due to routing logic).
+     - `-7`: Refusal to answer.
+     - `-9`: Missing data for unknown reasons.
+
+#### **2. Placeholder Codes for Missing or Irrelevant Responses**
+   - Large numbers are often used as placeholders.
+   - Examples:
+     - `97`: Not applicable.
+     - `98`: Don’t know.
+     - `99`: Prefer not to say.
+
+#### **3. Irrelevant Responses**
+   - These may include codes used for respondents whose answers are logically unrelated to the question.
+   - For example, a respondent who answered "No" to a question about being employed may skip a question about job satisfaction.
+
+---
+
+### **Why Transform Non-Applicable Values to `NA`?**
+- Non-applicable values are **not numerical data** but placeholders.
+- Leaving them as-is can distort analysis:
+  - Inflates means or sums.
+  - Causes errors in functions like regression or ANOVA.
+- Replacing with `NA` allows R to ignore these values (e.g., using `na.rm = TRUE`).
+
+### **Typical Handling in R**
+1. Identify the non-applicable values specific to the survey (e.g., `-1`, `97`, etc.).
+2. Replace them with `NA` for compatibility with analytical functions. 
+
+
+## Mock Dataset
+
+We simulate a survey dataset with non-applicable values such as `-1`, `-7`, `97`, `98`, and `99`.
+
+```{r mock-data}
+library(dplyr)
+
+# Create a mock dataset
+set.seed(123)
+survey_data <- data.frame(
+  respondent_id = 1:20,
+  support_abortion = sample(c(1, 2, 3, 5, -1, -7, 98), 20, replace = TRUE),
+  religion_importance = sample(c(1, 2, 3, 4, 5, 99), 20, replace = TRUE),
+  gender = sample(c("Male", "Female"), 20, replace = TRUE),
+  vote_intent = sample(c("Democrat", "Republican", "Independent", "Other", NA), 20, replace = TRUE)
+)
+
+# View unique values in columns
+table(survey_data$support_abortion)
+table(survey_data$religion_importance)
+```
+
+## Replace Non-Applicable Values with NA
+
+We transform non-applicable values (`-1`, `-7`, `97`, `98`, `99`) into `NA`.
+
+```{r replace-na}
+# Define non-applicable values
+non_applicable <- c(-1, -7, 97, 98, 99)
+
+# Replace non-applicable values with NA
+survey_data_clean <- survey_data %>%
+  mutate(
+    support_abortion = ifelse(support_abortion %in% non_applicable, NA, support_abortion),
+    religion_importance = ifelse(religion_importance %in% non_applicable, NA, religion_importance)
+  )
+
+# View cleaned data
+table(is.na(survey_data_clean$support_abortion))
+table(is.na(survey_data_clean$religion_importance))
+```
+
+## Handling NA in Analysis
+
+With non-applicable values converted to `NA`, functions like `mean()` and `sum()` can now exclude them using `na.rm = TRUE`.
+
+```{r handle-na}
+# Example: Mean of support_abortion
+mean_support_abortion <- mean(survey_data_clean$support_abortion, na.rm = TRUE)
+mean_support_abortion
+
+# Example: Mean of religion_importance
+mean_religion_importance <- mean(survey_data_clean$religion_importance, na.rm = TRUE)
+mean_religion_importance
+```
+
+## Explanation of `mutate()` Logic:
+
+- **`mutate()`**: Adds or modifies columns in a data frame.
+- **`ifelse()`**: Replaces values matching the condition (`%in% non_applicable`) with `NA`. Values not matching remain unchanged.
+- **`%in%`**: Checks if a value exists in the `non_applicable` list.
+
+With this setup, non-applicable values are now consistently handled as `NA`, making them compatible with R's analysis functions.

@@ -1,0 +1,306 @@
+---
+title: "ANOVA and Post-Hoc Analysis Tutorial"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Introduction
+
+In this tutorial, we will analyze simulated data to determine if there are significant differences between group means using **ANOVA**. We will follow this with pairwise t-tests using the **Bonferroni correction** to identify specific group differences.
+
+---
+
+## Simulating the Dataset
+
+We will generate data for three groups, each with specific mean and standard deviation.
+
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(tidyverse)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate data
+group_size <- 30  # Number of observations per group
+group_labels <- c("Group1", "Group2", "Group3")  # Group names
+group1 <- rnorm(group_size, mean = 50, sd = 5)  # Group 1: mean 50, sd 5
+group2 <- rnorm(group_size, mean = 55, sd = 5)  # Group 2: mean 55, sd 5
+group3 <- rnorm(group_size, mean = 60, sd = 5)  # Group 3: mean 60, sd 5
+
+# Combine into a data frame
+data <- data.frame(
+  Value = c(group1, group2, group3),
+  Group = factor(rep(group_labels, each = group_size))
+)
+
+# Preview the first few rows of the dataset
+head(data)
+```
+
+---
+
+## Visualizing the Data
+
+Let’s visualize the distributions of the groups using a boxplot.
+
+```{r visualize-data}
+ggplot(data, aes(x = Group, y = Value)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of Groups", x = "Group", y = "Value")
+```
+
+---
+
+## Conducting ANOVA
+
+We will perform an **ANOVA** to test the null hypothesis that all groups have the same mean. The alternative hypothesis is that at least one group differs.
+
+```{r run-anova}
+# Run ANOVA
+anova_result <- aov(Value ~ Group, data = data)
+
+# Print ANOVA summary
+summary(anova_result)
+```
+
+### Interpretation
+
+If the p-value from the ANOVA summary is less than 0.05, we reject the null hypothesis and conclude that there are differences among the group means.
+
+---
+
+## Simulating a Second Dataset: Lecture Scores Example
+
+For further analysis, let’s simulate another dataset representing midterm scores from three lecture groups.
+
+- **Scenario**: The data represents midterm scores for students in three lecture groups (A, B, and C) of the same statistics course.
+
+- **Purpose**: To determine if there are significant differences in the mean midterm scores among the three lectures.
+
+- **Group Details**:
+  - **Lecture A**: 58 students, mean = 69.1, standard deviation = 13.2.
+  - **Lecture B**: 55 students, mean = 71.0, standard deviation = 13.4.
+  - **Lecture C**: 51 students, mean = 78.9, standard deviation = 13.11.
+
+- **Analysis Approach**:
+  1. Perform an **ANOVA** to test if the mean scores differ across lectures.
+  2. If the null hypothesis is rejected, use pairwise t-tests with **Bonferroni correction** to identify specific differences between groups.
+
+```{r simulate-lecture-data}
+# Set seed for reproducibility
+set.seed(123)
+
+# Simulate dataset
+data_lecture <- data.frame(
+  Score = c(
+    rnorm(58, mean = 69.1, sd = 13.2),  # Lecture A
+    rnorm(55, mean = 71.0, sd = 13.4),  # Lecture B
+    rnorm(51, mean = 78.9, sd = 13.11)   # Lecture C
+  ),
+  Lecture = factor(rep(c("A", "B", "C"), times = c(58, 55, 51)))
+)
+
+# Conduct ANOVA
+anova_result_lecture <- aov(Score ~ Lecture, data = data_lecture)
+
+# Print ANOVA summary
+summary(anova_result_lecture)
+```
+
+---
+
+## Pairwise Comparisons with Bonferroni Correction
+
+After rejecting the null hypothesis in ANOVA, we perform pairwise comparisons using **Bonferroni correction** to control the Type I error rate.
+
+```{r pairwise-comparisons}
+# Pairwise t-tests with Bonferroni correction
+pairwise_result <- pairwise.t.test(
+  data_lecture$Score,  # Numeric data
+  data_lecture$Lecture,  # Grouping factor
+  p.adjust.method = "bonferroni"  # Bonferroni correction
+)
+
+# Print pairwise test results
+pairwise_result
+```
+
+### Interpretation
+
+The Bonferroni correction adjusts the significance level for each test. This ensures that the overall Type I error rate remains controlled. 
+
+- **Purpose**: The table provides pairwise comparisons of mean scores between groups (Lectures A, B, and C) using t-tests with a pooled standard deviation and Bonferroni-adjusted p-values.
+
+- **P-Value Adjustment**: Bonferroni correction adjusts the p-values to control the overall Type I error rate for multiple comparisons.
+
+- **Comparison Results**:
+  - **A vs. B**: p-value = 1.0000 (not significant). No evidence of a difference in mean scores between Lectures A and B.
+  - **A vs. C**: p-value = 0.0045 (significant). Strong evidence of a difference in mean scores between Lectures A and C.
+  - **B vs. C**: p-value = 0.0188 (not significant under a Bonferroni-adjusted threshold of \( \alpha/3 = 0.0167 \)) but close to significance.
+
+- **Significance Threshold**:
+  - The adjusted threshold for each comparison is \( \alpha/K \), where \( K = 3 \) comparisons. If \( \alpha = 0.05 \), then \( \alpha/3 = 0.0167 \).
+  - Comparisons with p-values < 0.0167 indicate significant differences after correction.
+
+- **Summary**:
+  - Lecture C's mean score differs significantly from Lecture A.
+  - There is no significant difference between Lectures A and B or Lectures B and C at the adjusted significance threshold.
+
+---
+
+## Visualizing the Lecture Data
+
+Let’s visualize the scores by lecture group using a boxplot.
+
+```{r visualize-lecture-data}
+ggplot(data_lecture, aes(x = Lecture, y = Score)) +
+  geom_boxplot() +
+  labs(title = "Scores by Lecture Group", x = "Lecture", y = "Score")
+```
+
+---
+
+## Summary of Results
+
+1. **ANOVA Results**:
+   - The ANOVA test indicated significant differences between group means.
+   
+2. **Pairwise Comparisons**:
+   - Pairwise t-tests with Bonferroni correction showed significant differences only between Lecture B and Lecture C.
+
+This demonstrates the importance of post-hoc analysis in identifying specific group differences after rejecting the null hypothesis in ANOVA.
+
+---
+
+### Adding an Example for Testing Proportions with ANOVA and Pairwise T-Tests
+
+ANOVA and post-hoc analyses can also be applied to datasets involving proportions (binary data), where the goal is to test differences in success probabilities between groups. Here, we simulate binary (Bernoulli-distributed) data to analyze group differences.
+
+## Case Study: Proportion of Successes in Experimental Groups
+
+### Scenario
+
+We want to test if there is a significant difference in the proportion of successes between three groups in an experiment. 
+
+- **Group Details**:
+  - **Group A**: 100 observations, success rate = 0.3.
+  - **Group B**: 100 observations, success rate = 0.5.
+  - **Group C**: 100 observations, success rate = 0.7.
+
+- **Analysis Approach**:
+  1. Perform an ANOVA test on the proportions to determine if at least one group differs in success rate.
+  2. Conduct pairwise comparisons with **Bonferroni correction** if the null hypothesis is rejected.
+
+---
+
+### Simulating the Dataset
+
+```{r simulate-bernoulli-data}
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate binary data for three groups
+data_bernoulli <- data.frame(
+  Success = c(
+    rbinom(100, 1, 0.3),  # Group A
+    rbinom(100, 1, 0.5),  # Group B
+    rbinom(100, 1, 0.7)   # Group C
+  ),
+  Group = factor(rep(c("A", "B", "C"), each = 100))
+)
+
+# Preview the first few rows of the dataset
+head(data_bernoulli)
+```
+
+---
+
+### Visualizing Proportions by Group
+
+A bar plot is a useful way to visualize proportions.
+
+```{r visualize-bernoulli-data}
+data_bernoulli_summary <- data_bernoulli %>%
+  group_by(Group) %>%
+  summarize(Proportion = mean(Success))
+
+ggplot(data_bernoulli_summary, aes(x = Group, y = Proportion)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Proportion of Successes by Group", x = "Group", y = "Proportion of Success")
+```
+
+---
+
+### Conducting ANOVA for Proportions
+
+We use an ANOVA model to compare group means (proportions of successes).
+
+```{r anova-bernoulli}
+# Conduct ANOVA
+anova_result_bernoulli <- aov(Success ~ Group, data = data_bernoulli)
+
+# Print ANOVA summary
+summary(anova_result_bernoulli)
+```
+
+### Interpretation
+
+If the p-value from the ANOVA summary is less than 0.05, we reject the null hypothesis and conclude that there are differences in success proportions among the groups.
+
+---
+
+### Pairwise Comparisons with Bonferroni Correction
+
+If the ANOVA test is significant, pairwise t-tests can be used to identify specific group differences.
+
+```{r pairwise-t-bernoulli}
+# Perform pairwise comparisons with Bonferroni correction
+pairwise_result_bernoulli <- pairwise.t.test(
+  data_bernoulli$Success,  # Binary response variable
+  data_bernoulli$Group,    # Grouping factor
+  p.adjust.method = "bonferroni"  # Bonferroni correction
+)
+
+# Print pairwise test results
+pairwise_result_bernoulli
+```
+
+---
+
+### Interpretation of Results
+
+- **ANOVA**: A significant p-value indicates that at least one group's success proportion differs from the others.
+- **Pairwise Comparisons**:
+
+  - Adjusted p-values reveal which group pairs differ significantly in their success proportions.
+
+For instance:
+
+- A significant p-value for Group A vs. Group C implies a difference in proportions.
+- Non-significant results for Group A vs. Group B indicate no difference in success rates between these groups.
+
+---
+
+### Summary of Bernoulli Case Study
+
+1. **ANOVA Results**:
+   - The ANOVA test determines if there are overall differences in success proportions between groups.
+   
+2. **Pairwise Comparisons**:
+   - Post-hoc pairwise tests with Bonferroni correction pinpoint specific group differences.
+
+---
+
+### Visualizing Proportions with Error Bars
+
+```{r visualize-bernoulli-summary}
+ggplot(data_bernoulli_summary, aes(x = Group, y = Proportion)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = Proportion - 1.96 * sqrt((Proportion * (1 - Proportion)) / 100),
+                    ymax = Proportion + 1.96 * sqrt((Proportion * (1 - Proportion)) / 100)), width = 0.2) +
+  labs(title = "Proportion of Successes by Group with Error Bars", x = "Group", y = "Proportion of Success")
+```
+
+This case demonstrates how ANOVA and post-hoc analysis can be applied to binary data, providing insight into differences in proportions among groups.

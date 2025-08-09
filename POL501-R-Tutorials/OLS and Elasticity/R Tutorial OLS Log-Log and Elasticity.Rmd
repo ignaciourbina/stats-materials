@@ -1,0 +1,286 @@
+---
+title: "R Tutorial - Linear Regression and Log-Log Specifications"
+author: "POL 501"
+date: "`r Sys.Date()`"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+---
+
+## Introduction
+
+This tutorial explores how nuclear energy production impacts CO2 emissions per capita, using simulated data and regression models. Specifically, we examine:
+
+1. **Data Simulation**: Create a mock dataset for a hypothetical case study.
+2. **Linear Regression**: Explore simple and multiple regression models.
+3. **Elasticity**: Define and calculate elasticities for log-log and log-linear models.
+4. **Control Variables**: Assess how GDP per capita affects the relationship.
+
+---
+
+### Case Study Context
+
+We investigate how nuclear energy impacts carbon emissions. As nuclear energy replaces fossil fuels, it likely reduces CO2 emissions. However, other factors like total energy demand or economic activity (GDP per capita) may also influence emissions. This tutorial models these relationships, estimating elasticities (percent change in CO2 emissions for percent changes in nuclear energy) while controlling for other variables.
+
+---
+
+## 1. Defining Elasticity
+
+**Elasticity** measures the responsiveness of one variable to another:
+
+\[
+\text{Elasticity of } Y \text{ w.r.t. } X = \frac{\%\ \text{Change in } Y}{\%\ \text{Change in } X} = \frac{\Delta Y / Y}{\Delta X / X}.
+\]
+
+Elasticity can be derived from log-log and log-linear models:
+
+### Case 1: Log-Log Model \((\log Y, \log X)\)
+
+Start with the log-log model:
+\[
+\log(Y) = \beta_0 + \beta_1 \log(X).
+\]
+Take the derivative w.r.t. \(\log(X)\):
+\[
+\frac{\partial \log(Y)}{\partial \log(X)} = \beta_1.
+\]
+Recognize the relationship:
+\[
+\frac{\partial \log(Y)}{\partial \log(X)} = \frac{\Delta Y / Y}{\Delta X / X} = \beta_1.
+\]
+Thus, \(\beta_1\) directly represents elasticity.
+
+### Case 2: Log-Linear Model \((\log Y, X)\)
+
+Start with:
+\[
+\log(Y) = \beta_0 + \beta_1 X.
+\]
+Take the derivative w.r.t. \(X\):
+\[
+\frac{\partial \log(Y)}{\partial X} = \beta_1.
+\]
+Express in terms of percentage changes:
+\[
+\frac{\Delta Y / Y}{\Delta X} = \beta_1 \implies \Delta Y / Y = \beta_1 \Delta X.
+\]
+For small changes, a one-unit change in \(X\) (measured in percentage points) leads to an approximate \(\beta_1\%\) change in \(Y\).
+
+---
+
+## 2. Simulating Data
+
+Simulate data for years 2000–2015:
+
+### R Code: Data Generation
+
+```{r}
+# Load necessary library
+library(tidyverse)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the years
+Years <- seq(2000, 2015)
+num_years <- length(Years)
+
+# Simulate energy production and emissions
+NuclearEnergyProduced <- runif(num_years, 0, 600)           # Nuclear (billion kWh)
+OtherEnergyProduced <- runif(num_years, 300, 900)          # Other sources
+TotalEnergyProduced <- NuclearEnergyProduced + OtherEnergyProduced
+NuclearEnergyShare <- (NuclearEnergyProduced / TotalEnergyProduced) * 100 # %
+CO2EmissionsPerCapita <- 10 - 0.005 * NuclearEnergyProduced + rnorm(num_years, 0, 0.5) # t/person
+GDPPerCapita <- runif(num_years, 30000, 60000)             # USD
+
+# Create data frame
+energy_data <- data.frame(
+  Year = Years,
+  NuclearEnergyProduced,
+  OtherEnergyProduced,
+  TotalEnergyProduced,
+  NuclearEnergyShare,
+  CO2EmissionsPerCapita,
+  GDPPerCapita
+)
+
+# Add log-transformed variables
+energy_data <- energy_data %>%
+  mutate(
+    log_CO2EmissionsPerCapita = log(CO2EmissionsPerCapita),
+    log_NuclearEnergyProduced = log(NuclearEnergyProduced + 1)  # Avoid log(0)
+  )
+
+# View the first few rows
+head(energy_data)
+```
+
+---
+
+## 3. Linear and Log-Log Models
+
+### Simple Log-Log Regression
+
+We fit a log-log model to estimate the elasticity of CO2 emissions with respect to nuclear energy.
+
+### R Code: Log-Log Model
+
+```{r}
+# Fit the log-log model
+log_log_model <- lm(log_CO2EmissionsPerCapita ~ log_NuclearEnergyProduced, data = energy_data)
+
+# Model summary
+summary(log_log_model)
+```
+
+### Interpretation
+
+If the coefficient of \(\log(\texttt{NuclearEnergyProduced})\) (\(\beta_1\)) is `r round(log_log_model$coefficients[2],2)`:
+
+- A 1% increase in nuclear energy production reduces CO2 emissions per capita by `r abs(round(log_log_model$coefficients[2],2))`%.
+- Negative elasticity indicates an inverse relationship.
+
+---
+
+## 4. Log(Y) - X Model
+
+When the independent variable is in percentage points (e.g., `NuclearEnergyShare`), we use a log-linear model.
+
+### R Code: Log(Y)-X Model
+
+```{r}
+# Fit the log-linear model
+logY_X_model <- lm(log_CO2EmissionsPerCapita ~ NuclearEnergyShare, data = energy_data)
+
+# Model summary
+summary(logY_X_model)
+```
+
+### Interpretation
+
+If the coefficient of NuclearEnergyShare (\(\beta_1\)) is `r round(logY_X_model$coefficients[2],2)`:
+
+- A one-percentage-point increase in Nuclear Energy Share reduces CO2 emissions per capita by `r abs(round(logY_X_model$coefficients[2],2))`% (approx.).
+
+---
+
+## 5. Adding Control Variables
+
+### Including GDP Per Capita
+
+To isolate the impact of nuclear energy on CO2 emissions, we control for GDP per capita. To keep the interpretation of the slopes as elasticities, we should log transform GDP per capita.
+
+### R Code: Model with Control Variable
+
+```{r}
+# Log transform GDP per capita
+energy_data <- energy_data %>%
+  mutate(
+    log_GDPPerCapita = log(GDPPerCapita)
+  )
+
+# Fit the model with a control variable
+logY_X_control_model <- lm(log_CO2EmissionsPerCapita ~ NuclearEnergyShare + log_GDPPerCapita, data = energy_data)
+
+# Model summary
+summary(logY_X_control_model)
+```
+
+### Interpretation
+
+If coefficients are:
+
+- **NuclearEnergyShare (\(\beta_1\))** = `r round(logY_X_control_model$coefficients[2],2)`: A 1pp increase in Nuclear Energy Share reduces CO2 emissions by `r abs(round(logY_X_control_model$coefficients[2],2))`% (rounded).
+- **GDPPerCapita (\(\beta_2\))** = `r round(logY_X_control_model$coefficients[3],2)`: A 1% increase in GDP per capita increases CO2 emissions by `r abs(round(logY_X_control_model$coefficients[3],2))`% (rounded).
+
+Ceteris paribus, these effects hold independent of each other.
+
+**Ceteris paribus**, meaning "all other things being equal," implies that the effect of one variable (e.g., `NuclearEnergyShare` or `GDPPerCapita`) on the dependent variable (CO2 emissions) is measured while holding the other variables in the model constant. In statistical terms, this is achieved by isolating the unique contribution of each independent variable through the regression model, which controls for the influence of other included variables. For example, the coefficient for `NuclearEnergyShare` reflects its direct impact on CO2 emissions, independent of `GDPPerCapita`, and vice versa. This ensures the estimated relationship between each predictor and the outcome is not confounded by correlations with other variables in the model.
+
+---
+
+## Conclusion
+
+In this tutorial, we:
+
+1. Simulated a dataset for analyzing nuclear energy's impact on CO2 emissions.
+2. Defined elasticity for log-log and log-linear models, deriving interpretations mathematically.
+3. Implemented regression models, including control variables, in R.
+4. Interpreted results to explain the economic and environmental impacts.
+
+---
+
+### Appendix: Proof that \( d \ln(Y) = \dfrac{dY}{Y} \)
+
+#### Objective
+
+Demonstrate that the differential of the natural logarithm of \( Y \) is equal to the differential of \( Y \) divided by \( Y \):
+
+\[
+d \ln(Y) = \frac{dY}{Y}.
+\]
+
+#### Proof
+
+The differential \( d \ln(Y) \) represents the infinitesimal change in \( \ln(Y) \) corresponding to an infinitesimal change in \( Y \).
+
+**Step 1: Recall the Derivative of \( \ln(Y) \)**
+
+The derivative of the natural logarithm function with respect to \( Y \) is:
+
+\[
+\frac{d}{dY} \ln(Y) = \frac{1}{Y}.
+\]
+
+**Step 2: Express the Differential**
+
+By definition of the differential:
+
+\[
+d \ln(Y) = \frac{d}{dY} \ln(Y) \cdot dY = \frac{1}{Y} dY.
+\]
+
+**Step 3: Conclude the Relationship**
+
+Thus, we have:
+
+\[
+d \ln(Y) = \frac{dY}{Y}.
+\]
+
+---
+
+#### Interpretation
+
+- **Infinitesimal Changes**: The equation \( d \ln(Y) = \frac{dY}{Y} \) shows that the infinitesimal change in \( \ln(Y) \) is equal to the proportional (or percentage) infinitesimal change in \( Y \).
+  
+- **Application to Elasticities**: In economics, this property underlies the calculation of elasticities in regression models. It implies that small proportional changes in \( Y \) correspond directly to small absolute changes in \( \ln(Y) \).
+
+---
+
+#### Extension to Finite Changes
+
+For small but finite changes \( \Delta Y \), we can approximate:
+
+\[
+\Delta \ln(Y) \approx \frac{\Delta Y}{Y}.
+\]
+
+**Justification:**
+
+- **Taylor Series Approximation**: The first-order Taylor series expansion of \( \ln(Y + \Delta Y) \) around \( Y \) is:
+
+  \[
+  \ln(Y + \Delta Y) \approx \ln(Y) + \frac{1}{Y} \Delta Y.
+  \]
+
+- **Compute \( \Delta \ln(Y) \):**
+
+  \[
+  \Delta \ln(Y) = \ln(Y + \Delta Y) - \ln(Y) \approx \frac{\Delta Y}{Y}.
+  \]
+
+- **Validity for Small \( \Delta Y \):** The approximation holds when \( \Delta Y \) is small relative to \( Y \), ensuring higher-order terms are negligible.
+

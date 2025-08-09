@@ -1,0 +1,34 @@
+I. Titanic Dataset Analysis
+   A. Explanation and interpretation of the Titanic dataset
+   B. Introduction to nominal and ordinal variables in R using Titanic dataset
+   C. Discussion on operations valid for different variable types in the Titanic dataset
+   D. Examples using the Titanic dataset and posing questions for further analysis
+
+II. Histograms and Distributions
+   A. Introduction and definition of histograms
+   B. Creation and interpretation of histograms using R and the Titanic dataset
+   C. Examination of distributions in Titanic data using histograms
+   D. Identification of positive and negative skew in the Titanic dataset
+   E. Examples using Titanic variables
+   F. Discussion on different types of distributions in the context of datasets like the Titanic
+
+III. Scales of Measurement
+   A. Importance and types of scales of measurement crucial for Titanic data interpretation
+   B. Focus on the standard scale, the z-scale in Titanic dataset
+   C. Conversions and interpretations related to Z-score in the context of Titanic data
+
+IV. Measures of Central Tendency
+   A. Role and importance of measures of central tendency in Titanic data analysis
+   B. Examples involving Titanic dataset variables
+   C. Discussion on different measures of central tendency applicable to Titanic data
+   D. Factors in choosing a measure of central tendency in a dataset like the Titanic
+   E. Explanation of setting up histograms for Titanic data and types of distribution
+   F. Exploration of robustness to outliers in the Titanic dataset
+
+V. Measures of Variability
+   A. Introduction to measures of variability using Titanic dataset examples
+   B. Explanation of sample variance formula and its calculation in practice using Titanic data
+   C. Discussion on the purpose of measures of variability in analyzing Titanic dataset
+   D. Examples from the Titanic dataset illustrating variability
+   E. Guidance on how to calculate the variance manually using the Titanic dataset 
+   F. Brief summary and final thoughts on using statistical measures for Titanic data analysis.

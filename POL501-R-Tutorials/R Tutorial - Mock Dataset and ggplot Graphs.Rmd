@@ -1,0 +1,277 @@
+---
+title: "Create a Mock Dataframe and Plotting Graphs"
+author: "POL-501"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+date: "2024-09-16"
+---
+
+## Introduction
+
+This tutorial demonstrates how to create a mock public opinion dataset using `dplyr` and generate visualizations using `ggplot2`. We'll cover the steps involved in creating a dataset with different opinion scales, age groups, and gender categories, and we'll create visualizations such as histograms, boxplots, and scatterplots. You'll also learn how to adjust the functions and variables for future uses.
+
+## Setup
+
+First, we'll load the necessary packages: `dplyr` for data manipulation and `ggplot2` for visualization.
+
+```{r setup, include=FALSE}
+# Load required libraries
+library(dplyr)
+library(ggplot2)
+```
+
+## Creating the Mock Data
+
+The dataset will include the following columns:
+- **opinion_100**: Opinion measured on a 100-point scale (feeling thermometer).
+- **opinion_7**: Opinion measured on a 7-point scale.
+- **age_group**: Age groups divided into four categories: '18-29', '30-44', '45-64', and '65+'.
+- **gender**: Gender categories with three groups: 'Male', 'Female', and 'Non-binary'.
+- **income**: Continous variable measured in 000s.
+
+### Creating the Dataset
+
+We use the `tibble()` function from `dplyr` to create a dataset. The `runif()` function generates random values for `opinion_100`, and `sample()` is used to randomly assign values for `opinion_7`, `age_group`, and `gender`.
+
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Set Sample Size
+N_sample <- 400
+
+# Create a mock dataset
+mock_data <- tibble(
+  opinion_100 = runif(N_sample, min = 0, max = 100),  # Random values for 100-point scale
+  opinion_7 = sample(1:7, N_sample, replace = TRUE),  # Random values for 7-point scale
+  age_group = sample(c('18-29', '30-44', '45-64', '65+'), N_sample, replace = TRUE),  # Age groups
+  gender = sample(c('Male', 'Female', 'Non-binary'), N_sample, replace = TRUE),  # Gender categories
+  income = runif(N_sample, min = 40, max = 120) # Annual Income Levels 
+)
+
+# Display the first few rows of the dataset
+head(mock_data)
+```
+### Explanation of Functions Used to Create the DataFrame
+
+In this section, we'll explain the key R functions used to create the mock public opinion dataset.
+
+#### 1. `tibble()`
+The `tibble()` function is part of the `dplyr` package and is used to create data frames in a more modern and flexible way compared to `data.frame()`. Tibble is particularly useful because it prints cleaner in the console and is more forgiving with variable types.
+
+```r
+mock_data <- tibble(
+  opinion_100 = runif(1000, min = 0, max = 100),  # Random values for 100-point scale
+  opinion_7 = sample(1:7, 1000, replace = TRUE),  # Random values for 7-point scale
+  age_group = sample(c('18-29', '30-44', '45-64', '65+'), 1000, replace = TRUE),  # Age groups
+  gender = sample(c('Male', 'Female', 'Non-binary'), 1000, replace = TRUE)  # Gender categories
+)
+```
+
+- **Key Characteristics**:
+  - **Compact printing**: Tibble limits the number of rows and columns printed by default, which makes it cleaner for large datasets.
+  - **Variable Handling**: Tibbles don't change variable types (e.g., converting strings to factors) unless explicitly told to do so.
+  
+- **How to Modify for Future Use**: 
+  To change the number of rows or variables in the dataset, simply modify the arguments passed within the `tibble()` function. For example, if you need more observations, change `1000` to a larger number.
+
+#### 2. `runif()`
+The `runif()` function generates random numbers from a uniform distribution. In this case, it's used to create the `opinion_100` variable, which represents a score on a 100-point scale.
+
+```r
+opinion_100 = runif(1000, min = 0, max = 100)
+```
+
+- **Parameters**:
+  - `n`: The number of random numbers to generate (in this case, 1000).
+  - `min`: The minimum value of the generated numbers (0 in this case).
+  - `max`: The maximum value of the generated numbers (100 in this case).
+
+- **How to Modify for Future Use**: 
+  To change the range of the opinion scale, adjust the `min` and `max` values. For example, `runif(1000, min = 1, max = 10)` would generate values between 1 and 10.
+
+#### 3. `sample()`
+The `sample()` function randomly selects elements from a vector. It’s used to assign random values to `opinion_7`, `age_group`, and `gender` in the mock dataset.
+
+```r
+opinion_7 = sample(1:7, 1000, replace = TRUE)
+age_group = sample(c('18-29', '30-44', '45-64', '65+'), 1000, replace = TRUE)
+gender = sample(c('Male', 'Female', 'Non-binary'), 1000, replace = TRUE)
+```
+
+- **Parameters**:
+  - `x`: The vector from which to sample (e.g., `1:7` for a 7-point scale, or the age groups in `age_group`).
+  - `size`: The number of elements to select. In this case, we are selecting `1000` elements to match the number of observations.
+  - `replace`: Logical value indicating whether sampling is done with replacement. Here, we use `replace = TRUE`, which allows repeated values (since each category can appear multiple times).
+
+- **How to Modify for Future Use**: 
+  - To change the values being sampled (e.g., to use a different opinion scale), modify the `x` argument. For example, to change `opinion_7` to a 5-point scale, use `sample(1:5, 1000, replace = TRUE)`.
+  - To change the categories in `age_group` or `gender`, modify the vectors being passed to the `x` argument (e.g., add more age categories or change the gender options).
+
+#### 4. `set.seed()`
+The `set.seed()` function ensures that random number generation produces the same results each time the code is run. This is useful for reproducibility, especially in tutorials or research.
+
+```r
+set.seed(123)
+```
+
+- **How to Modify for Future Use**: 
+  You can change the number passed to `set.seed()` to generate different sets of random numbers. However, using the same seed will always generate the same random numbers, which is crucial if you want your analysis to be reproducible by others.
+
+
+### Customizing the Dataset
+
+To adjust the dataset for future uses, you can:
+- **Change the number of observations** by modifying the value in `runif(1000)` or `sample(1:7, 1000)`. For example, to generate 500 observations, change `1000` to `500`.
+- **Modify the opinion scales** by adjusting the ranges in `runif()`. For example, change `min = 0` and `max = 100` to use a different range of opinion values.
+- **Change the age groups** by modifying the list `c('18-29', '30-44', '45-64', '65+')` to include different or more categories.
+
+## Creating Visualizations
+
+Now that we have the dataset, we can create some visualizations using `ggplot2`.
+
+### Histogram: Distribution of Opinion (100-point scale)
+
+We'll start with a histogram to show the distribution of the 100-point opinion scale.
+
+```{r}
+# Histogram of 100-point opinion scale by age group
+ggplot(mock_data, aes(x = opinion_100)) +
+  geom_histogram(bins = 20, position = 'dodge') +
+  labs(title = "Distribution of Opinion (100-point scale)",
+       x = "Opinion (100-point scale)",
+       y = "Count") +
+  theme_minimal()
+```
+With a few modifications, we can make this histogram to look better:
+
+```{r}
+# Histogram of 100-point opinion scale by age group with custom aesthetics
+ggplot(mock_data, aes(x = opinion_100)) +
+  geom_histogram(bins = 20, 
+                 fill = "lightgray",          # Light gray fill color
+                 color = "black",             # Black border color
+                 linetype = "dashed") +       # Dashed border lines
+  labs(title = "Distribution of Opinion (100-point scale)",
+       x = "Opinion (100-point scale)",
+       y = "Count") +
+  theme_minimal()
+```
+
+Let's say we want to do 10 bins instead of 20, we need to modify the option `bins=20` to `bins=10`
+
+```{r}
+# Histogram of 100-point opinion scale by age group with custom aesthetics
+ggplot(mock_data, aes(x = opinion_100)) +
+  geom_histogram(bins = 10, 
+                 fill = "lightgray",          # Light gray fill color
+                 color = "black",             # Black border color
+                 linetype = "dashed") +       # Dashed border lines
+  labs(title = "Distribution of Opinion (100-point scale)",
+       x = "Opinion (100-point scale)",
+       y = "Count") +
+  theme_minimal()
+```
+
+### Explanation:
+- **`ggplot()`**: The base function for creating plots. It defines the dataset (`mock_data`) and aesthetics (`aes()`) such as the x-axis (`opinion_100`) and fill color (`age_group`).
+- **`geom_histogram()`**: Creates the histogram, with `bins = 20` specifying the number of bins.
+- **`labs()`**: Adds a title and labels to the x- and y-axes.
+- **`theme_minimal()`**: Applies a clean, minimal theme to the plot.
+
+### Customizing the Histogram
+
+To customize the histogram for future use:
+- **Change the number of bins** by modifying the `bins` argument in `geom_histogram()`.
+- **Group by a different variable** by changing `fill = age_group` to another variable, such as `gender`.
+
+### Boxplot: 7-point Opinion Scale by Gender
+
+Next, we create a boxplot to visualize the 7-point opinion scale across gender categories.
+
+```{r}
+# Boxplot of 7-point opinion scale by gender
+ggplot(mock_data, aes(x = gender, y = opinion_7, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "7-point Opinion Scale by Gender",
+       x = "Gender",
+       y = "Opinion (7-point scale)") +
+  theme_minimal()
+```
+
+### Explanation:
+- **`geom_boxplot()`**: Creates a boxplot. The `x` axis represents `gender`, and the `y` axis represents the `opinion_7` scale.
+- **`fill = gender`**: Colors the boxes by gender.
+
+### Customizing the Boxplot
+
+To modify the boxplot:
+- **Change the variable on the x-axis** by replacing `gender` with another categorical variable, such as `age_group`.
+- **Change the variable on the y-axis** by replacing `opinion_7` with another numeric variable, such as `opinion_100`.
+
+### Expand the range of the BoxPlot
+
+ **Using `coord_cartesian()`**:
+   - This method allows you to zoom into a specific portion of the plot without excluding data points from the computation. It only changes the visible range on the plot, while still considering all data points for statistics like outliers.
+   - Example: To display the y-axis from 0 to 8, we need to include the option `coord_cartesian(ylim = c(0, 8))`:
+
+```{r}
+ggplot(mock_data, aes(x = gender, y = opinion_7, fill = gender)) +
+  geom_boxplot() +
+  labs(title = "7-point Opinion Scale by Gender",
+       x = "Gender",
+       y = "Opinion (7-point scale)") +
+  theme_minimal() +
+  coord_cartesian(ylim = c(0, 8))  # Zoom into the y-axis range from 1 to 7
+```
+
+### Another Example of Boxplots and Categorical Variables
+
+Now let's do boxplots with the 100-point opinion scale and age. We need to modify the options `x=age_group`, `y = opinion_100`, and `fill=age_group`. Both the options `x=` and `fill=` correspond to the categorical varible, and the option `y=` corresponds to the continous variable.
+
+Note that we also modified `coord_cartesian(ylim = c(0, 100))` and the `labs(...)` options
+
+```{r}
+ggplot(mock_data, aes(x = age_group, y = opinion_100, fill = age_group)) +
+  geom_boxplot() +
+  labs(title = "100-point Opinion Scale by Age",
+       x = "Age",
+       y = "Opinion (100-point scale)") +
+  theme_minimal() +
+  coord_cartesian(ylim = c(0, 100))  # Zoom into the y-axis range from 0 to 100
+```
+
+
+### Scatterplot: Opinion (100-point scale) vs. Opinion (7-point scale)
+
+Lastly, we create a scatterplot to examine the relationship between the two opinion variables.
+
+```{r}
+# Scatterplot of income vs 100-point opinion scale 
+ggplot(mock_data, aes(x = opinion_100, y = opinion_7, color = age_group)) +
+  geom_point(alpha = 0.6) +  # Add scatter points with some transparency
+  labs(title = "Scatterplot: 100-point Opinion Scale vs 7-point Opinion Scale",
+       x = "Opinion (100-point scale)",
+       y = "Opinion (7-point scale)") +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1")  # Optional: set a color palette
+```
+
+### Explanation:
+- **`geom_point()`**: Creates the scatterplot. Points are plotted based on `opinion_100` (x-axis) and `opinion_7` (y-axis). The points are colored by `age_group`.
+- **`alpha = 0.6`**: Sets the transparency of the points to prevent overplotting.
+- **`scale_color_brewer()`**: Applies a color palette from the `RColorBrewer` package. You can remove or change the palette to modify the colors.
+
+### Customizing the Scatterplot
+
+For future uses:
+- **Change the transparency** by modifying the `alpha` argument in `geom_point()`.
+- **Use a different color scheme** by modifying or removing `scale_color_brewer()`.
+- **Group by a different variable** by changing `color = age_group` to another categorical variable like `gender`.
+
+## Conclusion
+
+In this tutorial, we created a mock public opinion dataset and explored several visualization techniques using `ggplot2`. You can easily modify the dataset generation and visualizations for different purposes by adjusting the parameters in the code. Feel free to experiment with the settings to suit your needs!

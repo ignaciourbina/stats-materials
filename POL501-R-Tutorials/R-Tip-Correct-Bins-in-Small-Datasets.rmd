@@ -1,0 +1,64 @@
+---
+title: "Histogram with Correct Bins"
+output: html_document
+---
+
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Simulate 17 observations from a uniform distribution
+data <- runif(17, min = 0, max = 1)
+```
+
+```{r}
+# Create a histogram with 10 bins
+hist(data, breaks = 4, main = "Histogram of Uniformly Distributed Data", xlab = "Value", col = "lightblue", border = "black")
+```
+
+The issue with this code is that the labels in the x-axis do not match the bins.
+
+We can fix this with the following code:
+
+
+```{r}
+# Manually specify bin boundaries for 10 bins
+min_data <- min(data) # Minimum THEORETICAL Value of the Data
+max_data <- max(data) # Minimum Value of the Data
+bin_breaks_10 <- seq(min_data, max_data, length.out = 10)
+
+# Create a histogram with 10 bins
+hist(data, breaks = bin_breaks_10, main = "Histogram of Uniformly Distributed Data", 
+    xlab = "Value", col = "lightblue", border = "black")
+```
+
+```{r}
+# Create a data frame with the given data
+neighborhood_data <- data.frame(
+  Neighborhood = c("N1", "N2", "N3", "N4", "N5", "N6", "N7", "N8", "N9", "N10", "N11"),
+  Number_of_Social_Activities = c(1.0, 2.9, 4.8, 6.7, 8.6, 10.5, 12.4, 14.3, 16.2, 18.1, 20.0),
+  Social_Trust_Level = c(21.48, 48.90, 76.20, 96.73, 96.87, 98.58, 102.14, 85.35, 59.21, 37.10, 0)
+)
+# Display the data frame
+print(neighborhood_data)
+
+```
+
+
+```{r}
+# Manually specify bin boundaries for 5 bins
+min_data <- 0 # Minimum THEORETICAL Value of the Data
+max_data <- max(neighborhood_data$Number_of_Social_Activities) # Maximum Value of the Data
+bin_breaks <- seq(min_data, max_data, length.out = 5+1)  # Note we are doing: `(NUMBER OF BINS) + 1` as the `length.out` option. Essentially, we are creating a sequence (list) of breaks in the histogram (5 bins require unique 6 values for the limits [a,b] of the intervals).
+
+# Create a histogram with 10 bins
+hist(neighborhood_data$Number_of_Social_Activities, breaks = bin_breaks, main = "Histogram",
+    xlab = "Value", col = "lightblue", border = "black")
+```
+
+```{r}
+
+# Create a histogram with 10 bins
+hist(neighborhood_data$Number_of_Social_Activities, breaks = 7, main = "Histogram", 
+    xlab = "Value", col = "lightblue", border = "black")
+```

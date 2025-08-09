@@ -1,0 +1,346 @@
+---
+title: "Introduction to dplyr"
+author: "POL-501"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+date: "2024-09-16"
+---
+
+# Introduction
+
+This document will introduce you to the `dplyr` package in R, which is part of the tidyverse collection of packages designed for data science. The `dplyr` package is particularly powerful for data manipulation, providing an intuitive syntax and a set of versatile functions for managing data frames.
+
+To illustrate the capabilities of `dplyr`, we will use data from Pew's American Trends Panel (ATP) Wave 117.
+
+We have obtained the variables' coding (what each numeric value represents) from the PDF files 'ATP W117 questionnaire' and 'Codebook-and-instructions-for-working-with-ATP-data'
+
+### Loading Necessary Libraries
+
+Before we begin, ensure you have the required packages installed and loaded. If not, you can install them using `install.packages()`.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# BE SURE TO INCLUDE YOUR FILE DIRECTORY HERE AND BELOW (using the 'setwd' function)
+knitr::opts_knit$set(root.dir = "C:/Users/Ignacio/Dropbox/PhD SBU/06_Teaching/00_POL-501/Problem Sets/PS-1/W117_Nov22")
+```
+
+```{r load-libraries}
+# Install libraries if necessary
+# install.packages("haven")
+# install.packages("dplyr")
+
+# Load libraries
+library(haven)  
+library(dplyr)  
+```
+
+### Setting the Working Directory
+
+Set the working directory to the folder where your data file is located. Adjust the path accordingly.
+
+```{r set-working-directory}
+# Set the working directory
+setwd('C:\\Users\\Ignacio\\Dropbox\\PhD SBU\\06_Teaching\\00_POL-501\\Problem Sets\\PS-1\\W117_Nov22\\')
+```
+
+### Loading the Dataset
+
+We'll load the dataset using the `read_spss()` function from the `haven` package.
+
+```{r load-dataset}
+# Load the Pew's ATP Wave 117 dataset
+load_savfile <- read_spss("ATP W117.sav")
+```
+
+### Subsetting Relevant Columns
+
+We can use the `select()` function from `dplyr` to pick specific columns from the dataset.
+
+```{r subset-columns}
+# Subset relevant columns
+df_subset <- load_savfile %>%
+  select(QKEY, VOTED_ATPCONG_W117, VTCOUNT_OWN_W117, ATTENDPERSON2_W117,
+         F_AGECAT, F_GENDER, F_EDUCCAT)
+# View the structure of the subset data
+str(df_subset)
+```
+
+## Recoding Categorical Variables
+
+### Recoding Voting Status
+
+We will use the `mutate()` and `factor()` functions to recode the `VOTED_ATPCONG_W117` variable.
+
+```{r recode-voting-status}
+# Recode VOTED_ATPCONG_W117 (Voting status)
+df_subset <- df_subset %>%
+  mutate(VOTED_ATPCONG_W117 = factor(VOTED_ATPCONG_W117,
+                                      levels = c(1, 2, 3),
+                                      labels = c("Did not vote", 
+                                                 "Planned to vote but couldn’t", 
+                                                 "Definitely voted")))
+```
+
+### Recoding Confidence in Vote Count
+
+Similarly, we recode `VTCOUNT_OWN_W117`.
+
+```{r recode-vote-confidence}
+# Recode VTCOUNT_OWN_W117 (Confidence in vote count)
+df_subset <- df_subset %>%
+  mutate(VTCOUNT_OWN_W117 = factor(VTCOUNT_OWN_W117,
+                                   levels = c(1, 2, 3, 4),
+                                   labels = c("Very confident", 
+                                              "Somewhat confident", 
+                                              "Not too confident", 
+                                              "Not at all confident")))
+```
+
+### Recoding Religious Service Attendance
+
+We now recode `ATTENDPERSON2_W117`.
+
+```{r recode-religious-attendance}
+# Recode ATTENDPERSON2_W117 (Religious service attendance frequency)
+df_subset <- df_subset %>%
+  mutate(ATTENDPERSON2_W117 = factor(ATTENDPERSON2_W117,
+                                     levels = c(1, 2, 3, 4, 5, 6),
+                                     labels = c("More than once a week", 
+                                                "Once a week", 
+                                                "Once or twice a month", 
+                                                "A few times a year", 
+                                                "Seldom", 
+                                                "Never")))
+```
+
+## Recoding Demographic Variables
+
+### Recoding Age Categories
+
+Recode the `F_AGECAT` variable into readable age ranges.
+
+```{r recode-age-categories}
+# Recode F_AGECAT (Age categories)
+df_subset <- df_subset %>%
+  mutate(F_AGECAT = factor(F_AGECAT,
+                           levels = c(1, 2, 3, 4, 99),
+                           labels = c("18-29", 
+                                      "30-49", 
+                                      "50-64", 
+                                      "65+", 
+                                      "Refused")))
+```
+
+### Recoding Gender Categories
+
+Recode the `F_GENDER` variable.
+
+```{r recode-gender-categories}
+# Recode F_GENDER (Gender categories)
+df_subset <- df_subset %>%
+  mutate(F_GENDER = factor(F_GENDER,
+                           levels = c(1, 2, 3, 99),
+                           labels = c("Man", 
+                                      "Woman", 
+                                      "Other",
+                                      "Refused")))
+```
+
+### Recoding Educational Attainment
+
+Finally, recode the `F_EDUCCAT` variable.
+
+```{r recode-education-categories}
+# Recode F_EDUCCAT (Educational attainment categories)
+df_subset <- df_subset %>%
+  mutate(F_EDUCCAT = factor(F_EDUCCAT,
+                            levels = c(1, 2, 3, 99),
+                            labels = c("College graduate+", 
+                                       "Some college", 
+                                       "H.S. graduate or less", 
+                                       "Refused")))
+```
+
+## Confirming the Structure
+
+Check the structure and ensure the new labels have been applied correctly.
+
+```{r check-structure}
+# Confirm the structure and labels are correctly applied
+str(df_subset)
+```
+
+## Viewing the First Few Rows
+
+Optionally, we can view the first few rows to verify the recoding worked as expected.
+
+```{r view-first-rows}
+# View the first few rows to ensure everything looks correct
+head(df_subset)
+```
+
+With this, you have successfully recoded categorical variables and formatted demographic variables using `dplyr`. Understanding these basic yet powerful functions will enable you to manipulate your datasets more effectively in R. This concludes our introduction to `dplyr`. 
+
+
+# Introduction to dplyr
+
+`dplyr` is a powerful package for data manipulation in R, providing a range of functions (often referred to as "verbs") to simplify and streamline data analysis tasks. Key verbs in `dplyr` include:
+
+- `select()`: Pick columns by name
+- `filter()`: Pick rows by their values
+- `mutate()`: Create or transform variables
+- `summarize()`: Reduce multiple values down to a single summary
+- `arrange()`: Reorder rows
+- `group_by()`: Group data by one or more variables
+
+We also make extensive use of the pipe operator (`%>%`), which allows us to chain together multiple operations in a readable, functional style.
+
+Note that the following is the structure of each operation:
+
+```r
+resulting_df_name <- df_used %>%
+  verb1 %>%
+  verb2 %>%
+  verb3
+```
+
+Here are examples of using these verbs with the `df_subset` data.
+
+### Select Columns
+
+To select specific columns, we use the `select()` function:
+
+```{r select-columns}
+# Select specific columns
+selected_data <- df_subset %>%
+  select(QKEY, VOTED_ATPCONG_W117, F_AGECAT, F_GENDER, F_EDUCCAT)
+
+# View the selected columns
+head(selected_data)
+```
+
+### Filter Rows
+
+To filter rows based on a condition, we use the `filter()` function:
+
+```{r filter-rows}
+# Filter data for respondents who definitely voted
+voted_data <- df_subset %>%
+  filter(VOTED_ATPCONG_W117 == "Definitely voted")
+
+# View the filtered data
+head(voted_data)
+```
+
+### Mutate Columns
+
+To create new variables or transform existing ones, we use the `mutate()` function:
+
+```{r mutate-columns}
+# Create a new variable "Age_Group" based on F_AGECAT
+df_subset <- df_subset %>%
+  mutate(Age_Group = case_when(
+    F_AGECAT == "18-29" ~ "Young Adult",
+    F_AGECAT == "30-49" ~ "Adult",
+    F_AGECAT == "50-64" ~ "Middle Aged",
+    F_AGECAT == "65+" ~ "Senior"
+  ))
+
+# View the modified dataset
+head(df_subset)
+```
+
+
+In R, we use `==` for comparison in conditional statements to check if two values are equal, whereas `=` is used for assigning values to variables. In the `case_when()` function, `==` is necessary because we are evaluating conditions (e.g., checking if a variable equals a specific value) rather than assigning values. The tilde `~` is used in `case_when()` to link each condition with its corresponding output value. It essentially means "if this condition is true, then return this value." Therefore, `==` checks the condition, and `~` specifies the result to be assigned when the condition holds true.
+
+```{r view-result}
+# Create a table with the absolute frequency of each age group
+tab_Age <- as.data.frame(table(df_subset$Age_Group))  # Convert the frequency table to a data frame (use the function: as.data.frame())
+
+# Rename the columns of the tab_Age dataframe
+colnames(tab_Age) <- c("Age Group", "Freq")
+
+# Print the table
+print(tab_Age)
+```
+
+```{r bar-plot}
+# Load ggplot2 for plotting
+library(ggplot2)
+
+# Create a bar plot using ggplot2
+ggplot(tab_Age, aes(x = `Age Group`, y = Freq)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Frequency of Age Groups", x = "Age Group", y = "Frequency") +
+  theme_minimal()
+
+```
+
+In `ggplot2`, the structure of a plot is built in layers, starting with the base `ggplot()` function, which initializes the plot and specifies the data and aesthetic mappings. In this example, `ggplot(tab_Age, aes(x = Age Group, y = Freq))` tells R that the data comes from the `tab_Age` dataframe and maps the "Age Group" variable to the x-axis and "Freq" (frequency) to the y-axis. After initializing the plot, the `geom_bar(stat = "identity")` layer is added to create the bars. Here, `stat = "identity"` ensures that the height of each bar corresponds to the actual frequency values in the dataset. Additional layers like `labs()` are used to label the plot, providing a title and axes labels. Finally, `theme_minimal()` applies a clean, minimal theme to enhance the visual appeal of the plot. Each of these components builds upon the last, allowing for flexible, modular creation of complex visualizations.
+
+### Summarize Data
+
+To summarize data, often in combination with `group_by()`, we use `summarize()`:
+
+```{r summarize-data}
+# Summarize data to count the number of respondents in each age group
+age_summary <- df_subset %>%
+  group_by(Age_Group) %>%
+  summarize(Count = n())
+
+# View the summarized data
+age_summary
+```
+
+In this code, the pipe operator (`%>%`) is used to chain multiple `dplyr` functions in a readable sequence. The `group_by(Age_Group)` function groups the dataset (`df_subset`) by the `Age_Group` column, meaning that subsequent operations will be performed separately for each unique `Age_Group`. The `summarize()` function then creates a summary for each group, in this case calculating the number of rows (or observations) in each `Age_Group` using `n()`, which counts the number of rows in each group. The result is stored in a new column called `Count`, and the resulting dataset `age_summary` will have one row for each unique `Age_Group`, with a corresponding count of observations in that group.
+
+### Arrange Rows
+
+To reorder rows, we use the `arrange()` function:
+
+```{r arrange-rows}
+# Arrange data by age group
+arranged_data <- df_subset %>%
+  arrange(F_AGECAT)
+
+# View the arranged data
+head(arranged_data)
+```
+
+### Group By
+
+To group data by one or more variables before summarizing, we use `group_by()`:
+
+```{r group-by}
+# Group data by gender and summarize age categories
+gender_age_summary <- df_subset %>%
+  group_by(F_GENDER, F_AGECAT) %>%
+  summarize(Count = n())
+
+# View the grouped and summarized data
+gender_age_summary
+```
+
+### Example Analysis
+
+Now, let's perform a more comprehensive example analysis where we combine multiple `dplyr` functions. Suppose we want to compare voting confidence based on different levels of education.
+
+```{r example-analysis}
+# Compare voting confidence based on education levels
+edu_voting_confidence <- df_subset %>%
+  group_by(F_EDUCCAT, VTCOUNT_OWN_W117) %>%
+  summarize(Count = n()) %>%
+  arrange(F_EDUCCAT, VTCOUNT_OWN_W117)
+
+# View the analysis results
+edu_voting_confidence
+```
+
+This pipeline will group the data by `F_EDUCCAT` (education levels) and `VTCOUNT_OWN_W117` (voting confidence), summarize the counts in each group, and then arrange the results for easier interpretation.
+
+By understanding these key functions and how to use pipes to combine them, you'll be able to manipulate and analyze your data more effectively. This concludes our comprehensive introduction to `dplyr`. Explore these functions further to enhance your data analysis skills in R.
+

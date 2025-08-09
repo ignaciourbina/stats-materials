@@ -1,0 +1,583 @@
+---
+title: "Examining the Relationship between Age and Perceptions of Crime Safety"
+author: "POL 501"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Load required libraries
+# `knitr` for report generation settings, `dplyr` for data manipulation, `ggplot2` for visualization,
+# `kable` for displaying tables, `haven` for handling `.sav` files (SPSS data), and `psych` for descriptive statistics.
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(haven)  # For reading and handling labeled data
+library(psych)
+```
+
+```{r load-sav-data}
+## Setting Up the Directory (REPLACE WITH YOUR FOLDER)
+# Make sure to replace the directory path with the folder on your computer where the data file is stored.
+setwd(r"(F:\Dropbox\PhD SBU\06_Teaching\00_POL-501\R Tutorials\SLR)")
+
+## Confirm the working directory
+# It's always good practice to confirm the working directory to avoid file path errors.
+getwd()
+
+# Load the SPSS data file
+# Replace 'your_dataset.sav' with the path to your actual .sav file
+pew_data <- read_sav("NPORS_2024_for_public_release.sav")
+
+# Save the dataset as an R data file for easier reloading in the future.
+saveRDS(pew_data, 'dataframe-pew.RData')
+
+# Inspect column (variables) names to understand what data is available.
+colnames(pew_data)
+```
+
+## Problem Description
+
+In this analysis, we aim to investigate the relationship between age (as an independent variable) and perceptions of crime safety (as a dependent variable). The central question is whether age influences individuals' perceptions of crime safety.
+
+### Hypothesis
+- **Independent Variable (IV):** Age (`AGE`)
+- **Dependent Variable (DV):** Perception of crime safety (`CRIMESAFE`)
+  
+The hypothesis to test is whether there exists a significant linear relationship between age and perceptions of safety.
+
+## Variables
+
+- **`CRIMESAFE`**: Perception of safety in the respondent's area concerning crime:
+
+  - 1: Extremely safe
+  - 2: Very safe
+  - 3: Somewhat safe
+  - 4: Not too safe
+  - 5: Not at all safe
+
+- **`PARTY`**: Political affiliation of the respondent with the following categories:
+
+  - 1: Republican
+  - 2: Democrat
+  - 3: Independent
+  - 4: Something else
+
+- **`INTFREQ`**: About how often do you use the internet?
+
+  – 1 = Almost constantly
+  – 2 = Several times a day
+  – 3 = About once a day
+  – 4 = Several times a week
+  – 5 = Less often
+
+## Data Preparation and Variable Creation
+
+We start by creating dummy variables for political affiliation, frequent internet users, and defining age cohorts. We are also creating additional variables, such as `Frequent_Internet_User`, which we do not directly use in the analysis. This is because we want to understand other potential factors that could explain variations in crime perception or other social behaviors, even if we do not analyze these factors right away. Additionally, creating more variables can help when expanding the analysis in the future.
+
+```{r data-preparation}
+# Convert `PARTY` to factor to allow usage in dplyr operations
+pew_data <- pew_data %>%
+  mutate(
+    PARTY = as_factor(PARTY),  # Convert PARTY to factor for easier interpretation
+    
+    # Create dummy variables for Democrats and Republicans
+    Democrat = ifelse(PARTY == "Democrat", 1, 0),
+    Republican = ifelse(PARTY == "Republican", 1, 0),
+    
+    # Define Frequent Internet User: `INTFREQ` values 1 and 2 represent frequent usage
+    Frequent_Internet_User = ifelse(INTFREQ %in% c(1, 2), 1, 0),
+    
+    # Define Age Cohorts for more meaningful analysis of age differences
+    Age_Cohort = case_when(
+      AGE >= 18 & AGE <= 29 ~ "18-29 \n(Young Adults)",
+      AGE >= 30 & AGE <= 39 ~ "30-39 \n(Early Middle Age)",
+      AGE >= 40 & AGE <= 49 ~ "40-49 \n(Late Middle Age)",
+      AGE >= 50 & AGE <= 64 ~ "50-64 \n(Pre-Retirement Age)",
+      AGE >= 65 ~ "65+ \n(Seniors)",
+      TRUE ~ "Unknown"  # Handles missing or unexpected age values
+    ),
+    
+    # Handle non-valid values in CRIMESAFE (values above 97 are non-valid codes)
+    CRIMESAFE = case_when(
+      CRIMESAFE >= 97 ~ NA_real_,
+      TRUE ~ CRIMESAFE 
+    ),
+    
+    # Create a dummy variable indicating if AGE is above the median age
+    Age_Above_Median = ifelse(AGE > median(AGE, na.rm = TRUE), 1, 0)
+)
+
+# Check the distribution of respondents in each cohort
+# This helps in understanding the sample size within each age category
+table(pew_data$Age_Cohort)
+```
+
+```{r drop-na-values}
+# Inspect distributions of key categorical variables
+# Useful for understanding the balance of different groups in the dataset
+
+# Distribution of political party affiliation
+table(pew_data$PARTY)
+
+# Count of Democrat dummy variable (0 = non-Democrat, 1 = Democrat)
+table(pew_data$Democrat)
+
+# Count of Republican dummy variable (0 = non-Republican, 1 = Republican)
+table(pew_data$Republican)
+
+# Count of frequent internet users (0 = Not frequent, 1 = Frequent)
+table(pew_data$Frequent_Internet_User)
+
+# Distribution of CRIMESAFE ratings (perceptions of crime safety)
+table(pew_data$CRIMESAFE)
+```
+
+## Summary Statistics
+
+We summarize key variables to understand their distributions.
+
+```{r summary-stats}
+# Calculate summary statistics for selected variables using describe
+# This provides measures like mean, standard deviation, min, and max for each variable
+summary_stats <- pew_data %>%
+  select(AGE, CRIMESAFE, Democrat, Republican, Frequent_Internet_User) %>%
+  psych::describe()
+
+# Display summary statistics in a nicely formatted table
+kable(summary_stats, caption = "Summary Statistics for Key Variables")
+```
+
+## Visualizing AGE and CRIMESAFE
+
+To explore the data, we visualize the distribution of age and perceptions of safety (`CRIMESAFE`) using bar plots and box plots.
+
+```{r bar-plot}
+# Bar plot for the distribution of age cohorts
+# Helps us see the number of respondents in each age category
+
+ggplot(pew_data, aes(x = as.factor(Age_Cohort))) +
+  geom_bar() +
+  labs(title = "Distribution of Age Cohorts", x = "Age Cohort", y = "Count")
+
+# Bar plot for perceptions of crime safety
+# Provides insight into how people rate safety in their area
+
+ggplot(pew_data, aes(x = as.factor(CRIMESAFE))) +
+  geom_bar() +
+  labs(title = "Perceptions of Crime Safety", x = "CRIMESAFE", y = "Count")
+
+# Box plot of CRIMESAFE by Age Cohort
+# Shows differences in perception of crime safety across different age groups
+
+# Box plot of CRIMESAFE by Age Cohort
+# Filter out rows with missing CRIMESAFE values
+ggplot(pew_data %>% filter(!is.na(CRIMESAFE)), aes(x = as.factor(Age_Cohort), y = CRIMESAFE)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "crossbar", width = 0.75, color = "red", linewidth = 0.2) +  # Add mean line within the box
+  labs(title = "Boxplot of Perception of Safety by Age Cohort with Mean Line Inside Boxes", 
+       x = "Age Cohort", 
+       y = "CRIMESAFE")
+
+```
+
+## Hypothesis Testing: T-test and Z-test
+
+We will test for mean differences in `AGE` and `CRIMESAFE` between Republicans and non-Republicans (Democrats + Independents). The motivation behind conducting these hypothesis tests is to understand whether political affiliation influences either the respondent's age distribution or their perception of crime safety. This can help identify whether there are meaningful demographic or perceptual differences between political groups.
+
+### T-tests
+
+```{r hypothesis-testing}
+# Perform independent sample t-tests to compare AGE and CRIMESAFE between Republicans and non-Republicans
+# A t-test is useful here to determine if the mean difference between groups is statistically significant
+
+t_test_age <- t.test(AGE ~ Republican, data = pew_data)
+t_test_crimesafe <- t.test(CRIMESAFE ~ Republican, data = pew_data)
+
+# Display t-test results
+# Look at the p-values to determine statistical significance
+print(t_test_age)
+print(t_test_crimesafe)
+```
+
+### Additional Hypothesis Test: Age Above Median
+
+We also test whether individuals whose age is above the median have different perceptions of crime safety compared to those below or equal to the median. This helps in understanding whether older respondents, in general, have different safety perceptions.
+
+```{r hypothesis-testing-age-median}
+# Perform independent sample t-test to compare CRIMESAFE between respondents above and below the median age
+# This test checks if older individuals perceive safety differently compared to younger individuals
+
+t_test_crimesafe_age_median <- t.test(CRIMESAFE ~ Age_Above_Median, data = pew_data)
+
+# Display t-test results
+print(t_test_crimesafe_age_median)
+```
+
+### Z-tests
+
+In addition to the t-tests, we will also perform Z-tests for the differences in means. Z-tests are used when we assume that the population variances are known, or the sample sizes are large enough for the Central Limit Theorem to apply.
+
+For the purpose of this analysis, we are estimating the population standard deviation from our sample and using that to perform Z-tests. Z-tests are often preferred when dealing with large sample sizes, as they tend to be more reliable under those conditions.
+
+```{r z-test}
+# Enhanced Z-test function with group description in output
+doz_test <- function(data, x_var, group_var) {
+  # Separate data into two groups based on the group_var
+  group1_data <- data[[x_var]][data[[group_var]] == 1]
+  group2_data <- data[[x_var]][data[[group_var]] == 0]
+  
+  # Calculate mean, standard deviation, and sample size for each group
+  mean1 <- mean(group1_data, na.rm = TRUE)
+  mean2 <- mean(group2_data, na.rm = TRUE)
+  sd1 <- sd(group1_data, na.rm = TRUE)
+  sd2 <- sd(group2_data, na.rm = TRUE)
+  n1 <- sum(!is.na(group1_data))
+  n2 <- sum(!is.na(group2_data))
+  
+  # Calculate the standard error and Z-score
+  se <- sqrt((sd1^2 / n1) + (sd2^2 / n2))
+  z <- (mean1 - mean2) / se
+  p_value <- 2 * (1 - pnorm(abs(z)))
+  
+  # Return a comprehensive list of all relevant values including group description
+  list(
+    group1_mean = mean1,
+    group2_mean = mean2,
+    group1_sd = sd1,
+    group2_sd = sd2,
+    group1_n = n1,
+    group2_n = n2,
+    standard_error = se,
+    z_score = z,
+    p_value = p_value,
+    group_description = paste("Group is ID=1 if", group_var, "= 1")
+  )
+}
+
+# Perform Z-test for AGE with 'AGE' as the variable of interest and 'Republican' as the grouping variable
+print('Z-Test for Differences of Means for AGE, for Republicans (=1) and Non-Reps (=0)')
+doz_test(pew_data, x_var = "AGE", group_var = "Republican")
+
+# Perform Z-test for CRIMESAFE with 'CRIMESAFE' as the variable of interest and 'Republican' as the grouping variable
+cat("\n")
+print('Z-Test for Differences of Means for CRIMESAFE, for Republicans (=1) and Non-Reps (=0)')
+doz_test(pew_data, x_var = "CRIMESAFE", group_var = "Republican")
+
+```
+
+Note that we can also use functions from packages to run the Z test. The results should be the same as the computation "by-hand" we did when we defined the function above.
+
+```{r hypothesis-testing-v2}
+# Install the BSDA package if not already installed
+if (!require("BSDA")) install.packages("BSDA")
+library(BSDA)
+# Perform independent sample Z-tests to compare AGE and CRIMESAFE between Republicans and non-Republicans
+# A Z-test from BSDA package is used here for large sample sizes
+
+# Z-test for AGE between Republicans and non-Republicans
+z_test_age <- z.test(x = pew_data$AGE[pew_data$Republican == 1],
+                     y = pew_data$AGE[pew_data$Republican == 0],
+                     sigma.x = sd(pew_data$AGE[pew_data$Republican == 1], na.rm = TRUE),
+                     sigma.y = sd(pew_data$AGE[pew_data$Republican == 0], na.rm = TRUE))
+
+# Print Z-test result for AGE
+print(z_test_age)
+
+# Z-test for CRIMESAFE between Republicans and non-Republicans
+z_test_crimesafe <- z.test(x = pew_data$CRIMESAFE[pew_data$Republican == 1],
+                           y = pew_data$CRIMESAFE[pew_data$Republican == 0],
+                           sigma.x = sd(pew_data$CRIMESAFE[pew_data$Republican == 1], na.rm = TRUE),
+                           sigma.y = sd(pew_data$CRIMESAFE[pew_data$Republican == 0], na.rm = TRUE))
+
+# Print Z-test result for CRIMESAFE
+print(z_test_crimesafe)
+
+```
+
+
+
+## Chi-Square Test for Age Cohorts and Perceptions of Crime Safety
+
+We conduct a chi-square test to assess the association between age cohorts and perceptions of crime safety.
+
+```{r chi-square-test}
+# Create a contingency table between Age Cohort and CRIMESAFE
+# Useful to understand if there is an association between these two categorical variables
+age_crimesafe_table <- table(pew_data$Age_Cohort, pew_data$CRIMESAFE)
+
+# Display the contingency table using kable for easy reading
+kable(age_crimesafe_table, caption = "Contingency Table of Age Cohorts and Perceptions of Crime Safety")
+
+# Perform chi-square test to assess the independence of age cohort and perceptions of safety
+# A significant p-value indicates a possible relationship
+chi_square_test <- chisq.test(age_crimesafe_table)
+
+# Display the results
+chi_square_test
+```
+
+## Scatter Plot between AGE and CRIMESAFE
+
+We plot the relationship between `AGE` and `CRIMESAFE` to visualize any linear association.
+
+```{r scatter-plot}
+# Scatter plot of AGE vs CRIMESAFE
+# Useful to get a first visual impression of any linear relationship
+
+# Scatter plot of AGE vs CRIMESAFE with missing values removed
+ggplot(na.omit(pew_data[, c("AGE", "CRIMESAFE")]), aes(x = AGE, y = CRIMESAFE)) +
+  geom_point() +
+  labs(title = "Scatter Plot of Age vs. Perception of Safety", x = "Age", y = "Crime Safety Perception")
+
+```
+
+### Discussion
+
+- The scatter plot is not very useful here because `CRIMESAFE` is an ordinal variable with a limited number of levels, which results in many overlapping points.
+- Instead, it's better to plot the mean `CRIMESAFE` by age cohort along with confidence intervals to get a clearer view of trends across age groups.
+
+### Code to Plot Mean `CRIMESAFE` by Age Cohort with Confidence Intervals
+
+```{r mean-crimesafe-by-cohort}
+# Calculate mean CRIMESAFE and confidence intervals by Age Cohort
+summary_data <- pew_data %>%
+  group_by(Age_Cohort) %>%
+  summarise(
+    mean_crimesafe = mean(CRIMESAFE, na.rm = TRUE),
+    se_crimesafe = sd(CRIMESAFE, na.rm = TRUE) / sqrt(n())
+  )
+
+# Plot the mean CRIMESAFE by Age Cohort with confidence intervals
+# This provides a more interpretable view of differences between age groups
+
+ggplot(summary_data, aes(x = Age_Cohort, y = mean_crimesafe)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = mean_crimesafe - 1.96 * se_crimesafe, 
+                    ymax = mean_crimesafe + 1.96 * se_crimesafe), width = 0.2) +
+  labs(title = "Mean Perception of Crime Safety by Age Cohort",
+       x = "Age Cohort",
+       y = "Mean Crime Safety Perception") +
+  theme_minimal()
+```
+
+### Explanation
+- **`mean_crimesafe`**: The average `CRIMESAFE` value per age cohort.
+- **`se_crimesafe`**: The standard error of `CRIMESAFE`, used to calculate 95% confidence intervals.
+- **`geom_errorbar()`**: Adds error bars for confidence intervals around the mean.
+
+This plot will provide a clear view of how perceptions of safety vary by age cohort.
+
+Note that the response scale for `CRIMESAFE` is such that higher numbers imply stronger perceptions of insecurity.
+
+## Correlation Analysis
+
+To further understand the relationship between `AGE` and `CRIMESAFE`, we calculate the Pearson correlation coefficient.
+
+```{r correlation-analysis}
+# Calculate the Pearson correlation coefficient between AGE and CRIMESAFE
+# This provides a summary measure of the strength and direction of the linear relationship
+# Perform the correlation test for AGE and CRIMESAFE
+cor_test_result <- cor.test(pew_data$AGE, pew_data$CRIMESAFE, use = "complete.obs")
+
+# Display the correlation coefficient and p-value
+print(paste("The Pearson correlation coefficient between AGE and CRIMESAFE is:", round(cor_test_result$estimate, 2)))
+print(paste("p-value:", round(cor_test_result$p.value, 4)))
+
+```
+
+### Discussion
+
+- The Pearson correlation coefficient provides a value between -1 and 1. Values closer to 1 indicate a strong positive relationship, while values closer to -1 indicate a strong negative relationship. Values near 0 indicate a weak or no linear relationship.
+
+## Simple Linear Regression
+
+We fit a linear model using `lm` to estimate the relationship between `AGE` and `CRIMESAFE`.
+
+```{r linear-regression}
+# Fit a linear model to predict CRIMESAFE based on AGE
+# The goal is to see if there is a significant linear relationship between age and safety perception
+lm_model <- lm(CRIMESAFE ~ AGE, data = pew_data)
+
+# Display the regression output
+# Look for the p-value and coefficients to understand if AGE significantly predicts CRIMESAFE
+summary(lm_model)
+kable(summary(lm_model)$coefficients, caption = "Regression Output for Linear Model")
+```
+
+## Analysis 
+
+The output provided is the summary of a simple linear regression model where `CRIMESAFE` (perception of crime safety) is the dependent variable, and `AGE` is the independent variable. Here’s a detailed breakdown of how to interpret each section of the output:
+
+### Call
+```r
+## Call:
+## lm(formula = CRIMESAFE ~ AGE, data = pew_data)
+```
+This indicates the model specification. It shows that we’re modeling `CRIMESAFE` as a function of `AGE` using data from `pew_data`.
+
+---
+
+### Residuals
+```r
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.6279 -0.5865  0.3855  0.4269  2.4627 
+```
+The residuals section provides a summary of the distribution of residuals (differences between observed and predicted values) for the model:
+
+- **Min**: Minimum residual value, which is -1.6279.
+- **1Q** (1st Quartile): 25th percentile of residuals, -0.5865.
+- **Median**: Median residual value, 0.3855.
+- **3Q** (3rd Quartile): 75th percentile of residuals, 0.4269.
+- **Max**: Maximum residual value, 2.4627.
+
+These values indicate the spread of residuals, which helps identify any skewness or outliers in the residual distribution. Ideally, residuals should be centered around zero, showing no significant skew, and these values generally support that assumption.
+
+---
+
+### Coefficients
+```r
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  2.6480729  0.0358097  73.948   <2e-16 ***
+## AGE         -0.0011191  0.0006071  -1.844   0.0653 .  
+```
+
+The **Coefficients** table presents details on the intercept and the effect of `AGE` on `CRIMESAFE`:
+
+- **(Intercept)**:
+
+  - **Estimate**: `2.6480729` is the predicted value of `CRIMESAFE` when `AGE` is zero.
+  - **Std. Error**: `0.0358097` is the standard error for the intercept estimate, showing the uncertainty of this estimate.
+  - **t value**: `73.948` is the t-statistic for testing whether the intercept differs significantly from zero.
+  - **Pr(>|t|)**: `<2e-16` (a very small p-value) indicates that the intercept is statistically significant at conventional levels (p < 0.001).
+
+- **AGE**:
+
+  - **Estimate**: `-0.0011191` is the estimated coefficient for `AGE`, meaning that for each additional year of age, `CRIMESAFE` is expected to decrease by approximately 0.0011 units, holding other factors constant.
+  - **Std. Error**: `0.0006071` is the standard error of this estimate, indicating the level of uncertainty in the estimate.
+  - **t value**: `-1.844` is the t-statistic for testing whether the `AGE` coefficient is significantly different from zero.
+  - **Pr(>|t|)**: `0.0653` is the p-value for the t-test. With a p-value of 0.0653, the effect of `AGE` on `CRIMESAFE` is marginally insignificant at the typical 5% significance level (p < 0.05), though it approaches significance at the 10% level (p < 0.1).
+
+#### Significance Codes
+
+- **Significance codes**: The symbols next to the p-values (e.g., `***`, `.`) indicate significance levels:
+
+  - `***`: p < 0.001 (highly significant)
+  - `*`: p < 0.05 (significant)
+  - `.`: p < 0.1 (marginally significant)
+  - No symbol indicates that the coefficient is not statistically significant.
+
+Here, the intercept is highly significant, while the effect of `AGE` is marginally significant at the 10% level.
+
+---
+
+### Residual Standard Error
+```r
+## Residual standard error: 0.8462 on 5611 degrees of freedom
+```
+The **Residual Standard Error** of `0.8462` represents the average distance that observed values fall from the regression line. Lower values indicate a better fit. The **degrees of freedom** here is `5611`, calculated as the number of observations minus the number of estimated parameters.
+
+---
+
+### R-squared and Adjusted R-squared
+```r
+## Multiple R-squared:  0.0006053,  Adjusted R-squared:  0.0004272 
+```
+- **Multiple R-squared**: `0.0006053` indicates that approximately 0.06% of the variability in `CRIMESAFE` is explained by `AGE`, suggesting a weak relationship.
+- **Adjusted R-squared**: `0.0004272` adjusts the R-squared for the number of predictors in the model. Because this model has only one predictor, adjusted R-squared is almost the same as R-squared.
+
+A very low R-squared implies that `AGE` does not strongly predict `CRIMESAFE`.
+
+---
+
+### F-statistic
+```r
+## F-statistic: 3.399 on 1 and 5611 DF,  p-value: 0.06531
+```
+- **F-statistic**: `3.399` tests the overall significance of the model.
+- **p-value**: `0.06531` indicates that the model is not statistically significant at the 5% level (p < 0.05) but is marginally significant at the 10% level (p < 0.1).
+
+### Summary
+- The regression shows a weak, marginally significant negative association between `AGE` and `CRIMESAFE`.
+- The model does not explain much variance in `CRIMESAFE`, as indicated by the very low R-squared.
+
+
+## Scatter Plot with Regression Line
+
+We add the regression line using the model coefficients to illustrate the fitted linear relationship.
+
+```{r regression-line}
+# Extract coefficients for manual regression line
+intercept <- coef(lm_model)[1]
+slope <- coef(lm_model)[2]
+
+# Scatter plot of AGE vs CRIMESAFE with regression line
+# This visualization helps in understanding the overall trend modeled by the linear regression
+
+ggplot(pew_data, aes(x = AGE, y = CRIMESAFE)) +
+  geom_point() +
+  geom_abline(intercept = intercept, slope = slope, color = "blue") +
+  labs(title = "Scatter Plot with Regression Line", x = "Age", y = "Crime Safety Perception")
+```
+
+## Residual Analysis
+
+Residual analysis is important to verify the assumptions of linear regression.
+
+
+### Constant Variance of Residuals
+
+We plot the residuals against `AGE` to check for constant variance (homoscedasticity).
+
+```{r residuals-variance}
+# Extract data used in the lm_model to ensure matching row count
+model_data <- model.frame(lm_model)
+
+# Extract residuals from the model
+residuals <- resid(lm_model)
+
+# Plot residuals against AGE
+# This helps us determine if there is any pattern in the residuals, indicating potential issues with the model
+
+ggplot(data.frame(AGE = model_data$AGE, Residuals = residuals), aes(x = AGE, y = Residuals)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  labs(title = "Residuals vs. Age", x = "Age", y = "Residuals")
+```
+
+### Normality of Residuals
+
+We examine the normality of residuals using a histogram with a superimposed normal density curve.
+
+```{r residuals-normality}
+# Histogram of residuals with a normal density line
+# A good model should have residuals that resemble a normal distribution
+
+ggplot(data.frame(Residuals = residuals), aes(x = Residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, color = "black", fill = "lightgray") +
+  stat_function(fun = dnorm, args = list(mean = mean(residuals), sd = sd(residuals)), color = "blue") +
+  labs(title = "Histogram of Residuals with Normal Density", x = "Residuals", y = "Density")
+```
+
+## Discussion
+
+1. **Correlation Analysis**: The Pearson correlation coefficient helps summarize the strength of the linear relationship between `AGE` and `CRIMESAFE`. A low correlation may indicate a weak linear relationship.
+2. **Constant Variance**: The residual plot against `AGE` should ideally show no patterns, indicating homoscedasticity.
+3. **Normality of Residuals**: The histogram should closely resemble a normal distribution, validating assumptions about normality.
+4. **Chi-Square Test**: The chi-square test results provide insights into whether age cohorts are significantly associated with perceptions of crime safety.
+5. **Residual vs Fitted Plot**: This helps in identifying any systematic pattern in residuals that violates linear regression assumptions.
+6. **T-test vs. Z-test**: T-tests are generally preferred when sample sizes are small or when population variance is unknown, while Z-tests are more appropriate for large sample sizes or when the population variance is known or can be estimated reliably. In our analysis, we performed both tests to illustrate the difference and to ensure robustness of our conclusions.
+
+## Conclusion: Main Takeaways
+
+
+The analysis of the relationship between age and perceptions of crime safety (`CRIMESAFE`) provides some nuanced insights. Both the regression analysis and the Pearson correlation coefficient indicate a weak negative relationship between age and perceived crime insecurity, suggesting that as individuals age, they tend to feel slightly more secure (or less insecure). However, this relationship is not strong or strictly linear, as evidenced by the low R-squared value and marginal p-value in the regression output.
+
+Interestingly, when we examine the data using a chi-square test of independence on categorical age cohorts, we observe a statistically significant association between age groups and crime safety perception. The chi-square test result, with a chi-square statistic of 45.659, 16 degrees of freedom, and a p-value of 0.0001099, indicates that the association between age cohort and crime safety perception is unlikely to be due to chance. This significance suggests that age groups do indeed differ in their perceptions of crime safety, though not in a simple linear pattern.
+
+The plotted means of `CRIMESAFE` across different age cohorts (as shown in the plot) provide further clarification. Younger adults (18-29) tend to report the highest levels of perceived insecurity (higher mean `CRIMESAFE` values), indicating that they feel more insecure. As age increases, the mean values for `CRIMESAFE` generally decrease, with older age cohorts reporting lower perceived insecurity. Middle-aged groups (30-64) show a gradual reduction in perceived insecurity, and seniors (65+) report the lowest insecurity, suggesting that they feel the most secure among the age groups.
+
+In summary, while linear regression analysis does not strongly support a linear relationship between age and crime safety perception, the chi-square test reveals a significant association between age groups and different levels of perceived insecurity. This association is complex and non-linear, as illustrated by the varying mean values across age cohorts in the plot. This suggests that age impacts perceptions of crime safety in nuanced ways that a simple linear model cannot fully capture: younger adults tend to feel more insecure, while older adults generally feel more secure.
+
