@@ -1,0 +1,112 @@
+\documentclass[handout]{beamer} % Use the beamer class for presentations, 'handout' option to suppress \pause
+
+\input{Lecture-Slides/preamble.txt}
+
+% Define the transition slide command
+\newcommand{\transitionslide}[1]{
+    \begin{frame}[plain]
+        \centering
+        \vspace{1cm}
+        \Huge
+        \textcolor{moonstoneblue!150}{\textbf{#1}}
+    \end{frame}
+}
+
+% Title and Author Info
+\title{Introduction to Statistical Methods in Political Science}
+\subtitle{Quiz 4}
+\author{Ignacio Urbina \texorpdfstring{\\ \vspace{0.3em}}{ } \scriptsize \textcolor{gray}{Ph.D. Candidate in Political Science}}
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGIN DOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\frame{\titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\transitionslide{Quiz 4}
+
+\begin{frame} \frametitle{Question 1 - Discrete Random Variable and Probability Calculation}
+    Consider a non-standard six-sided die with faces \{1, 2, 2, 3, 3, 4\}. The face ``2" appears twice, as does ``3", while ``1" and ``4" each appear once. You roll this die twice. Let $X_1$ be the outcome of the first roll and $X_2$ be the outcome of the second roll.
+    
+    Define $Z = X_1 + X_2$, as the \emph{random variable} representing the sum of the outcomes of the two rolls.
+
+    \vspace{2em}
+    \textbf{Question:} Compute $P(Z > 7)$.
+\end{frame}
+
+\begin{frame} \frametitle{Question and Correct Answer}
+
+\begin{itemize}
+    \item Question 1. What is the probability that Z is larger than 7?
+    \begin{itemize}
+        \item 1/36 $\leftarrow$ \textbf{Correct Answer}
+        \item 15/36
+        \item 50\%
+        \item 0\%
+        \item 6.25\%
+    \end{itemize}
+\end{itemize}
+
+\end{frame} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame} \frametitle{Question 2 - Bayes’ Rule}
+    A burglary has been committed in a residential neighborhood. The police have identified a suspect but do not have definitive proof. Initially, based on past crime data, only \textbf{1 in 500} (0.2\%) of individuals in similar circumstances have actually committed a burglary.
+    
+    A rare type of shoeprint is found at the crime scene, and the suspect owns the same type of shoes ($Evidence$). From previous forensic studies, we know: 
+    \begin{itemize}
+        \item If a person \textbf{did} commit the crime, the probability that their shoeprint would be found is $P(Evidence \mid Guilty) = 0.75$.
+        \item If a person \textbf{did not} commit the crime, the probability that they own the same rare shoe type is $P(Evidence \mid Not\text{ } Guilty) = 0.05$.
+    \end{itemize}
+    
+    \textbf{Question:} Using \textbf{Bayes’ Rule}, compute the updated probability that the suspect actually committed the crime given that their shoeprint type was found at the scene -- i.e., compute $ P(Guilty \mid Evidence) $.
+\end{frame}
+
+\begin{frame} \frametitle{Question and Correct Answer}
+
+\begin{itemize}
+    \item Question 2. What is the probability that the subject is truly guilty, given that their shoeprint type was found at the scene? (hint: use Bayes' rule).
+    \begin{itemize}
+        \item 2.9\% $\leftarrow$ \textbf{Correct Answer}
+        \item 0.2\%
+        \item 75\%
+        \item 93.75\%
+        \item 70\%
+        \item 40\%
+        \item 1.5\%
+    \end{itemize}
+\end{itemize}
+
+\end{frame} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame} \frametitle{Question 3 - Binomial Distribution and Complement Rule}
+    A 5-member congressional committee is voting on an amendment to a given bill. Each member independently supports the amendment with probability $p = 0.60$. Let $Y$ be the number of members (out of 5) who vote in favor.
+    \vspace{2em}
+    
+    \textbf{Questions:}
+    \begin{itemize}
+        \item Compute the probability that at least two committee members vote in favor of the amendment, i.e., $P(Y \geq 2)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame} \frametitle{Question and Correct Answer}
+
+\begin{itemize}
+    \item Question 3. What is the probability that at least two committee members will vote against the amendment?
+    \begin{itemize}
+        \item 66.30\% $\leftarrow$ \textbf{Correct Answer}
+        \item 34.56\%
+        \item 68.26\%
+        \item 80\%
+        \item 16\%
+        \item 40\%
+        \item 33.70\%
+    \end{itemize}
+\end{itemize}
+
+\end{frame} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
