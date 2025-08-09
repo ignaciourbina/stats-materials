@@ -1,17 +1,46 @@
 # Problem Sets and Quizzes Bank
 
-This directory contains a bank of problem sets and quizzes for the course.
+This directory contains a bank of problem sets, quizzes, and related materials for the course. The content is organized into three main categories:
 
-### File Summaries:
+- **`01-Question-Banks`**: Source `.tex` files containing questions that can be used to create new quizzes and problem sets.
+- **`02-Solved-Problems`**: PDF documents with detailed solutions to various statistical problems.
+- **`03-Compiled-Quizzes-and-PS`**: A collection of ready-to-use quizzes and problem sets, often from specific course offerings.
 
-*   **`Conceptual-Questions.tex`**: This document contains a set of six multiple-choice questions focused on the conceptual understanding of estimators in statistics, covering topics such as the goal of statistical inference, the role of random variables, the interpretation of expected value, and the importance of sampling distributions and modeling assumptions.
+---
 
-*   **`Multiple-Choice-Items.tex`**: This document contains a bank of multiple-choice questions covering a wide range of statistical concepts, including descriptive statistics, inferential statistics, properties of the normal distribution, sampling distributions, hypothesis testing, and various statistical tests.
+## 01-Question-Banks
 
-*   **`Probability-Question-Bank.tex`**: This document contains a quiz on probability, with questions covering topics such as conditional probability, the addition and multiplication rules, the law of total probability, and Bayes' theorem.
+This section contains the source files for various question banks, categorized by topic.
 
-*   **`Solved Problems - Inference for One Proportion.pdf`**: This document provides solved problems for inference and hypothesis testing for a single proportion, including a step-by-step calculation of a 95% confidence interval and a two-tailed hypothesis test.
+### Conceptual-and-MCQ
 
-*   **`Solved Problems - Probability.pdf`**: This document provides a set of solved problems on probability, covering basic set operations, conditional probability, independence, the law of total probability, Bayes' theorem, and problems involving marbles and dice.
+- **`Conceptual-Questions.tex`**: A set of multiple-choice questions focused on the conceptual understanding of estimators, statistical inference, random variables, and sampling distributions.
+- **`Multiple-Choice-Items.tex`**: A bank of multiple-choice questions covering a wide range of statistical concepts, including descriptive and inferential statistics, the normal distribution, hypothesis testing, and various statistical tests.
 
-*   **`Solved Problems - Random Variables.pdf`**: This document provides a set of solved problems on random variables, expectations, and moments, covering discrete and continuous distributions, linear combinations of random variables, and the application of these concepts to real-world scenarios.
+### Probability
+
+- **`Probability-Question-Bank.tex`**: A quiz on probability, with questions covering conditional probability, the addition and multiplication rules, the law of total probability, and Bayes' theorem.
+
+---
+
+## 02-Solved-Problems
+
+This section provides PDF documents with worked-out solutions to problems, organized by statistical topic.
+
+### Inference
+
+- **`Solved Problems - Inference for One Proportion.pdf`**: Provides solved problems for inference and hypothesis testing for a single proportion, including a step-by-step calculation of a 95% confidence interval and a two-tailed hypothesis test.
+
+### Probability
+
+- **`Solved Problems - Probability.pdf`**: A set of solved problems on probability, covering basic set operations, conditional probability, independence, the law of total probability, Bayes' theorem, and problems involving marbles and dice.
+
+### Random-Variables
+
+- **`Solved Problems - Random Variables.pdf`**: A set of solved problems on random variables, expectations, and moments, covering discrete and continuous distributions, linear combinations of random variables, and the application of these concepts to real-world scenarios.
+
+---
+
+## 03-Compiled-Quizzes-and-PS
+
+This section contains ready-to-use quizzes and problem sets, often from specific semesters or course iterations.
