@@ -1,9 +1,9 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 ###############
 ## Question 1
 ##############
-
-import numpy as np
-import matplotlib.pyplot as plt
 
 # Given dataset
 data_list = np.array([1, 3, 6, 10, 4, 2, 6, 3, 9, 7, 8, 6, 3, 6, 1, 10, 11, 4])
@@ -79,9 +79,6 @@ print("-------------------------------------------------")
 ##############
 ## Question 2
 ##############
-
-import numpy as np
-import matplotlib.pyplot as plt
 
 # Set seed for reproducibility
 np.random.seed(42)

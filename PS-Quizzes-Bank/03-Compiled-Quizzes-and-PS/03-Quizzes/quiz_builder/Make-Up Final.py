@@ -1,3 +1,11 @@
+import os
+from Module_quiz_csv_builder_py import (
+    QuestionBank,
+    MultipleChoice,
+    MCOption,
+    WrittenResponse,
+)
+
 # -*- coding: utf-8 -*-
 """
 Created on Sun May 25 19:04:27 2025
@@ -6,16 +14,8 @@ Created on Sun May 25 19:04:27 2025
 """
 
 path = r"F:\Dropbox\PhD SBU\06_Teaching\01a_POL201\03-Quizzes\quiz_builder"
-import os
 
 os.chdir(path)
-
-from Module_quiz_csv_builder_py import (
-    QuestionBank,
-    MultipleChoice,
-    MCOption,
-    WrittenResponse,
-)
 
 bank = QuestionBank()
 

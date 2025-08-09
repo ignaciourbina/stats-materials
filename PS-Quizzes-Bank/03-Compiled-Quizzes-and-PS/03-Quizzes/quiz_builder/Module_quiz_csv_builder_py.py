@@ -1,3 +1,8 @@
+import csv
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import List, Optional
+
 # -*- coding: utf-8 -*-
 """
 Created on Mon Apr 28 12:48:20 2025
@@ -41,11 +46,6 @@ Usage example
 >>> bank.add(q2)
 >>> bank.export_csv("my_quiz.csv")
 """
-
-import csv
-from dataclasses import dataclass, field
-from pathlib import Path
-from typing import List, Optional
 
 # Constant for blank columns in CSV rows
 BLANK4 = ["", "", "", ""]
@@ -360,7 +360,6 @@ class OrderingItem:
     def to_row(self):
         """Generates the CSV row for this item."""
         html_flag = "HTML" if self.html_used else ""
-        fb_flag = "HTML" if self.feedback and self.html_used else ""
         # Ensure 6 columns are returned
         return [
             "Item",

@@ -1,3 +1,8 @@
+import csv
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import List, Optional
+
 # -*- coding: utf-8 -*-
 """
 Created on Mon Apr 28 12:48:20 2025
@@ -44,15 +49,6 @@ Usage example
 After running the above you will have a **my_quiz.csv** file you can
 upload straight into Brightspace.
 """
-
-"""
-Quiz CSV Builder for D2L Brightspace
-(… same header …)
-"""
-import csv
-from dataclasses import dataclass, field
-from pathlib import Path
-from typing import List, Optional
 
 BLANK4 = ["", "", "", ""]
 
