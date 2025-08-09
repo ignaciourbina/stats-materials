@@ -1,0 +1,197 @@
+---
+title: "Linear Regression Problem Set with WDI Data"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(WDI)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+```
+
+# Introduction
+
+This problem set is designed to help you understand the basics of simple and multiple linear regression using real-world data from the World Development Indicators (WDI) package. You will learn to load data, perform linear regression analyses, check model assumptions, interpret results, and create tables to summarize findings.
+
+## The Role of Logarithmic Transformations in Linear Regression
+
+In many real-world datasets, relationships between variables are not strictly linear. Applying a logarithmic transformation to one or more variables can help to:
+
+- **Linearize Relationships**: Transform non-linear relationships into linear ones, making them suitable for linear regression modeling.
+- **Stabilize Variance**: Reduce heteroscedasticity (non-constant variance of errors) by compressing large values more than small ones.
+- **Normalize Distributions**: Make the distribution of variables more symmetric and closer to normal, which is an assumption in linear regression.
+
+For instance, economic data often exhibit exponential growth patterns or multiplicative relationships. Transforming variables like GDP per capita using logarithms can linearize these relationships, allowing for more accurate modeling and interpretation.
+
+*Reference*: According to **"Applied Linear Regression" by Sanford Weisberg (2014)**, logarithmic transformations are effective for modeling relationships where the effect of the independent variable on the dependent variable is multiplicative rather than additive.
+
+# Question 1: Linear Regression Analysis with WDI Data
+
+## 1.a: Data Loading and Cleaning
+
+- **Task**: Load the data for the following indicators for the year 2019:
+  - **Education Expenditure** (`SE.XPD.TOTL.GD.ZS`)
+  - **GDP per capita** (`NY.GDP.PCAP.CD`)
+  - **Population** (`SP.POP.TOTL`)
+  - **Urban Population** (`SP.URB.TOTL.IN.ZS`)
+- **Instructions**:
+  - Use the `WDI` package to load the data.
+  - Rename the columns appropriately.
+  - Filter out rows with missing values in the specified columns.
+  - Display the first few rows of the cleaned data.
+
+```{r load-data}
+# Load data
+data <- WDI(indicator = c("SE.XPD.TOTL.GD.ZS", "NY.GDP.PCAP.CD",
+                          "SP.POP.TOTL", "SP.URB.TOTL.IN.ZS"),
+            country = "all", start = 2019, end = 2019)
+
+# Rename columns
+colnames(data) <- c("country", "iso2c", "iso3c", "year",
+                    "education_expenditure", "gdp_per_capita",
+                    "population", "urban_population")
+
+# Filter out rows with missing values
+data <- data %>% filter(!is.na(education_expenditure) &
+                        !is.na(gdp_per_capita) &
+                        !is.na(population) &
+                        !is.na(urban_population))
+
+# Display the cleaned data
+head(data) %>% kable() %>% kable_styling()
+```
+
+## 1.b: Exploratory Data Analysis
+
+- **Task**: Explore the relationship between Education Expenditure and GDP per capita.
+- **Instructions**:
+  - Create a scatter plot with `gdp_per_capita` on the x-axis and `education_expenditure` on the y-axis.
+  - Describe the type of relationship you observe (linear, non-linear, etc.).
+  - Suggest any transformations that could clarify the relationship, if needed.
+
+```{r scatter-plot}
+ggplot(data, aes(x = gdp_per_capita, y = education_expenditure)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot of Education Expenditure vs GDP per Capita",
+       x = "GDP per Capita",
+       y = "Education Expenditure (% of GDP)") +
+  theme_minimal()
+```
+
+*Discussion*: The scatter plot may show a non-linear relationship, with education expenditure varying across different levels of GDP per capita. The spread of data points suggests that a transformation, such as taking the logarithm of GDP per capita, might help in linearizing the relationship and stabilizing the variance.
+
+## 1.c: Log Transformation of GDP per Capita
+
+- **Task**: Transform the `gdp_per_capita` variable using logarithms to linearize the relationship.
+- **Instructions**:
+  - Use `dplyr` to create a new variable `log_gdp_per_capita` by taking the natural logarithm of `gdp_per_capita`.
+  - Create a scatter plot with `log_gdp_per_capita` on the x-axis and `education_expenditure` on the y-axis.
+  - Discuss how the transformation affects the linearity of the relationship.
+
+```{r log-transformation}
+# Transform GDP per capita using natural logarithm
+data <- data %>%
+  mutate(log_gdp_per_capita = log(gdp_per_capita))
+
+# Scatter plot of transformed GDP per capita
+ggplot(data, aes(x = log_gdp_per_capita, y = education_expenditure)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot of Education Expenditure vs Log(GDP per Capita)",
+       x = "Log(GDP per Capita)",
+       y = "Education Expenditure (% of GDP)") +
+  theme_minimal()
+```
+
+*Explanation*: Applying a logarithmic transformation to GDP per capita helps to linearize the relationship with education expenditure. The transformation compresses the scale of GDP per capita, reducing the impact of extreme values and making the spread of data points more uniform.
+
+## 1.d: Simple Linear Regression with Log-Transformed GDP per Capita
+
+- **Task**: Analyze the relationship between education expenditure and `log_gdp_per_capita` using simple linear regression.
+- **Instructions**:
+  - Fit a simple linear regression model with `education_expenditure` as the response variable and `log_gdp_per_capita` as the explanatory variable.
+  - Interpret the intercept and slope coefficients.
+  - Explain what the slope tells us about the relationship between GDP per capita and education expenditure.
+
+```{r linear-model}
+# Fit the linear model with log-transformed GDP per capita
+lm_model <- lm(education_expenditure ~ log_gdp_per_capita, data = data)
+summary(lm_model)
+```
+
+*Interpretation*:
+- **Intercept**: Represents the expected education expenditure when `log_gdp_per_capita` is zero. This value corresponds to the education expenditure at a GDP per capita of 1 (since `log(1) = 0`), which is not practically meaningful but serves as a reference point.
+- **Slope**: Indicates the change in education expenditure associated with a one-unit increase in `log_gdp_per_capita`. Since the predictor is in logarithmic scale, the slope represents the expected change in education expenditure for a proportional change in GDP per capita.
+
+## 1.e: Checking Model Assumptions
+
+- **Task**: Evaluate the linearity assumption of the regression model.
+- **Instructions**:
+  - Based on the scatter plot and residual plot, discuss whether the linearity assumption seems to hold.
+  - Plot the residuals against `log_gdp_per_capita` to check for patterns indicating non-linearity.
+  - Determine if the residuals are randomly scattered around zero.
+  - Discuss what this pattern (or lack thereof) suggests about the linearity assumption.
+
+```{r residual-plot}
+# Calculate residuals
+residuals <- resid(lm_model)
+
+# Residual plot
+plot(data$log_gdp_per_capita, residuals,
+     main = "Residual Plot",
+     xlab = "Log(GDP per Capita)",
+     ylab = "Residuals",
+     pch = 19, col = "blue")
+abline(h = 0, col = "red")
+```
+
+*Discussion*: The residual plot shows the residuals scattered around zero without any clear pattern, suggesting that the linearity assumption holds for the model with log-transformed GDP per capita.
+
+## 1.f: Normality of Residuals
+
+- **Task**: Check the normality of residuals in the regression model.
+- **Instructions**:
+  - Create a histogram and a Q-Q plot of the residuals.
+  - Discuss any deviations from normality observed in the plots.
+  - Explain the implications of non-normal residuals on the model's interpretation and inference.
+
+```{r normality-tests}
+par(mfrow = c(1, 2))
+
+# Histogram
+hist(residuals, main = "Histogram of Residuals",
+     xlab = "Residuals", col = "skyblue", border = "white")
+
+# Q-Q Plot
+qqnorm(residuals)
+qqline(residuals, col = "red")
+```
+
+*Discussion*: The histogram and Q-Q plot suggest that the residuals are approximately normally distributed, with minor deviations. This indicates that the normality assumption is reasonably satisfied, allowing for valid statistical inference.
+
+## 1.g: Hypothesis Testing and Confidence Intervals
+
+- **Task**: Perform inference on the slope coefficient of the regression model.
+- **Instructions**:
+  - State the null and alternative hypotheses for the slope coefficient.
+  - Use the model summary to determine if the relationship is statistically significant.
+  - Calculate and interpret the 95% confidence interval for the slope coefficient.
+
+```{r confidence-interval}
+# Null Hypothesis (H0): The slope coefficient is zero (no relationship).
+# Alternative Hypothesis (H1): The slope coefficient is not zero (there is a relationship).
+
+# Model summary
+summary(lm_model)
+
+# Confidence interval
+confint(lm_model)
+```
+
+*Interpretation*:
+- The p-value associated with the slope coefficient **...**, indicating **...** relationship between `log_gdp_per_capita` and `education_expenditure`.
+- The 95% confidence interval provides a range of plausible values for the slope coefficient, offering insights into the strength and direction of the relationship. We interpret this confidence interval as saying that **...**
+

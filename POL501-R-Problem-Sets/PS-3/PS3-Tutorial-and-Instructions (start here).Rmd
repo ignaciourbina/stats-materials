@@ -1,0 +1,250 @@
+---
+title: "POL501 - Problem Set 3"
+author: "Tutorial and instructions to get started"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+---
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(haven)
+library(tidyverse)
+library(formatR)
+library(psych)
+library(kableExtra)
+library(BSDA)
+```
+
+# Preliminary Setup
+
+## Confidence Intervals and Hypothesis Testing Explained Intuitively
+
+### Confidence Interval
+
+A **confidence interval** is a range of values used to estimate an unknown population parameter, such as the mean. This interval is constructed around a sample estimate, allowing us to understand the potential range in which the true population parameter lies with a certain level of confidence. 
+
+For example, if we say that we have a 95% confidence interval for the mean age of a group, we are essentially saying that if we were to take many samples and construct confidence intervals for each, approximately 95% of these intervals would contain the true mean age of the population.
+
+Mathematically, the confidence interval for a mean is given by:
+
+$$ \text{CI} = \bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} $$
+
+Where:
+
+ - **\( \bar{x} \)**: Sample mean
+ - **\( z_{\alpha/2} \)**: Critical value corresponding to the confidence level \( 1 - \alpha \)
+ - **\( \sigma \)**: Population standard deviation (or sample standard deviation if unknown)
+ - **\( n \)**: Sample size
+
+The critical value **\( z_{\alpha/2} \)** changes depending on the confidence level, which is often denoted as **1 - \( \alpha \)**. For a 95% confidence level, **\( \alpha = 0.05 \)**, and the critical value can be found using a Z or t-distribution.
+
+### Hypothesis Test
+
+A **hypothesis test** is a formal statistical method used to evaluate if there is enough evidence to support a specific claim about a population parameter. The test involves the following steps:
+
+ 1. **Formulate Hypotheses**:
+
+   - **Null Hypothesis (\( H_0 \))**: The statement of no effect or no difference. It represents the status quo or the hypothesis to be tested.
+   - **Alternative Hypothesis (\( H_a \))**: The statement you want to provide evidence for. It usually represents a difference or an effect.
+
+ 2. **Select a Significance Level (\( \alpha \))**: The probability of rejecting the null hypothesis when it is actually true. Common choices are 0.05 or 0.01.
+
+ 3. **Calculate the Test Statistic**: This could be a z-statistic, t-statistic, etc., depending on the test.
+
+ 4. **Determine the Rejection Region**: Compare the test statistic to a critical value to determine if we should reject **\( H_0 \)**.
+
+ 5. **Make a Decision**: Based on the p-value and the significance level, determine if we reject or fail to reject **\( H_0 \)**.
+
+### Rejection Region
+
+The **rejection region** is the range of values for the test statistic that leads us to reject the null hypothesis. For example, if we set our significance level **\( \alpha \)** to 0.05 in a two-tailed test, the rejection region would be in both tails of the distribution, covering the most extreme 5% of values.
+
+### Z-Statistic and Critical Value
+
+The **z-statistic** is used to measure how many standard deviations an element is from the mean. It is given by the formula:
+
+$$ z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}} $$
+
+Where:
+
+ - **\( \bar{x} \)**: Sample mean
+ - **\( \mu \)**: Population mean under the null hypothesis
+ - **\( \sigma \)**: Population standard deviation under the null hypothesis
+ - **\( n \)**: Sample size
+
+The **critical value** is the value that separates the rejection region from the acceptance region. If the z-statistic falls beyond this value, we reject the null hypothesis.
+
+### P-Value
+
+The **p-value** is the probability of obtaining a test statistic at least as extreme as the one observed, given that the null hypothesis is true. It tells us how likely the observed data is under the null hypothesis:
+
+ - A small p-value (typically less than 0.05) indicates strong evidence against the null hypothesis, so we reject **\( H_0 \)**.
+ - A large p-value indicates weak evidence against **\( H_0 \)**, so we fail to reject **\( H_0 \)**.
+
+In summary, the p-value helps us determine whether our results are statistically significant or if they could have occurred by random chance.
+
+## Demonstration of the `confidence_interval` Function to Compute Confidence Intervals
+
+First, we define a user-defined function to compute confidence intervals.
+
+```{r func, echo=TRUE}
+# Function to calculate confidence interval
+confidence_interval <- function(data, var_name, confidence_level = 0.95, method = "t") {
+
+  # Extract the data column
+  data_column <- data[[var_name]]
+  
+  # Validate inputs (method, var_name)
+  if (!(method %in% c("t", "z"))) {
+    stop("Method must be either 't' or 'z'.")
+  }
+  if (!(var_name %in% colnames(data))) {
+    stop("var_name must be the name of a column in the data frame.")
+  }
+  
+  # Calculate sample statistics
+  sample_mean <- mean(data_column, na.rm = TRUE)
+  sample_sd <- sd(data_column, na.rm = TRUE)
+  n <- length(na.omit(data_column))
+  standard_error <- sample_sd / sqrt(n)
+  
+  # Set alpha for confidence level
+  alpha <- 1 - confidence_level
+  
+  # Calculate the critical value based on the selected method
+  if (method == "t") {
+    critical_value <- qt(1 - alpha / 2, df = n - 1)  # t-distribution critical value
+  } else {
+    critical_value <- qnorm(1 - alpha / 2)  # z-distribution critical value
+  }
+  
+  # Calculate margin of error (MOE)
+  margin_of_error <- critical_value * standard_error
+  
+  # Calculate confidence interval bounds
+  lower_bound <- sample_mean - margin_of_error
+  upper_bound <- sample_mean + margin_of_error
+  
+  # Prepare output as a named vector
+  output <- c(
+    `Sample Mean of` = var_name,
+    Estimate = round(sample_mean, 3),
+    MOE = round(margin_of_error, 3),
+    `Lower CI Bound` = round(lower_bound, 3),
+    `Upper CI Bound` = round(upper_bound, 3)
+  )
+
+  # Return the result
+  return(output)
+}
+```
+
+Now we simulate some data and demonstrate how to use this function:
+
+```{r func-ex, echo=TRUE}
+# Example usage with mock data
+# Create a mock data frame with a column of ages (normal distribution with mean 45 and SD 10)
+set.seed(123)
+mock_data <- data.frame(age = abs(round(rnorm(100, mean = 45, sd = 10), 0)))
+
+# Visualize the simulated data
+hist(mock_data$age)
+```
+
+Using this simulated data, we illustrate how to use the function to compute confidence intervals. Since we simulated the data under the assumption of a normal distribution, we use the z critical values to calculate the margin of error (MOE).
+
+```{r func-ex-2, echo=TRUE}
+# Calculate the confidence interval for the 'age' column with 95% confidence using the z-distribution
+result_CI_z_95 <- confidence_interval(data = mock_data, var_name = 'age', confidence_level = 0.95, method = "z")
+
+# Print the result
+print(result_CI_z_95)
+
+# Display the result in a table
+kable(data.frame(result_CI_z_95))
+```
+
+To better present this result, we can use ggplot to plot it with a bar graph and whiskers representing the lower and upper bounds of the confidence interval.
+
+```{r plot-ci, echo=TRUE}
+# Create a data frame for ggplot
+plot_data <- data.frame(
+  Estimate = as.numeric(result_CI_z_95["Estimate"]),
+  Lower = as.numeric(result_CI_z_95["Lower CI Bound"]),
+  Upper = as.numeric(result_CI_z_95["Upper CI Bound"])
+)
+
+# Plot using ggplot2 with a dot and whiskers for confidence interval
+ggplot(plot_data, aes(x = "Age", y = Estimate)) +
+  geom_errorbar(aes(ymin = Lower, ymax = Upper), width = 0.1, color = "steelblue") +  # Whiskers for CI
+  geom_point(size = 3, color = "navyblue") +  # Dot for the sample mean
+  labs(
+    title = "Sample Mean of Age with 95% Confidence Interval",
+    x = "",
+    y = "Age"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+```
+
+If we want a confidence interval with 99% confidence, we can adjust the function parameters accordingly:
+
+```{r func-ex-3, echo=TRUE}
+# Calculate the confidence interval for the 'age' column with 99% confidence using the z-distribution
+result_CI_z_99 <- confidence_interval(data = mock_data, var_name = 'age', confidence_level = 0.99, method = "z")
+
+# Print the result
+print(result_CI_z_99)
+
+# Display the result in a table
+kable(data.frame(result_CI_z_99))
+```
+
+To compare multiple confidence intervals of different confidence levels or variables, we can combine the results using `cbind`:
+
+```{r ex-combine, echo=TRUE}
+# Combine results for different confidence intervals
+merge_columns <- cbind(result_CI_z_95, result_CI_z_99)
+print(merge_columns)
+
+# Display the combined results in a table
+kable(data.frame(merge_columns))
+```
+
+## Demonstration of the `z.test` Command for Hypothesis Testing
+
+The `z.test` function tests the null hypothesis that the mean of a sample equals a hypothesized population mean. This test is suitable when the sample size is large (typically n > 30) or the population standard deviation is known and the underlying variable follows a normal distribution.
+
+First, install the `BSDA` package if it is not already installed. This package includes useful statistical methods for data analysis.
+
+```{r install-bsda, echo=TRUE, eval=FALSE}
+# Install BSDA package if not already installed
+if (!requireNamespace("BSDA", quietly = TRUE)) {
+  install.packages("BSDA")
+}
+```
+
+Next, we use the `z.test` on our mock data to determine if the mean age differs from 45 years.
+
+```{r z-test, echo=TRUE}
+# Load BSDA library
+library(BSDA)
+
+# Run the z-test on the age data to test if the mean is significantly different from 45
+z_test_result <- z.test(
+  x = mock_data$age,
+  mu = 45,  # Hypothesized population mean
+  sigma.x = sd(mock_data$age),  # Population standard deviation (assuming known)
+  conf.level = 0.95
+)
+
+# Print the z-test result
+print(z_test_result)
+```
+
+The output includes the z-value, p-value, and confidence interval of the sample mean. The p-value helps determine whether we can reject the null hypothesis. If the p-value is less than the significance level (typically 0.05), we reject the null hypothesis, concluding that there is sufficient evidence to suggest that the sample mean differs from the hypothesized population mean. In this example, we see that the p-value is much larger than 0.10, therefore, at 0.10, 0.05, and 0.01 significance levels we would not be able to reject the null hypothesis.

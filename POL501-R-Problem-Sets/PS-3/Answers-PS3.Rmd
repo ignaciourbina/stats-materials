@@ -1,0 +1,106 @@
+---
+title: "POL501 - Problem Set 3"
+author: "Answers to Questions"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    keep_tex: true  # Optional, keeps the .tex file for inspection
+fontsize: 11pt
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+header-includes: 
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines, breakanywhere, commandchars=\\\{\}}
+---
+
+\newpage
+
+
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(haven)
+library(tidyverse)
+library(formatR)
+```
+
+
+# Grading Criteria
+
+- There will be **four problem sets** throughout the semester, which together account for **25% of the final course grade**.
+- The total possible score for these problem sets is **25 out of 100 points** (with 100 points being the maximum course score).
+- This particular problem set has a maximum score of **8 points**.
+- **Scoring Breakdown**:
+  * Each sub-letter in Question 1 is worth **1 point** (Total of 5 points)
+  * Each sub-letter in Question 2 is worth **0.5 points** (Total of 3 points)
+  
+- **Grading Guidelines**:
+  * Full credit will be awarded for answers that closely match the provided solutions.
+  * Partial credit will be given for incomplete or partially incorrect answers/justifications.
+  * **0 points** will be awarded for missing answers, answers with no justification, or entirely incorrect responses.
+  * Submissions without the RMD file will have point deductions.
+
+# Question 1 - Solutions
+
+## Answer - Question (1.a)
+
+```{r 1a, echo=TRUE}
+```
+
+## Answer - Question (1.b)
+
+```{r 1b, echo=TRUE}
+```
+
+## Answer - Question (1.c)
+
+```{r 1c, echo=TRUE}
+```
+
+## Answer - Question (1.d)
+
+```{r 1d, echo=TRUE}
+```
+
+## Answer - Question (1.e)
+
+```{r 1e, echo=TRUE}
+```
+
+
+# Question 2 - Solutions
+
+## Answer - Question (2.a)
+
+```{r 2a, echo=TRUE}
+```
+
+## Answer - Question (2.b)
+
+```{r 2b, echo=TRUE}
+```
+
+## Answer - Question (2.c)
+
+```{r 2c, echo=TRUE}
+```
+
+## Answer - Question (2.d)
+
+```{r 2d, echo=TRUE}
+```
+
+## Answer - Question (2.e)
+
+```{r 2e, echo=TRUE}
+```
+
+## Answer - Question (2.f)
+
+```{r 2f, echo=TRUE}
+```
+
+
+

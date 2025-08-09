@@ -1,0 +1,152 @@
+---
+title: "Codebook - Problem Set 4"
+author: "POL 501"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+## Codebook 
+
+This codebook describe the sources and the variables used to create the `csv` file `vdem_wdi_merged_df.csv`.
+
+### Codebook Table
+
+| Variable Name                            | Description                                                                                                                                           | Data Type  | Example Value |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------|---------------|
+| **`female_legislators_percent`**         | The percentage of seats in the national legislature held by female legislators in the year **2014**. This value represents gender representation in parliament. | Numeric    | `9.94`        |
+| **`avg_female_HoS_or_HoG`**              | The average proportion of years (between **1994 to 2014**) in which a country had a female **Head of State** or **Head of Government**. Values range from `0` (never) to `1` (always). | Numeric    | `0.8`         |
+| **`iso3c`**                              | The **ISO 3166-1 alpha-3** code representing the country. This is a three-letter abbreviation that uniquely identifies each country.                     | Categorical| `BRA`         |
+| **`political_geographic_region`**        | A numeric code representing the **political-geographic region** to which a country belongs. For example, **2** represents Latin America, and **5** represents Western countries. | Numeric    | `2`           |
+| **`year`**                               | The reference year for which the **VDEM** data is anchored. In this dataset, the value is **2014** for all rows.                                        | Numeric    | `2014`        |
+| **`adolescent_fert_rate_mean2015_2018`** | The average **adolescent fertility rate** (births per 1,000 women aged 15-19) for the years **2015-2018**. This value helps indicate trends in adolescent health outcomes. | Numeric    | `57.32900`    |
+| **`infant_mortality_rate_mean2015_2018`**| The average **infant mortality rate** (deaths of infants under one year per 1,000 live births) for the years **2015-2018**. Lower values indicate better health outcomes for infants. | Numeric    | `14.075`      |
+| **`life_expect_birth_mean2015_2018`**    | The average **life expectancy at birth** (in years) for the years **2015-2018**. This value estimates the average lifespan of individuals in the population, reflecting overall health and development. | Numeric    | `74.67750`    |
+
+### Example Data Description
+
+1. **`female_legislators_percent`**: In **Brazil (BRA)** in **2014**, **9.94%** of the legislators were female.
+2. **`avg_female_HoS_or_HoG`**: Between **1994 and 2014**, **Brazil** had a female Head of State or Government for **80%** of those years (`0.8`).
+3. **`iso3c`**: **`BRA`** represents **Brazil**.
+4. **`political_geographic_region`**: **2** indicates that **Brazil** belongs to the political-geographic region **2** (e.g., Latin America).
+5. **`year`**: All observations correspond to the year **2014**.
+6. **`adolescent_fert_rate_mean2015_2018`**: The average adolescent fertility rate in **Brazil** between **2015-2018** was **57.329 births per 1,000 women aged 15-19**.
+7. **`infant_mortality_rate_mean2015_2018`**: The average infant mortality rate in **Brazil** between **2015-2018** was **14.075 deaths per 1,000 live births**.
+8. **`life_expect_birth_mean2015_2018`**: The average life expectancy at birth in **Brazil** between **2015-2018** was **74.6775 years**.
+
+
+## Datasets Used
+
+### VDEM (Varieties of Democracy) Dataset
+The **VDEM (Varieties of Democracy)** dataset is a comprehensive source of data that provides detailed information about the political and democratic characteristics of countries around the world. It includes a wide range of indicators related to political systems, governance, elections, civil liberties, and political representation. The dataset aims to capture the complex nature of democracies, tracking changes over time in different dimensions of democratic governance. 
+
+- **Focus**: Political metrics, including governance, political freedoms, representation, and leadership.
+- **Usage in Analysis**: The dataset was used to analyze the presence of female leaders, representation in the legislature, and other political characteristics across countries from 1994 to 2014.
+
+### WDI (World Development Indicators) Dataset
+The **WDI (World Development Indicators)** dataset, published by the World Bank, is a key resource for global development data. It provides economic, social, and demographic statistics, offering insights into the development progress of nations. The dataset includes indicators on health, education, economic activity, population, and other developmental metrics that reflect the living conditions and quality of life in different countries.
+
+- **Focus**: Socioeconomic metrics, including health, economic performance, and social development indicators.
+- **Usage in Analysis**: The dataset was used to capture key socioeconomic indicators such as adolescent fertility rate, infant mortality rate, and life expectancy at birth, averaged over the years 2015-2018. These indicators were used to understand development outcomes following the political conditions captured by VDEM. 
+
+Together, the **VDEM** and **WDI** datasets provide a comprehensive view of both political and socioeconomic dimensions of countries, facilitating analysis of the linkages between political governance and development outcomes.
+
+
+### World Bank - WDI, Selected Variables
+
+- **Life expectancy at birth, total (years)**  
+  - Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
+  - **ID**: SP.DYN.LE00.IN  
+  - **Source**: ( 1 ) United Nations Population Division. World Population Prospects: 2022 Revision; or derived from male and female life expectancy at birth from sources such as: ( 2 ) Statistical databases and publications from national statistical offices; ( 3 ) Eurostat: Demographic Statistics.
+
+- **Adolescent fertility rate (births per 1,000 women ages 15-19)**  
+  - Adolescent fertility rate is the number of births per 1,000 women ages 15-19.
+  - **ID**: SP.ADO.TFRT 
+  - **Source**: United Nations Population Division, World Population Prospects. Aggregation Method: Weighted average. General Comments: This is the Sustainable Development Goal indicator 3.7.2 [unstats.un.org/sdgs/metadata/]. Long Definition: Adolescent fertility rate is the number of births per 1,000 women ages 15-19. Periodicity: Annual.
+
+- **Mortality rate, infant (per 1,000 live births)**  
+  - Infant mortality rate is the number of infants dying before reaching one year of age, per 1,000 live births in a given year.
+  - **ID**: SP.DYN.IMRT.IN  
+  - **Source**: Estimates developed by the UN Inter-agency Group for Child Mortality Estimation ( UNICEF, WHO, World Bank, UN DESA Population Division ) at childmortality.org.
+
+### Variates of Democracy Dataset - VDEM, selected variables (The V-Dem Institute -Varieties of Democracy-. The headquarters of the project is based at the department of political science, University of Gothenburg, Sweden)
+
+- **Variable**: **HOS female (A)** (`v2exfemhos`)
+    - **Description**: What is the gender of the head of state?
+    - **Clarification**: If the head of state is a collective body, provide the gender of the person executing the most effective power over this body.
+    - **Responses**:
+        - `0`: Male.
+        - `1`: Female.
+    - **Scale**: Dichotomous.
+    - **Source(s)**: worldstatesman.org; Melander (2005); Paxton and Hughes (2007).
+    - **Data Release**: 1-14.
+    - **Country–Year Aggregation**: Maximum.
+    - **Date Specific**: Coded on HOS appointment dates and December 31 (`v2exnamhos`).
+    - **Citation**: V-Dem Codebook (see suggested citation at the top of this document).
+    - **Years**: 1789-2023.
+
+- **Variable Name**: `v2exfemhog`
+  - **Description**: Gender of the head of government (A). This variable identifies the gender of the head of government.
+  - **Question**: What is the gender of the head of government?
+  - **Clarification**: 
+    - If the head of government is a collective body, the gender of the person holding the most effective power over this body is recorded.
+    - If no such individual exists, the response indicates whether any members of the collective body are female.
+  - **Responses**: 
+    - 0: Male
+    - 1: Female
+  - **Scale**: Dichotomous.
+  - **Source(s)**: 
+    - worldstatesmen.org
+    - cf. Melander (2005)
+    - Paxton and Hughes (2007)
+  - **Data Release**: Versions 1–14.
+  - **Country–Year Aggregation**: Maximum.
+  - **Date Specific**: Coded based on HOG appointment dates and December 31 (`v2exnamhog`).
+  - **Cleaning**: Set to missing if `v2exhoshog` is 1.
+  - **Citation**: V-Dem Codebook (see suggested citation at the top of this document).
+  - **Years**: 1789–2023
+
+- **Variable**: Lower chamber female legislators (A) (v2lgfemleg)
+    - **Description**: Question: What percentage (%) of the lower (or unicameral) chamber of the legislature is female?
+    - **Responses**:
+        - Percent.
+    - **Scale**: Interval.
+    - Source(s): Edgell (2019); Paxton et al. (2008); Carmichael et al. (2014); IPU Parline; genderproject.org.
+    - **Data release**: 4-14.
+    - **Country–Year Aggregation**: Last
+    - **Cleaning**: Set to missing when v2lgbicam is 0
+    - **Citation**: V-Dem Codebook (see suggested citation at the top of this document).
+    - **Years**: 1900-2023
+
+___
+
+## Pre-Processing Steps 
+
+Here is a high-level overview of the steps taken to create the final cross-sectional dataset. These steps were carried out in an additional supplementary code script.
+
+### High-Level Overview of the Steps:
+
+1. **Filtering VDEM Data**:
+   - Removed specific countries (`Kosovo` and `Serbia`) and filtered data to include only the years from **1994 to 2014**. `Kosovo` and `Serbia` did not have an easely identifiable country code to match the observations between the WDI and VDEM datasets.
+
+2. **Filtering WDI Data**:
+   - Selected data from the **WDI** dataset for the years **2015 to 2018**, representing key socioeconomic indicators after 2014.
+
+3. **Calculating Averages for Socioeconomic Indicators**:
+   - For each country, calculated average values of **adolescent fertility rate**, **infant mortality rate**, and **life expectancy** over the years **2015-2018**.
+
+4. **Preparing VDEM Dataset**:
+   - Selected relevant political variables from VDEM and created an indicator for female leadership.
+   - Calculated the average presence of female **Head of State** or **Head of Government** from **1994 to 2014**.
+
+5. **Filtering and Merging**:
+   - Filtered the VDEM data to include only the year **2014** and then merged it with the **WDI** data to create a cross-sectional dataset anchored to **2014**.
+
+6. **Creating a Female Leadership Indicator**:
+   - Added a new variable to indicate if a country had at least one female political leader between **1994 and 2014**.
+
+7. **Summarizing Western Countries**:
+   - Produced a summary table to show the distribution of western countries that had at least one female **Head of State** or **Head of Government** during **1994-2014**.
+
+The final cross-sectional dataset focuses on political and socioeconomic conditions around the year **2014**, enabling analysis of the impact of female political leadership on subsequent socioeconomic outcomes.
+

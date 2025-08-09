@@ -1,0 +1,195 @@
+---
+title: "Linear Regression Problem Set with WDI Data"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(WDI)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+```
+
+# Introduction
+
+This problem set aims to help students understand the basics of simple linear regression using real-world data from the World Development Indicators (WDI) package. By working through this problem set, you will learn how to load data, perform linear regression analyses, test assumptions, make inferences, and generate tables to summarize results.
+
+# Load Data
+
+In this section, we'll load a dataset from the WDI package and prepare it for analysis.
+
+```{r load-data}
+# Load data
+data <- WDI(indicator = c("NY.GDP.PCAP.CD", "SP.POP.TOTL", "SE.XPD.TOTL.GD.ZS", "SP.URB.TOTL.IN.ZS"), country = "all", start = 2019, end = 2019)
+
+# Rename columns based on the current structure
+colnames(data) <- c("country", "iso2c", "iso3c", "year", "gdp_per_capita", "population", "education_expenditure", "urban_population")
+
+# Filter out rows with missing values in the specified columns
+data <- data %>% filter(!is.na(gdp_per_capita) & !is.na(population) & !is.na(education_expenditure) & !is.na(urban_population))
+
+# Display the cleaned data
+head(data) %>% kable() %>% kable_styling()
+
+```
+
+# Question 1: Exploring the Data
+
+**Q1.1: Plot the Relationship**
+
+Plot the relationship between GDP per capita and Population using a scatter plot.
+
+```{r scatter-plot}
+ggplot(data, aes(x = population, y = gdp_per_capita)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot of GDP per Capita vs Population",
+       x = "Population",
+       y = "GDP per Capita") +
+  theme_minimal()
+```
+
+**Q1.2: Describe the Relationship**
+
+- What kind of relationship do you observe between GDP per capita and population?
+- Is it linear, non-linear, or difficult to determine?
+
+**ANSWER:** 
+
+# Question 2: Simple Linear Regression
+
+**Q2.1: Fit a Simple Linear Regression Model**
+
+Fit a simple linear regression model with `gdp_per_capita` as the response variable and `population` as the explanatory variable.
+
+```{r}
+```
+
+**Q2.2: Interpretation**
+
+- Interpret the coefficients of the linear model.
+- What does the slope tell us about the relationship between population and GDP per capita?
+
+# Question 3: Assumption Checks for Simple Linear Regression
+
+**Q3.1: Linearity Assumption**
+
+- Does the scatter plot indicate a linear relationship between the variables?
+- If not, what transformations might help?
+
+**Q3.2: Residual Plot**
+
+Plot the residuals of the model to check if the linearity assumption is satisfied.
+
+```{r}
+```
+
+- Are the residuals randomly scattered around zero? What does this tell us about the linearity assumption?
+
+# Question 4: Normality of Residuals for Simple Linear Regression
+
+**Q4.1: Test for Normality**
+
+Plot a histogram and a Q-Q plot of the residuals to check for normality.
+
+```{r}
+```
+
+- Do the residuals appear to be normally distributed?
+- If not, what implications does this have for inference?
+
+# Question 5: Inference for Simple Linear Regression
+
+**Q5.1: Hypothesis Test**
+
+- State the null and alternative hypotheses for the slope coefficient.
+- Using the summary output of the model, conduct a hypothesis test for the slope coefficient.
+
+**Q5.2: Confidence Intervals**
+
+Calculate and interpret the 95% confidence interval for the slope coefficient.
+
+```{r}
+```
+
+- What does the confidence interval tell us about the relationship between population and GDP per capita?
+
+# Question 6: Exploring Another Relationship
+
+Now we will analyze another pair of variables to further understand linear regression. In this case, we will explore the relationship between `education_expenditure` and `urban_population`.
+
+**Q6.1: Plot the Relationship**
+
+Plot the relationship between Education Expenditure (% of GDP) and Urban Population (% of total population).
+
+```{r}
+```
+
+**Q6.2: Describe the Relationship**
+
+- What kind of relationship do you observe between education expenditure and urban population?
+- Is it linear, non-linear, or difficult to determine?
+
+# Question 7: Simple Linear Regression for Another Pair of Variables
+
+**Q7.1: Fit a Simple Linear Regression Model**
+
+Fit a simple linear regression model with `education_expenditure` as the response variable and `urban_population` as the explanatory variable.
+
+```{r}
+```
+
+**Q7.2: Interpretation**
+
+- Interpret the coefficients of the linear model.
+- What does the slope tell us about the relationship between urban population and education expenditure?
+
+# Question 8: Assumption Checks for the Second Simple Linear Regression
+
+**Q8.1: Linearity Assumption**
+
+- Does the scatter plot indicate a linear relationship between the variables?
+- If not, what transformations might help?
+
+**Q8.2: Residual Plot**
+
+Plot the residuals of the model to check if the linearity assumption is satisfied.
+
+```{r}
+```
+
+- Are the residuals randomly scattered around zero? What does this tell us about the linearity assumption?
+
+# Question 9: Normality of Residuals for the Second Simple Linear Regression
+
+**Q9.1: Test for Normality**
+
+Plot a histogram and a Q-Q plot of the residuals to check for normality.
+
+```{r}
+```
+
+- Do the residuals appear to be normally distributed?
+- If not, what implications does this have for inference?
+
+# Question 10: Inference for the Second Simple Linear Regression
+
+**Q10.1: Hypothesis Test**
+
+- State the null and alternative hypotheses for the slope coefficient.
+- Using the summary output of the model, conduct a hypothesis test for the slope coefficient.
+
+**Q10.2: Confidence Intervals**
+
+Calculate and interpret the 95% confidence interval for the slope coefficient.
+
+```{r}
+```
+
+- What does the confidence interval tell us about the relationship between urban population and education expenditure?
+
+---
+This comprehensive problem set should provide you with a good foundation in understanding simple linear regression using the WDI data. Remember to explore the results critically and reflect on the assumptions and limitations of the models.

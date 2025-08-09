@@ -1,0 +1,192 @@
+---
+title: "POL501 - Answers to Problem Set 2"
+author: "Student Name (REPLACE)"
+date: "`r Sys.Date()`"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+fontsize: 11pt
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+---
+
+
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(haven)
+library(tidyverse)
+library(formatR)
+library(psych)
+```
+
+# Question 1
+
+## Preliminary Steps.
+
+Preliminaries. First, start by declaring the directory (folder) in which you have the data.
+```{r, echo=TRUE}
+## Setting Up the Directory (REPLACE WITH YOUR FOLDER)
+setwd("C:/Users/Ignacio/Dropbox/PhD SBU/06_Teaching/00_POL-501/Problem Sets/PS-2/")
+
+## Confirm the working directory
+getwd()
+```
+**Important**: Your RMD file must be placed in the same folder in which you have the data. Then, load the dataset to memory. The name of the dataset as an R object is `df_clean`.
+```{r, echo=TRUE}
+# Load the dataset.
+load('dataframe-ps2.RData')
+# Check the objects loaded
+ls()
+```
+:et's view some rows (using `glimpse` from `dplyr`), and check the variables (using `str` from `base R`).
+
+```{r}
+## View the first few rows of the dataset (glimpse is a function of the dyplr package)
+glimpse(df_clean)
+str(df_clean)
+```
+
+Check that the values for each variable correspond to valid numeric values according to the questionnaire and the variables dictionary:
+```{r}
+cat('Tabulation of PARTY: ')
+table(df_clean$PARTY)
+cat('\n Tabulation of INTFREQ: ')
+table(df_clean$INTFREQ)
+cat('\n Tabulation of RADIO: ')
+table(df_clean$RADIO) 
+cat('\n Tabulation of ECON1MOD: ')
+table(df_clean$ECON1MOD)
+cat('\n Tabulation of INFRASPEND: ')
+table(df_clean$INFRASPEND)
+cat('\n Tabulation of MOREGUNIMPACT: ')
+table(df_clean$MOREGUNIMPACT)
+cat('\n Tabulation of CRIMESAFE: ')
+table(df_clean$CRIMESAFE)
+```
+Basic Summary Statistics using `describe()` from the `psych` package:
+```{r}
+describe(df_clean)
+```
+
+## Answer to (1.a)
+```{r, echo=TRUE}
+# Step 1: Calculate the total number of valid respondents
+n_total_q1 <- nrow(df_clean)
+# Explanation:
+# - `df_clean` is assumed to be a cleaned dataset (data frame) that contains the survey data.
+# - `nrow(df_clean)` calculates the total number of rows (i.e., respondents) in the `df_clean` data frame.
+# - `n_total_q1` stores this total count. This gives us the total number of valid respondents who answered the relevant survey question.
+
+# Step 2: Filter for respondents who identify as either Democrat or Republican
+n_rep_dem <- df_clean %>%
+  filter(PARTY == 1 | PARTY == 2) %>%  # Logical OR condition to select Democrats (coded as 2) or Republicans (coded as 1)
+  nrow()
+# Explanation:
+# - `filter(PARTY == 1 | PARTY == 2)` is a filtering condition applied to the `df_clean` data frame.
+# - `PARTY` is assumed to be the column in `df_clean` that indicates party affiliation.
+#   - PARTY == 1 corresponds to Republicans.
+#   - PARTY == 2 corresponds to Democrats.
+# - The `|` symbol is a logical OR operator. It ensures that rows where PARTY is either 1 or 2 (i.e., either Republican or Democrat) are selected.
+# - `nrow()` is used again to count the number of rows (respondents) that satisfy this condition (i.e., either Republican or Democrat).
+# - The result is stored in `n_rep_dem`, which represents the number of respondents who identified as either Republican or Democrat.
+
+# Step 3: Calculate the probability of identifying as Democrat or Republican
+prob_rep_dem <- n_rep_dem / n_total_q1
+# Explanation:
+# - `prob_rep_dem` calculates the probability that a respondent identifies as either Democrat or Republican.
+# - The formula is straightforward: divide the number of respondents who are either Democrat or Republican (`n_rep_dem`) by the total number of respondents (`n_total_q1`).
+# - This gives the proportion of respondents who are either Republican or Democrat, which is the probability of interest.
+
+# Step 4: Display the result
+print(paste("Probability of identifying as Democrat or Republican:", 
+            round(prob_rep_dem, 2)))
+# Explanation:
+# - `print()` outputs the result to the console.
+# - `paste()` concatenates strings and variables together. Here, the text "Probability of identifying as Democrat or Republican:" is combined with the calculated probability `prob_rep_dem`.
+# - `round(prob_rep_dem, 2)` rounds the probability to two decimal places for cleaner display.
+# - The result is a message that shows the calculated probability, rounded to two decimal places.
+
+```
+The probability of identifying as Democrat or Republican is equal to `r 100*round(prob_rep_dem,2)` percent. This was computed by counting the respondents which classified as Democrat **OR** Republican. This is justified since Democrat and Republican are mutually exclusive categories. Then, we take the total of Democrats OR republicans divided by the total number of cases. 
+In other words, **Probability of Democrat or Republican = (Democrats + Republicans)/(Total Respondents)**
+
+
+## Answer to (1.b)
+```{r, echo=TRUE}
+n_total_q2 <- nrow(df_clean)
+
+n_radio_yes <- df_clean %>%
+  filter(RADIO == 1) %>% 
+  nrow()
+
+n_inter_constantly <- df_clean %>%
+  filter(INTFREQ == 1) %>% 
+  nrow() 
+
+n_radio_yes_AND_inter_constantly <- df_clean %>%
+  filter(RADIO == 1 & INTFREQ == 1) %>%  # the character '&' serves as the logical AND (in the dyplr package)
+  nrow() 
+
+## Now using the previous calculations we can compute the following probabilities... (you take it from here)
+
+```
+**Explanation/Justification:**
+
+## Answer to (1.c)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (1.d)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (1.e)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+---
+# Question 2
+
+## Answer to (2.a)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (2.b)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (2.c)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (2.d)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (2.e)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**
+
+## Answer to (2.f)
+```{r, echo=TRUE}
+
+```
+**Explanation/Justification:**

@@ -1,0 +1,169 @@
+female_legislators_percent,avg_female_HoS_or_HoG,iso3c,country_name,political_geographic_region,year,adolescent_fert_rate_mean2015_2018,infant_mortality_rate_mean2015_2018,life_expect_birth_mean2015_2018,one_or_more_female_HoS_or_HoG_1994to2014,region_category_factor
+37.4,0,MEX,Mexico,2,2014,64.3275,13.325,74.31175,0,Latin America
+11.76,0,SUR,Suriname,10,2014,59.8535,17.55,71.8405,0,The Caribbean
+43.55,0,SWE,Sweden,5,2014,4.42025,2.275,82.37012195,0,Western Europe and North America
+30.5,0.6,CHE,Switzerland,5,2014,2.6715,3.65,83.45121951,1,Western Europe and North America
+10.91,0,GHA,Ghana,4,2014,67.7915,37.3,63.8,0,Sub-Saharan Africa
+40.75,0,ZAF,South Africa,4,2014,68.06175,29.15,64.94325,0,Sub-Saharan Africa
+9.47,0,JPN,Japan,6,2014,3.51275,1.95,84.02237805,0,Eastern Asia
+6.19,0,MMR,Burma/Myanmar,7,2014,33.5355,38.525,65.8885,0,South-Eastern Asia
+13.56,0,RUS,Russia,1,2014,20.30825,5.825,71.98707317,0,Eastern Europe and post-Soviet Union
+20.71,0,ALB,Albania,1,2014,17.653,8.375,78.93375,0,Eastern Europe and post-Soviet Union
+0.33,0,YEM,Yemen,3,2014,61.52525,37.325,65.61725,0,North Africa and the Middle East
+19.88,0,COL,Colombia,2,2014,67.00875,12.8,76.5305,0,Latin America
+24.13,0.2,POL,Poland,1,2014,11.78375,4.05,77.66463415,1,Eastern Europe and post-Soviet Union
+9.94,0.8,BRA,Brazil,2,2014,57.329,14.075,74.6775,1,Latin America
+19.31,0,USA,United States of America,5,2014,19.31225,5.675,78.60182927,0,Western Europe and North America
+31.3,0,PRT,Portugal,5,2014,7.8855,2.95,81.24939024,0,Western Europe and North America
+27.38,0,SLV,El Salvador,2,2014,63.825,12.475,72.17625,0,Latin America
+20,1,BGD,Bangladesh,8,2014,80.918,29.55,71.484,1,Southern Asia
+53.08,0,BOL,Bolivia,2,2014,68.43,24.2,67.59875,0,Latin America
+4.21,0,HTI,Haiti,2,2014,55.58925,50.875,63.6255,0,Latin America
+25.78,0,HND,Honduras,2,2014,76.217,16.625,72.64525,0,Latin America
+9.52,0.4,MLI,Mali,4,2014,159.9505,67.825,58.90475,1,Sub-Saharan Africa
+20.74,0,PAK,Pakistan,8,2014,46.25625,59.725,66.089,0,Southern Asia
+22.31,0,PER,Peru,2,2014,60.5525,12.9,75.8245,0,Latin America
+42.67,0.2,SEN,Senegal,4,2014,71.20275,33.65,67.55575,1,Sub-Saharan Africa
+26.51,0,SSD,South Sudan,4,2014,101.9105,63.8,55.59225,0,Sub-Saharan Africa
+24.29,0,SDN,Sudan,4,2014,89.71,42.875,65.14125,0,Sub-Saharan Africa
+24.3,0,VNM,Vietnam,7,2014,34.84475,17.25,73.93825,0,South-Eastern Asia
+27.71,0,AFG,Afghanistan,8,2014,92.5515,52.3,62.973,0,Southern Asia
+36.19,1,ARG,Argentina,2,2014,59.01475,9.975,76.725,1,Latin America
+27.79,0,ETH,Ethiopia,4,2014,73.49125,41.025,64.57275,0,Sub-Saharan Africa
+11.97,0.4,IND,India,8,2014,20.538,33.85,70.2325,1,Southern Asia
+19.71,0,KEN,Kenya,4,2014,75.47275,33.475,62.303,0,Sub-Saharan Africa
+16.3,0,PRK,North Korea,6,2014,2.10525,15.725,72.8995,0,Eastern Asia
+16.33,0.4,KOR,South Korea,6,2014,2.66525,2.875,82.38841463,1,Eastern Asia
+3.13,0,LBN,Lebanon,3,2014,21.7445,11.425,79.52925,0,North Africa and the Middle East
+6.67,0,NGA,Nigeria,4,2014,107.46175,77.525,52.18575,0,Sub-Saharan Africa
+27.24,0,PHL,Philippines,7,2014,50.97,22.1,71.465,0,South-Eastern Asia
+36,0,TZA,Tanzania,4,2014,129.41,36.85,65.64275,0,Sub-Saharan Africa
+6.09,0.6,THA,Thailand,7,2014,41.21875,8.45,78.2055,1,South-Eastern Asia
+34.97,0,UGA,Uganda,4,2014,117.2685,36.725,61.89075,0,Sub-Saharan Africa
+16.97,0,VEN,Venezuela,2,2014,88.6055,20.05,72.2465,0,Latin America
+8.43,0,BEN,Benin,4,2014,95.63975,61.125,59.728,0,Sub-Saharan Africa
+8.51,0,BTN,Bhutan,8,2014,25.5975,24.15,70.73025,0,Southern Asia
+13.33,0,BFA,Burkina Faso,4,2014,118.1205,57.225,59.4385,0,Sub-Saharan Africa
+20.33,0,KHM,Cambodia,7,2014,48.6295,25.325,70.29325,0,South-Eastern Asia
+17.12,0,IDN,Indonesia,7,2014,36.712,21.9,69.94275,0,South-Eastern Asia
+39.6,0,MOZ,Mozambique,4,2014,172.7025,56.85,59.3715,0,Sub-Saharan Africa
+29.48,0,NPL,Nepal,8,2014,72.10725,29.075,68.53025,0,Southern Asia
+40.2,0,NIC,Nicaragua,2,2014,91.508,15.7,73.41075,0,Latin America
+13.27,0,NER,Niger,4,2014,178.41075,62.9,61.8315,0,Sub-Saharan Africa
+12.66,0,ZMB,Zambia,4,2014,127.773,44.975,61.866,0,Sub-Saharan Africa
+31.48,0,ZWE,Zimbabwe,4,2014,99.935,39.825,60.505,0,Sub-Saharan Africa
+21.93,0,GIN,Guinea,4,2014,126.852,69.65,58.83875,0,Sub-Saharan Africa
+9.16,0,CIV,Ivory Coast,4,2014,111.44825,60.725,58.28775,0,Sub-Saharan Africa
+25.17,0,MRT,Mauritania,4,2014,81.765,36,64.9115,0,Sub-Saharan Africa
+25.16,0,CAN,Canada,5,2014,8.36,4.6,81.85432927,0,Western Europe and North America
+26.67,0.8,AUS,Australia,5,2014,10.92575,3.225,82.52439024,1,Western Europe and North America
+9.52,0,BWA,Botswana,4,2014,49.286,36.675,65.36425,0,Sub-Saharan Africa
+30.48,0,BDI,Burundi,4,2014,57.94025,43.425,61.06275,0,Sub-Saharan Africa
+20.83,0,CPV,Cape Verde,4,2014,62.434,14.2,75.672,0,Sub-Saharan Africa
+11.4,0.2,CAF,Central African Republic,4,2014,161.488,81.6,53.58575,1,Sub-Saharan Africa
+15.83,0.2,CHL,Chile,2,2014,31.6085,6.625,80.077,1,Latin America
+33.33,0.8,CRI,Costa Rica,2,2014,53.3035,7.525,79.3515,1,Latin America
+38.46,0,TLS,Timor-Leste,7,2014,36.95,49.325,67.58625,0,South-Eastern Asia
+41.61,0,ECU,Ecuador,2,2014,74.7145,12.575,76.9045,0,Latin America
+26.17,0,FRA,France,5,2014,7.82725,3.275,82.53658537,0,Western Europe and North America
+36.45,1,DEU,Germany,5,2014,8.61275,3.25,80.87926829,1,Western Europe and North America
+13.29,0,GTM,Guatemala,2,2014,78.267,22.6,72.43375,0,Latin America
+3.1,0,IRN,Iran,3,2014,38.12825,12.575,75.7225,0,North Africa and the Middle East
+25.3,0,IRQ,Iraq,3,2014,70.5335,23.575,70.08875,0,North Africa and the Middle East
+16.27,0.2,IRL,Ireland,5,2014,7.0285,3.05,81.86707317,1,Western Europe and North America
+30.95,0,ITA,Italy,5,2014,4.667,2.85,83.02012195,0,Western Europe and North America
+12,0,JOR,Jordan,3,2014,28.64,14.425,75.3755,0,North Africa and the Middle East
+18,0,LVA,Latvia,1,2014,14.79775,3.925,74.61829268,0,Eastern Europe and post-Soviet Union
+26.67,0,LSO,Lesotho,4,2014,92.49725,62.425,52.5405,0,Sub-Saharan Africa
+10.96,1,LBR,Liberia,4,2014,135.75875,62.575,60.2425,1,Sub-Saharan Africa
+16.67,0.4,MWI,Malawi,4,2014,127.217,36.175,62.46,1,Sub-Saharan Africa
+5.88,0,MDV,Maldives,8,2014,10.65075,7.425,79.88075,0,Southern Asia
+14.86,0,MNG,Mongolia,1,2014,32.64775,15.4,70.19975,0,Eastern Europe and post-Soviet Union
+16.96,0,MAR,Morocco,3,2014,28.15925,18.7,73.4625,0,North Africa and the Middle East
+37.33,0.6,NLD,Netherlands,5,2014,2.86275,3.5,81.66097561,1,Western Europe and North America
+18.31,0,PAN,Panama,2,2014,80.39825,14.55,77.69475,0,Latin America
+2.7,0,PNG,Papua New Guinea,9,2014,59.50025,38.975,64.9565,0,The Pacific
+0,0,QAT,Qatar,3,2014,9.2745,6.125,80.528,0,North Africa and the Middle East
+12.4,0,SLE,Sierra Leone,4,2014,115.802,89.4,58.51025,0,Sub-Saharan Africa
+41.14,0,ESP,Spain,5,2014,6.99975,2.725,83.21890244,0,Western Europe and North America
+12,0,SYR,Syria,3,2014,39.26875,25,67.43575,0,North Africa and the Middle East
+31.34,0,TUN,Tunisia,3,2014,8.587,14.275,75.81825,0,North Africa and the Middle East
+14.42,0,TUR,Türkiye,3,2014,24.58475,10.675,77.0025,0,North Africa and the Middle East
+11.85,0,UKR,Ukraine,1,2014,24.36,7.725,71.50737805,0,Eastern Europe and post-Soviet Union
+22.77,1,GBR,United Kingdom,5,2014,13.6245,3.825,81.15609756,1,Western Europe and North America
+22.22,0,URY,Uruguay,2,2014,50.496,7.025,77.5725,0,Latin America
+31.6,0,DZA,Algeria,3,2014,12.53625,21.175,75.79075,0,North Africa and the Middle East
+36.82,0,AGO,Angola,4,2014,145.50475,54.5,61.39275,0,Sub-Saharan Africa
+10.69,0,ARM,Armenia,1,2014,22.54825,12,74.7675,0,Eastern Europe and post-Soviet Union
+15.57,0,AZE,Azerbaijan,1,2014,53.52575,21.4,72.11575,0,Eastern Europe and post-Soviet Union
+27.27,0,BLR,Belarus,1,2014,14.4745,2.8,73.93902439,0,Eastern Europe and post-Soviet Union
+31.11,0,CMR,Cameroon,4,2014,117.97425,55.25,60.47025,0,Sub-Saharan Africa
+14.89,0,TCD,Chad,4,2014,152.4925,73.2,52.20125,0,Sub-Saharan Africa
+23.62,0,CHN,China,6,2014,14.70875,7.3,77.29675,0,Eastern Asia
+8.94,0,COD,Democratic Republic of the Congo,4,2014,113.95375,70,59.22725,0,Sub-Saharan Africa
+7.35,0,COG,Republic of the Congo,4,2014,111.23325,36.25,63.65575,0,Sub-Saharan Africa
+12.73,0,DJI,Djibouti,4,2014,22.97375,51.9,62.49575,0,Sub-Saharan Africa
+20.77,0,DOM,Dominican Republic,2,2014,89.679,28.8,73.05875,0,Latin America
+14.17,0,GAB,Gabon,4,2014,100.4145,33.825,65.93925,0,Sub-Saharan Africa
+9.43,0,GMB,The Gambia,4,2014,72.2685,37.925,62.8855,0,Sub-Saharan Africa
+11.33,0,GEO,Georgia,1,2014,42.02925,9.025,73.44425,0,Eastern Europe and post-Soviet Union
+13.73,0,GNB,Guinea-Bissau,4,2014,96.98725,57.3,59.8425,0,Sub-Saharan Africa
+12.7,0.6,JAM,Jamaica,10,2014,40.34225,16.025,72.0295,1,The Caribbean
+26.17,0,KAZ,Kazakhstan,1,2014,27.165,9.75,72.62,0,Eastern Europe and post-Soviet Union
+23.33,0.2,KGZ,Kyrgyzstan,1,2014,40.943,18.35,71.05060976,1,Eastern Europe and post-Soviet Union
+25,0,LAO,Laos,7,2014,78.6185,39.375,67.22625,0,South-Eastern Asia
+15.96,0,LBY,Libya,3,2014,7.40525,10.75,72.1825,0,North Africa and the Middle East
+20.53,0,MDG,Madagascar,4,2014,128.16425,45.15,64.925,0,Sub-Saharan Africa
+20.79,0,MDA,Moldova,1,2014,34.18975,13.1,70.04125,0,Eastern Europe and post-Soviet Union
+41.35,0,NAM,Namibia,4,2014,69.2085,32.125,61.81525,0,Sub-Saharan Africa
+63.75,0,RWA,Rwanda,4,2014,35.85275,33.4,65.80675,0,Sub-Saharan Africa
+13.82,0,SOM,Somalia,4,2014,124.31725,79.3,55.4825,0,Sub-Saharan Africa
+5.78,0,LKA,Sri Lanka,8,2014,16.32575,6.975,75.35225,0,Southern Asia
+6.15,0,SWZ,Eswatini,4,2014,75.10275,47.375,57.246,0,Sub-Saharan Africa
+19,0,TJK,Tajikistan,1,2014,44.8705,31.475,69.77825,0,Eastern Europe and post-Soviet Union
+17.58,0,TGO,Togo,4,2014,81.762,48.775,59.836,0,Sub-Saharan Africa
+28.57,1,TTO,Trinidad and Tobago,10,2014,39.5405,16.45,74.204,1,The Caribbean
+25.81,0,TKM,Turkmenistan,1,2014,25.59475,37.075,68.81775,0,Eastern Europe and post-Soviet Union
+16,0,UZB,Uzbekistan,1,2014,21.6135,16.075,70.84725,0,Eastern Europe and post-Soviet Union
+30.6,0,AUT,Austria,5,2014,7.099,3,81.54207317,0,Western Europe and North America
+7.5,0,BHR,Bahrain,3,2014,13.34175,6.3,79.627,0,North Africa and the Middle East
+16.67,0,BRB,Barbados,10,2014,41.59125,11.9,76.867,0,The Caribbean
+39.33,0,BEL,Belgium,5,2014,6.28575,3.35,81.37987805,0,Western Europe and North America
+21.43,0,BIH,Bosnia and Herzegovina,1,2014,10.78925,5.5,76.7545,0,Eastern Europe and post-Soviet Union
+20.42,0,BGR,Bulgaria,1,2014,38.68075,6.275,74.80121951,0,Eastern Europe and post-Soviet Union
+3.03,0,COM,Comoros,4,2014,63.47625,45.05,63.4175,0,Sub-Saharan Africa
+23.8,0.2,HRV,Croatia,1,2014,9.56675,4.1,77.79878049,1,Eastern Europe and post-Soviet Union
+48.86,0,CUB,Cuba,2,2014,51.15625,4.975,77.61,0,Latin America
+12.5,0,CYP,Cyprus,5,2014,6.309,2.425,81.183,0,Western Europe and North America
+19,0,CZE,Czechia,1,2014,11.33975,2.575,78.90304878,0,Eastern Europe and post-Soviet Union
+37.99,1,DNK,Denmark,5,2014,3.115,3.45,80.90304878,1,Western Europe and North America
+24,0,GNQ,Equatorial Guinea,4,2014,157.053,64.9,60.6485,0,Sub-Saharan Africa
+19,0,EST,Estonia,1,2014,10.741,2.175,77.89207317,0,Eastern Europe and post-Soviet Union
+42.5,0.4,FIN,Finland,5,2014,5.2425,1.95,81.56890244,1,Western Europe and North America
+21,0,GRC,Greece,5,2014,8.3035,3.575,81.375,0,Western Europe and North America
+31.34,0,GUY,Guyana,10,2014,71.38275,26.275,68.537,0,The Caribbean
+41.27,0.6,ISL,Iceland,5,2014,6.48425,2.1,82.54878049,1,Western Europe and North America
+22.5,0,ISR,Israel,3,2014,9.063,3.05,82.45304878,0,North Africa and the Middle East
+4,0,KWT,Kuwait,3,2014,6.474,7.675,79.6915,0,North Africa and the Middle East
+23.4,1,LTU,Lithuania,1,2014,12.9465,3.625,75.03841463,1,Eastern Europe and post-Soviet Union
+28.33,0,LUX,Luxembourg,5,2014,4.84525,2.225,82.34207317,0,Western Europe and North America
+33.33,0,MKD,North Macedonia,1,2014,16.5085,8.725,75.85121951,0,Eastern Europe and post-Soviet Union
+10.36,0,MYS,Malaysia,7,2014,10.701,6.975,75.37575,0,South-Eastern Asia
+14.3,0.2,MLT,Malta,5,2014,12.502,5.6,82.28658537,1,Western Europe and North America
+11.59,0.2,MUS,Mauritius,4,2014,24.70525,13.225,74.4197561,1,Sub-Saharan Africa
+17.28,0,MNE,Montenegro,1,2014,10.72025,3.2,76.55426829,0,Eastern Europe and post-Soviet Union
+31.4,0,NZL,New Zealand,5,2014,16.016,4.375,81.70920732,0,Western Europe and North America
+39.64,0.4,NOR,Norway,5,2014,3.51475,2.1,82.52012195,1,Western Europe and North America
+1.19,0,OMN,Oman,3,2014,15.87025,9.5,77.87325,0,North Africa and the Middle East
+15,0,PRY,Paraguay,2,2014,74.76725,18,73.48425,0,Latin America
+13.72,0,ROU,Romania,1,2014,37.88875,6.825,75.17256098,0,Eastern Europe and post-Soviet Union
+18.18,0,STP,Sao Tome and Principe,4,2014,89.0935,16.225,67.84075,0,Sub-Saharan Africa
+19.87,0,SAU,Saudi Arabia,3,2014,12.29875,7.15,77.0885,0,North Africa and the Middle East
+43.75,0,SYC,Seychelles,4,2014,57.1335,12.625,73.93658537,0,Sub-Saharan Africa
+25.25,0,SGP,Singapore,7,2014,2.5265,2.15,82.99573171,0,South-Eastern Asia
+18.67,0.4,SVK,Slovakia,1,2014,26.03525,5.075,77.0402439,1,Eastern Europe and post-Soviet Union
+36.67,0.2,SVN,Slovenia,1,2014,4.33,2.05,81.08963415,1,Eastern Europe and post-Soviet Union
+2,0,SLB,Solomon Islands,9,2014,63.5565,18.575,69.88625,0,The Pacific
+0,0,VUT,Vanuatu,9,2014,68.923,17.55,69.667,0,The Pacific
+17.5,0,ARE,United Arab Emirates,3,2014,6.172,5.725,79.42225,0,North Africa and the Middle East
+10.1,0,HUN,Hungary,1,2014,24.0375,3.9,75.87865854,0,Eastern Europe and post-Soviet Union

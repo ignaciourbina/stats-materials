@@ -1,0 +1,158 @@
+---
+title: "Problem Set 4"
+author: "REPLACE HERE WITH YOUR NAME"
+date: "`r Sys.Date()`"
+output: 
+  word_document:
+    toc: true
+    toc_depth: 2
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+---
+
+```{r setup, include=FALSE}
+# load some packages
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
+library(psych)
+
+# Set up the working directory 
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(root.dir = "F:\\Dropbox\\PhD SBU\\06_Teaching\\00_POL-501\\Applied-Cases\\Effects of Women Leadership") # Set root directory for all chunks
+
+# Load the dataset
+df <- read.csv("vdem_wdi_merged_df.csv")
+```
+
+## Context
+
+This problem set is inspired by the recent research article *"Women’s Empowerment and Child Mortality"* by Kellard et al. (2024), published in *World Development*.
+
+## Question 1: Understanding the Dataset (2 points)
+
+### 1a. Unit of Observation
+
+What is the unit of observation in this dataset?
+
+**Answer:**
+
+
+### 1b. Variables
+
+Describe each variable's type (use the classification discussed in Unit I).
+
+**Answer:**
+
+
+### 1c. Number of Observations
+
+How many observations are present in the dataset?
+
+**Answer:**
+
+
+```{r number_of_observations}
+# Write code to check the number of observations
+
+```
+
+### 1d. Summary Statistics
+
+For all continuous and binary variables, create a table showing their mean, minimum, maximum, and standard deviation. Describe your findings.
+
+```{r summary_statistics}
+# Use functions such as dyplr's `summarise()` or psych's `describe()` to compute summary statistics for the continuous and binary variables
+
+```
+
+**Answer:**
+
+
+## Question 2: Hypothesis Testing (5 points)
+
+In this question, we aim to test whether countries with at least one female head of state or government between 1994 and 2014 have lower infant mortality rates.
+
+
+### 2a. Relevant Variables
+
+Identify the variables necessary to test this hypothesis. Explain your answer.
+
+**Answer:**
+
+
+### 2b. Hypothesis Formulation
+
+Write the null hypothesis ($H_0$) and the alternative hypothesis ($H_a$) in mathematical form. Clearly define any parameters or terms used in the hypotheses. Indicate whether this is a one-sided or two-sided test. Explain your answer.
+
+**Answer:**
+
+
+### 2c. Test Statistic
+
+Assume we cannot rely on the central limit theorem due to a limited sample size. In this case, which test statistic should we use to test the null hypothesis? Explain your reasoning and write the formula for the test statistic. Explain each term of the formula and its interpretation.
+
+**Answer:**
+
+
+### 2d. Compute the Test Statistic
+
+Using the `dplyr` function `filter()`, and the R functions `mean()`, and `nrow()`, compute the value of the test statistic.
+
+```{r compute_test_statistic}
+# Write code to filter data and compute the necessary values for the test statistic
+
+```
+
+**Answer:**
+
+
+### 2e. Compute the P-Value and Reach a Conclusion
+
+- Calculate the p-value of the test statistic. Explain what the p-value is capturing and how we should interpret it.
+- At the 5% significance level, can we reject the null hypothesis? Interpret and explain the conclusion of the hypothesis test.
+
+```{r compute_p_value}
+# Use appropriate R function to compute the p-value (hint: see PS4's tutorial)
+
+```
+
+**Answer:**
+
+
+## Question 3: Linear Regression (4 points)
+
+This question examines the relationship between the 2015–2018 average infant mortality rate (dependent variable) and the 2014 percentage of female legislators.
+
+### 3a. Hypothesis Formulation
+
+Suppose we expect a positive relationship between the two variables. Write the hypothesis test for the population slope ($\beta_1$). Indicate whether this is a one-sided or two-sided test.
+
+**Answer:**
+
+
+### 3b. Regression Estimation
+
+Using the command `lm(...)`, estimate the simple linear regression model. Interpret the estimated slope coefficient. How does the dependent variable change with a one percentage point increase in female legislators?
+
+```{r regression_estimation}
+# Estimate the linear model (Hint: see the tutorial on Brightspace)
+
+```
+
+**Answer:**
+
+
+### 3c. Test Statistic and P-Value
+
+From the regression output, identify the test statistic and p-value for the estimated slope. Explain how to interpret these values.
+
+**Answer:**
+
+
+### 3d. Statistical Significance
+
+At the 5% significance level, can we reject the null hypothesis? Interpret and explain the conclusion of the hypothesis test.
+
+**Answer:**
+
+

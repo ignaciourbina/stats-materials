@@ -1,0 +1,434 @@
+---
+title: "POL501 - Answers to Problem Set 3"
+author: "Ashley Sieloff"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  word_document:
+    toc: true
+    toc_depth: 2
+geometry: "left=1in,right=1in,top=1in,bottom=1in"
+---
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(haven)
+library(tidyverse)
+library(formatR)
+library(psych)
+library(kableExtra)
+library(BSDA)
+```
+
+# Preliminary Setup
+
+First, we define a user-defined function to compute confidence intervals. The following chunk we set as `echo=False` (i.e., we run it to save the function in computer memory, but we hide when rendering the doc) to clean up the presentation of the document.
+
+```{r func, echo=FALSE}
+# Function to calculate confidence interval
+confidence_interval <- function(data, var_name, confidence_level = 0.95, method = "t") {
+
+  # Extract the data column
+  data_column <- data[[var_name]]
+ 
+  # Validate inputs (method, var_name)
+  if (!(method %in% c("t", "z"))) {
+    stop("Method must be either 't' or 'z'.")
+  }
+  if (!(var_name %in% colnames(data))) {
+    stop("var_name must be the name of a column in the data frame.")
+  }
+ 
+  # Calculate sample statistics
+  sample_mean <- mean(data_column, na.rm = TRUE)
+  sample_sd <- sd(data_column, na.rm = TRUE)
+  n <- length(na.omit(data_column))
+  standard_error <- sample_sd / sqrt(n)
+ 
+  # Set alpha for confidence level
+  alpha <- 1 - confidence_level
+ 
+  # Calculate the critical value based on the selected method
+  if (method == "t") {
+    critical_value <- qt(1 - alpha / 2, df = n - 1)  # t-distribution critical value
+  } else {
+    critical_value <- qnorm(1 - alpha / 2)  # z-distribution critical value
+  }
+ 
+  # Calculate margin of error (MOE)
+  margin_of_error <- critical_value * standard_error
+ 
+  # Calculate confidence interval bounds
+  lower_bound <- sample_mean - margin_of_error
+  upper_bound <- sample_mean + margin_of_error
+ 
+  # Prepare output as a named vector
+  output <- c(
+    `Sample Mean of` = var_name,
+    Estimate = round(sample_mean, 3),
+    MOE = round(margin_of_error, 3),
+    `Lower CI Bound` = round(lower_bound, 3),
+    `Upper CI Bound` = round(upper_bound, 3)
+  )
+
+  # Return the result
+  return(output)
+}
+```
+
+\newpage
+
+___
+# Question 1
+
+## Preliminary Steps
+
+First, declare the directory in which you have the data.
+
+```{r q1-setup-1, echo=TRUE}
+# Set up the working directory (replace with your folder path)
+# Use the '/' character or '\\' to separate folders
+setwd("F:\\Dropbox\\PhD SBU\\06_Teaching\\00_POL-501\\Problem Sets\\PS-3")
+
+# Confirm the working directory
+getwd()
+```
+
+**Important**:
+
+- You must place this RMD file in the same folder in which you have the data.
+- Then, you will be able to load the dataset into memory. The name of the dataset as an R object is `df_clean`.
+
+```{r q1-setup-2, echo=FALSE}
+# Load the dataset
+load('dataframe-pew.RData')
+
+# Check the loaded objects (the created function and the dataframe should be printed as a result)
+ls()
+```
+
+## Answer to (1.a)
+
+```{r q1-a, echo=TRUE}
+# Question 1.a: Use the function `confidence_interval` to compute the mean of `CRIMESAFE` with a 95% confidence level
+crimesafe_CI_z_95 <- confidence_interval(data = df_clean, var_name = 'CRIMESAFE', confidence_level = 0.95, method = "z")
+print(crimesafe_CI_z_95)
+kable(data.frame(crimesafe_CI_z_95))
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results goes here)
+
+## Answer to (1.b)
+
+```{r q1-b, echo=TRUE}
+# Question 1.b: Use the function `confidence_interval` to compute the mean of `CRIMESAFE` with a 99% confidence level
+crimesafe_CI_z_99 <- confidence_interval(data = df_clean, var_name = 'CRIMESAFE', confidence_level = 0.99, method = "z")
+print(crimesafe_CI_z_99)
+kable(data.frame(crimesafe_CI_z_99))
+
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results goes here)
+
+## Answer to (1.c)
+
+```{r q1-c, echo=TRUE}
+# Question 1.c: Use the `dplyr` command 'filter' to create a data frame for the responses of Democrats and Republicans
+# Create one data frame for Democrats and another for Republicans
+
+df_dems <- df_clean %>%
+  filter(PARTY == 2) %>%
+  nrow()
+df_rep <-  df_clean %>%
+  filter(PARTY == 1) %>%
+  nrow()
+
+df_dem_and_rep <- data.frame(df_dems, df_rep)
+
+print(df_dems)
+print(df_rep)
+df_dem_and_rep
+
+```
+
+**Explanation/Justification**:
+(Your justification goes here)
+
+## Answer to (1.d)
+
+```{r q1-d-part1, echo=TRUE}
+# Question 1.d: Compute the sample mean for `CRIMESAFE` and 95% confidence intervals for Democrats and Republicans
+crimesafe_CI_z_95_dems <- confidence_interval(data = df_dem_and_rep, var_name = 'df_dems', confidence_level = 0.95, method = "z")
+print(crimesafe_CI_z_95_dems)
+
+cat('\nResults for Democrats:\n')
+print(crimesafe_CI_z_95_dems)
+```
+
+```{r q1-d-part2, echo=TRUE}
+crimesafe_CI_z_95_reps <- confidence_interval(data = df_dem_and_rep, var_name = 'df_rep', confidence_level = 0.95, method = "z")
+print(crimesafe_CI_z_95_reps)
+cat('\nResults for Republicans:\n')
+print(crimesafe_CI_z_95_reps)
+```
+
+**Explanation/Justification**:
+(Your justification goes here)
+
+## Answer to (1.e)
+
+After completing (1.d), run this chunk and interpret the results. Your task here is to interpret and explain the results.
+
+```{r q1-e, echo=TRUE}
+# Question 1.e: Create a data frame with the results of (1.d) and plot the results
+# Extract the values and combine them into a data frame for plotting
+combined_crimesafe_CI_95 <- cbind(c(Group = 'Democrats', crimesafe_CI_z_95_dems),
+                                  c(Group = 'Republicans', crimesafe_CI_z_95_reps))
+
+# Convert the combined matrix into a data frame with proper column names
+df_combined_CI <- as.data.frame(t(combined_crimesafe_CI_95), stringsAsFactors = FALSE)
+
+# Rename columns for clarity
+colnames(df_combined_CI) <- c("Group", "Sample_Mean", "Estimate", "MOE", "Lower", "Upper")
+
+# Convert relevant columns to numeric
+df_combined_CI <- df_combined_CI %>%
+  mutate(Estimate = as.numeric(Estimate),
+         Lower = as.numeric(Lower),
+         Upper = as.numeric(Upper))
+
+# Plot using ggplot2 with a dot and whiskers for confidence interval
+ggplot(df_combined_CI, aes(x = Group, y = Estimate)) +
+  geom_errorbar(aes(ymin = Lower, ymax = Upper), width = 0.1, color = "steelblue") +  # Whiskers for CI
+  geom_point(size = 3, color = "navyblue") +  # Dot for the sample mean
+  labs(
+    title = "Mean Perception of Community Safety with 95% Confidence Interval",
+    x = "Political Affiliation",
+    y = "Perception of Community Safety (CRIMESAFE)"
+  ) +
+  theme_minimal() +
+  ylim(2.4, 2.7)  # Set the y-axis limits here
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results goes here)
+
+
+___
+# Question 2
+
+This question follows the previous one and now focuses on inference for proportions.
+
+## Answer to (2.a)
+
+```{r q2-a, echo=TRUE}
+# Question 2.a: Create a new variable in the dataframe `df_clean` that equals 1 if the respondent selected
+# "Not too safe" or "Not at all safe", and zero otherwise. Then, recreate the subsample data frames for Democrats and Republicans.
+# Finally, interpret the mean of this variable.
+
+df_clean <- df_clean %>%
+  mutate(
+    notsafe_binary = if_else(CRIMESAFE %in% c(4, 5), 1, 0)
+  )
+
+# Create subsamples for Democrats and Republicans
+df_dems <- 'REPLACE WITH YOUR CODE HERE (use the same code from question (1.c))'
+df_rep <- 'REPLACE WITH YOUR CODE HERE (use the same code from question (1.c))'
+
+# Describe the mean of the new variable - entire sample
+mean(df_clean$notsafe_binary)
+
+# Describe the mean of the new variable for Democrats
+mean(df_dems$notsafe_binary)
+
+# Describe the mean of the new variable for Republicans
+mean(df_rep$notsafe_binary)
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results go here)
+
+## Answer to (2.b)
+
+Complete the code for the standard error and interpret the results. Also, using the p-value determine if you can reject the null hypothesis at the 5% or 1% significance level.
+
+```{r q2-b, echo=TRUE}
+# Question 2.b: Using the subsample for Democrats, compute the p-value with the null hypothesis
+# that the true proportion for Democrats differs from the sample proportion for Republicans.
+
+prop_null_hypothesis <- mean(df_rep$notsafe_binary)
+n_sample_size <- nrow(df_dems)
+
+# Calculate the standard error for the null hypothesis (replace with the correct formula)
+standard_error_null_hypot <- 'Replace with the formula for the standard error'
+ 
+# Run the z-test to test if the mean is significantly different from the sample proportion for Republicans
+z_test_result <- z.test(
+  x = df_dems$CRIMESAFE,
+  mu = prop_null_hypothesis,  # Hypothesized population mean
+  sigma.x = standard_error_null_hypot  # Population standard deviation (assuming known)
+)
+
+# Print the z-test result
+print(z_test_result)
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results go here)
+
+
+## Answer to (2.c)
+
+Complete the code for the standard error and interpret the results. Also, using the p-value determine if you can reject the null hypothesis at the 5% or 1% significance level.
+
+```{r q2-c, echo=TRUE}
+# Question 2.c: Using the subsample for Republicans, compute the p-value with the null hypothesis
+# that the true proportion for Republicans differs from the sample proportion for Democrats.
+
+prop_null_hypothesis <- mean(df_dems$notsafe_binary)
+n_sample_size <- nrow(df_dems)
+
+# Calculate the standard error for the null hypothesis (replace with the correct formula)
+standard_error_null_hypot <- 'Replace with the formula for the standard error'
+ 
+# Run the z-test to test if the mean is significantly different from the sample proportion for Democrats
+z_test_result <- z.test(
+  x = df_dems$CRIMESAFE,
+  mu = prop_null_hypothesis,  # Hypothesized population mean
+  sigma.x = standard_error_null_hypot  # Population standard deviation (assuming known)
+)
+
+# Print the z-test result
+print(z_test_result)
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results go here)
+
+
+___
+# Question 3: Hypothesis Test for Proportions at 1% Significance Level
+
+This question introduces hypothesis testing using a mock dataset for proportions without relying on any specialized packages. In this question you will test the null hypothesis that the true population proportion is 0.43 against the alternative that it is different, using a 1% significance level.
+
+## Preliminary Steps
+We will generate a new mock dataset for this question. We set a seed equal to 12345 to ensure reproducibility and create the mock dataset. Also, we will set up the simulated data using a bernoulli random variable generator with a true proportion of success equal to 0.44. We will use a sample size of 35 observations.
+
+**Don't modify this chunk:**
+```{r q3-setup, echo=TRUE}
+# Set seed for reproducibility
+set.seed(12345)
+
+# Create a mock dataset with 35 respondents where each respondent either supports (1) or does not support (0) a specific policy
+respondents <- 35
+true_prop <- 0.44
+mock_data_q3 <- data.frame(support_policy = rbinom(n=respondents, size=1, true_prop))  # size=1 means one trial, hence we are drawing 'n' bernoulli random variables.
+
+# Visualize the first few rows of the dataset
+head(mock_data_q3)
+mean(mock_data_q3$support_policy)
+```
+
+## Question 3.a: Sample Proportion and Standard Error
+First, calculate the sample proportion and the standard error.
+
+```{r q3-a, echo=TRUE}
+# Calculate the sample proportion
+p_hat <- mean(mock_data_q3$support_policy) # Observed Sample Proportion
+
+# Define the null hypothesis proportion
+p_0 <- "REPLACE WITH YOUR CODE HERE"
+
+# Compute the sample size
+n <- "REPLACE WITH YOUR CODE HERE"
+
+# Calculate the standard error under the null
+standard_error_null_hypothesis <- "REPLACE WITH YOUR CODE HERE"  # SE assuming the null hypothesis (use: `p_0`, `n`, `p_hat`)
+
+# Print the results
+cat("Sample Proportion: ", round(p_hat, 3), "\n")
+cat("Standard Error: ", round(standard_error_null_hypothesis, 3), "\n")
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results go here)
+
+## Question 3.b: Define the Hypotheses (Step 1)
+
+- Null Hypothesis (\(H_0\)): **(Your answer and interpretation of the results go here)**
+- Alternative Hypothesis (\(H_a\)):  **(Your answer and interpretation of the results go here)**
+
+### Question 3.c: Compute the Test Statistic (Step 2)
+
+```{r q3-c, echo=TRUE}
+# Define the null hypothesis proportion
+p_0 <- "REPLACE WITH YOUR CODE HERE"
+
+# Define sample proportion (copy and paste code above)
+p_hat <- "REPLACE WITH YOUR CODE HERE"
+
+# Define Standard Error Under the Null
+SE_H0 <- "REPLACE WITH YOUR CODE HERE"
+
+# Calculate the z-test statistic
+z_statistic <- "REPLACE WITH YOUR CODE HERE"   # Use: `p_0`, `p_hat`, `SE_H0`
+
+# Print the test statistic
+cat("Z-test Statistic: ", round(z_statistic, 3), "\n")
+```
+
+### Question 3.d: Determine the Critical Value and P-value (Step 3)
+At a 1% significance level (\(\alpha = 0.01\)), calculate the critical value and compare the test statistic to determine if we reject the null hypothesis.
+
+```{r q3-d, echo=TRUE}
+# Critical value for 1% significance level (two-tailed)
+alpha <- 0.01
+critical_value <- qnorm( 1 - (alpha / 2) )  # You can learn more about the function `qnorm` by running in the console: ?qnorm
+
+# Calculate the z-test statistic
+z_statistic <- "REPLACE WITH YOUR CODE HERE"   # Replace with the code used above
+
+# Calculate the p-value. HINT: Use `pnorm(abs(z_statistic), lower.tail = FALSE)` to compute Pr(Z > |Z_obs|).
+p_value <- "REPLACE WITH YOUR CODE HERE (check the lecture notes to find the appropiate formula) (HINT: use `pnorm(abs(z_statistic), lower.tail = FALSE)` to compute Pr(Z > |Z_obs|)."
+
+# Print the critical value and p-value
+cat("Critical Value: ", round(critical_value, 3), "\n")
+cat("P-value: ", round(p_value, 3), "\n")
+```
+
+### Question 3.e:  Conclusion (Step 4)
+Based on the test statistic, critical value, and p-value, **draw a conclusion**.
+```{r q3-e, echo=TRUE}
+# Print the z-statistic, critical value and p-value
+cat("Z-test Statistic: ", round(z_statistic, 3), "\n")
+cat("Critical Value: ", round(critical_value, 3), "\n")
+cat("P-value: ", round(p_value, 3), "\n")
+```
+
+**Explanation/Justification**:
+(Your answer and interpretation of the results go here)
+
+
+### (Optional) Verify your previous result running the following chunk:
+```{r, echo=TRUE}
+prop_null_hypothesis <- 0.43
+n_sample_size <- respondents
+
+# Calculate the standard error for the null hypothesis (replace with the correct formula)
+standard_error_null_hypot <- sqrt( prop_null_hypothesis*(1-prop_null_hypothesis)/n_sample_size )
+ 
+# Run the z-test to test if the mean is significantly different from the sample proportion for Democrats
+z_test_result <- z.test(
+  x = mock_data_q3$support_policy,
+  mu = prop_null_hypothesis,  # Hypothesized population mean
+  sigma.x = standard_error_null_hypot  # Population standard deviation (assuming known)
+)
+
+# Print results
+print(z_test_result)
+
+# Print p-value
+print(z_test_result$p.value)
+```

@@ -1,0 +1,27 @@
+This PS has X points, Y of which are extra credit.
+
+Question 1.
+
+Mock sample 1. Small sample.
+Imagine state level average polling data.
+Two two groups of states.
+One side t test.
+
+- Do it by hand.
+- Compare with result using t.test
+
+Last item: Compare your results with the command t.test
+
+Question 2.
+Mock sample 2. Large sample. Survey data. Proportions.
+Hypothesis test. Two sided.
+Compute by hand the Z test
+Compute by hand the critical value
+Compute by hand the P-value
+Compare with result using prop.test
+
+Question 3.
+Mock sample.
+Do a scatter plot.
+Compute correlation using corr.test. Interpret.
+Run simple linear regression. Interpret.
