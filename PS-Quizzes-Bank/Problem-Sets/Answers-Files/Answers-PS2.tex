@@ -1,0 +1,787 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines, breakanywhere, commandchars=\\\{\}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={POL501 - Problem Set 2},
+  pdfauthor={Answers to Questions},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{POL501 - Problem Set 2}
+\author{Answers to Questions}
+\date{2024-11-05}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Grading Criteria}\label{grading-criteria}
+
+\begin{itemize}
+\tightlist
+\item
+  There will be \textbf{four problem sets} throughout the semester,
+  which together account for \textbf{25\% of the final course grade}.
+\item
+  The total possible score for these problem sets is \textbf{25 out of
+  100 points} (with 100 points being the maximum course score).
+\item
+  This particular problem set has a maximum score of \textbf{8 points}.
+\item
+  \textbf{Scoring Breakdown}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Each sub-letter in Question 1 is worth \textbf{1 point} (Total of 5
+    points)
+  \item
+    Each sub-letter in Question 2 is worth \textbf{0.5 points} (Total of
+    3 points)
+  \end{itemize}
+\item
+  \textbf{Grading Guidelines}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Full credit will be awarded for answers that closely match the
+    provided solutions.
+  \item
+    Partial credit will be given for incomplete or partially incorrect
+    answers/justifications.
+  \item
+    \textbf{0 points} will be awarded for missing answers, answers with
+    no justification, or entirely incorrect responses.
+  \item
+    Submissions without the RMD file will have point deductions.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section{Question 1 - Solutions}\label{question-1---solutions}
+
+Let's start by describing the data using summary statistics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{describe}\NormalTok{(df\_clean)[}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}vars\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}n\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}sd\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}median\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}max\textquotesingle{}}\NormalTok{)], }\AttributeTok{format=}\StringTok{\textquotesingle{}latex\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r|r|r|r|r}
+\hline
+  & vars & n & mean & sd & median & min & max\\
+\hline
+RESPID & 1 & 5199 & 9457.661281 & 5483.2245412 & 9464 & 2 & 18838\\
+\hline
+PARTY & 2 & 5199 & 2.177150 & 0.9685161 & 2 & 1 & 4\\
+\hline
+INTFREQ & 3 & 5199 & 1.810156 & 0.8919744 & 2 & 1 & 5\\
+\hline
+RADIO & 4 & 5199 & 1.219465 & 0.4139242 & 1 & 1 & 2\\
+\hline
+ECON1MOD & 5 & 5199 & 2.730140 & 0.8352547 & 3 & 1 & 4\\
+\hline
+INFRASPEND & 6 & 5199 & 2.151568 & 0.9420048 & 2 & 1 & 5\\
+\hline
+MOREGUNIMPACT & 7 & 5199 & 1.878631 & 0.8552866 & 2 & 1 & 3\\
+\hline
+CRIMESAFE & 8 & 5199 & 2.575303 & 0.8459974 & 3 & 1 & 5\\
+\hline
+\end{tabular}
+
+\subsection{Answer - Question (1.a)}\label{answer---question-1.a}
+
+\textbf{\emph{Based on the survey data, calculate the probability that a
+randomly selected respondent identifies as either a Democrat or a
+Republican.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Calculate the total number of valid respondents}
+\NormalTok{n\_total\_q1 }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(df\_clean)}
+
+\CommentTok{\# Step 2: Filter for respondents who identify as either Democrat or Republican}
+\NormalTok{n\_rep\_OR\_dem }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(PARTY }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{|}\NormalTok{ PARTY }\SpecialCharTok{==} \DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Logical OR condition to select Democrats (coded as 2) or Republicans (coded as 1)}
+  \FunctionTok{nrow}\NormalTok{()}
+
+\CommentTok{\# Step 2 (Equivalent Alternative): Filter for respondents who identify as either Democrat or Republican}
+\NormalTok{n\_rep\_OR\_dem }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(PARTY }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{) ) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Logical OR condition to select Democrats (coded as 2) or Republicans (coded as 1)}
+  \FunctionTok{nrow}\NormalTok{()}
+
+\CommentTok{\# Step 3: Calculate the probability of identifying as Democrat or Republican}
+\NormalTok{prob\_rep\_OR\_dem }\OtherTok{\textless{}{-}}\NormalTok{ n\_rep\_OR\_dem }\SpecialCharTok{/}\NormalTok{ n\_total\_q1}
+
+\CommentTok{\# Step 4: Display the result}
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Probability of identifying as Democrat or Republican:"}\NormalTok{, }
+            \FunctionTok{round}\NormalTok{(prob\_rep\_OR\_dem, }\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Probability of identifying as Democrat or Republican: 0.64
+\end{verbatim}
+
+\textbf{Explanation}: The probability of identifying as Democrat or
+Republican is equal to 64 percent. This was computed by counting the
+respondents who classified as Democrat \textbf{OR} Republican. Since
+Democrat and Republican are mutually exclusive categories, it is valid
+to add their counts. In other words, \textbf{Probability of Democrat or
+Republican = (\#Democrats + \#Republicans)/(Total Respondents)}. This
+ensures that we are not double-counting any respondents, as they can
+belong to only one of these categories.
+
+\subsection{Answer - Question (1.b)}\label{answer---question-1.b}
+
+\textbf{\emph{What is the probability that a respondent listens to the
+radio or uses the internet almost constantly?}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Calculate the total number of respondents}
+\NormalTok{n\_total\_q1b }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(df\_clean)  }\CommentTok{\# This is the total number of respondents in the dataset}
+
+\CommentTok{\# Step 2: Count respondents who listen to the radio}
+\NormalTok{n\_radio\_yes }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(RADIO }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# \textquotesingle{}RADIO == 1\textquotesingle{} filters for respondents who answered \textquotesingle{}Yes\textquotesingle{} to listening to the radio}
+  \FunctionTok{nrow}\NormalTok{()  }\CommentTok{\# Counts the number of rows that meet the condition (i.e., number of people who listen to the radio)}
+
+\CommentTok{\# Step 3: Count respondents who use the internet almost constantly}
+\NormalTok{n\_inter\_constantly }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(INTFREQ }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# \textquotesingle{}INTFREQ == 1\textquotesingle{} filters for respondents who use the internet \textquotesingle{}almost constantly\textquotesingle{}}
+  \FunctionTok{nrow}\NormalTok{()  }\CommentTok{\# Counts the number of rows that meet the condition (i.e., number of people using internet almost constantly)}
+
+\CommentTok{\# Step 4: Count respondents who both listen to the radio and use the internet almost constantly}
+\NormalTok{n\_radio\_yes\_AND\_inter\_constantly }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(RADIO }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ INTFREQ }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# \textquotesingle{}\&\textquotesingle{} is used for the logical AND to filter for people who listen to the radio AND use the internet almost constantly}
+  \FunctionTok{nrow}\NormalTok{()  }\CommentTok{\# Counts the number of rows that meet both conditions}
+
+\CommentTok{\# Step 5: Calculate probabilities for individual events and their intersection}
+\NormalTok{prob\_event\_A }\OtherTok{\textless{}{-}}\NormalTok{ n\_radio\_yes }\SpecialCharTok{/}\NormalTok{ n\_total\_q1b  }\CommentTok{\# Probability of listening to the radio (Event A)}
+\NormalTok{prob\_event\_B }\OtherTok{\textless{}{-}}\NormalTok{ n\_inter\_constantly }\SpecialCharTok{/}\NormalTok{ n\_total\_q1b  }\CommentTok{\# Probability of using the internet almost constantly (Event B)}
+\NormalTok{prob\_A\_and\_B }\OtherTok{\textless{}{-}}\NormalTok{ n\_radio\_yes\_AND\_inter\_constantly }\SpecialCharTok{/}\NormalTok{ n\_total\_q1b  }\CommentTok{\# Probability of both listening to the radio AND using the internet almost constantly (A and B)}
+
+\CommentTok{\# Step 6: Calculate the probability of either listening to the radio OR using the internet almost constantly}
+\CommentTok{\# Using the formula P(A or B) = P(A) + P(B) {-} P(A and B) to avoid double{-}counting overlap}
+\NormalTok{prob\_question\_1b }\OtherTok{\textless{}{-}}\NormalTok{ prob\_event\_A }\SpecialCharTok{+}\NormalTok{ prob\_event\_B }\SpecialCharTok{{-}}\NormalTok{ prob\_A\_and\_B}
+
+\CommentTok{\# Step 7: Verify calculation using OR logic (alternative approach)}
+\CommentTok{\# This calculates the number of respondents who meet either condition (radio OR internet almost constantly)}
+\NormalTok{n\_A\_and\_B }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(RADIO }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{|}\NormalTok{ INTFREQ }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Logical OR condition selects respondents who meet either condition}
+  \FunctionTok{nrow}\NormalTok{()}
+\NormalTok{prob\_A\_and\_B }\OtherTok{\textless{}{-}}\NormalTok{ n\_A\_and\_B }\SpecialCharTok{/}\NormalTok{ n\_total\_q1b  }\CommentTok{\# Calculate probability based on OR condition}
+
+\CommentTok{\# Step 8: Print results to verify consistency between calculated and alternative method}
+\FunctionTok{print}\NormalTok{(prob\_A\_and\_B)  }\CommentTok{\# Print probability from OR calculation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8907482
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(prob\_question\_1b)  }\CommentTok{\# Print probability from formula calculation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8907482
+\end{verbatim}
+
+\textbf{Explanation}: The probability that a respondent listens to the
+radio or uses the internet almost constantly is equal to 89 percent. We
+used the general OR formula:
+\[\Pr(A\text{ or }B) = \Pr(A) + \Pr(B) - \Pr(A\text{ and }B)\] This
+formula accounts for the overlap between the two groups to avoid
+double-counting individuals who both listen to the radio and use the
+internet almost constantly. Additionally, we verified this calculation
+using an alternative method that directly counts the respondents meeting
+either condition, which yielded the same result.
+
+\subsection{Answer - Question (1.c)}\label{answer---question-1.c}
+
+\textbf{\emph{What is the probability that a respondent believes there
+would be more crime if more Americans owned guns and describes their
+community as somewhat safe or safer?}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Calculate the total number of respondents}
+\NormalTok{n\_total\_q1c }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(df\_clean)  }\CommentTok{\# This is the total number of respondents in the dataset}
+
+
+\CommentTok{\# Construct binary variable for CRIMESAFE and MOREGUNIMPACT given the question prompt}
+\NormalTok{df\_clean }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{somwhsafe\_or\_safer =} \FunctionTok{if\_else}\NormalTok{(CRIMESAFE }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+         \AttributeTok{guns\_more\_crime =} \FunctionTok{if\_else}\NormalTok{(MOREGUNIMPACT }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{) }
+\NormalTok{         )}
+
+\CommentTok{\# Step 2: Count respondents with both somwhsafe\_or\_safer==1 (event A) AND guns\_more\_crime==1 (event B)}
+\NormalTok{n\_A\_and\_B }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(somwhsafe\_or\_safer}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ guns\_more\_crime}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nrow}\NormalTok{()}
+
+\CommentTok{\# Step 3: Compute the probability.}
+\NormalTok{prob\_q1c }\OtherTok{\textless{}{-}}\NormalTok{ n\_A\_and\_B }\SpecialCharTok{/}\NormalTok{ n\_total\_q1c}
+
+\FunctionTok{print}\NormalTok{(prob\_q1c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3869975
+\end{verbatim}
+
+\textbf{Explanation}:
+
+Recall the coding of \texttt{CRIMESAFE}. How would you describe the area
+where you live, in terms of crime?
+
+-- 1 = Extremely safe; -- 2 = Very safe; -- 3 = Somewhat safe; -- 4 =
+Not too safe; -- 5 = Not at all safe
+
+Also, recall the coding for \texttt{MOREGUNIMPACT.} If more Americans
+owned guns, do you think there would be\ldots{}
+
+-- 1 = More crime; -- 2 = Less crime; -- 3 = No difference
+
+A key step then is defining the binary variables per question prompt
+requirements.
+
+\textbf{Binary Variable Definitions}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Binary Variable for Safety (\texttt{somwhsafe\_or\_safer})}:
+  This variable is 1 if the respondent describes their community as
+  ``somewhat safe'' or safer, otherwise 0.
+
+  \[ 
+  \texttt{somwhsafe\_or\_safer} = 
+  \begin{cases} 
+     1 & \text{if } CRIMESAFE \in \{1, 2, 3\} \\
+     0 & \text{if } CRIMESAFE \in \{4, 5\}
+  \end{cases}
+  \]
+\item
+  \textbf{Binary Variable for Gun Impact (\texttt{guns\_more\_crime})}:
+  This variable is 1 if the respondent believes that more Americans
+  owning guns would lead to more crime, otherwise 0.
+
+  \[ 
+  \texttt{guns\_more\_crime} = 
+  \begin{cases} 
+     1 & \text{if } MOREGUNIMPACT = 1 \\
+     0 & \text{if } MOREGUNIMPACT \in \{2, 3\}
+  \end{cases}
+  \]
+\end{enumerate}
+
+These definitions reflect how we classified each respondent into binary
+categories based on their responses to the survey questions.
+
+The probability that a respondent believes there would be more crime if
+more Americans owned guns and describes their community as somewhat safe
+or safer is equal to 39 percent. We used the classical probability
+definition:
+\[\Pr(A\text{ and }B) = \frac{\text{Cases with both A and B}}{\text{Total Cases in Sample Space}}\]
+This calculation shows how we determine the likelihood that both events
+occur simultaneously.
+
+\subsection{Answer - Question (1.d)}\label{answer---question-1.d}
+
+\textbf{\emph{Given that a respondent describes their community as
+somewhat safe or safer, what is the probability that they believe there
+would be more crime if more Americans owned guns?}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n\_total\_sample }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(df\_clean)}
+
+\NormalTok{n\_total\_event\_B }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(somwhsafe\_or\_safer}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nrow}\NormalTok{()}
+
+\NormalTok{n\_A\_and\_B }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(somwhsafe\_or\_safer}\SpecialCharTok{==}\DecValTok{1} \SpecialCharTok{\&}\NormalTok{ guns\_more\_crime}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nrow}\NormalTok{()}
+
+\NormalTok{prob\_A\_and\_B }\OtherTok{\textless{}{-}}\NormalTok{ n\_A\_and\_B }\SpecialCharTok{/}\NormalTok{ n\_total\_sample}
+\NormalTok{prob\_B }\OtherTok{\textless{}{-}}\NormalTok{ n\_total\_event\_B }\SpecialCharTok{/}\NormalTok{ n\_total\_sample}
+
+\CommentTok{\# Conditional Probability of A given B:}
+\NormalTok{prob\_A\_given\_B }\OtherTok{\textless{}{-}}\NormalTok{ prob\_A\_and\_B }\SpecialCharTok{/}\NormalTok{ prob\_B}
+\end{Highlighting}
+\end{Shaded}
+
+Define \textbf{Event B} as ``respondent describes their community as
+somewhat safe or safer.'' Additionally, define \textbf{Event A} as
+``they believe there would be more crime if more Americans owned guns.''
+Then, \[\Pr(A | B) = \frac{P(A\text{ and }B)}{P(B)}\] Thus, given that a
+respondent describes their community as somewhat safe or safer, the
+probability that they believe there would be more crime if more
+Americans owned guns is equal to 43 percent. This conditional
+probability helps us understand the likelihood of one event occurring
+given the occurrence of another event.
+
+\subsection{Answer - Question (1.e)}\label{answer---question-1.e}
+
+Create a 2x2 table examining the relationship between:
+
+-- Perceptions of economic conditions in the community (grouped as
+``Excellent/Good'' vs.~``Only fair/Poor'')
+
+-- Support for increasing government spending on roads and bridges
+(grouped as ``Increase a lot/little'' vs.~``Stay the same/Decrease'')
+
+Using this table, calculate the conditional probability that a
+respondent supports increased spending, given that they perceive
+economic conditions as Excellent or Good.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Create new binary variables for economic perceptions and spending support}
+\NormalTok{df\_clean }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{econ\_excell\_good =} \FunctionTok{if\_else}\NormalTok{(ECON1MOD }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),  }\CommentTok{\# 1 for "Excellent/Good", 0 for "Only fair/Poor"}
+    \AttributeTok{incrspend\_alot\_alittle =} \FunctionTok{if\_else}\NormalTok{(INFRASPEND }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)  }\CommentTok{\# 1 for "Increase a lot/little", 0 for "Stay the same/Decrease"}
+\NormalTok{  )}
+
+\CommentTok{\# Step 2: Use dplyr to create the 2x2 contingency table}
+\NormalTok{contingency\_table }\OtherTok{\textless{}{-}}\NormalTok{ df\_clean }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(econ\_excell\_good, incrspend\_alot\_alittle) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{count =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'econ_excell_good'. You can override using
+## the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(contingency\_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   econ_excell_good incrspend_alot_alittle count
+##              <dbl>                  <dbl> <int>
+## 1                0                      0  1125
+## 2                0                      1  1892
+## 3                1                      0   757
+## 4                1                      1  1425
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We need some changes to get it to the correct 2x2 format}
+\NormalTok{contingency\_table }\OtherTok{\textless{}{-}}\NormalTok{ contingency\_table }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{econ\_excell\_good =} \FunctionTok{if\_else}\NormalTok{(econ\_excell\_good}\SpecialCharTok{==}\DecValTok{1}\NormalTok{, }
+                                    \StringTok{\textquotesingle{}Econ: Excellent/Good\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Econ: Only fair/Poor\textquotesingle{}}\NormalTok{),}
+         \AttributeTok{incrspend\_alot\_alittle =} \FunctionTok{if\_else}\NormalTok{(incrspend\_alot\_alittle}\SpecialCharTok{==}\DecValTok{1}\NormalTok{, }
+                                          \StringTok{\textquotesingle{}Spend: Increase a lot/little\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Spend: Stay the same/Decrease\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{spread}\NormalTok{(econ\_excell\_good, count, }\AttributeTok{fill =} \DecValTok{0}\NormalTok{)  }\CommentTok{\# Spread into a wide format table}
+
+\CommentTok{\# Step 3: Print the contingency table}
+\FunctionTok{print}\NormalTok{(contingency\_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   incrspend_alot_alittle        `Econ: Excellent/Good` `Econ: Only fair/Poor`
+##   <chr>                                          <dbl>                  <dbl>
+## 1 Spend: Increase a lot/little                    1425                   1892
+## 2 Spend: Stay the same/Decrease                    757                   1125
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(contingency\_table, }\AttributeTok{format=}\StringTok{\textquotesingle{}latex\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\begin{tabular}{l|r|r}
+\hline
+incrspend\_alot\_alittle & Econ: Excellent/Good & Econ: Only fair/Poor\\
+\hline
+Spend: Increase a lot/little & 1425 & 1892\\
+\hline
+Spend: Stay the same/Decrease & 757 & 1125\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 4: Calculate the conditional probability of supporting increased spending given Excellent/Good economic conditions}
+\NormalTok{n\_tot\_econ\_good }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(contingency\_table}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Econ: Excellent/Good}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{n\_tot\_incr\_spend\_AND\_econ\_good }\OtherTok{\textless{}{-}}\NormalTok{ contingency\_table }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(incrspend\_alot\_alittle}\SpecialCharTok{==}\StringTok{\textquotesingle{}Spend: Increase a lot/little\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Econ: Excellent/Good}\StringTok{\textasciigrave{}}\NormalTok{)}
+
+\CommentTok{\# Calculate the conditional probability}
+\NormalTok{conditional\_prob\_incrspend\_given\_econ\_good }\OtherTok{\textless{}{-}}\NormalTok{ n\_tot\_incr\_spend\_AND\_econ\_good }\SpecialCharTok{/}\NormalTok{ n\_tot\_econ\_good}
+
+\CommentTok{\# Print the conditional probability as a percentage}
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Conditional Probability of supporting increased spending }\SpecialCharTok{\textbackslash{}n}\StringTok{given Excellent/Good economic conditions: "}\NormalTok{, }
+            \FunctionTok{round}\NormalTok{(conditional\_prob\_incrspend\_given\_econ\_good }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{2}\NormalTok{), }\StringTok{"\%"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Conditional Probability of supporting increased spending 
+## given Excellent/Good economic conditions: 65.31%
+\end{verbatim}
+
+Recall:
+
+\texttt{INFRASPEND.} Thinking about government spending on roads and
+bridges in the area where you live, do you think this spending
+should\ldots{} -- 1 = Increase a lot; -- 2 = Increase a little; -- 3 =
+Stay about the same; -- 4 = Decrease a little; -- 5 = Decrease a lot
+
+\texttt{ECON1MOD.} How would you rate economic conditions in your
+community today? -- 1 = Excellent; -- 2 = Good; -- 3 = Only fair; -- 4 =
+Poor
+
+Then, the probability that a respondent supports increased spending,
+given that they perceive economic conditions as Excellent or Good is
+equal to 65.31\% percent. By grouping economic perceptions and support
+for spending, we can better understand how positive economic outlooks
+influence support for public investment.
+
+\section{Question 2 - Solutions}\label{question-2---solutions}
+
+\subsection{Answer - Question (2.a)}\label{answer---question-2.a}
+
+\textbf{\emph{Calculate the Expected Value of the Number of
+Participants}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define the possible values of the number of participants (in thousands)}
+\NormalTok{P\_values }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{50000}\NormalTok{, }\DecValTok{75000}\NormalTok{, }\DecValTok{100000}\NormalTok{, }\DecValTok{125000}\NormalTok{, }\DecValTok{150000}\NormalTok{)}
+
+\CommentTok{\# Define the corresponding probabilities of each value of P}
+\NormalTok{P\_probs }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.08}\NormalTok{, }\FloatTok{0.22}\NormalTok{, }\FloatTok{0.31}\NormalTok{, }\FloatTok{0.24}\NormalTok{, }\FloatTok{0.15}\NormalTok{)}
+
+\CommentTok{\# Calculate the expected value of the number of participants}
+\NormalTok{E\_P }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(P\_values }\SpecialCharTok{*}\NormalTok{ P\_probs)}
+
+\CommentTok{\# Print the expected value}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Expected value of the number of participants: "}\NormalTok{, E\_P))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Expected value of the number of participants: 104000"
+\end{verbatim}
+
+\textbf{Explanation}: The expected value of the number of participants
+is calculated using the formula for the expected value of a discrete
+random variable: \[E[P] = \sum p_i x_i\] Where \(p_i\) represents the
+probability of each possible outcome, and \(x_i\) represents each
+possible outcome.
+
+\subsection{Answer - Question (2.b)}\label{answer---question-2.b}
+
+\textbf{\emph{Define the Total Monthly Cost as a Linear Combination}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define fixed administrative cost and monthly benefit per participant}
+\NormalTok{fixed\_cost }\OtherTok{\textless{}{-}} \DecValTok{6000000}
+\NormalTok{monthly\_benefit\_per\_participant }\OtherTok{\textless{}{-}} \DecValTok{200}
+
+\CommentTok{\# Total monthly cost as a linear combination of P (number of participants)}
+\CommentTok{\# C = fixed\_cost + (monthly\_benefit\_per\_participant * P)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Total Monthly Cost (C):"}\NormalTok{, }\StringTok{"C ="}\NormalTok{, fixed\_cost, }\StringTok{"+"}\NormalTok{, monthly\_benefit\_per\_participant, }\StringTok{"* P"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Total Monthly Cost (C): C = 6e+06 + 200 * P
+\end{verbatim}
+
+\textbf{Explanation}: The total monthly cost, C, is expressed as a
+linear combination of the number of participants, P, the monthly benefit
+per participant, and the fixed administrative cost. The fixed cost
+remains constant, while the cost associated with participants is
+proportional to the number of participants.
+
+\[ C = 6000000 + 200 P\]
+
+\subsection{Answer - Question (2.c)}\label{answer---question-2.c}
+
+\textbf{\emph{Compute the Probability Mass Function of the Total Monthly
+Cost}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the possible values of the total monthly cost}
+\NormalTok{C\_values }\OtherTok{\textless{}{-}}\NormalTok{ fixed\_cost }\SpecialCharTok{+}\NormalTok{ (monthly\_benefit\_per\_participant }\SpecialCharTok{*}\NormalTok{ P\_values)}
+
+\CommentTok{\# Probability Mass Function of the total monthly cost}
+\NormalTok{C\_probs }\OtherTok{\textless{}{-}}\NormalTok{ P\_probs}
+
+\CommentTok{\# Create a data frame to display the probability mass function}
+\NormalTok{pmf\_C }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Total\_Monthly\_Cost =}\NormalTok{ C\_values, }\AttributeTok{Probability =}\NormalTok{ C\_probs)}
+
+\CommentTok{\# Print the probability mass function}
+\FunctionTok{print}\NormalTok{(pmf\_C)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Total_Monthly_Cost Probability
+## 1            1.6e+07        0.08
+## 2            2.1e+07        0.22
+## 3            2.6e+07        0.31
+## 4            3.1e+07        0.24
+## 5            3.6e+07        0.15
+\end{verbatim}
+
+\textbf{Explanation}: The probability mass function (PMF) of the total
+monthly cost is calculated by using the possible values of P to
+determine the corresponding costs. Since the number of participants has
+a discrete distribution, the total cost also has a corresponding
+probability for each value.
+
+\begin{center}
+\begin{tabular}{r|r}
+\hline
+Total\_Monthly\_Cost & Probability\\
+\hline
+1.6e+07 & 0.08\\
+\hline
+2.1e+07 & 0.22\\
+\hline
+2.6e+07 & 0.31\\
+\hline
+3.1e+07 & 0.24\\
+\hline
+3.6e+07 & 0.15\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Answer - Question (2.d)}\label{answer---question-2.d}
+
+\textbf{\emph{Compute the Expected Value of the Total Monthly Cost}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the expected value of the total monthly cost}
+\NormalTok{E\_C }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(C\_values }\SpecialCharTok{*}\NormalTok{ C\_probs)}
+
+\CommentTok{\# Print the expected value of the total monthly cost}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Expected value of the total monthly cost: "}\NormalTok{, E\_C))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Expected value of the total monthly cost: 26800000"
+\end{verbatim}
+
+\textbf{Explanation}: The expected value of the total monthly cost is
+calculated by taking the sum of the product of each possible value of
+the total cost and its corresponding probability. This gives us the
+long-run average cost of the program.
+
+\subsection{Answer - Question (2.e)}\label{answer---question-2.e}
+
+\textbf{\emph{Compute the Cumulative Distribution Function of the Total
+Monthly Cost}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the cumulative distribution function (CDF) of the total monthly cost}
+\NormalTok{CDF\_C }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(C\_probs)}
+
+\CommentTok{\# Create a data frame to display the CDF}
+\NormalTok{cdf\_C }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Total\_Monthly\_Cost =}\NormalTok{ C\_values, }\AttributeTok{Cumulative\_Probability =}\NormalTok{ CDF\_C)}
+
+\CommentTok{\# Print the cumulative distribution function}
+\FunctionTok{print}\NormalTok{(cdf\_C)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Total_Monthly_Cost Cumulative_Probability
+## 1            1.6e+07                   0.08
+## 2            2.1e+07                   0.30
+## 3            2.6e+07                   0.61
+## 4            3.1e+07                   0.85
+## 5            3.6e+07                   1.00
+\end{verbatim}
+
+\textbf{Explanation}: The cumulative distribution function (CDF) of the
+total monthly cost is calculated by taking the cumulative sum of the
+probabilities. This helps us determine the probability that the total
+monthly cost will be less than or equal to a certain value.
+
+\begin{center}
+\begin{tabular}{r|r}
+\hline
+Total\_Monthly\_Cost & Cumulative\_Probability\\
+\hline
+1.6e+07 & 0.08\\
+\hline
+2.1e+07 & 0.30\\
+\hline
+2.6e+07 & 0.61\\
+\hline
+3.1e+07 & 0.85\\
+\hline
+3.6e+07 & 1.00\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Answer - Question (2.f)}\label{answer---question-2.f}
+
+\textbf{\emph{Assess Budget Constraints}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define the maximum monthly budget}
+\NormalTok{max\_budget }\OtherTok{\textless{}{-}} \DecValTok{30000000}
+
+\CommentTok{\# Calculate the probability that the cost exceeds the budget}
+\NormalTok{prob\_exceeds\_budget }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ CDF\_C[}\FunctionTok{which}\NormalTok{(C\_values }\SpecialCharTok{\textless{}=}\NormalTok{ max\_budget)][}\FunctionTok{length}\NormalTok{(}\FunctionTok{which}\NormalTok{(C\_values }\SpecialCharTok{\textless{}=}\NormalTok{ max\_budget))]}
+
+\CommentTok{\# Print the probability that the cost exceeds the budget}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Probability that the cost exceeds the budget: "}\NormalTok{, }\FunctionTok{round}\NormalTok{(prob\_exceeds\_budget, }\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Probability that the cost exceeds the budget: 0.39"
+\end{verbatim}
+
+\textbf{Explanation}: The probability that the cost exceeds the
+allocated monthly budget of \$30,000,000 is calculated by finding the
+complement of the CDF up to that value. This tells us the likelihood
+that the costs will surpass the budget constraints. We find that the
+probability that the maximum budget is exceeded is 39\%.
+
+\end{document}

@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{lscape}
+\usepackage{xcolor}
+
+\geometry{margin=1in}
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.3}
+
+\title{Codebook - Problem Set 4}
+\author{POL 501}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Codebook Table}
+
+\footnotesize
+\centering
+\begin{longtable}{|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}p{8cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{3cm}|}
+\hline
+
+\textbf{Variable Name} & \textbf{Description} & \textbf{Data Type} & \textbf{Example Value} \\ 
+\hline
+\texttt{female\_legislators\_percent} & The percentage of seats in the national legislature held by female legislators in 2014, representing gender representation in parliament. & Numeric & 9.94 \\ 
+\hline
+\texttt{avg\_female\_HoS\_or\_HoG} & The average proportion of years (1994–2014) in which a country had a female Head of State or Head of Government. Values range from 0 (never) to 1 (always). & Numeric & 0.8 \\ 
+\hline
+\texttt{iso3c} & The ISO 3166-1 alpha-3 code representing the country. This three-letter abbreviation uniquely identifies each country. & Categorical & BRA \\ 
+\hline
+\texttt{political\_geographic\_region} & A numeric code representing the political-geographic region to which a country belongs (e.g., 2 = Latin America, 5 = Western countries). & Numeric & 2 \\ 
+\hline
+\texttt{year} & The reference year for which the VDEM data is anchored. In this dataset, all values are 2014. & Numeric & 2014 \\ 
+\hline
+\texttt{adolescent\_fert\_rate\_mean2015\_2018} & The average adolescent fertility rate (births per 1,000 women aged 15–19) for 2015–2018, indicating trends in adolescent health outcomes. & Numeric & 57.329 \\ 
+\hline
+\texttt{infant\_mortality\_rate\_mean2015\_2018} & The average infant mortality rate (deaths under one year per 1,000 live births) for 2015–2018. Lower values indicate better infant health outcomes. & Numeric & 14.075 \\ 
+\hline
+\texttt{life\_expect\_birth\_mean2015\_2018} & The average life expectancy at birth (in years) for 2015–2018, reflecting overall health and development. & Numeric & 74.6775 \\ 
+\hline
+\caption{Codebook for Variables in \texttt{vdem\_wdi\_merged\_df.csv}}
+\label{tab:codebook}
+\end{longtable}
+
+\subsection*{Datasets Used}
+\textbf{VDEM Dataset:} Provides detailed political and democratic indicators, focusing on governance and representation, covering years 1994–2014. \\
+\textbf{WDI Dataset:} Captures socioeconomic indicators such as health and fertility rates, covering years 2015–2018. Both datasets provide insights into the interplay between political conditions and development outcomes.
+
+\subsection*{Pre-Processing Steps}
+\begin{itemize}
+    \item Filtered VDEM data for 1994–2014 and WDI data for 2015–2018.
+    \item Merged datasets to create a cross-sectional dataset anchored to 2014.
+    \item Created indicators for female leadership and calculated averages for socioeconomic metrics.
+\end{itemize}
+
+\end{document}
