@@ -1,0 +1,166 @@
+\documentclass{article}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+
+% Set custom margin sizes here
+\geometry{left=1in, right=1in, top=1in, bottom=1in}
+
+
+\title{Problem Set 4: Random Variables}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection*{Problem 1.}
+Consider a scenario where you are analyzing the number of books read by students in a month. The data shows that the number of books read ranges from 0 to 4. Define a random variable \(X\) representing the number of books read by a student in a month. The probability distribution of \(X\) is given below:
+
+\[
+\begin{array}{c|c}
+\text{Number of books read (X)} & \text{Probability (P(X = x))} \\
+\hline
+0 & 0.2 \\
+1 & 0.3 \\
+2 & 0.25 \\
+3 & 0.15 \\
+4 & 0.1 \\
+X >5 & 0
+\end{array}
+\]
+
+\begin{enumerate}[a)]
+\item The probability that a randomly selected student reads at least 2 books in a month.
+\item The probability that a randomly selected student reads less than 2 books in a month.
+\item The expected number of books read by a student in a month, \(E[X]\).
+\item The standard deviation of the number of books read by a student in a month, \(SD(X)\).
+\end{enumerate}
+
+\subsection*{Problem 2.}
+A researcher uses a feeling thermometer to measure attitudes towards a political figure, where the ratings range from 0 (very cold/unfavorable) to 100 (very warm/favorable). Suppose the ratings are modeled as a continuous random variable \(Y\) uniformly distributed between 0 and 100.
+
+Note that for a continuous uniform distribution the following is the PDF:
+
+\[
+f_X(x) = 
+\begin{cases} 
+\frac{1}{b-a} & \text{if } x \in [a, b], \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+
+In addition, for this PDF, the cumulative distribution function is given by:
+
+\[P(X\leq x) = CDF_X(x) = \frac{x-a}{b-a}\]
+
+\begin{enumerate}[a)]
+\item If we model the ratings with this random variable, what value would correspond to \(a\) and what value to \(b\)?
+\item Calculate the probability that a randomly selected individual rates the political figure with a score of 50 or less (that is, calculate \(CDF_X(x=50)\)).
+\item Using the rule \(P(x_1 \leq X \leq x_2) = CDF_X(x_2) - CDF_X(x_1)\), calculate the probability that a randomly selected individual rates the political figure between 40 and 70.
+\item Using the formulas for the mean and standard deviation for a Uniform random variable (\(X\sim Unif(a,b)\)), determine the mean and standard deviation of the ratings.
+\item Intuitively, when would it would make sense to model the feeling thermometer measurements with a uniform PDF? Do you think this condition holds in the real world for the majority of important political figures in the US?
+\end{enumerate}
+
+\subsection*{Problem 3.}
+
+Consider a game where a player pays \$3 to play. The game involves flipping a fair coin and rolling a fair six-sided die. The player's prize is determined by the following rules:
+
+\begin{enumerate}[a)]
+\item If the coin shows heads (\(H\)), the player wins an amount equal to twice the number shown on the die.
+\item If the coin shows tails (\(T\)), the player wins an amount equal to the number shown on the die minus 1.
+\end{enumerate}
+
+Define a random variable \(W\) representing the player's net profit (i.e., the amount won minus the \$3 cost to play). Construct the Probability Mass Function (PMF) for \(W\).
+
+To help you model the event, consider the following outcomes:
+
+\begin{itemize}
+\item If the coin shows heads and the die shows \(i\) (where \(i\) is from 1 to 6), the net profit is \(2i - 3\).
+\item If the coin shows tails and the die shows \(i\) (where \(i\) is from 1 to 6), the net profit is \(i - 4\).
+\end{itemize}
+
+\begin{enumerate}[a)]
+\item List all possible values of \(W\) and their corresponding probabilities.
+\item Verify that the PMF satisfies the properties of a probability distribution.
+\item Calculate the expected value of \(W\). Based on your calculations, would someone who plays this game many times likely win or lose money on average?
+\end{enumerate}
+
+\subsection*{Problem 4.}
+
+The normal distribution is a crucial concept in statistics and is often used to model real-world phenomena. Answer the following questions to demonstrate your understanding of the normal distribution:
+
+\begin{enumerate}[a)]
+\item Describe the key characteristics of a normal distribution. What are the properties that define it?
+\item Explain the significance of the mean (\(\mu\)) and standard deviation (\(\sigma\)) in a normal distribution. How do these parameters influence the shape and spread of the distribution?
+\item Assume that \(X\) and \(Y\) are both random variables that follow normal distributions, such that \(X\sim N(\mu_X , \sigma_X^2)\) and \(Y \sim N(\mu_Y , \sigma_Y^2)\), with \(\mu_X=\mu_Y\) and \(\sigma_X < \sigma_Y\). Draw a graph in which you plot one possible pair of PDFs for both \(X\) and \(Y\) that is consistent with these parameters.
+\end{enumerate}
+
+\subsection*{Problem 5.}
+
+Consider a study that aims to understand the support for a new policy among residents of a small town. Each resident can either support the policy or not support it. Suppose we randomly select 10 residents to ask whether they support the policy, and we are interested in the number of residents who support the policy. In a separate study, it was estimated that the probability of a resident supporting the policy is \(p = 0.4\).
+
+\begin{enumerate}[a)]
+\item Which known discrete random variable can we use to model the probability of a resident supporting the policy?
+\item Write down the formula for the probability mass function (PMF) representing the event of a resident supporting the policy.
+\item Given that we asked 10 residents, what is the probability that exactly 5 of them support the policy?
+\end{enumerate}
+
+
+\newpage
+\section*{Glossary of Terms, Concepts, and Formulas}
+
+\subsection*{Key Concepts}
+\begin{description}
+    \item[Random Variables] A random variable is a function that assigns a numerical value to each outcome in the sample space of a stochastic (random) process.
+    \item[Discrete Random Variables] Variables that take on a finite or countable set of values. Each value can be associated with a probability, and they are particularly useful in scenarios where outcomes are distinct and countable, like the number of errors on a page or voters' choices.
+    \item[Continuous Random Variables] These are variables that can assume any value in continuous intervals. They are used to model measurements and other quantities that aren't countable, such as distances, weights, or temperatures.
+    \item[Sample Space (S)] The set of all possible outcomes of a probabilistic experiment.
+    \item[Probability Distribution] A description of how probabilities are assigned to outcomes or ranges of outcomes for a random variable.
+    \item[ANES Feeling Thermometer] A survey tool used to measure feelings toward public figures or policies on a scale from 0° (very unfavorable) to 100° (very favorable).
+    \item[Uniform Distribution] A type of probability distribution where all outcomes are equally likely; commonly used as a model when there is no reason to expect any outcome to be more likely than others.
+    \item[Bernoulli Distribution] A distribution for a binary outcome (success/failure) and is used to model scenarios where there are exactly two possible outcomes.
+    \item[Binomial Distribution] Represents the number of successes in a fixed number of independent Bernoulli trials. It is used extensively in processes that involve counting the number of successes in a series of yes/no experiments.
+    \item[Normal Distribution] Also known as the Gaussian distribution, it is characterized by its bell-shaped curve and is used to model a wide range of natural phenomena, especially those that tend to cluster around a mean.
+    \item[Standard Normal Distribution] A normal distribution with a mean of 0 and a standard deviation of 1; it is the basis for z-score calculations in statistics.
+    \item[Population Parameters] These are summary characteristics of a population, like mean, variance, and standard deviation, which are fixed numbers describing the distribution of a random variable across an entire population.
+    \item[Symmetrical Distribution] Refers to distributions where the data is evenly distributed around the mean, such as the normal distribution where the mean equals the median.
+\end{description}
+
+\subsection*{Mathematical Formulas}
+\begin{itemize}
+    \item \textbf{Probability Mass Function (PMF):} \( P(X = x) = p_X(x) \), such that \( p_X(x) \geq 0 \) and \( \sum_x p_X(x) = 1 \).
+    \item \textbf{Probability Density Function (PDF):} \( f_X(x) \) describes the the likelihood, or density of probability, per unit at \( x \) for continuous random variables. Note that $f_X(x)$ does not describe the probability of $x$. Note that for continuous random variables, the probability of a single value is zero. 
+    \item \textbf{Cumulative Distribution Function (CDF):} \( \text{CDF}_X(x) = P(X \leq x) \) which is calculated as:
+        \begin{itemize}
+            \item If discrete: \( \sum_{k \leq x} p_X(k) \)
+            \item If continuous: \( \int_{-\infty}^x f_X(t) \, dt \)
+        \end{itemize}
+    \item \textbf{Additional Rules for CDFs:}
+        \begin{itemize}
+            \item \( P(X > a) = 1 - \text{CDF}_X(a) \), applicable to both discrete and continuous RVs.
+            \item \( P(X < a) = \text{CDF}_X(a-1) \) for discrete RVs (assuming \(X\) takes integer values).
+            \item \( P(X \geq a) = 1 - \text{CDF}_X(a-1) \) for discrete RVs.
+            \item \( P(a \leq X \leq b) = \text{CDF}_X(b) - \text{CDF}_X(a-1) \) for discrete RVs.
+            \item \( P(a \leq X \leq b) = \text{CDF}_X(b) - \text{CDF}_X(a) \) for continuous RVs.
+            \item For continuous RVs, \( P(X = a) = 0 \), emphasizing that exact values have zero probability.
+        \end{itemize}
+    \item \textbf{Expectation (Expected Value):} \( E(X) \) is defined as:
+        \begin{itemize}
+            \item If discrete: \( \sum_{x \in D_X} x \cdot p_X(x) \)
+            \item If continuous: \( \int_{-\infty}^\infty x \cdot f_X(x) \, dx \)
+        \end{itemize}
+    \item \textbf{Variance:} \( \text{Var}(X) = E[(X - E(X))^2] = E[X^2] - (E[X])^2 \).
+    \item \textbf{Standard Deviation:} \( \text{SD}(X) = \sqrt{\text{Var}(X)} \).
+    \item \textbf{Linear Combinations and Transformations:} \( E(aX + bY + c) = aE(X) + bE(Y) + c \), and \( \text{Var}(aX + bY + c) = a^2\text{Var}(X) + b^2\text{Var}(Y) \).
+    \item \textbf{Z-score Transformation:} \( Z = \frac{(X - \mu)}{\sigma} \), resulting in a standard normal distribution if $X$ followed a normal distribution, $X \sim N(\mu, \sigma^2) $.
+    \item \textbf{Expectation of the Sample Mean:} \( E(\overline{X}) = \mu \), where \(\mu\) is the population mean.
+    \item \textbf{Variance of the Sample Mean:} \( \text{Var}(\overline{X}) = \frac{\sigma^2}{n} \), where \(\sigma^2\) is the population variance and \(n\) is the sample size.
+    \item \textbf{Standard Deviation of the Sample Mean:} \( \text{SD}(\overline{X}) = \sqrt{\frac{\sigma^2}{n}} \).
+\end{itemize}
+
+
+
+
+\end{document}

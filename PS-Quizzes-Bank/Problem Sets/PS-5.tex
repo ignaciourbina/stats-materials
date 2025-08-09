@@ -1,0 +1,324 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}   % For improved table formatting
+\usepackage{tabulary}   % For tables with adjustable column widths
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\title{Problem Set 5 - Unit V and Unit VI-Section 6.1}
+\author{POL 201 - POL 501}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\emph{Note}: numbered problems are taken from the textbook, you can find solutions to even numbered problems at the end of the textbook. 
+
+
+\section*{4.2 Area under the curve, Part II}
+What percent of a standard normal distribution \( N(\mu = 0, \sigma = 1) \) is found in each region? Be sure to draw a graph.
+\begin{itemize}
+    \item[(a)] \( Z > -1.13 \)
+    \item[(b)] \( Z < 0.18 \)
+    \item[(c)] \( Z > 8 \)
+    \item[(d)] \( |Z| < 0.5 \)
+\end{itemize}
+
+
+\section*{4.4 Triathlon times, Part I}
+In triathlons, it is common for racers to be placed into age and gender groups. Friends Leo and Mary both completed the Hermosa Beach Triathlon, where Leo competed in the \textit{Men, Ages 30 - 34} group while Mary competed in the \textit{Women, Ages 25 - 29} group. Leo completed the race in 1:22:28 (4948 seconds), while Mary completed the race in 1:31:53 (5513 seconds). Obviously Leo finished faster, but they are curious about how they did within their respective groups. Can you help them? Here is some information on the performance of their groups:
+\begin{itemize}
+    \item The finishing times of the \textit{Men, Ages 30 - 34} group has a mean of 4313 seconds with a standard deviation of 583 seconds.
+    \item The finishing times of the \textit{Women, Ages 25 - 29} group has a mean of 5261 seconds with a standard deviation of 807 seconds.
+    \item The distributions of finishing times for both groups are approximately Normal.
+\end{itemize}
+Remember: a better performance corresponds to a faster finish.
+\begin{itemize}
+    \item[(a)] Write down the short-hand for these two normal distributions.
+    \item[(b)] What are the Z-scores for Leo’s and Mary’s finishing times? What do these Z-scores tell you?
+    \item[(c)] Did Leo or Mary rank better in their respective groups? Explain your reasoning.
+    \item[(d)] What percent of the triathletes did Leo finish faster than in his group?
+    \item[(e)] What percent of the triathletes did Mary finish faster than in her group?
+    \item[(f)] If the distributions of finishing times are not nearly normal, would your answers to parts (b) - (e) change? Explain your reasoning.
+\end{itemize}
+
+
+\section*{4.6 Triathlon times, Part II}
+In Exercise 4.4 we saw two distributions for triathlon times: \( N(\mu = 4313, \sigma = 583) \) for \textit{Men, Ages 30 - 34} and \( N(\mu = 5261, \sigma = 807) \) for the \textit{Women, Ages 25 - 29} group. Times are listed in seconds. Use this information to compute each of the following:
+\begin{itemize}
+    \item[(a)] The cutoff time for the fastest 5\% of athletes in the men’s group, i.e. those who took the shortest 5\% of time to finish.
+    \item[(b)] The cutoff time for the slowest 10\% of athletes in the women’s group.
+\end{itemize}
+
+
+\section*{4.8 CAPM}
+The Capital Asset Pricing Model (CAPM) is a financial model that assumes returns on a portfolio are normally distributed. Suppose a portfolio has an average annual return of 14.7\% (i.e. an average gain of 14.7\%) with a standard deviation of 33\%. A return of 0\% means the value of the portfolio doesn’t change, a negative return means that the portfolio loses money, and a positive return means that the portfolio gains money.
+\begin{itemize}
+    \item[(a)] What percent of years does this portfolio lose money, i.e. have a return less than 0\%?
+    \item[(b)] What is the cutoff for the highest 15\% of annual returns with this portfolio?
+\end{itemize}
+
+
+\section*{Example 4.38}
+Approximately 15\% of the US population smokes cigarettes. A local government believed their community had a lower smoker rate and commissioned a survey of 400 randomly selected individuals. The survey found that only 42 of the 400 participants smoke cigarettes. If the true proportion of smokers in the community was really 15\%, what is the probability of observing 42 or fewer smokers in a sample of 400 people?
+
+
+\section*{5.4 Unexpected expense}
+In a random sample 765 adults in the United States, 322 say they could not cover a \$400 unexpected expense without borrowing money or going into debt.
+\begin{itemize}
+    \item[(a)] What population is under consideration in the data set?
+    \item[(b)] What parameter is being estimated?
+    \item[(c)] What is the point estimate for the parameter?
+    \item[(d)] What is the name of the statistic we use to measure the uncertainty of the point estimate?
+    \item[(e)] Compute the value from part (d) for this context.
+    \item[(f)] A cable news pundit thinks the value is actually 50\%. Should she be surprised by the data?
+    \item[(g)] Suppose the true population value was found to be 40\%. If we use this proportion to recompute the value in part (e) using \(p = 0.4\) instead of \(\hat{p}\), does the resulting value change much?
+\end{itemize}
+
+
+\section*{5.6 Repeated student samples}
+Of all freshman at a large college, 16\% made the dean’s list in the current year. As part of a class project, students randomly sample 40 students and check if those students made the list. They repeat this 1,000 times and build a distribution of sample proportions.
+\begin{itemize}
+    \item[(a)] What is this distribution called?
+    \item[(b)] Would you expect the shape of this distribution to be symmetric, right skewed, or left skewed? Explain your reasoning.
+    \item[(c)] Calculate the variability of this distribution.
+    \item[(d)] What is the formal name of the value you computed in (c)?
+    \item[(e)] Suppose the students decide to sample again, this time collecting 90 students per sample, and they again collect 1,000 samples. They build a new distribution of sample proportions. How will the variability of this new distribution compare to the variability of the distribution when each sample contained 40 observations?
+\end{itemize}
+
+
+\section*{5.8 Twitter users and news, Part I}
+A poll conducted in 2013 found that 52\% of U.S. adult Twitter users get at least some news on Twitter. The standard error for this estimate was 2.4\%, and a normal distribution may be used to model the sample proportion. Construct a 99\% confidence interval for the fraction of U.S. adult Twitter users who get some news on Twitter, and interpret the confidence interval in context.
+
+
+\section*{5.10 Twitter users and news, Part II}
+A poll conducted in 2013 found that 52\% of U.S. adult Twitter users get at least some news on Twitter, and the standard error for this estimate was 2.4\%. Identify each of the following statements as true or false. Provide an explanation to justify each of your answers.
+\begin{itemize}
+    \item[(a)] The data provide statistically significant evidence that more than half of U.S. adult Twitter users get some news through Twitter. Use a significance level of \(\alpha = 0.01\). 
+    \item[(b)] Since the standard error is 2.4\%, we can conclude that 97.6\% of all U.S. adult Twitter users were included in the study.
+    \item[(c)] If we want to reduce the standard error of the estimate, we should collect less data.
+    \item[(d)] If we construct a 90\% confidence interval for the percentage of U.S. adults Twitter users who get some news through Twitter, this confidence interval will be wider than a corresponding 99\% confidence interval.
+\end{itemize}
+
+
+\section*{5.16 Identify hypotheses, Part II}
+Write the null and alternative hypotheses in words and using symbols for each of the following situations.
+\begin{itemize}
+    \item[(a)] Since 2008, chain restaurants in California have been required to display calorie counts of each menu item. Prior to menus displaying calorie counts, the average calorie intake of diners at a restaurant was 1100 calories. After calorie counts started to be displayed on menus, a nutritionist collected data on the number of calories consumed at this restaurant from a random sample of diners. Do these data provide convincing evidence of a difference in the average calorie intake of diners at this restaurant?
+    \item[(b)] The state of Wisconsin would like to understand the fraction of its adult residents that consumed alcohol in the last year, specifically if the rate is different from the national rate of 70\%. To help them answer this question, they conduct a random sample of 852 residents and ask them about their alcohol consumption.
+\end{itemize}
+
+\section*{5.20 Waiting at an ER, Part II}
+Exercise 5.11 provides a 95\% confidence interval for the mean waiting time at an emergency room (ER) of (128 minutes, 147 minutes). Answer the following questions based on this interval.
+\begin{itemize}
+    \item[(a)] A local newspaper claims that the average waiting time at this ER exceeds 3 hours. Is this claim supported by the confidence interval? Explain your reasoning.
+    \item[(b)] The Dean of Medicine at this hospital claims the average wait time is 2.2 hours. Is this claim supported by the confidence interval? Explain your reasoning.
+    \item[(c)] Without actually calculating the interval, determine if the claim of the Dean from part (b) would be supported based on a 99\% confidence interval?
+\end{itemize}
+
+\section*{5.22 Getting enough sleep}
+400 students were randomly sampled from a large university, and 289 said they did not get enough sleep. Conduct a hypothesis test to check whether this represents a statistically significant difference from 50\%, and use a significance level of 0.01.
+
+\section*{6.10 Legalization of marijuana, Part I}
+The General Social Survey asked 1,578 US residents: “Do you think the use of marijuana should be made legal, or not?” 61\% of the respondents said it should be made legal.\(^{13}\)
+\begin{itemize}
+    \item[(a)] Is 61\% a sample statistic or a population parameter? Explain.
+    \item[(b)] Construct a 95\% confidence interval for the proportion of US residents who think marijuana should be made legal, and interpret it in the context of the data.
+    \item[(c)] A critic points out that this 95\% confidence interval is only accurate if the statistic follows a normal distribution, or if the normal model is a good approximation. Is this true for these data? Explain.
+    \item[(d)] A news piece on this survey’s findings states, “Majority of Americans think marijuana should be legalized.” Based on your confidence interval, is this news piece’s statement justified?
+\end{itemize}
+
+\section*{6.8 Life rating in Greece}
+Greece has faced a severe economic crisis since the end of 2009. A Gallup poll surveyed 1,000 randomly sampled Greeks in 2011 and found that 25\% of them said they would rate their lives poorly enough to be considered “suffering”.\(^{11}\)
+\begin{itemize}
+    \item[(a)] Describe the population parameter of interest. What is the value of the point estimate of this parameter?
+    \item[(b)] Check if the conditions required for constructing a confidence interval based on these data are met.
+    \item[(c)] Construct a 95\% confidence interval for the proportion of Greeks who are “suffering”.
+    \item[(d)] Without doing any calculations, describe what would happen to the confidence interval if we decided to use a higher confidence level.
+    \item[(e)] Without doing any calculations, describe what would happen to the confidence interval if we used a larger sample.
+\end{itemize}
+
+\section*{5.32 Nearsighted}
+It is believed that nearsightedness affects about 8\% of all children. In a random sample of 194 children, 21 are nearsighted. Conduct a hypothesis test for the following question: do these data provide evidence that the 8\% value is inaccurate?
+
+\section*{5.36 Same observation, different sample size}
+Suppose you conduct a hypothesis test based on a sample where the sample size is \( n = 50 \), and arrive at a p-value of 0.08. You then refer back to your notes and discover that you made a careless mistake, the sample size should have been \( n = 500 \). Will your p-value increase, decrease, or stay the same? Explain.
+
+\section*{6.42 The Civil War}
+A national survey conducted among a simple random sample of 1,507 adults shows that 56\% of Americans think the Civil War is still relevant to American politics and political life.\(^{47}\)
+\begin{itemize}
+    \item[(a)] Conduct a hypothesis test to determine if these data provide strong evidence that the majority of the Americans think the Civil War is still relevant.
+    \item[(b)] Interpret the p-value in this context.
+    \item[(c)] Calculate a 90\% confidence interval for the proportion of Americans who think the Civil War is still relevant. Interpret the interval in this context, and comment on whether or not the confidence interval agrees with the conclusion of the hypothesis test.
+\end{itemize}
+
+\newpage
+\section*{Glossary of Terms: Units V and Unit VI - Section 6.1} 
+
+\begin{itemize} 
+
+\item \textbf{Population}: A population in a statistical analysis is a set of individuals or items that share at least one common attribute. The attribute could be anything worth studying or collecting data for. For instance, a group of students taking certain test, a bunch of trees in a forest or a demographic population within a region could all be subjects of statistical study.
+
+\item \textbf{Parameter}: Parameter is a number that represents a property of the population. Typically, a parameter is unknown due to the fact that we can't measure the whole population. Some common parameters include the population mean and population standard deviation.
+
+\item \textbf{Estimator}: An estimator is a rule for calculating an estimate of a given quantity based on observed data. It is a statistic used to infer the value of an unknown parameter in a statistical model.
+
+\item \textbf{Point Estimate}: Point estimation involves the use of sample data to calculate a single estimated value of a population parameter. The goal of point estimation is to provide the single best prediction of a population parameter.
+
+\item \textbf{Bias}: Bias is the systematic difference between the estimator's expected value and the true value of the parameter being estimated. If the value of the estimator's expected value equals the parameter's true value, then the estimator is unbiased.
+
+\item \textbf{Sampling distributions}: A sampling distribution is the probability distribution of a statistic obtained through a large number of samples drawn from a specific population. The sampling distribution of a given population is the distribution you would get if you drew multiple samples of the same size from the same population.
+
+\item \textbf{Sample mean} ($\bar{x}$): The sample mean is the average of all the items in a sample (a group of observations). It is used as an estimate of the population mean ($\mu$). The formula for calculating the sample mean is as follows: 
+\[ \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \]  
+where $n$ is the sample size and $x_i$ is each value from the sample.
+
+\item \textbf{Standard error of the sample mean} (SE): The standard error of the mean, also called the standard deviation of the mean, is a method used to estimate the standard deviation of a sampling distribution. To calculate the standard error, you take the standard deviation and divide it by the square root of the sample size:
+\[ SE = \frac{s}{\sqrt{n}} \]  
+where $s$ is the sample standard deviation and $n$ is the sample size.
+
+\item \textbf{Sample proportion} ($\hat{p}$): The sample proportion is the fraction of samples that agree with a given proposition. The formula for calculating the sample proportion is as follows:
+\[ \hat{p} = \frac{X}{n} \] 
+where $X$ is the number of successful outcomes in the sample and $n$ would be the number of elements in the sample.
+
+\item \textbf{Standard error of the sample proportion} (SE): The standard error of the proportion quantifies the variability of the sample proportion. It can be calculated with the following formula: 
+\[ SE = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
+
+\item \textbf{Central Limit Theorem} (CLT): The Central Limit Theorem is a fundamental theorem in statistics that states that, for a sufficiently large sample size, the distribution of the sample mean will approach a normal distribution, regardless of the shape of the population distribution. This principle is a key foundation of many methods of data analysis in the field of statistics.
+
+\item \textbf{Normal approximation of the Binomial distribution}: For a binomial distribution to be approximated by a normal distribution, certain conditions must be met. The usual requirements are that both $np \geq 10$ and $n(1 - p) \geq 10$ where $n$ is the number of trials and $p$ is the probability of a success. It is important to note that these criteria are quite arbitrary and may not always lead to a good approximation. If conditions are met, then we can approximate the binomial distribution with a normal distribution with mean $\mu = np$ and variance $\sigma^2 = np(1-p)$.
+
+\item \textbf{Confidence interval}: A confidence interval is a type of interval estimate, computed from the statistics of the observed data, that might contain the true value of an unknown population parameter. It provides an estimated range of values which is likely to include an unknown population parameter. The confidence interval is typically accompanied by a confidence level that quantifies the level of confidence that the parameter lies within the interval.
+
+\item \textbf{Confidence interval for a proportion}: A confidence interval for a proportion is a range of values that is likely to contain the population proportion with a certain level of confidence. It can be computed as follows:
+\[ \hat{p} \pm z \cdot SE \] 
+where $z$ is the z-score from the standard normal distribution corresponding to the desired confidence level and $SE$ is the standard error of the sample proportion.
+
+\item \textbf{Confidence interval for the mean when we have a large sample and can use the central limit theorem}: When we have a large sample, and we can invoke the Central Limit Theorem, the formula for the confidence interval for the mean is given as follows:
+\[ \bar{x} \pm z \cdot \frac{s}{\sqrt{n}} \] 
+where $\bar{x}$ is the sample mean, $z$ is the critical value for the desired level of confidence, $s$ is the sample standard deviation, and $n$ is the sample size.
+
+\item \textbf{Hypothesis Testing Framework}: Hypothesis testing is an essential procedure in statistics. A hypothesis test evaluates two mutually exclusive statements about a population to determine which statement is best supported by the sample data. The two hypotheses are: 
+
+\begin{itemize} 
+
+\item \textbf{Null Hypothesis} ($H_0$): The null hypothesis reflects that there will be no observed effect for our experiment. In a mathematical formulation of the null hypothesis, there will typically be an equal sign.
+
+\item \textbf{Alternative Hypothesis} ($H_a$ or $H_1$): The alternative hypothesis shows that the observations are the result of a real effect.
+
+\end{itemize}
+
+\item \textbf{Hypothesis Test Two-Sided}: In a two-sided test, we are testing both directions - whether the parameter is either less than or greater than the specified value. 
+
+\begin{itemize} 
+
+\item \textbf{Critical Value} ($z_c$): A critical value is a line on the graph that splits the graph into sections. One or two of the sections is the "rejection region"; if your test value falls into that region, then you reject the null hypothesis.
+
+\item \textbf{Test Statistic}: The test statistic that we will use has the following form: 
+\[ z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \]
+This z score tells you how many standard errors there are between the null hypothesis value and our sample's proportion.
+
+\item \textbf{Rejection Criteria}:  Depending on the level of significance and the type of test we are conducting, our rejection region (or regions) will change. But for a typical two-sided test, we compare our test statistic (z) to a critical value ($z_c$). If our test statistic is more extreme than our critical value, we will reject the null hypothesis. In other words, reject $H_0$ if $|z| > z_c$.
+
+\end{itemize}
+
+\item \textbf{Hypothesis Test One-Sided}: A one-sided test is a statistical hypothesis test in which the values for which we can reject the null hypothesis, $H_0$, are located entirely in one tail of the probability distribution. In other words, the region of rejection is on only one side of the sampling distribution.
+
+\begin{itemize}
+
+\item \textbf{Test of Significance}: The test we will use to decide whether to reject our null hypothesis depends on our alternative hypothesis. Given the one-sided alternative hypothesis $\mu_0 < \mu $, the test becomes greater than and the rejection area for the hypothesis test is in the right tail of the distribution.
+
+\item \textbf{Rejection Criteria}: In a right-tailed test, like the one we will be conducting, we will reject the null hypothesis if our test statistic z is greater than our critical value. 
+
+\end{itemize}
+
+\item \textbf{P-Value}: The p-value is a function of the observed sample results (a statistic) that is used for testing a statistical hypothesis. More technically, the value of the p-function can be defined as the smallest level of significance that can be used in a test that results in rejection of the null hypothesis. Lower p-values are associated with larger significance levels and may lead you to reject the null hypothesis. The smaller the p-value, the stronger the evidence against the null hypothesis.
+
+\begin{itemize}
+    \item P-value calculation for a normal distribution test statistic:
+    \begin{itemize}
+        \item Two-tailed test: The P-value is calculated as $2 \times P(Z > |z|)$, where $Z$ is the standard normal variable and $z$ is the test statistic calculated from the sample data.
+        \item One-tailed test: The P-value is calculated as $P(Z > z)$ for a right-tailed test or $P(Z < z)$ for a left-tailed test, where $Z$ is the standard normal variable and $z$ is the test statistic calculated from the sample data.
+    \end{itemize}
+    \item Test statistic (z-score):
+    \[
+    z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0 (1 - p_0)}{n}}}
+    \]
+    where $\hat{p}$ is the sample proportion, $p_0$ is the population proportion under the null hypothesis, and $n$ is the sample size.
+\end{itemize}
+
+
+\item \textbf{P-Value for Hypothesis Test for a Propotion}: To obtain a p-value for a hypothesis test of a proportion, one should first calculate the test statistic and then use a normal distribution table to find the p-value corresponding to this test statistic. If this p-value is less than the chosen significance level, the conclusion is to reject the null hypothesis.
+
+\item \textbf{Example:}
+\begin{itemize}
+    \item Null Hypothesis ($H_0$): The proportion of a population is equal to a specific value, $p_0 = 0.50$.
+    \item Alternative Hypothesis ($H_a$): The proportion of the population is not equal to $p_0$.
+    \item Given sample proportion $\hat{p} = 0.58$, sample size $n = 100$, and population proportion $p_0 = 0.50$.
+    \item Significance level $\alpha = 0.05$.
+    \item Test statistic (z-score):
+    \[
+    z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0 (1 - p_0)}{n}}} = \frac{0.58 - 0.50}{\sqrt{\frac{0.50 \times 0.50}{100}}} \approx 1.60
+    \]
+    \item Critical value ($z_c$) for $\alpha = 0.05$: For a two-tailed test, $z_c = \pm 1.96$.
+    \item P-value calculation:
+    \begin{itemize}
+        \item Two-tailed: $2 \times P(Z > 1.60) = 2 \times (1 - P(Z \leq 1.60)) = 2 \times (1 - 0.9452) = 2 \times 0.0548 = 0.1096$.
+    \end{itemize}
+    \item Since the p-value (0.1096) is greater than the significance level ($\alpha = 0.05$), we fail to reject the null hypothesis.
+\end{itemize}
+
+
+\item \textbf{Steps of Hypothesis Testing}: The four steps are stated below:
+
+\begin{itemize}
+    \item \textbf{State the Hypotheses:}
+    \begin{itemize}
+        \item Null Hypothesis ($H_0$): The statement being tested, usually a statement of no effect or no difference.
+        \item Alternative Hypothesis ($H_a$): The statement you want to test for, indicating the presence of an effect or difference.
+    \end{itemize}
+    
+    \item \textbf{Choose the Significance Level:}
+    \begin{itemize}
+        \item Select the significance level ($\alpha$), commonly 0.05, which is the probability of rejecting the null hypothesis when it is true.
+    \end{itemize}
+    
+    \item \textbf{Collect Data and Calculate the Test Statistic:}
+    \begin{itemize}
+        \item Gather the sample data and compute the appropriate test statistic (e.g., z-score, t-score).
+    \end{itemize}
+    
+    \item \textbf{Determine the Critical Value or P-Value:}
+    \begin{itemize}
+        \item Find the critical value(s) from statistical tables or calculate the p-value based on the test statistic.
+    \end{itemize}
+    
+    \item \textbf{Make a Decision:}
+    \begin{itemize}
+        \item Compare the test statistic to the critical value(s) or compare the p-value to $\alpha$.
+        \item If the test statistic falls in the critical region or if the p-value $\leq \alpha$, reject the null hypothesis ($H_0$).
+        \item If the test statistic does not fall in the critical region or if the p-value $> \alpha$, fail to reject the null hypothesis ($H_0$).
+    \end{itemize}
+    
+    \item \textbf{Draw a Conclusion:}
+    \begin{itemize}
+        \item Based on your decision, conclude whether there is enough evidence to support the alternative hypothesis ($H_a$).
+    \end{itemize}
+\end{itemize}
+
+\item \textbf{We Never Accept the Null nor the Alternative}. In hypothesis testing, we never accept the null hypothesis ($H_0$) when we fail to reject it because failing to reject $H_0$ does not prove that $H_0$ is true. Instead, it indicates that there is not enough evidence in the sample data to reject $H_0$. The null hypothesis is a default position that assumes no effect or no difference, and our statistical tests are designed to detect evidence against it. Therefore, failing to reject $H_0$ merely suggests that the sample data are not sufficiently inconsistent with $H_0$. It does not confirm $H_0$ as true, nor does it provide proof of the absence of an effect or difference. There could still be an effect or difference that the test did not detect due to limitations such as sample size or variability. Similarly, when we reject the null hypothesis, it means that the sample data provide sufficient evidence to conclude that the null hypothesis is unlikely. This suggests support for the alternative hypothesis, but it does not prove that the alternative hypothesis is true.
+
+
+
+\end{itemize}
+
+
+
+\end{document}

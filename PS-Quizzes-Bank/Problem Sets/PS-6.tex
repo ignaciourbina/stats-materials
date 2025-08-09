@@ -1,0 +1,332 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}   % For improved table formatting
+\usepackage{tabulary}   % For tables with adjustable column widths
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\title{Problem Set 6 - Unit VI-6.1 and 6.2 and Unit VII-7.1, 7.2, and 7.3 }
+\author{POL 201 - POL 501}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questions From The Book (Answers at the end of the book)}
+
+\subsection*{6.20 Government shutdown}
+The United States federal government shutdown of 2018-2019 occurred from December 22, 2018 until January 25, 2019, a span of 35 days. A Survey USA poll of 614 randomly sampled Americans during this time period reported that 48\% of those who make less than \$40,000 per year and 55\% of those who make \$40,000 or more per year said the government shutdown has not at all affected them personally. A 95\% confidence interval for \((p_{<40K} - p_{\ge40K})\), where \(p\) is the proportion of those who said the government shutdown has not at all affected them personally, is (-0.16, 0.02). Based on this information, determine if the following statements are true or false, and explain your reasoning if you identify the statement as false.
+
+\begin{enumerate}
+    \item At the 5\% significance level, the data provide convincing evidence of a real difference in the proportion who are not affected personally between Americans who make less than \$40,000 annually and Americans who make \$40,000 annually.
+    \item We are 95\% confident that 16\% more to 2\% fewer Americans who make less than \$40,000 per year are not at all personally affected by the government shutdown compared to those who make \$40,000 or more per year.
+    \item A 90\% confidence interval for \((p_{<40K} - p_{\ge40K})\) would be wider than the (-0.16, 0.02) interval.
+    \item A 95\% confidence interval for \((p_{\ge40K} - p_{<40K})\) is (-0.02, 0.16).
+\end{enumerate}
+
+\subsection*{7.52 Forest management}
+Forest rangers wanted to better understand the rate of growth for younger trees in the park. They took measurements of a random sample of 50 young trees in 2009 and again measured those same trees in 2019. The data below summarize their measurements, where the heights are in feet:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lccc}
+         & 2009 & 2019 & Differences \\
+        \hline
+        $\overline{x}$ & 12.0 & 24.5 & 12.5 \\
+        $s$ & 3.5 & 9.5 & 7.2 \\
+        $n$ & 50 & 50 & 50 \\
+    \end{tabular}
+\end{table}
+
+
+Construct a 99\% confidence interval for the average growth of (what had been) younger trees in the park over 2009-2019.
+
+\subsection*{6.50 Coffee and Depression}
+Researchers conducted a study investigating the relationship between caffeinated coffee consumption and risk of depression in women. They collected data on 50,739 women free of depression symptoms at the start of the study in the year 1996, and these women were followed through 2006. The researchers used questionnaires to collect data on caffeinated coffee consumption, asked each individual about physician-diagnosed depression, and also asked about the use of antidepressants. The table below shows the distribution of incidences of depression by amount of caffeinated coffee consumption.
+
+
+\begin{table}[ht!]
+    \centering
+    \footnotesize
+    \begin{tabularx}{\textwidth}{lXXXXXX}
+         & $\leq 1$ cup/week & 2-6 cups/week & 1 cup/day & 2-3 cups/day & $\geq 4$ cups/day & Total \\
+        \hline
+        Clinical depression & & & & & & \\
+        Yes & 670 & 373 & 905 & 564 & 95 & 2,607 \\
+        No & 11,545 & 6,244 & 16,329 & 11,726 & 2,288 & 48,132 \\
+        Total & 12,215 & 6,617 & 17,234 & 12,290 & 2,383 & 50,739 \\
+    \end{tabularx}
+\end{table}
+
+\begin{enumerate}
+    \item What type of test is appropriate for evaluating if there is an association between coffee intake and depression?
+    \item Write the hypotheses for the test you identified in part (a).
+    \item Calculate the overall proportion of women who do and do not suffer from depression.
+    \item Identify the expected count for the highlighted cell, and calculate the contribution of this cell to the test statistic, i.e. \((\text{Observed} - \text{Expected})^2/\text{Expected}\).
+    \item The test statistic is \(\chi^2 = 20.93\). What is the p-value?
+    \item What is the conclusion of the hypothesis test?
+    \item One of the authors of this study was quoted on the NYTimes as saying it was "too early to recommend that women load up on extra coffee" based on just this study. Do you agree with this statement? Explain your reasoning.
+\end{enumerate}
+
+\subsection*{6.26 Full body scan, Part I}
+A news article reports that "Americans have differing views on two potentially inconvenient and invasive practices that airports could implement to uncover potential terrorist attacks." This news piece was based on a survey conducted among a random sample of 1,137 adults nationwide, where one of the questions on the survey was "Some airports are now using 'full-body' digital x-ray machines to electronically screen passengers in airport security lines. Do you think these new x-ray machines should or should not be used at airports?" Below is a summary of responses based on party affiliation.
+
+\[
+\begin{array}{cccc}
+ & \text{Republican} & \text{Democrat} & \text{Independent} \\
+\text{Answer} & & & \\
+\text{Should} & 264 & 299 & 351 \\
+\text{Should not} & 38 & 55 & 77 \\
+\text{Don't know/No answer} & 16 & 15 & 22 \\
+\text{Total} & 318 & 369 & 450 \\
+\end{array}
+\]
+
+\begin{enumerate}
+    \item Conduct an appropriate hypothesis test evaluating whether there is a difference in the proportion of Republicans and Democrats who think the full-body scans should be applied in airports. Assume that all relevant conditions are met.
+    \item The conclusion of the test in part (a) may be incorrect, meaning a testing error was made. If an error was made, was it a Type 1 or a Type 2 Error? Explain.
+\end{enumerate}
+
+\section*{Original Questions}
+
+\subsection*{City Council's Interest}
+City council members are interested in understanding whether a new public safety campaign has differently affected perceptions of safety in two urban neighborhoods. To assess this, researchers conducted a study using random samples from both neighborhoods. In Neighborhood A, 25 residents rated their sense of safety on a scale from 1 to 10 after the campaign. In Neighborhood B, 28 residents rated their sense of safety similarly. The city council wishes to determine if there is a significant difference in the average safety ratings between the two neighborhoods post-campaign.Which statistical test should the researchers use to analyze this data?
+Justify your answer.
+
+
+\subsection*{Effects of Sleep Deprivation}
+Researchers at a university psychology department are studying the effects of sleep deprivation on cognitive performance. They recruit 500 volunteers and assess their cognitive abilities under two conditions: after a normal night’s sleep and after a night of sleep deprivation. Each participant's cognitive performance is measured using a standardized test, and the same subjects are tested in both conditions. The researchers aim to determine if there is a significant difference in cognitive performance scores between the two sleep conditions. Which statistical test should the researchers use to analyze this data?
+Justify your answer.
+
+
+\subsection*{Mindfulness Intervention}
+Researchers in psychology are investigating whether a brief mindfulness intervention can reduce anxiety compared to traditional stress management techniques. They theorize that the mindfulness intervention is more effective at lowering anxiety levels. To test this theory, they conduct an experiment with two small random samples of college students undergoing finals week.Group A (Mindfulness Intervention): Sample size = 25, Mean anxiety score = 40, Sample standard deviation = 5.14. Group B (Traditional Stress Management): Sample size = 25, Mean anxiety score = 45, Sample standard deviation = 5.08. The researchers are confident that the variances between the two groups are similar. They wish to test if there is a statistically significant difference in the mean anxiety scores between the two groups at the 5\% significance level.
+Question: Using the appropriate statistical test, determine if the mindfulness intervention leads to significantly lower anxiety scores than the traditional stress management techniques. Specify whether you will use the rejection region or the p-value criteria to reach your conclusion.
+Justify your answer.
+
+
+\subsection*{Diet Program Impact}
+Imagine a team of health researchers who are studying the impact of a new diet program on reducing cholesterol levels. They select a large sample of 1,000 participants and measure their cholesterol levels before and after the 6-month diet program. Each participant’s cholesterol level is measured twice: once before starting the program and once after completing it. The researchers want to compare the mean cholesterol levels before and after the diet program to determine if there is a significant reduction.Your friend, another researcher, suggests using a Z-test for comparing the difference of the two means because the sample size is large, and they think that a Z-test is always appropriate for comparing means with large samples.
+Question:Explain to your friend why using a Z-test of the difference of two means in this scenario is not appropriate and suggest the correct statistical test that should be used instead.
+Justify your answer.
+
+
+
+\subsection*{Student Enrollment Distribution}
+A school administrator wants to assess the distribution of student enrollment across four different elective courses offered in a semester: Art, Music, Sports, and Technology. The administrator collects enrollment data for a sample of 200 students, recording the number of students enrolled in each course. They wish to determine if there is an equal distribution of student enrollment among these four courses or if there are significant differences in the numbers of students enrolled in each course.Which statistical test should the administrator use to analyze this data? 
+Justify your answer
+
+
+
+\subsection*{Flexibility Score}
+A fitness coach wants to determine if a new training program significantly improves the flexibility of participants. The coach measures the flexibility of 10 individuals before and after they complete the training program. The flexibility scores for each individual (on a scale of 1 to 100) are as follows: Participant 1 scored 55 before and 60 after, Participant 2 scored 62 before and 70 after, Participant 3 scored 48 before and 55 after, Participant 4 scored 52 before and 58 after, Participant 5 scored 66 before and 68 after, Participant 6 scored 70 before and 75 after, Participant 7 scored 50 before and 53 after, Participant 8 scored 61 before and 65 after, Participant 9 scored 58 before and 64 after, and Participant 10 scored 49 before and 54 after.Test whether there is a statistically significant difference in flexibility scores before and after the training program using the appropriate statistical test.
+Justify your answer.
+
+
+\section*{Glossary}
+
+\subsection*{Proportions}
+
+\textbf{Sampling Distribution of the Difference of Proportions}
+\begin{itemize}
+    \item \textbf{Definition:} The probability distribution of the difference between two sample proportions.
+    \item \textbf{Formula:}
+    \[
+    \hat{p_1} - \hat{p_2} \sim N\left(p_1 - p_2, \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}\right)
+    \]
+\end{itemize}
+
+\textbf{Test Statistic for Differences of Proportions}
+\begin{itemize}
+    \item \textbf{Large Sample Case:}
+    \[
+    Z = \frac{(\hat{p_1} - \hat{p_2}) - (p_1 - p_2)}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}}
+    \]
+    where \(\hat{p}\) is the pooled sample proportion.
+    \item \textbf{Small Sample Case:} Use exact tests like Fisher’s exact test.
+\end{itemize}
+
+\subsection*{Inference with One Mean}
+
+\textbf{Sampling Distribution of One Mean}
+\begin{itemize}
+    \item \textbf{Definition:} The probability distribution of the sample mean.
+    \item \textbf{Formula:}
+    \[
+    \bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)
+    \]
+\end{itemize}
+
+\textbf{Inference with One Mean}
+\begin{itemize}
+    \item \textbf{Large Sample (Z-test):}
+    \[
+    Z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}
+    \]
+    \item \textbf{Small Sample (T-test):}
+    \[
+    t = \frac{\bar{X} - \mu}{\frac{s}{\sqrt{n}}}
+    \]
+\end{itemize}
+
+\textbf{Z and T Statistics}
+\begin{itemize}
+    \item \textbf{Z-Statistic:} Used when the population variance is known and/or the sample size is large.
+    \[
+    Z = \frac{\text{sample statistic} - \text{population parameter}}{\text{standard error}}
+    \]
+    \item \textbf{T-Statistic:} Used when the population variance is unknown and the sample size is small.
+    \[
+    t = \frac{\text{sample statistic} - \text{population parameter}}{\text{sample standard error}}
+    \]
+\end{itemize}
+
+\subsection*{Paired Samples}
+
+\textbf{Sampling Distribution of Paired Differences}
+\begin{itemize}
+    \item \textbf{Definition:} The distribution of differences between paired observations in a sample.
+    \item \textbf{Formula:}
+    \[
+    \bar{d} \sim N\left(\mu_d, \frac{\sigma_d}{\sqrt{n}}\right)
+    \]
+\end{itemize}
+
+\textbf{Test Statistic for Paired Differences}
+\begin{itemize}
+    \item \textbf{Paired Sample T-test:}
+    \[
+    t = \frac{\bar{d} - \mu_d}{\frac{s_d}{\sqrt{n}}}
+    \]
+    where \(\bar{d}\) is the mean of the paired differences, \(\mu_d\) is the hypothesized mean difference (often 0), and \(s_d\) is the standard deviation of the differences.
+    \item \textbf{Paired Sample Z-test (Large Samples):}
+    \[
+    Z = \frac{\bar{d} - \mu_d}{\frac{\sigma_d}{\sqrt{n}}}
+    \]
+    where \(\bar{d}\) is the mean of the paired differences, \(\mu_d\) is the hypothesized mean difference (often 0), and \(\sigma_d\) is the population standard deviation of the differences.
+\end{itemize}
+
+\subsection*{Two Independent Samples and Difference of Means}
+
+\textbf{Sampling Distribution of the Difference of Means}
+\begin{itemize}
+    \item \textbf{Definition:} The probability distribution of the difference between two sample means.
+    \item \textbf{Formula:}
+    \[
+    \bar{X_1} - \bar{X_2} \sim N\left(\mu_1 - \mu_2, \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}\right)
+    \]
+\end{itemize}
+
+\textbf{Test Statistic for Difference of Means}
+\begin{itemize}
+    \item \textbf{Large Sample Case (Z-test):}
+    \[
+    Z = \frac{(\bar{X_1} - \bar{X_2}) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}
+    \]
+    \item \textbf{Small Sample Case (T-test):}
+    \[
+    t = \frac{(\bar{X_1} - \bar{X_2}) - (\mu_1 - \mu_2)}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+    \]
+\end{itemize}
+
+\textbf{Pooled Variance}
+\begin{itemize}
+    \item \textbf{Definition:} A weighted average of the variances of two or more groups.
+    \item \textbf{Formula:}
+    \[
+    s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
+    \]
+    \item \textbf{Usage:} Pooled variances are used when comparing the means of two independent samples with the assumption that the population variances are equal. The test statistic changes to:
+    \[
+    t = \frac{(\bar{X_1} - \bar{X_2}) - (\mu_1 - \mu_2)}{\sqrt{s_p^2 \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}}
+    \]
+    where \(s_p^2\) is the pooled variance.
+    \item To compute critical values and p-values in this case we use the $t$-distribution with $n_1+n_2-2$ degrees of freedom.
+\end{itemize}
+
+\textbf{Welch-Satterthwaite Test}
+\begin{itemize}
+    \item \textbf{Definition:} An adaptation of the t-test used when the variances of two populations are unequal.
+    \item \textbf{Formula for degrees of freedom:}
+    \[
+    \nu \approx \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{\left(\frac{s_1^2}{n_1}\right)^2}{n_1 - 1} + \frac{\left(\frac{s_2^2}{n_2}\right)^2}{n_2 - 1}}
+    \]
+    \item \textbf{Formula for the test statistic:}
+    \[
+    t = \frac{(\bar{X_1} - \bar{X_2}) - (\mu_1 - \mu_2)}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+    \]
+\end{itemize}
+
+\textbf{Plug-in Principle}
+\begin{itemize}
+    \item \textbf{Definition:} Substituting sample estimates for unknown population parameters in statistical formulas.
+\end{itemize}
+
+\textbf{T Distribution}
+\begin{itemize}
+    \item \textbf{Description:} A probability distribution used in hypothesis testing for small sample sizes. It is similar to the normal distribution but has heavier tails.
+    \item \textbf{Formula for the PDF:}
+    \[
+    f(t| \nu) = \frac{\Gamma(\frac{\nu+1}{2})}{\sqrt{\nu \pi} \Gamma(\frac{\nu}{2})} \left(1 + \frac{t^2}{\nu}\right)^{-\frac{\nu+1}{2}}
+    \]
+    where \(\nu\) is the degrees of freedom.
+    \item \textbf{Using the t-table:} How to look up critical values:
+    \begin{itemize}
+    \item Determine the degrees of freedom (df)
+    \begin{itemize}
+        \item Subtract 1 from your sample size (n)
+        \item Example: if your sample size is 10, df = 10 - 1 = 9
+    \end{itemize}
+    \item Choose your significance level ($\alpha$)
+    \begin{itemize}
+        \item Common choices are 0.05, 0.01, or 0.10
+    \end{itemize}
+    \item Identify the desired tail area
+    \begin{itemize}
+        \item For a two-tailed test, divide the significance level by 2
+        \item Example: with $\alpha$ = 0.05, the tail area is 0.025 for each tail
+    \end{itemize}
+    \item Use a t distribution table or calculator
+    \begin{itemize}
+        \item Look up the critical value for the given degrees of freedom and tail area
+        \item Example: with df = 9 and a tail area of 0.025, the critical value is approximately $\pm$2.262
+    \end{itemize}
+\end{itemize}
+
+\end{itemize}
+
+\subsection*{Chi-Square Distribution}
+
+\textbf{Idea of the Chi-Square Distribution}
+\begin{itemize}
+    \item The chi-square distribution is a continuous probability distribution that is widely used in inferential statistics, particularly in hypothesis testing.
+\end{itemize}
+
+\textbf{Moments of the Chi-Square Distribution}
+\begin{itemize}
+    \item \textbf{First Moment (Mean):} The mean of a chi-square distribution with \(k\) degrees of freedom is \(k\).
+    \item \textbf{Second Moment (Variance):} The variance of a chi-square distribution with \(k\) degrees of freedom is \(2k\).
+\end{itemize}
+
+\textbf{Chi-Square Test Statistic}
+\begin{itemize}
+    \item \textbf{Formula:}
+    \[
+    \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
+    \]
+    where \( O_i \) is the observed frequency and \( E_i \) is the expected frequency under the null hypothesis.
+\end{itemize}
+
+
+
+
+\end{document}

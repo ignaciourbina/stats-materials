@@ -1,0 +1,494 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}   % For improved table formatting
+\usepackage{tabulary}   % For tables with adjustable column widths
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\title{Problem Set 3 - Unit III}
+\author{POL 201 - POL 501}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\emph{Note}: numbered problems are taken from the textbook, you can find solutions to even numbered problems at the back of the textbook. 
+
+\section*{3.6 Dice rolls}
+If you roll a pair of fair dice, what is the probability of
+\begin{enumerate}
+    \item[(a)] getting a sum of 1?
+    \item[(b)] getting a sum of 5?
+    \item[(c)] getting a sum of 12?
+\end{enumerate}
+
+\section*{3.7 Swing voters}
+A Pew Research survey asked 2,373 randomly sampled registered voters their political affiliation (Republican, Democrat, or Independent) and whether or not they identify as swing voters. 35\% of respondents identified as Independent, 23\% identified as swing voters, and 11\% identified as both.\footnote{A swing voter refers to a voter who does not have a strong party affiliation or loyalty and whose vote can "swing" from one party to another, often being decisive in elections. Surveys may ask about past voting behavior to understand if respondents have voted for different parties in past elections. A pattern of alternating between parties can indicate a swing voter.}
+\begin{enumerate}
+    \item[(a)] Are being Independent and being a swing voter disjoint, i.e., mutually exclusive?
+    \item[(b)] Draw a Venn diagram summarizing the variables and their associated probabilities.
+    \item[(c)] What percent of voters are Independent but not swing voters?
+    \item[(d)] What percent of voters are Independent or swing voters?
+    \item[(e)] What percent of voters are neither Independent nor swing voters?
+    \item[(f)] Is the event that someone is a swing voter independent of the event that someone is a political Independent?
+\end{enumerate}
+
+\section*{3.8 Poverty and language}
+The American Community Survey is an ongoing survey that provides data every year to give communities the current information they need to plan investments and services. The 2010 American Community Survey estimates that 14.6\% of Americans live below the poverty line, 20.7\% speak a language other than English (foreign language) at home, and 4.2\% fall into both categories.
+\begin{enumerate}
+    \item[(a)] Are living below the poverty line and speaking a foreign language at home disjoint?
+    \item[(b)] Draw a Venn diagram summarizing the variables and their associated probabilities.
+    \item[(c)] What percent of Americans live below the poverty line and only speak English at home?
+    \item[(d)] What percent of Americans live below the poverty line or speak a foreign language at home?
+    \item[(e)] What percent of Americans live above the poverty line and only speak English at home?
+    \item[(f)] Is the event that someone lives below the poverty line independent of the event that the person speaks a foreign language at home?
+\end{enumerate}
+
+\section*{3.11 Educational attainment of couples}
+The table below shows the distribution of education level attained by US residents by gender based on data collected in the 2010 American Community Survey. \\
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Highest education attained} & \textbf{Male} & \textbf{Female} \\
+\hline
+Less than 9th grade & 0.07 & 0.13 \\
+9th to 12th grade, no diploma & 0.10 & 0.09 \\
+HS graduate (or equivalent) & 0.30 & 0.20 \\
+Some college, no degree & 0.22 & 0.24 \\
+Associate's degree & 0.06 & 0.08 \\
+Bachelor's degree & 0.16 & 0.17 \\
+Graduate or professional degree & 0.09 & 0.09 \\
+\hline
+\textbf{Total} & 1.00 & 1.00 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+    \item[(a)] What is the probability that a randomly chosen man has at least a Bachelor's degree?
+    \item[(b)] What is the probability that a randomly chosen woman has at least a Bachelor's degree?
+    \item[(c)] What is the probability that a man and a woman getting married both have at least a Bachelor's degree? Note any assumptions you must make to answer this question.
+    \item[(d)] If you made an assumption in part (c), do you think it was reasonable? If you didn't make an assumption, double check your earlier answer and then return to this part.
+\end{enumerate}
+
+\section*{3.12 School absences}
+Data collected at elementary schools in DeKalb County, GA suggest that each year roughly 25\% of students miss exactly one day of school, 15\% miss 2 days, and 28\% miss 3 or more days due to sickness.
+\begin{enumerate}
+    \item[(a)] What is the probability that a student chosen at random doesn't miss any days of school this year?
+    \item[(b)] What is the probability that a student chosen at random misses no more than one day?
+    \item[(c)] What is the probability that a student chosen at random misses at least one day?
+    \item[(d)] If a parent has two kids at a DeKalb County elementary school, what is the probability that neither kid will miss any school? Note any assumption you must make.
+    \item[(e)] What is the probability that both kids will miss some school, i.e., at least one day? Note any assumption you make.
+    \item[(f)] If you made an assumption in part (d) or (e), do you think it was reasonable? If you didn't make any assumptions, double check your earlier answers.
+\end{enumerate}
+
+\section*{3.14 PB \& J}
+Suppose 80\% of people like peanut butter, 89\% like jelly, and 78\% like both. Given that a randomly sampled person likes peanut butter, what's the probability that he also likes jelly?
+
+\section*{3.15 Global warming}
+A Pew Research poll asked 1,306 Americans "From what you've read and heard, is there solid evidence that the average temperature on earth has been getting warmer over the past few decades, or not?". The table below shows the distribution of responses by party and ideology, where the counts have been replaced with relative frequencies. 
+
+\begin{table}[H]
+\centering
+\settowidth\tymin{\textbf{Conservative}}
+\setlength\extrarowheight{2pt}
+\begin{tabulary}{1.0\linewidth}{|L|C|C|C|C|}
+\hline
+\textbf{Party and Ideology} & \textbf{Earth is warming} & \textbf{Not warming} & \textbf{Don't Know/Refuse} & \textbf{Total} \\
+\hline
+Conservative Republican & 0.11 & 0.20 & 0.02 & 0.33 \\
+Mod/Lib Republican & 0.06 & 0.06 & 0.01 & 0.13 \\
+Mod/Cons Democrat & 0.25 & 0.07 & 0.02 & 0.34 \\
+Liberal Democrat & 0.18 & 0.01 & 0.01 & 0.20 \\
+\hline
+Total & 0.60 & 0.34 & 0.06 & 1.00 \\
+\hline
+\end{tabulary}
+\end{table}
+
+
+\begin{enumerate}
+    \item[(a)] Are believing that the earth is warming and being a liberal Democrat mutually exclusive?
+    \item[(b)] What is the probability that a randomly chosen respondent believes the earth is warming or is a liberal Democrat?
+    \item[(c)] What is the probability that a randomly chosen respondent believes the earth is warming given that he is a liberal Democrat?
+    \item[(d)] What is the probability that a randomly chosen respondent believes the earth is warming given that he is a conservative Republican?
+    \item[(e)] Does it appear that whether or not a respondent believes the earth is warming is independent of their party and ideology? Explain your reasoning.
+    \item[(f)] What is the probability that a randomly chosen respondent is a moderate/liberal Republican given that he does not believe that the earth is warming?
+\end{enumerate}
+
+\section*{3.16 Health coverage, relative frequencies}
+The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey designed to identify risk factors in the adult population and report emerging health trends. The following table displays the distribution of health status of respondents to this survey (excellent, very good, good, fair, poor) and whether or not they have health insurance. 
+
+\begin{table}[H]
+\centering
+\settowidth\tymin{\textbf{Conservative}}
+\setlength\extrarowheight{2pt}
+\begin{tabulary}{1.0\linewidth}{|L|C|C|C|C|C|C|}
+
+\hline
+\textbf{Health Coverage} & \textbf{Excellent} & \textbf{Very good} & \textbf{Good} & \textbf{Fair} & \textbf{Poor} & \textbf{Total} \\
+\hline
+No & 0.0230 & 0.0364 & 0.0427 & 0.0192 & 0.0050 & 0.1262 \\
+Yes & 0.2099 & 0.3123 & 0.2410 & 0.0817 & 0.0289 & 0.8738 \\
+\hline
+Total & 0.2329 & 0.3486 & 0.2838 & 0.1009 & 0.0338 & 1.0000 \\
+\hline
+\end{tabulary}
+\end{table}
+
+\begin{enumerate}
+    \item[(a)] Are being in excellent health and having health coverage mutually exclusive?
+    \item[(b)] What is the probability that a randomly chosen individual has excellent health?
+    \item[(c)] What is the probability that a randomly chosen individual has excellent health given that he has health coverage?
+    \item[(d)] What is the probability that a randomly chosen individual has excellent health given that he doesn’t have health coverage?
+    \item[(e)] Do having excellent health and having health coverage appear to be independent?
+\end{enumerate}
+
+\section*{3.22 Exit poll}
+Edison Research gathered exit poll results from several sources for the Wisconsin recall election of Scott Walker. They found that 53\% of the respondents voted in favor of Scott Walker. Additionally, they estimated that of those who did vote in favor of Scott Walker, 37\% had a college degree, while 44\% of those who voted against Scott Walker had a college degree. Suppose we randomly sampled a person who participated in the exit poll and found that he had a college degree. What is the probability that he voted in favor of Scott Walker?
+
+\section*{3.38 Income and gender}
+The relative frequency table below displays the distribution of annual total personal income (in 2009 inflation-adjusted dollars) for a representative sample of 96,420,486 Americans. These data come from the American Community Survey for 2005-2009. This sample is comprised of 59\% males and 41\% females.
+
+\begin{table}[H]
+\centering
+\settowidth\tymin{\textbf{Conservative}}
+\setlength\extrarowheight{2pt}
+\begin{tabulary}{\linewidth}{|l|c|}
+\hline
+\textbf{Income} & \textbf{Total} \\
+\hline
+\$1 to \$9,999 or less & 2.2\% \\
+\$10,000 to \$14,999 & 4.7\% \\
+\$15,000 to \$24,999 & 15.8\% \\
+\$25,000 to \$34,999 & 18.3\% \\
+\$35,000 to \$49,999 & 21.2\% \\
+\$50,000 to \$64,999 & 13.9\% \\
+\$65,000 to \$74,999 & 5.8\% \\
+\$75,000 to \$99,999 & 8.4\% \\
+\$100,000 or more & 9.7\% \\
+\hline
+\end{tabulary}
+\end{table}
+
+\begin{enumerate}
+    \item[(a)] Describe the distribution of total personal income.
+    \item[(b)] What is the probability that a randomly chosen US resident makes less than \$50,000 per year?
+    \item[(c)] What is the probability that a randomly chosen US resident makes less than \$50,000 per year and is female? Note any assumptions you make.
+    \item[(d)] The same data source indicates that 71.8\% of females make less than \$50,000 per year. Use this value to determine whether or not the assumption you made in part (c) is valid.
+\end{enumerate}
+
+\section*{3.40 Health coverage, frequencies}
+The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey designed to identify risk factors in the adult population and report emerging health trends. The following table summarizes two variables for the respondents: health status and health coverage, which describes whether each respondent had health insurance.
+
+\begin{table}[H]
+\centering
+\settowidth\tymin{\textbf{Conservative}}
+\setlength\extrarowheight{2pt}
+\begin{tabulary}{\linewidth}{|L|C|C|C|C|C|C|}
+\hline
+\textbf{Health Coverage} & \textbf{Excellent} & \textbf{Very good} & \textbf{Good} & \textbf{Fair} & \textbf{Poor} & \textbf{Total} \\
+\hline
+No & 459 & 727 & 854 & 385 & 99 & 2,524 \\
+Yes & 4,198 & 6,245 & 4,821 & 1,634 & 578 & 17,476 \\
+\hline
+Total & 4,657 & 6,972 & 5,675 & 2,019 & 677 & 20,000 \\
+\hline
+\end{tabulary}
+\end{table}
+
+\begin{enumerate}
+    \item[(a)] If we draw one individual at random, what is the probability that the respondent has excellent health and doesn’t have health coverage?
+    \item[(b)] If we draw one individual at random, what is the probability that the respondent has excellent health or doesn’t have health coverage?
+\end{enumerate}
+
+\section*{3.24 Socks in a Drawer}
+In your sock drawer you have 4 blue, 5 gray, and 3 black socks. Half asleep one morning you grab 2 socks at random and put them on. Find the probability you end up wearing:
+\begin{enumerate}
+    \item[(a)] 2 blue socks
+    \item[(b)] no gray socks
+    \item[(c)] at least 1 black sock
+    \item[(d)] a green sock
+    \item[(e)] matching socks
+\end{enumerate}
+
+\section*{Democracy and Inequality}
+
+Consider the following joint probability distribution of regimes and economic inequality for a set of countries. The table shows the likelihood of each type of regime associated with low, medium, and high levels of economic inequality.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Regime} & \textbf{Low Inequality} & \textbf{Medium Inequality} & \textbf{High Inequality} \\
+\hline
+Full Democracy & 0.12 & 0.08 & 0.04 \\
+Flawed Democracy & 0.04 & 0.12 & 0.08 \\
+Electoral Autocracy & 0.04 & 0.08 & 0.12 \\
+Full Autocracy & 0.04 & 0.04 & 0.17 \\
+\hline
+\end{tabular}
+\end{table}
+
+Answer the following questions based on the table:
+
+\begin{enumerate}
+    \item[(a)] What is the probability that a country is a Full Democracy or has High Economic Inequality? Use the formula for the union of events: \( P(A \cup B) = P(A) + P(B) - P(A \cap B) \).
+    \item[(b)] Calculate \( P(A \cap B) \), the probability that a country is a Full Democracy and has High Economic Inequality.
+    \item[(c)] Calculate the probability that a country is neither a Flawed Democracy nor has Medium Economic Inequality. Use the complement rule: \( P(A^c) = 1 - P(A) \).\footnote{Hint: $(A \cup B)^c = A^c \cap B^c = \neg A \cap \neg B$. $\neg A \cap \neg B$ reads as ``neither $A$ nor $B$.''}
+    \item[(d)] Given that a country has Medium Economic Inequality, what is the probability that it is an Electoral Autocracy? Use the formula for conditional probability: \( P(C|D) = P(C \cap D) / P(D) \).
+    \item[(e)] Calculate the probability of observing Low Economic Inequality in the sample. This will be used as \( P(B) \) in Bayes' Law.
+    \item[(f)] Calculate the probability of a country being a Full Democracy. This will be used as \( P(A) \) in Bayes' Law.
+    \item[(g)] Assume we draw one random country from the sample. What is the probability that the country is a Full Democracy, given we know the country has Low Economic Inequality? Use Bayes' rule to compute your answer: \( P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)}  \).
+\end{enumerate}
+
+\newpage
+
+\section*{Glossary of Terms - Unit III}
+
+\begin{itemize}
+    \item \textbf{Set:} A collection of distinct objects or elements, considered as an object in its own right. We usually denote sets by listing its elements between curly braces $\{\}$.
+    
+    \item \textbf{\( a \in S \):} Means that \( a \) belongs to the set \( S \).
+    
+    \item \textbf{\( A \cup B \) (Union):} The set containing all elements that are in \( A \), \( B \), or both.
+    
+    \item \textbf{\( A \cap B \) (Intersection):} The set containing all elements that are both in \( A \) and \( B \).
+    
+    \item \textbf{\( \emptyset \) (Empty Set):} The set containing no elements.
+    
+    \item \textbf{Universal Set:} The set that contains all possible elements under consideration, often denoted by \( U \).
+    
+    \item \textbf{\( A^c \) (Complement of \( A \), alternatively \( \neg A \)):} The set containing all elements not in \( A \).
+    
+    \item \textbf{Random Process (alternatively, "random trial," or "random experiment"):} A process in which the outcome is uncertain.
+    
+    \item \textbf{Outcome:} One realization of a random process.
+    
+    \item \textbf{Sample Space:} The set of all possible outcomes of a random process.
+    
+    \item \textbf{Event:} A subset of the sample space.
+    
+    \item \textbf{Probability - Frequentist Definition:} The probability of an event is the limit of its relative frequency in a large number of trials.
+    
+    \item \textbf{Probability - Classical Definition:} The probability of an event is the ratio of the number of favorable outcomes to the total number of equally likely outcomes.
+    
+    \item \textbf{Venn Diagram:} A diagram that shows all possible logical relations between a finite collection of sets.
+    
+    \item \textbf{When to use a Venn Diagram:} Venn diagrams are useful for visualizing the relationships between different sets and events, such as unions, intersections, and complements.
+    
+    \item \textbf{\( P(A) = \frac{\text{Number of ways the event A can happen}}{\text{Total outcomes in sample space}} \):} The probability of event \( A \).
+    
+    \item \textbf{Probability Function:} A mapping between the set of possible outcomes and their respective probabilities.
+    
+    \item \textbf{Three Axioms of Probability:}
+    \begin{enumerate}
+        \item \( P(A) \geq 0 \) for any event \( A \).
+        \item \( P(S) = 1 \) for the sample space \( S \).
+        \item For any sequence of mutually exclusive events \( A_1, A_2, A_3, \ldots \), \( P(A_1 \cup A_2 \cup A_3 \cup \ldots) = P(A_1) + P(A_2) + P(A_3) + \ldots \).
+    \end{enumerate}
+    
+    \item \textbf{\( P(A \cap B) = \frac{\text{Number of ways } A \text{ and } B \text{ jointly happen}}{\text{Total outcomes in sample space}} \):} The probability of both \( A \) and \( B \) occurring.
+    
+    \item \textbf{\( P(A \cup B) = \frac{\text{Number of ways } A \text{ or } B \text{ or both happen}}{\text{Total outcomes in sample space}} \):} The probability of either \( A \), \( B \), or both occurring.
+    
+    \item \textbf{\( P(A^c) = 1 - P(A) \):} Probability rule - probability of the complement of \( A \).
+    
+    \item \textbf{\( P(A \cup B) = P(A) + P(B) - P(A \cap B) \):} Probability rule - general addition rule. Note that if \( A \) and \( B \) are disjoint, then \( A \cap B = \emptyset \). By definition \( P(\emptyset) = 0 \). Therefore, for disjoint events: \( P(A \cup B) = P(A) + P(B) \).
+    
+    \item \textbf{\( P(A|B) = \frac{P(A \cap B)}{P(B)} \):} Conditional Probability. The probability of \( A \) given that \( B \) has occurred. It is relevant when the occurrence of one event affects the probability of another.
+    
+    \item \textbf{\( P(A \cap B) = P(A|B) P(B) \):} General multiplication rule. It explains that the probability of both \( A \) and \( B \) occurring is the probability of \( A \) given \( B \) times the probability of \( B \).
+    
+    \item \textbf{Note that \( P(B|A) = \frac{P(A \cap B)}{P(A)} \). Thus, \( P(A \cap B) = P(B|A) P(A) = P(A|B) P(B) \). So, we can calculate \( P(A \cap B) \) using any of these two expressions.}
+    
+    \item \textbf{Independence of Events:} Two events \( A \) and \( B \) are independent if and only if \( P(A|B) = P(A) \) and \( P(B|A) = P(B) \).
+    
+    \item \textbf{If \( A \) and \( B \) are independent, then: \( P(A \cap B) = P(A) P(B) \). This is the multiplication rule for independent events.}
+
+    \item \textbf{Disjoint Events:} Two events \( A \) and \( B \) are disjoint if \( A \cap B = \emptyset \).
+    
+    \item \textbf{Partition of a Sample Space:} A collection of events \( \{A_1, A_2, \ldots, A_n\} \) is a partition of the sample space \( S \) if \( A_i \cap A_j = \emptyset \) for all \( i \neq j \) and \( A_1 \cup A_2 \cup A_3 \cdots \cup A_k = \bigcup_{i=1}^n A_i = S \).
+    
+    \item \textbf{Law of Total Probability:} If \( \{B_1, B_2, \ldots, B_n\} \) is a partition of the sample space \( S \), then for any event \( A \),
+    \[
+    P(A) = \sum_{i=1}^n P(A|B_i) P(B_i).
+    \]
+    
+    \item \textbf{Bayes' Theorem:} For any two events \( A \) and \( B \),
+    \[
+    P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
+    \]
+
+\end{itemize}
+
+\newpage
+
+\section*{Optional Appendix}
+
+\subsection*{Proof of the Multiplication Rule for Independent Events}
+
+\textbf{Goal:}
+
+To prove that for two independent events \( A \) and \( B \) in a sample space \( S \),
+
+\[ P(A \cap B) = P(A) \cdot P(B) \]
+
+using a counting argument.
+
+\textbf{Step 1: Calculate \( P(A \cap B) \)}
+
+\[
+P(A \cap B) = \frac{N_{A \cap B}}{N}
+\]
+
+where:
+\begin{itemize}
+    \item \( N \) is the total number of equally likely outcomes in the sample space \( S \).
+    \item \( N_{A \cap B} \) is the number of outcomes where both \( A \) and \( B \) occur.
+\end{itemize}
+
+\textbf{Step 2: Calculate \( P(B|A) \)}
+
+The conditional probability \( P(B|A) \) is given by:
+
+\[
+P(B|A) = \frac{N_{A \cap B}}{N_A}
+\]
+
+where \( N_A \) is the number of outcomes where \( A \) occurs.
+
+\textbf{Step 3: Use Independence}
+
+Independence implies that \( P(B|A) = P(B) \). Thus,
+
+\[
+P(B|A) = P(B) = \frac{N_B}{N}
+\]
+
+where \( N_B \) is the number of outcomes where \( B \) occurs.
+
+\textbf{Step 4: Equate the Two Expressions for \( P(B|A) \)}
+
+\[
+\frac{N_{A \cap B}}{N_A} = \frac{N_B}{N}
+\]
+
+\textbf{Step 5: Rearrange to Find \( N_{A \cap B} \)}
+
+Rearranging the above equation, we get:
+
+\[
+N_{A \cap B} = N_A \cdot \frac{N_B}{N}
+\]
+
+\textbf{Step 6: Substitute Back into the Expression for \( P(A \cap B) \)}
+
+Replace \( N_{A \cap B} \) in the expression for \( P(A \cap B) \):
+
+\[
+P(A \cap B) = \frac{N_{A \cap B}}{N} = \frac{N_A \cdot \frac{N_B}{N}}{N}
+\]
+
+\textbf{Step 7: Simplify the Expression}
+
+Simplifying the above expression, we get:
+
+\[
+P(A \cap B) = \frac{N_A \cdot N_B}{N^2}
+\]
+
+Since \( P(A) = \frac{N_A}{N} \) and \( P(B) = \frac{N_B}{N} \), we can rewrite the above expression as:
+
+\[
+P(A \cap B) = \frac{N_A}{N} \cdot \frac{N_B}{N} = P(A) \cdot P(B)
+\]
+
+\textbf{Conclusion}
+
+We have shown that if \( A \) and \( B \) are independent, then the probability of their intersection is the product of their individual probabilities:
+
+\[
+P(A \cap B) = P(A) \cdot P(B)
+\]
+
+This completes the proof of the multiplication rule for independent events using a counting method.
+
+\subsection*{Proof of the Conditional Probability Formula}
+
+\textbf{Goal:}
+
+To prove that for two events \( A \) and \( B \) in a sample space \( S \),
+
+\[ P(A|B) = \frac{P(A \cap B)}{P(B)} \]
+
+using a counting argument.
+
+\textbf{Step 1: Definition of Conditional Probability}
+
+The conditional probability \( P(A|B) \) is given by:
+
+\[
+P(A|B) = \frac{N_{A \cap B}}{N_B}
+\]
+
+where:
+\begin{itemize}
+    \item \( N \) is the total number of equally likely outcomes in the sample space \( S \).
+    \item \( N_{A \cap B} \) is the number of outcomes where both \( A \) and \( B \) occur.
+    \item \( N_B \) is the number of outcomes where \( B \) occurs.
+\end{itemize}
+
+\textbf{Step 2: Multiplying by \( \frac{1}{N} \)}
+
+Multiply both the numerator and the denominator by \( \frac{1}{N} \):
+
+\[
+P(A|B) = \frac{\frac{N_{A \cap B}}{N}}{\frac{N_B}{N}}
+\]
+
+\textbf{Step 3: Substitute the Definitions of Probabilities}
+
+Substitute \( P(A \cap B) = \frac{N_{A \cap B}}{N} \) and \( P(B) = \frac{N_B}{N} \):
+
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]
+
+\textbf{Conclusion}
+
+We have shown that the conditional probability of \( A \) given \( B \) is the ratio of the joint probability of \( A \) and \( B \) to the probability of \( B \):
+
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]
+
+This completes the proof of the conditional probability formula using a counting method and the trick of multiplying by \( \frac{1}{N} \).
+
+
+\end{document}
+
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{New Problem Set}
+\author{Statistics Department}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+
+
+\end{document}
