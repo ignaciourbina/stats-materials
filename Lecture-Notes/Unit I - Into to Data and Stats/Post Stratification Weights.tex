@@ -1,0 +1,148 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\title{Survey Weights: Sampling Design and Post-Stratification}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction to Survey Weights}
+
+Survey weights adjust for differences in selection probability and ensure that estimates derived from the sample are representative of the population. There are two main types of survey weights:
+
+\begin{enumerate}
+    \item \textbf{Sampling Design Weights:} These weights correct for unequal selection probabilities based on the survey design.
+    \item \textbf{Post-Stratification Weights:} These weights adjust for discrepancies between the sample and known population characteristics, improving representativeness.
+\end{enumerate}
+
+In this lecture, we first outline how to compute weights based on the survey design and then introduce post-stratification adjustments.
+
+\section{Sampling Design Weights}
+
+\subsection{Weights in Simple Random Sampling}
+If every individual in the population has an equal probability of being selected, the probability of selecting an individual is:
+\[
+p = \frac{n}{N}
+\]
+where:
+\begin{itemize}
+    \item \( N \) is the total population size,
+    \item \( n \) is the sample size.
+\end{itemize}
+The survey weight for each sampled individual is:
+\[
+w = \frac{1}{p} = \frac{N}{n}.
+\]
+
+\subsection{Weights in Stratified Sampling}
+In stratified sampling, the population is divided into \( H \) strata, with stratum \( h \) containing \( N_h \) individuals. A sample of size \( n_h \) is drawn from stratum \( h \). The selection probability for an individual in stratum \( h \) is:
+\[
+p_h = \frac{n_h}{N_h}.
+\]
+The weight for an individual in stratum \( h \) is:
+\[
+w_h = \frac{1}{p_h} = \frac{N_h}{n_h}.
+\]
+
+\subsection{Weights in Two-Stage Sampling}
+For a two-stage design, where first-stage units (PSUs) are selected and then individuals within them:
+
+\begin{itemize}
+    \item \textbf{Stage 1:} Select PSU \( i \) from stratum \( h \) with probability:
+    \[
+    p_{hi} = \frac{m_h}{M_h}.
+    \]
+    \item \textbf{Stage 2:} Select individual \( j \) within PSU \( i \) with probability:
+    \[
+    q_{hi} = \frac{n_{hi}}{N_{hi}}.
+    \]
+    \item \textbf{Overall selection probability:}
+    \[
+    P_{hij} = p_{hi} \times q_{hi}.
+    \]
+    \item \textbf{Survey weight:}
+    \[
+    w_{hij} = \frac{1}{P_{hij}} = \frac{M_h}{m_h} \times \frac{N_{hi}}{n_{hi}}.
+    \]
+\end{itemize}
+
+\section{Post-Stratification Weights}
+
+\subsection{Purpose of Post-Stratification}
+Post-stratification adjusts survey weights so that the weighted sample distribution matches known population totals for key demographic or geographic groups. This is often done when:
+
+\begin{itemize}
+    \item The sample does not perfectly reflect the population due to non-response or disproportionate selection probabilities.
+    \item Population control totals (e.g., census counts) are available for certain subgroups.
+\end{itemize}
+
+\subsection{Computing Post-Stratification Weights}
+
+Suppose we categorize individuals into \( H \) post-strata, where:
+\begin{itemize}
+    \item \( N_h \) is the known population count for post-stratum \( h \),
+    \item \( n_h \) is the number of sampled individuals in post-stratum \( h \),
+    \item \( w_h \) is the initial survey weight from the sampling design.
+\end{itemize}
+
+The post-stratification weight adjustment factor for stratum \( h \) is:
+\[
+r_h = \frac{N_h}{\sum_{i \in h} w_i}.
+\]
+Each individual's final weight is:
+\[
+w_{h}^{*} = w_h \times r_h.
+\]
+This ensures that the weighted sum of individuals in each stratum equals the known population count.
+
+\subsection{Example: Simple Post-Stratification Adjustment}
+Assume a survey sample consists of two post-strata (e.g., male and female) with the following counts:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Post-Stratum & Population Size (\( N_h \)) & Sample Size (\( n_h \)) & Initial Weight (\( w_h \)) \\
+\hline
+Males & 600,000 & 300 & \( \frac{600,000}{300} = 2000 \) \\
+Females & 400,000 & 200 & \( \frac{400,000}{200} = 2000 \) \\
+\hline
+\end{tabular}
+\end{center}
+
+The sum of the initial weights for males:
+\[
+\sum_{i \in \text{males}} w_i = 300 \times 2000 = 600,000.
+\]
+Since this already matches the population total, no adjustment is needed.
+
+If, however, the sum of initial weights did not match \( N_h \), we would apply the adjustment factor:
+\[
+r_h = \frac{N_h}{\sum_{i \in h} w_i}.
+\]
+
+\section{Combining Design and Post-Stratification Weights}
+The final weight incorporating both the sampling design and post-stratification is given by:
+\[
+w_i^{\text{final}} = w_i^{\text{design}} \times r_h.
+\]
+This ensures that:
+\begin{itemize}
+    \item The design weights account for the probability of selection.
+    \item The post-stratification adjustment ensures representativeness.
+\end{itemize}
+
+\section{Conclusion}
+Survey weights play a crucial role in making estimates representative of the population. The key steps in computing final weights are:
+\begin{enumerate}
+    \item Compute **design-based weights** to correct for unequal selection probabilities.
+    \item Apply **post-stratification adjustments** to match known population distributions.
+    \item Use the **final adjusted weights** for estimation to reduce bias and improve representativeness.
+\end{enumerate}
+
+\end{document}

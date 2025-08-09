@@ -1,0 +1,77 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{graphicx}
+
+\title{Using the Hypothesis Testing Visualizer}
+\author{POL201 --- Introduction to Statistical Methods in Political Science}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{What is This App For?}
+
+This app helps you understand how hypothesis testing works --- not just in theory, but in practice. You get to simulate the kind of decisions researchers make when they run a test: assuming a null hypothesis is true, computing a test statistic, and deciding whether the evidence from your sample is strong enough to reject that benchmark.
+
+Here’s the twist: in this app, you’ll draw samples assuming the \textbf{alternative hypothesis is actually true}. This reflects real-world uncertainty — in reality, we never know if the null is actually true or not. All we can do is test it and see how extreme our observed data are under that assumption.
+
+\section*{What You Can Do}
+
+The app includes:
+\begin{itemize}
+  \item A plot of the standard normal distribution under $H_0$. If we claim the central limit theorem applies (CLT), then we can approximate the sampling distribution of $\hat{p}$ using a normal distribution. Then, the $Z=\left(\hat{p}-p_0\right)/\left(\sqrt{\frac{p_0 (1-p_0)}{n}}\right)$ test statistic would follow a standard normal distribution.
+  \item Shaded regions representing the rejection zones based on your chosen $\alpha$ level.
+  \item Inputs to adjust:
+  \begin{itemize}
+    \item $\mu_0$: the value we are testing against (the null benchmark).
+    \item $\mu_1$: the true value used to simulate the sample (under the alternative).
+    \item $\sigma$: population standard deviation.
+    \item $n$: sample size.
+    \item $\alpha$: significance level.
+  \end{itemize}
+  \item A button to draw a sample and observe the calculated $Z$-statistic.
+  \item An option to overlay the alternative distribution on the plot.
+  \item A simulation tool to repeat the process many times and compute how often $H_0$ is rejected.
+\end{itemize}
+
+\section*{How to Use It}
+
+\begin{enumerate}
+  \item Set a null hypothesis value $\mu_0$.
+  \item Pick a true value $\mu_1$ — this will be the center of the distribution the app draws samples from.
+  \item Adjust the sample size ($n$), standard deviation ($\sigma$), and significance level ($\alpha$).
+  \item Click ``Draw Sample’’ to simulate a sample mean and compute the $Z$-statistic.
+  \item The app will display a vertical line for the computed $Z$ and show whether it falls in the rejection region.
+  \item You can turn on the alternative distribution to see where samples are actually coming from.
+  \item Run ``Simulate Many Samples’’ to estimate how often you would reject $H_0$ under this setup.
+\end{enumerate}
+
+\section*{What You Will Learn by Trying Scenarios}
+
+As you try different parameter settings, here are some things you’ll discover:
+
+\begin{itemize}
+  \item \textbf{Effect of the true mean ($\mu_1$):} If $\mu_1$ is far from $\mu_0$, the sampling distribution shifts, and the $Z$-statistic is more likely to land in the rejection region. This increases the test's power — the probability of correctly rejecting $H_0$ when it is false.
+  
+  \item \textbf{Effect of sample size ($n$):} Increasing $n$ reduces the standard error, which narrows the sampling distribution. You’ll notice that with larger $n$, even small differences between $\mu_0$ and $\mu_1$ are more likely to produce statistically significant $Z$-values.
+
+  \item \textbf{Type I error rate:} When you simulate many samples with $\mu_1 = \mu_0$, you’ll see that the proportion of rejections closely matches your chosen $\alpha$. This reinforces the meaning of $\alpha$ as the long-run probability of rejecting $H_0$ when it is actually true.
+
+  \item \textbf{Effect of $\alpha$:} When you increase $\alpha$ (e.g., from 0.01 to 0.1), the rejection region gets wider, and you reject $H_0$ more often. However, this also means a higher risk of Type I error.
+
+  \item \textbf{Rejection depends on both signal and noise:} Even when $\mu_1$ is far from $\mu_0$, if $\sigma$ is large or $n$ is small, the noise can drown out the signal — leading to a $Z$ that doesn’t fall in the rejection region.
+
+  \item \textbf{Sampling variability is real:} You might simulate two samples under the same setup and get different $Z$-statistics — one that leads to rejecting $H_0$ and one that doesn't. This shows how randomness affects statistical decisions.
+\end{itemize}
+
+\section*{Access the App}
+
+You can run the app here: \\
+\url{https://huggingface.co/spaces/iurbinah/hypothesis-testing}
+
+\end{document}

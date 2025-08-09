@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{The Hypergeometric Distribution}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Definition}
+
+The \textbf{hypergeometric distribution} describes the probability of drawing a specific number of successes from a finite population \emph{without replacement}.
+
+\bigskip
+
+\noindent It applies when:
+\begin{itemize}
+    \item The population is of finite size $N$.
+    \item The population contains exactly $K$ items classified as ``successes'' and $N-K$ as ``failures''.
+    \item A sample of size $n$ is drawn \emph{without replacement}.
+    \item We are interested in the probability of observing exactly $k$ successes in the sample.
+\end{itemize}
+
+\section*{Probability Mass Function (PMF)}
+
+The hypergeometric probability of observing exactly $k$ successes in a sample of size $n$ is:
+
+\[
+P(X = k) = \frac{\dbinom{K}{k} \dbinom{N-K}{n-k}}{\dbinom{N}{n}}
+\]
+
+Where:
+\begin{itemize}
+    \item $N$ is the population size,
+    \item $K$ is the number of successes in the population,
+    \item $n$ is the sample size,
+    \item $k$ is the number of observed successes in the sample,
+    \item $\dbinom{a}{b}$ is a binomial coefficient (combinations).
+\end{itemize}
+
+\section*{Support (Valid Values for $k$)}
+
+\[
+\max(0, n - (N-K)) \leq k \leq \min(n, K)
+\]
+
+\section*{Example}
+
+A deck has 52 cards, including 13 hearts. If 5 cards are drawn without replacement, what is the probability that exactly 2 are hearts?
+
+\[
+N = 52,\quad K = 13,\quad n = 5,\quad k = 2
+\]
+
+\[
+P(X = 2) = \frac{\dbinom{13}{2} \dbinom{39}{3}}{\dbinom{52}{5}} = \frac{78 \cdot 9139}{2,598,960} \approx 0.3251
+\]
+
+\section*{Expectation and Variance}
+
+\begin{align*}
+\text{Expected Value:} \quad & \mathbb{E}[X] = n \cdot \frac{K}{N} \\
+\text{Variance:} \quad & \text{Var}(X) = n \cdot \frac{K}{N} \cdot \left(1 - \frac{K}{N} \right) \cdot \frac{N - n}{N - 1}
+\end{align*}
+
+\section*{Comparison to Binomial Distribution}
+
+\begin{itemize}
+    \item The hypergeometric distribution is similar to the binomial, but:
+    \item \textbf{Binomial:} Sampling is done \emph{with replacement} or from an infinite population.
+    \item \textbf{Hypergeometric:} Sampling is done \emph{without replacement}.
+    \item As $N \to \infty$, the hypergeometric distribution approaches the binomial.
+\end{itemize}
+
+\section*{Set-Theoretic Derivation of the Hypergeometric PMF}
+
+Let $\mathcal{U}$ be a finite population with $|\mathcal{U}| = N$, partitioned into two disjoint subsets:
+\[
+\mathcal{U} = S \cup F, \quad \text{with } |S| = K, \quad |F| = N - K,
+\]
+where $S$ contains the \textit{successes} and $F$ contains the \textit{failures}.
+
+We select a subset $A \subseteq \mathcal{U}$ of size $n$ uniformly at random.
+
+Define the sample space:
+\[
+\Omega = \left\{ A \subseteq \mathcal{U} : |A| = n \right\}, \quad |\Omega| = \binom{N}{n}.
+\]
+
+Let $X(A) = |A \cap S|$ be the number of successes in the sample $A$. We are interested in computing the probability that $X = k$, i.e., that the sample contains exactly $k$ successes.
+
+\section*{Hypergeometric Probability as a Set Ratio}
+
+We express this probability using classical (equiprobable) set-based probability:
+\[
+P(X = k) = \frac{\left|\left\{ A \subseteq \mathcal{U} : |A \cap S| = k,\; |A \cap F| = n - k \right\} \right|}{\left| \left\{ A \subseteq \mathcal{U} : |A| = n \right\} \right|}.
+\]
+
+\subsection*{Denominator (Total Number of Samples)}
+
+The denominator counts all subsets of size $n$:
+\[
+\left| \left\{ A \subseteq \mathcal{U} : |A| = n \right\} \right| = \binom{N}{n}.
+\]
+
+\subsection*{Numerator (Number of Favorable Samples)}
+
+The numerator counts subsets $A$ of size $n$ that contain exactly $k$ successes and $n - k$ failures.
+
+We define the favorable event set:
+\[
+\mathcal{E}_k = \left\{ A \subseteq \mathcal{U} : |A \cap S| = k,\; |A \cap F| = n - k \right\}.
+\]
+
+Each such subset $A$ is formed by choosing:
+\begin{itemize}
+    \item $k$ elements from $S$: $\binom{K}{k}$ choices,
+    \item $n - k$ elements from $F$: $\binom{N - K}{n - k}$ choices.
+\end{itemize}
+
+Because $S$ and $F$ are disjoint, these choices are independent and jointly determine a unique subset $A$. So:
+\[
+|\mathcal{E}_k| = \binom{K}{k} \cdot \binom{N - K}{n - k}.
+\]
+
+\subsection*{Final Result}
+
+Putting it all together:
+\[
+P(X = k) = \frac{\binom{K}{k} \cdot \binom{N - K}{n - k}}{\binom{N}{n}}.
+\]
+
+This is the \textbf{probability mass function} of the hypergeometric distribution:
+\[
+X \sim \text{Hypergeometric}(N, K, n).
+\]
+
+\end{document}

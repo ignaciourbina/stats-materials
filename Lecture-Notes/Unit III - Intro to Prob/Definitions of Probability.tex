@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\title{Lecture Notes: Probability in a Bernoulli Trial}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+A \textbf{Bernoulli trial} is a random experiment where there are only two possible outcomes, often referred to as \emph{success} and \emph{failure}. These outcomes are commonly represented numerically as:
+
+\begin{equation*}
+    S = \{0,1\}
+\end{equation*}
+
+where:
+\begin{itemize}
+    \item $1$ represents a success,
+    \item $0$ represents a failure.
+\end{itemize}
+
+\section{Classical Definition of Probability}
+The \textbf{classical definition of probability} states that if all outcomes in a sample space are equally likely, the probability of an event $E$ is given by:
+
+\begin{equation}
+    P(E) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}}.
+\end{equation}
+
+Applying this definition to a Bernoulli trial, where the sample space is $S = \{0,1\}$, if we assume both outcomes are equally likely, we would obtain:
+
+\begin{equation*}
+    P(0) = \frac{1}{2}, \quad P(1) = \frac{1}{2}.
+\end{equation*}
+
+However, in a general Bernoulli trial, the probability of success is typically given by a parameter $p$, while the probability of failure is $1 - p$. That is:
+
+\begin{equation}
+    P(1) = p, \quad P(0) = 1 - p.
+\end{equation}
+
+Thus, unless it is explicitly stated that all outcomes are equally likely, we should not assume equal probabilities.
+
+\section{Key Takeaway}
+The assumption of equal probability among outcomes applies only under specific conditions. In many real-world probability models, probabilities are assigned based on additional information, empirical data, or theoretical considerations. In a Bernoulli trial, the probabilities are determined by the given parameter $p$, and we should not assume $P(1) = P(0) = \frac{1}{2}$ unless explicitly stated.
+
+\end{document}
+

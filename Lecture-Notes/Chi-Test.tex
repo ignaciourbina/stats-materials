@@ -1,0 +1,207 @@
+
+\documentclass{article}
+\usepackage{amsmath} % For math formulas like \frac, \sum
+\usepackage{amssymb} % For math symbols
+\usepackage[margin=1in]{geometry} % Set margins
+\usepackage{booktabs} % For nice tables (\toprule, \midrule, \bottomrule)
+\usepackage{hyperref} % Optional: for hyperlinks if needed
+
+\title{Lecture Notes: The Chi-Square Test of Independence}
+\author{Introduction to Statistics}
+\date{April 23, 2025} % Or use \today
+
+\begin{document}
+\maketitle
+
+\section{Introduction: Are Political Views and Policy Stances Related?}
+
+In many fields, particularly the social sciences, we often want to know if two categorical variables are related or independent. For example, in political science, we might ask: Does a person's political party affiliation influence their stance on a particular piece of legislation? Or are these two factors independent of each other?
+
+Consider the following research question:
+\emph{Is there an association between a voter's registered party affiliation (Democrat, Republican, Independent) and their support for a proposed environmental regulation (Support, Oppose, Undecided)?}
+
+To investigate this, we might survey a sample of voters and collect data on these two variables. This type of data can be summarized in a \textbf{contingency table} (also called a cross-tabulation).
+
+\subsection{Example Data}
+
+Suppose we surveyed 300 voters and obtained the following results:
+
+\begin{center}
+\begin{tabular}{l c c c c}
+\toprule
+ & \multicolumn{3}{c}{\textbf{Stance on Environmental Regulation}} & \\
+\cmidrule(lr){2-4}
+\textbf{Party Affiliation} & Support & Oppose & Undecided & \textbf{Row Total} \\
+\midrule
+Democrat & 70 & 20 & 10 & 100 \\
+Republican & 30 & 60 & 10 & 100 \\
+Independent & 40 & 30 & 30 & 100 \\
+\midrule
+\textbf{Column Total} & 140 & 110 & 50 & \textbf{300 (Grand Total)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Looking at the table, the patterns seem different across parties. Democrats appear more likely to support the regulation, while Republicans seem more likely to oppose it. Independents fall somewhere in between, with a higher proportion undecided.
+
+However, is this observed difference statistically significant, or could it have occurred just by chance even if there were no real association in the population? The \textbf{Chi-Square ($\chi^2$) Test of Independence} helps us answer this question.
+
+\subsection{Hypotheses}
+The test evaluates two competing hypotheses:
+\begin{itemize}
+    \item \textbf{Null Hypothesis ($H_0$):} There is no association between the two categorical variables in the population. (Party affiliation and stance on the regulation are independent).
+    \item \textbf{Alternative Hypothesis ($H_A$):} There is an association between the two categorical variables in the population. (Party affiliation and stance on the regulation are dependent).
+\end{itemize}
+
+\section{Mechanics of the Chi-Square Test}
+
+The core idea of the test is to compare the \textbf{observed frequencies} ($O$) in our sample table to the \textbf{expected frequencies} ($E$) we would anticipate if the null hypothesis (independence) were true.
+
+\subsection{Observed Frequencies ($O_{ij}$)}
+These are simply the counts we collected in our sample. The subscript $i$ refers to the row (e.g., party affiliation) and $j$ refers to the column (e.g., stance on regulation). For example, $O_{11} = 70$ (Democrat, Support), $O_{23} = 10$ (Republican, Undecided).
+
+\subsection{Expected Frequencies ($E_{ij}$)}
+If the variables were truly independent, the proportion of individuals in each column category should be the same across all row categories. We calculate the expected count for the cell in row $i$ and column $j$ under the assumption of independence using the formula:
+$$ E_{ij} = \frac{(\text{Row } i \text{ Total}) \times (\text{Column } j \text{ Total})}{\text{Grand Total}} $$
+
+Let's calculate the expected frequencies for our example:
+\begin{itemize}
+    \item $E_{11}$ (Democrat, Support) = $(100 \times 140) / 300 = 14000 / 300 \approx 46.67$
+    \item $E_{12}$ (Democrat, Oppose) = $(100 \times 110) / 300 = 11000 / 300 \approx 36.67$
+    \item $E_{13}$ (Democrat, Undecided) = $(100 \times 50) / 300 = 5000 / 300 \approx 16.67$
+    \item $E_{21}$ (Republican, Support) = $(100 \times 140) / 300 \approx 46.67$
+    \item $E_{22}$ (Republican, Oppose) = $(100 \times 110) / 300 \approx 36.67$
+    \item $E_{23}$ (Republican, Undecided) = $(100 \times 50) / 300 \approx 16.67$
+    \item $E_{31}$ (Independent, Support) = $(100 \times 140) / 300 \approx 46.67$
+    \item $E_{32}$ (Independent, Oppose) = $(100 \times 110) / 300 \approx 36.67$
+    \item $E_{33}$ (Independent, Undecided) = $(100 \times 50) / 300 \approx 16.67$
+\end{itemize}
+Notice that if $H_0$ were true, we'd expect the same distribution of stances within each party affiliation, reflecting the overall distribution (140/300 support, 110/300 oppose, 50/300 undecided).
+
+\subsection{The Chi-Square Test Statistic ($\chi^2$)}
+The test statistic measures the overall discrepancy between the observed ($O_{ij}$) and expected ($E_{ij}$) frequencies across all cells of the table. It is calculated as:
+$$ \chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{c} \frac{(O_{ij} - E_{ij})^2}{E_{ij}} $$
+where $r$ is the number of rows and $c$ is the number of columns.
+
+For each cell, we find the squared difference between observed and expected, scale it by the expected count, and sum these values up. A large $\chi^2$ value indicates a large overall difference between what we observed and what we'd expect under independence, providing evidence against $H_0$.
+
+Let's calculate it for our example (using the values above):
+\begin{align*} \chi^2 = & \frac{(70 - 46.67)^2}{46.67} + \frac{(20 - 36.67)^2}{36.67} + \frac{(10 - 16.67)^2}{16.67} \\ & + \frac{(30 - 46.67)^2}{46.67} + \frac{(60 - 36.67)^2}{36.67} + \frac{(10 - 16.67)^2}{16.67} \\ & + \frac{(40 - 46.67)^2}{46.67} + \frac{(30 - 36.67)^2}{36.67} + \frac{(30 - 16.67)^2}{16.67} \\ \approx & \frac{(23.33)^2}{46.67} + \frac{(-16.67)^2}{36.67} + \frac{(-6.67)^2}{16.67} \\ & + \frac{(-16.67)^2}{46.67} + \frac{(23.33)^2}{36.67} + \frac{(-6.67)^2}{16.67} \\ & + \frac{(-6.67)^2}{46.67} + \frac{(-6.67)^2}{36.67} + \frac{(13.33)^2}{16.67} \\ \approx & 11.67 + 7.58 + 2.67 \\ & + 5.95 + 14.82 + 2.67 \\ & + 0.95 + 1.22 + 10.66 \\ \approx & 58.19 \end{align*}
+
+\subsection{Degrees of Freedom (df)}
+The shape of the Chi-square distribution depends on the degrees of freedom ($df$). For a test of independence in an $r \times c$ contingency table, the degrees of freedom are calculated as:
+$$ df = (r-1)(c-1) $$
+This represents the number of cell counts that are free to vary once the row and column totals (which are fixed by the sample) are known.
+
+In our example, $r=3$ (parties) and $c=3$ (stances). So, $df = (3-1)(3-1) = 2 \times 2 = 4$.
+
+\subsection{P-value and Decision}
+We compare our calculated $\chi^2$ statistic to a Chi-square distribution with the corresponding $df$. The \textbf{p-value} is the probability of obtaining a $\chi^2$ statistic as extreme or more extreme than the one calculated from our sample, assuming the null hypothesis ($H_0$) is true.
+$$ p\text{-value} = P(\chi^2_{df} \ge \chi^2_{\text{calculated}}) $$
+We typically use statistical software or tables to find this p-value. For $\chi^2 = 58.19$ with $df=4$, the p-value is extremely small (much less than 0.001).
+
+We compare the p-value to a pre-determined significance level ($\alpha$), usually 0.05.
+\begin{itemize}
+    \item If $p \le \alpha$, we reject $H_0$. There is statistically significant evidence of an association.
+    \item If $p > \alpha$, we fail to reject $H_0$. There is not enough evidence to conclude an association exists.
+\end{itemize}
+
+In our example, since the p-value ($< 0.001$) is much smaller than $\alpha = 0.05$, we reject $H_0$.
+
+\subsection{Conclusion}
+We conclude that there is a statistically significant association between party affiliation and stance on the proposed environmental regulation in the population from which the sample was drawn. The observed differences in support/opposition across parties are unlikely to be due to random chance alone. (Note: The test tells us *if* there is an association, but doesn't describe the nature or strength of it - we look back at the observed vs. expected counts for that).
+
+\section{Assumptions and Distributional Theory}
+
+The validity of the Chi-square test relies on several key assumptions. Violating these can lead to inaccurate p-values and potentially incorrect conclusions.
+
+\subsection{Required Assumptions}
+
+1.  \textbf{Two Categorical Variables:} Both variables measured must be categorical (nominal or ordinal). The test analyzes counts within categories.
+2.  \textbf{Independence of Observations:} Each observation (e.g., each surveyed voter) must be independent of all other observations. One person's responses should not influence another's. Each individual must contribute data to only one cell of the contingency table. This is typically ensured by random sampling.
+3.  \textbf{Adequate Expected Cell Frequencies:} This is a crucial assumption related to the underlying theory. The rule of thumb is:
+    \begin{itemize}
+        \item Most sources recommend that \textbf{all} expected cell frequencies ($E_{ij}$) should be 5 or greater.
+        \item A more lenient, commonly accepted rule is that at least 80\% of the cells should have an expected frequency ($E_{ij}$) of 5 or greater, and \textbf{no} cell should have an expected frequency less than 1.
+    \end{itemize}
+    In our example, all $E_{ij}$ were well above 5 (smallest was $\approx 16.67$), so this assumption is met. If this assumption is violated, the $\chi^2$ statistic may not accurately follow the theoretical Chi-square distribution, making the p-value unreliable. Alternatives like Fisher's Exact Test (especially for 2x2 tables) or combining categories might be considered.
+4.  \textbf{Data are Counts:} The data used in the calculation must be actual frequencies or counts. Do not use percentages or proportions directly in the formula.
+
+\subsection{Distributional Theory: Why the Chi-Square Distribution?}
+
+Why does the statistic $\sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$ follow a $\chi^2$ distribution under $H_0$? This relies on the properties of counts and their distributions for large samples.
+
+1.  \textbf{Distribution of Counts:} Under the null hypothesis of independence, the observed counts $O_{ij}$ in the cells can be thought of as random variables drawn from underlying distributions (related to the Binomial or Multinomial distributions).
+2.  \textbf{Normal Approximation:} For large samples, specifically when the \textit{expected frequencies} ($E_{ij}$) are sufficiently large, these underlying distributions of counts can be well-approximated by a Normal distribution. The expected frequency $E_{ij}$ serves as the mean ($\mu$) of this approximating Normal distribution for the count in cell $(i, j)$. The standard deviation is related to $\sqrt{E_{ij}}$. This is conceptually linked to the principles of the \textbf{Central Limit Theorem (CLT)}, which deals with the tendency towards normality for sums/averages from large samples.
+3.  \textbf{Standardization:} The term $\frac{O_{ij} - E_{ij}}{\sqrt{E_{ij}}}$ represents the deviation of the observed count from its expected value, standardized by its approximate standard deviation under $H_0$. When the Normal approximation holds (i.e., $E_{ij}$ is large), this standardized term behaves approximately like a standard normal variable, $Z \sim N(0, 1)$.
+4.  \textbf{Sum of Squares:} The theoretical Chi-square distribution with $k$ degrees of freedom ($\chi^2_k$) is defined as the distribution of the sum of $k$ independent, squared standard normal variables ($Z_1^2 + Z_2^2 + \dots + Z_k^2$).
+5.  \textbf{The Test Statistic:} Our $\chi^2$ test statistic sums the squared standardized deviations $\left(\frac{O_{ij} - E_{ij}}{\sqrt{E_{ij}}}\right)^2 = \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$ across the cells of the table. Because these terms are approximately squared standard normal variables (and are approximately independent), their sum approximates a Chi-square distribution.
+6.  \textbf{Degrees of Freedom Role:} The degrees of freedom $df = (r-1)(c-1)$ reflects the number of these squared terms that are truly independent and free to vary, given the fixed row and column totals.
+
+Therefore, the crucial assumption about \textbf{large expected cell counts} ensures that the Normal approximation to the distribution of cell counts is valid. This, in turn, justifies approximating the distribution of the test statistic using the theoretical Chi-square distribution, allowing us to calculate a meaningful p-value. If expected counts are too small, this approximation breaks down.
+
+\section{Measuring the Strength of Association: Cramér's V}
+
+While the Chi-square ($\chi^2$) test of independence tells us whether there is a \emph{statistically significant} association between two categorical variables, it does not, by itself, measure the \emph{strength} or \emph{magnitude} of that association. A significant result simply suggests the observed association is unlikely due to random chance, but the association could still be very weak, especially with large sample sizes. To quantify the effect size or practical significance of the relationship, we use measures of association.
+
+One of the most widely used measures of association for nominal categorical data in contingency tables of any size ($r \times c$) is \textbf{Cramér's V}. It is based on the Chi-square statistic and is normalized to fall within a standard range.
+
+\subsection{Calculation}
+
+Cramér's V is calculated using the following formula:
+
+$$ V = \sqrt{\frac{\chi^2}{n \times \min(r-1, c-1)}} $$
+
+Where:
+\begin{itemize}
+    \item $\chi^2$ is the calculated statistic from the Chi-square test of independence.
+    \item $n$ is the total sample size (the grand total of the frequencies in the contingency table).
+    \item $r$ is the number of rows in the contingency table.
+    \item $c$ is the number of columns in the contingency table.
+    \item $\min(r-1, c-1)$ is the smaller of the two values: (number of rows minus 1) and (number of columns minus 1). This term in the denominator ensures that V is normalized correctly so that its maximum possible value is 1, regardless of the table's dimensions.
+\end{itemize}
+
+\subsection{Interpretation}
+
+Cramér's V provides a value ranging from 0 to 1, which indicates the strength of the association between the two variables:
+
+\begin{itemize}
+    \item \textbf{V = 0:} This indicates absolutely no association between the variables. The variables are completely independent.
+    \item \textbf{V = 1:} This indicates a perfect association. Knowing the category of one variable allows you to perfectly predict the category of the other variable.
+    \item \textbf{Values between 0 and 1:} These represent the degree of association. The closer V is to 1, the stronger the relationship between the two categorical variables. Conversely, values closer to 0 indicate a weaker association.
+\end{itemize}
+
+While context is always important, general guidelines (similar to Cohen's effect size benchmarks) are sometimes used for interpretation:
+\begin{itemize}
+    \item Values around 0.1 might suggest a weak association.
+    \item Values around 0.3 might suggest a moderate association.
+    \item Values around 0.5 or higher might suggest a strong association.
+\end{itemize}
+These benchmarks should be applied cautiously and with consideration for the specific field of study and research context.
+
+\textbf{Note:} For the special case of a 2x2 contingency table, Cramér's V is equivalent to the absolute value of the Phi coefficient ($\phi$).
+
+\subsection{Example Revisited}
+
+In our previous political science example (Party Affiliation vs. Regulation Stance), we had:
+\begin{itemize}
+    \item $\chi^2 \approx 58.19$
+    \item $n = 300$
+    \item $r = 3$, $c = 3$
+    \item $\min(r-1, c-1) = \min(3-1, 3-1) = \min(2, 2) = 2$
+\end{itemize}
+
+Calculating Cramér's V:
+$$ V = \sqrt{\frac{58.19}{300 \times 2}} = \sqrt{\frac{58.19}{600}} \approx \sqrt{0.09698} \approx 0.311 $$
+This value suggests a moderate association between party affiliation and stance on the environmental regulation in our sample data.
+
+In conclusion, Cramér's V is a valuable tool that complements the Chi-square test by providing a standardized measure of the strength of the association, helping to assess the practical relevance of the findings.
+
+
+\end{document}
+
+To use this:
+ * Save the code above in a plain text file named something like chi_square_lecture.tex.
+ * You need a LaTeX distribution installed on your computer (like TeX Live, MiKTeX, or MacTeX).
+ * Compile the .tex file using a LaTeX compiler (e.g., run pdflatex chi_square_lecture.tex in your terminal or use a LaTeX editor like TeXstudio, Overleaf). This will generate a PDF file with the formatted lecture notes.
+ 

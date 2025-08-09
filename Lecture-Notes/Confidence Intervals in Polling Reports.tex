@@ -1,0 +1,236 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=1in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\title{Follow-Along Activity: Understanding Polling Reports with Confidence Intervals}
+\author{POL201 - Introduction to Statistics}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Context}
+Before we delve into the specifics of any particular poll, it's crucial to understand how pollsters generally calculate and report their Margin of Error (MoE). The MoE quantifies the sampling uncertainty around a survey estimate. As often discussed, it is calculated as:
+\[ MoE = z^* \times SE_{real} \]
+where $z^*$ is the critical value from the standard normal distribution corresponding to the desired confidence level (e.g., $z^* \approx 1.96$ for 95\% confidence), and $SE_{real}$ is the actual standard error of the estimate from the survey.
+
+Many professional polls utilize complex survey designs rather than relying on a simple random sample (SRS). These designs can include stratification, clustering, and weighting adjustments to ensure the sample accurately reflects the population. Such complexities mean that the standard error of an estimate ($SE_{real}$) often differs from the standard error that would be calculated assuming an SRS:
+$$SE_{SRS} = \sqrt{p(1-p)/n}$$
+Pollsters account for this using the Design Effect (DEFF). The DEFF is a measure of how the survey design affects the variance of estimates compared to an SRS of the same size. The relationship is:
+\[ SE_{real} = \sqrt{DEFF} \times SE_{SRS} \]
+A $DEFF > 1$ indicates that the complex design has increased the variance (and thus the standard error and MoE) compared to what would be expected from an SRS of the same sample size.
+
+Furthermore, the $SE_{SRS}$ component (and by extension $SE_{real}$ and MoE) depends on the underlying proportion $p$ being estimated. Since a poll typically asks many questions, each with a different true $p$, pollsters need a way to report a single, generally applicable MoE. To do this conservatively, they often calculate the MoE assuming $p=0.5$. This value of $p$ maximizes the product $p(1-p)$ (which is $0.25$ at $p=0.5$), thereby maximizing the $SE_{SRS}$ for any given $n$. This results in the largest, or most conservative, MoE. This reported MoE provides an upper bound for the sampling error for most proportions estimated from the poll (specifically, those near 50\%; for proportions much larger or smaller than 50\%, the actual MoE would be smaller).
+
+Now, let's consider the specific example for this activity. This activity is based on a CNN article reporting results from a poll conducted by SSRS between March 6 and March 9.\footnote{For reference, see the original article at: \href{https://www.cnn.com/2025/03/16/politics/cnn-poll-democrats/index.html}{CNN Poll: Democrats and Republican Agenda}}
+
+The article states:
+\begin{quote}
+``\emph{Democrats and Democratic-aligned independents say, 57\% to 42\%, that Democrats should mainly work to stop the Republican agenda, rather than working with the GOP majority to incorporate Democratic ideas into legislation}.''
+\end{quote}
+It's important to understand how pollsters often present such findings. Language like ``X\% to Y\%" typically shows the distribution of responses across two primary, often opposing, categories concerning a specific question. For instance, X\% might represent those who support one course of action, while Y\% represents those who support an alternative. The sum (X\% + Y\%) may be less than 100\% because some respondents might be `unsure,` 'have no opinion,' or their responses fall into other categories not explicitly mentioned in the headline figure. In this case, 57\% favor the stated approach, and 42\% favor the alternative, with $57\% + 42\% = 99\%$, implying about 1\% were undecided or gave other responses. This ``X\% to Y\%" phrasing is a comparison of two distinct proportions, not a single confidence interval.\footnote{In other words, 57\% of Democrats and Democratic-aligned independents agree that Democrats should mainly work to stop the Republican agenda, rather than working with the GOP majority to incorporate Democratic ideas into legislation, while 42\% hold the opposing view that Democrats should mainly work with the GOP majority.}
+
+The article also states:
+\begin{quote}
+``\emph{The CNN poll was conducted by SSRS from March 6--9 among a random national sample of 1,206 U.S. adults drawn from a probability-based panel. Surveys were administered either online or by telephone with a live interviewer. Results among all adults have a margin of sampling error of $\pm 3.3$ percentage points. Results among the 504 Democrats or Democratic-leaning independents have a margin of sampling error of $\pm 5.0$ percentage points}.''
+\end{quote}
+
+We will use this real-world example to practice interpreting point estimates, confidence intervals (CIs), and margins of error (MoE).
+
+\section*{Questions}
+
+\begin{enumerate}
+    \item \textbf{What are the sample sizes mentioned and to which groups do they correspond?}
+    
+    \textit{Hint: Pay attention to both the total sample and the subgroup being analyzed.}
+    
+    \item \textbf{Given the reported MoE of $\pm 3.3\%$ for the full sample (n=1206), and assuming a 95\% confidence level ($z^* \approx 1.96$):}
+    \begin{itemize}
+        \item[a)] \textbf{What is the implied actual standard error ($SE_{real}(\hat{p})$) based on the reported MoE?}\footnote{\emph{Hint}: Recall $MoE = z^* \times SE_{real}(\hat{p})$. Replace the given values ($MoE=0.033$, $z^*=1.96$) and solve for $SE_{real}(\hat{p})$.}
+        \item[b)] \textbf{Calculate the standard error assuming a Simple Random Sample ($SE_{SRS}(\hat{p})$) for the full sample size, using $\hat{p}=0.5$.}
+        \item[c)] \textbf{Based on $SE_{real}(\hat{p})$ from part (a) and $SE_{SRS}(\hat{p}=0.5)$ from part (b), what is the implied Design Effect (DEFF) for the full sample?}
+    \end{itemize}
+
+    \item \textbf{Why do pollsters often calculate the reported MoE assuming a sample proportion $\hat{p} = 0.5$ (when using $SE_{SRS}$ as a base)?}
+    
+    \textit{Hint: Consider how $SE_{SRS}(\hat{p})$ depends on $\hat{p}$, and identify the value of $\hat{p}$ that maximizes this standard error component.}
+
+    \item \textbf{Why does the margin of error increase to $\pm 5.0\%$ when focusing only on the subgroup of ``Democrats or Democratic-leaning independents''?}
+    
+    \textit{Hint: Reflect on the formula for $SE(\hat{p})$ and the effect of sample size $n$ on the standard error, and potentially DEFF differences between subgroups.}
+
+    \item \textbf{For the subgroup of Democrats or Democratic-leaning independents, a margin of error of $\pm 5.0\%$ is reported. Assuming this corresponds to a 95\% confidence level ($z^* = 1.96$):}
+    \begin{itemize}
+        \item[a)] What is the implied $SE_{real}(\hat{p})$? (\emph{Hint}: Use the same method applied in question 2(a) to isolate the standard error.)
+        \item[b)] If we calculate $SE_{SRS}(\hat{p})$ for this subgroup size ($n=504$) assuming $\hat{p}=0.5$, what value do we get?
+        \item[c)] Based on these, what is the implied Design Effect (DEFF) for this subgroup?
+    \end{itemize}
+    
+    \item \textbf{The article mentions that among Democrats or Democratic-leaning independents, 57\% believe Democrats should mainly work to stop the Republican agenda, while 42\% believe Democrats should work with the GOP majority to incorporate Democratic ideas into legislation.}
+    \begin{itemize}
+        \item[a)] What are the point estimates ($\hat{p}_{stop}$ and $\hat{p}_{work}$) for these two distinct viewpoints within this subgroup?
+        \item[b)] Using the reported margin of error of $\pm 5.0\%$ for this subgroup, construct separate 95\% confidence intervals for the true proportion of this subgroup holding the `stop the Republican agenda' stance and for the true proportion holding the `work with GOP' stance. (Assume the stated $\pm 5.0\%$ MoE is appropriate for constructing these 95\% CIs).
+        \item[c)] Interpret these two confidence intervals. Do they overlap? What does this suggest about the division of opinion within this subgroup regarding these two approaches?
+    \end{itemize}
+
+    \item \textbf{Based on your analysis in Question 6, what is the substantive political conclusion regarding the views of Democrats and Democratic-leaning independents on how their party should engage with the Republican agenda? What are the implications for Democratic party leadership?}
+    
+    \textit{Hint: Focus on what the point estimates and the constructed confidence intervals tell us about the certainty and significance of these differing opinions.}
+\end{enumerate}
+
+
+\section*{Reminders and Formulas}
+\begin{itemize}
+    \item \textbf{Standard Error (SE) and Margin of Error (MoE) for a Proportion $\hat{p}$:}
+    \begin{itemize}
+        \item Standard Error assuming Simple Random Sample (SRS):
+        \[ SE_{SRS}(\hat{p}) = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
+        \item Actual Standard Error in complex surveys ($SE_{real}$), considering Design Effect (DEFF):
+        \[ SE_{real}(\hat{p}) = \sqrt{DEFF} \times SE_{SRS}(\hat{p}) \]
+        \item Margin of Error (MoE):
+        \[ MoE = z^* \times SE_{real}(\hat{p}) \]
+        where $z^*$ is the critical value for the desired confidence level (e.g., $1.96$ for 95\%).
+        \item Pollsters often report a single MoE for a poll. This is typically a conservative estimate, often calculated using $p=0.5$ (which maximizes $SE_{SRS}$) and an overall DEFF for the survey or subgroup, or an empirically derived $SE_{real}$. This means the provided MoE in a poll report is usually $z^* \times SE_{real}(p=0.5 \text{ based } SE_{SRS})$.
+    \end{itemize}
+    \item \textbf{Confidence Interval (CI) for a Proportion $p$:}
+    \[ CI = \left[ \hat{p} - MoE, \, \hat{p} + MoE \right] \]
+    If using a specific $\hat{p}$ and its calculated $SE_{real}(\hat{p})$:
+    \[ CI = \left[ \hat{p} - z^* \times SE_{real}(\hat{p}), \, \hat{p} + z^* \times SE_{real}(\hat{p}) \right] \]
+    When a general MoE from a poll report is used (which is often based on $p=0.5$ for its $SE_{SRS}$ component), it provides a conservative (potentially wider) interval if the actual $\hat{p}$ is far from 0.5. However, it's standard practice to use the reported MoE directly for constructing CIs for specific proportions from that poll/subgroup.
+    \item The width of a CI is $2 \times MoE$.
+    \item The point estimate $\hat{p}$ is the center of its confidence interval.
+\end{itemize}
+
+\hrule
+\newpage
+\section*{Solutions}
+
+\begin{enumerate}
+
+\item \textbf{Sample Sizes}
+
+The article reports the following sample sizes:
+\begin{itemize}
+\item Full sample: 1,206 U.S. adults
+\item Subgroup: 504 Democrats or Democratic-leaning independents
+\end{itemize}
+
+\item \textbf{Implied $SE_{real}(\hat{p})$, $SE_{SRS}(\hat{p}=0.5)$, and Design Effect (DEFF) for the Full Sample}
+
+The margin of error (MoE) for the full sample ($n=1206$) is given as $\pm 3.3\% = \pm 0.033$.
+We assume a 95\% confidence level, so $z^* = 1.96$.
+
+\begin{itemize}
+    \item[a)] The implied actual standard error ($SE_{real}(\hat{p})$) is:
+    \[
+    SE_{real}(\hat{p}) = \frac{MoE}{z^*} = \frac{0.033}{1.96} \approx 0.0168367 \approx 0.01684
+    \]
+    This is the effective standard error used by the pollster for reporting this MoE.
+
+    \item[b)] The standard error assuming a Simple Random Sample (SRS) for the full sample size ($n=1206$) and using $\hat{p}=0.5$ is:
+    \[
+    SE_{SRS}(\hat{p}=0.5) = \sqrt{\frac{0.5 \times (1-0.5)}{1206}} = \sqrt{\frac{0.25}{1206}} \approx \sqrt{0.0002072968} \approx 0.0143978 \approx 0.01440
+    \]
+
+    \item[c)] The Design Effect (DEFF) is found using $SE_{real}(\hat{p}) = \sqrt{DEFF} \times SE_{SRS}(\hat{p})$.
+    \[
+    \sqrt{DEFF} = \frac{SE_{real}(\hat{p})}{SE_{SRS}(\hat{p}=0.5)} \approx \frac{0.0168367}{0.0143978} \approx 1.16939
+    \]
+    Therefore, the implied Design Effect for the full sample is:
+    \[
+    DEFF = (\sqrt{DEFF})^2 \approx (1.16939)^2 \approx 1.36747 \approx 1.367
+    \]
+    A DEFF of approximately 1.367 means that the variance of estimates for the full sample is about 36.7\% larger than what would be expected from an SRS of 1206 individuals. This reflects the impact of the complex survey design.
+\end{itemize}
+
+
+\item \textbf{Why Assume $\hat{p} = 0.5$ for Reported MoE (when using $SE_{SRS}$ as a base)?}
+
+Pollsters often assume $\hat{p} = 0.5$ when calculating the $SE_{SRS}$ component of a general margin of error because the term $\hat{p}(1-\hat{p})$ in the $SE_{SRS}(\hat{p}) = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$ formula is maximized when $\hat{p} = 0.5$. At $\hat{p}=0.5$, $\hat{p}(1-\hat{p}) = 0.25$, which is its maximum possible value. This results in the largest possible $SE_{SRS}$ for a given sample size $n$. When this maximal $SE_{SRS}$ is then potentially multiplied by $\sqrt{DEFF}$ to get $SE_{real}$, and then by $z^*$ to get the MoE, it ensures the reported MoE is conservative (i.e., the widest likely error margin) and can be generally applied to most questions in the poll, especially those where the proportion might be around 50\%.
+
+\item \textbf{Why is the MoE Larger for the Subgroup?}
+
+The margin of error increases from $\pm 3.3\%$ for the full sample ($n=1206$) to $\pm 5.0\%$ for the subgroup of Democrats/Democratic-leaning independents ($n=504$) for two primary reasons:
+\begin{itemize}
+    \item \textbf{Smaller Sample Size:} The most significant factor is the smaller sample size ($n=504$ vs. $n=1206$). The standard error ($SE_{SRS}$ component) is inversely related to the square root of the sample size ($SE_{SRS} \propto 1/\sqrt{n}$). A smaller $n$ leads to a larger $SE_{SRS}$, and consequently a larger $SE_{real}$ and MoE, assuming other factors are similar.
+    \item \textbf{Potentially Different Design Effect (DEFF):} Subgroups within a complex survey can have different design effects. Weighting and other design features might impact the variance of estimates for a specific subgroup differently than for the overall sample. If the DEFF for the Democrat subgroup is larger than for the total sample (or larger than 1, contributing to the $SE_{real}$), this would also contribute to a larger MoE for the subgroup.
+\end{itemize}
+
+\item \textbf{Implied $SE_{real}(\hat{p})$, $SE_{SRS}(\hat{p}=0.5)$, and Design Effect (DEFF) for the Democrats Subgroup}
+
+The margin of error for the subgroup of Democrats or Democratic-leaning independents ($n=504$) is reported as $\pm 5.0\% = \pm 0.05$. This MoE is for a 95\% confidence level, so $z^* = 1.96$.
+
+\begin{itemize}
+    \item[a)] The implied actual standard error ($SE_{real}(\hat{p})$) used by the pollster for this MoE is:
+    \[
+    SE_{real}(\hat{p}) = \frac{MoE}{z^*} = \frac{0.05}{1.96} \approx 0.0255102 \approx 0.02551
+    \]
+    \item[b)] Now, let's calculate the standard error assuming a Simple Random Sample (SRS) for this subgroup size ($n=504$) and assuming $\hat{p}=0.5$ (for the most conservative $SE_{SRS}$):
+    \[
+    SE_{SRS}(\hat{p}=0.5) = \sqrt{\frac{0.5 \times (1-0.5)}{504}} = \sqrt{\frac{0.25}{504}} \approx \sqrt{0.0004960317} \approx 0.0222717 \approx 0.02227
+    \]
+    \item[c)] The Design Effect (DEFF) accounts for the difference between $SE_{real}$ and $SE_{SRS}$. Using the relationship $SE_{real}(\hat{p}) = \sqrt{DEFF} \times SE_{SRS}(\hat{p})$:
+    \[
+    \sqrt{DEFF} = \frac{SE_{real}(\hat{p})}{SE_{SRS}(\hat{p}=0.5)} \approx \frac{0.0255102}{0.0222717} \approx 1.14540
+    \]
+    Therefore, the implied Design Effect is:
+    \[
+    DEFF = (\sqrt{DEFF})^2 \approx (1.14540)^2 \approx 1.31194 \approx 1.312
+    \]
+    A DEFF of approximately 1.312 means that the variance of estimates for this subgroup is about 31.2\% larger than what would be expected from an SRS of 504 individuals. This is a plausible value for a complex national survey, reflecting the impact of weighting, stratification, and clustering on the precision of estimates for this subgroup.
+\end{itemize}
+For subsequent questions, we use the pollster's reported MoE of $\pm 5.0\%$, which incorporates this $SE_{real} \approx 0.02551$.
+
+
+\item \textbf{Analyzing the Two Viewpoints within the Democrat Subgroup}
+
+\begin{itemize}
+    \item[a)] \textbf{Point Estimates:}
+    The article states that among Democrats or Democratic-leaning independents:
+    \begin{itemize}
+        \item 57\% believe Democrats should mainly work to stop the Republican agenda. So, $\hat{p}_{stop} = 0.57$.
+        \item 42\% believe Democrats should work with the GOP majority to incorporate Democratic ideas. So, $\hat{p}_{work} = 0.42$.
+    \end{itemize}
+    (The remaining $100\% - 57\% - 42\% = 1\%$ likely represent undecided, other opinions, or no answer.)
+
+    \item[b)] \textbf{95\% Confidence Intervals:}
+    We are given a margin of error of $\pm 5.0\%$ ($\pm 0.05$) for results from the subgroup of 504 Democrats or Democratic-leaning independents, applicable for a 95\% confidence level.
+
+    For the proportion supporting the 'stop the Republican agenda' stance ($\hat{p}_{stop} = 0.57$):
+    \[
+    CI_{stop} = [\hat{p}_{stop} - MoE, \, \hat{p}_{stop} + MoE] = [0.57 - 0.05, \, 0.57 + 0.05] = [0.52, \, 0.62]
+    \]
+    So, the 95\% CI is 52\% to 62\%.
+
+    For the proportion supporting the 'work with GOP' stance ($\hat{p}_{work} = 0.42$):
+    \[
+    CI_{work} = [\hat{p}_{work} - MoE, \, \hat{p}_{work} + MoE] = [0.42 - 0.05, \, 0.42 + 0.05] = [0.37, \, 0.47]
+    \]
+    So, the 95\% CI is 37\% to 47\%.
+
+    \item[c)] \textbf{Interpretation and Comparison:}
+    The 95\% confidence interval for the proportion of Democrats and Democratic-leaning independents who believe Democrats should mainly work to stop the Republican agenda is [52\%, 62\%]. This means we are 95\% confident that the true proportion of this subgroup holding this view is between 52\% and 62\%.
+
+    The 95\% confidence interval for the proportion of this subgroup who believe Democrats should work with the GOP majority is [37\%, 47\%]. This means we are 95\% confident that the true proportion of this subgroup holding this alternative view is between 37\% and 47\%.
+
+    These two confidence intervals, [0.52, 0.62] and [0.37, 0.47], do not overlap. The upper bound of the CI for 'work with GOP' (0.47) is less than the lower bound of the CI for 'stop GOP' (0.52). This lack of overlap suggests that there is a statistically significant difference at the 95\% confidence level between the proportion of this subgroup favoring the 'stop GOP' strategy and the proportion favoring the 'work with GOP' strategy. A significantly larger proportion appears to favor stopping the Republican agenda over working with the GOP.
+\end{itemize}
+
+\item \textbf{Substantive Political Conclusion}
+
+Based on the analysis in Question 6:
+\begin{itemize}
+    \item The point estimate for Democrats and Democratic-leaning independents who believe their party should mainly work to stop the Republican agenda is 57\%.
+    \item The point estimate for those in this subgroup who believe their party should work with the GOP majority to incorporate Democratic ideas is 42\%.
+\end{itemize}
+The 95\% confidence interval for the 'stop GOP' stance is [52\%, 62\%], and for the 'work with GOP' stance is [37\%, 47\%]. Since these intervals do not overlap, and the entire 'stop GOP' interval is above the 'work with GOP' interval, we can be reasonably confident (specifically, 95\% confident for each proportion estimate) that a majority of this subgroup prefers the more confrontational approach over the collaborative one. The data suggest that the true proportion favoring stopping the Republican agenda is likely between 52\% and 62\%, while the true proportion favoring working with the GOP is likely between 37\% and 47\%.
+
+Politically, this indicates a stronger mandate from their base (Democrats and Democratic-leaning independents) for Democratic leaders to prioritize opposition to the Republican agenda rather than seeking bipartisan compromise that incorporates Democratic ideas into GOP legislation. While there is still a substantial portion (estimated around 42\%, with a CI of [37\%, 47\%]) favoring cooperation, the prevailing sentiment, supported by statistically significant evidence, leans towards a more adversarial stance. Democratic leadership might infer that strategies perceived as too conciliatory could be unpopular with a significant majority of their supporters. However, they also need to consider the segment that does favor working with the GOP, indicating that the desire for opposition is not monolithic, though it is the dominant view in this subgroup according to the poll.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{margin=1in}
+\setstretch{1.25}
+
+\title{Understanding Hypothesis Testing Through Popperian Epistemology}
+\author{POL201: Introduction to Statistical Methods in Political Science}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Introduction to Epistemology}
+\textbf{Epistemology} is the branch of philosophy concerned with the nature and scope of knowledge. It explores questions such as: What is knowledge? How is knowledge acquired? What do people know, and how do they know it?
+
+Understanding epistemology is crucial for statisticians and political scientists alike because it frames how we justify our beliefs and claims about the world. In empirical research, especially in the social sciences, we seek evidence that supports or challenges our beliefs. This is precisely where hypothesis testing and epistemology intersect.
+
+\section*{2. The Goal of Hypothesis Testing}
+The central aim of hypothesis testing in statistics is to evaluate claims or assumptions (hypotheses) about a population based on sample data. These tests allow researchers to use evidence to decide whether to reject or retain a prespecified hypothesis.
+
+For example, we might test the hypothesis that a new public policy affects voter turnout. We do not ``prove'' the policy works or fails—instead, we determine whether the evidence is strong enough to reject the hypothesis of no effect.
+
+\section*{3. Errors in Hypothesis Testing}
+In statistical hypothesis testing, we may draw incorrect conclusions due to the randomness of samples. Two types of errors are commonly identified:
+
+\begin{itemize}
+  \item \textbf{Type I Error}: Rejecting the null hypothesis when it is actually true (a false positive).
+  \item \textbf{Type II Error}: Failing to reject the null hypothesis when it is actually false (a false negative).
+\end{itemize}
+
+\subsection*{3.1 Understanding $\alpha$, $\beta$, and Statistical Power}
+
+In hypothesis testing, the significance level, denoted by $\alpha$, is the probability of making a \textbf{Type I error}. This occurs when we mistakenly reject the null hypothesis ($H_0$) even though it is actually true. Researchers choose $\alpha$ before collecting data—common values are 0.05 (5\%) or 0.01 (1\%). These choices reflect how much risk we are willing to tolerate in making this kind of error.
+
+When we say we ``tolerate'' a certain level of risk, we mean that we are drawing a clear line: if the evidence we observe in our sample is too different from what we would expect to see if the null hypothesis were true, we decide the difference is too large to dismiss as random chance. The $\alpha$ level defines that boundary. If the data fall beyond it, we treat the result as inconsistent with the null hypothesis and decide to reject it. This is not a declaration of absolute truth, but a rule-based judgment that our evidence has crossed a threshold where continuing to assume the null is no longer reasonable.
+
+Importantly, even when the null hypothesis \textit{is} true, we still expect to see some variation in sample outcomes just by random chance. The logic of hypothesis testing tells us that if we were to repeat the study many times, then in roughly $\alpha$ proportion of those repetitions, the sample result would fall in the most extreme $\alpha$ fraction of possible outcomes under the null—simply due to randomness. So when we do reject the null hypothesis, we acknowledge that we might be observing one of those rare, extreme cases. In that sense, we are willing to \textit{tolerate} the risk of making a wrong call $\alpha$ percent of the time, in exchange for a clear and systematic rule for making decisions.
+
+\textbf{Example 1: Voter ID Laws}  
+Suppose a political scientist wants to evaluate whether a new voter ID law reduces voter turnout. The null hypothesis ($H_0$) is that the law has no effect on turnout. If the researcher concludes that the law \textit{does} reduce turnout—even though it actually does not—they have made a Type I error. If $\alpha$ was set to 0.05, this means the researcher was willing to accept a 5\% chance of reaching this incorrect conclusion.
+
+Complementing this, $\beta$ is the probability of making a \textbf{Type II error}, which occurs when we fail to reject the null hypothesis even though it is false. In other words, we miss a real effect. The \textbf{power of a hypothesis test} is defined as $1 - \beta$, and it representing the likelihood of correctly identifying an effect when one actually exists.\footnote{So, the power of the test is the probability of rejecting the null hypothesis when it is actually false.} The power of a test is always a function of a) The predefined chosen significance level, b) the sample size, and c) how large is true effect we would like to detect. By true effect we mean the difference between the population parameter assuming the null hypothesis is true versus whatever other population parameter we might speculate is the actual true. 
+
+\textbf{Example: Media and Polarization}  
+Suppose a researcher is investigating whether exposure to partisan media increases political polarization. If the media truly has an effect, but the study fails to detect it, that would be a Type II error. A study with high statistical power is more likely to catch this kind of real effect, reducing the risk of a missed conclusion.
+
+Together, $\alpha$ and $\beta$ reflect the trade-offs in hypothesis testing. Being too cautious about one kind of error can increase the risk of the other. Good research design aims to find a responsible balance between these risks.
+
+
+\section*{4. Procedure of Hypothesis Testing}
+
+Hypothesis testing follows a step-by-step process that helps researchers decide whether the patterns they observe in their data are strong enough to challenge an initial assumption (the null hypothesis). This process allows us to move from sample evidence to principled decision-making.
+
+\begin{enumerate}
+  \item \textbf{Formulate Hypotheses}
+  
+  Every hypothesis test begins with two competing claims:
+  
+  \begin{itemize}
+    \item The \textbf{null hypothesis} ($H_0$) is the starting assumption—usually that there is no effect, no difference, or no relationship. It represents a skeptical or neutral position.
+    \item The \textbf{alternative hypothesis} ($H_A$) is what we suspect might be true instead. It represents a meaningful change, difference, or association we want to test for.
+  \end{itemize}
+
+  For example, if we're investigating whether a new campaign finance law changes contribution levels, $H_0$ might state that the law has no impact, while $H_A$ would claim that the law does have an impact.
+
+  This setup is essential: we are not trying to prove the alternative; we are testing whether the data give us good reason to reject the null.
+
+  \item \textbf{Choose a Significance Level ($\alpha$)}
+
+  The significance level $\alpha$ defines how cautious we want to be when deciding to reject the null hypothesis. It sets the threshold for what counts as “too unlikely” under the assumption that $H_0$ is true.
+
+  For example, if we choose $\alpha = 0.05$, we're saying: “If the evidence from our sample would only happen 5\% of the time or less under the null, that’s unusual enough for me to reject $H_0$.” We are tolerating a 5\% chance of being wrong if we do reject the null.
+
+  This step is about setting the ground rules in advance—before seeing the data—to avoid biased decisions.
+
+  \item \textbf{Define a Decision Rule Based on the Expected Range of Outcomes}
+
+  We determine how far from the expected value our sample result would have to be, under $H_0$, for us to consider it ``too far"—that is, inconsistent with the null.
+
+  While we haven't introduced the tools to compute this formally yet, the idea is simple: imagine what kinds of results we would expect if the null hypothesis were true. Now ask: is our sample result far enough from that expectation to raise serious doubt?
+
+  Think of this as establishing the outer edge of a ``safe zone." If the sample outcome lands outside this zone, we conclude it’s not consistent with our assumption.
+
+  \item \textbf{Operationalize the Test Using a Test Statistic}
+
+  To make this decision concrete, we calculate a \textbf{test statistic}. This is a standardized summary of our sample data that tells us how far our observed result is from what we would expect under $H_0$, measured in units that account for natural variability.
+
+  Conceptually, it works like this: we take the difference between the sample statistic (like a sample mean or proportion) and the value we would expect under the null hypothesis, and then divide that by the expected standard error assuming the null hypothesis—how much variation we’d expect in that statistic just from sampling under the null hypothesis assumption.
+
+  \vspace{0.5em}
+  \textit{Intuitively:} the test statistic answers the question, “How far is our sample result from the null expectation, once we take into account how much random variation we would expect from sampling alone?”
+
+  The test statistic becomes the tool we use to assess whether the observed result is a plausible outcome under the null, or whether it crosses the boundary we defined earlier.
+
+  \item \textbf{Collect and Summarize Data}
+
+  With our hypotheses and decision rule in place, we now collect our sample and examine the outcome. We compute a summary of the data that reflects the pattern we’re interested in—such as a difference in means, a proportion, or a measure of association.
+
+  This summary becomes the basis for computing the test statistic and evaluating how consistent our data are with the null hypothesis.
+
+  \item \textbf{Make a Decision}
+
+  Now we compare our test statistic to the threshold implied by our chosen significance level. If the result lies within the expected range under the null, we \textbf{fail to reject} $H_0$—we don’t have strong enough evidence to move away from our initial assumption. If the result is far enough outside the expected range, we \textbf{reject} $H_0$ in favor of $H_A$.
+
+  It is crucial to remember: rejecting $H_0$ doesn’t mean we’ve proven $H_A$ is true—it means that the data we observed are unlikely to have occurred under $H_0$, and so we take a step away from that assumption. Likewise, failing to reject $H_0$ doesn’t prove it's true—it may just be that we don’t have enough evidence yet.
+
+\end{enumerate}
+
+
+\section*{5. The Popperian Epistemology Perspective}
+According to Karl Popper, scientific knowledge advances not by proving theories true, but by subjecting them to rigorous attempts at falsification. Popper’s view emphasizes:
+
+\begin{itemize}
+  \item \textbf{Falsifiability}: A claim must be testable and potentially refutable.
+  \item \textbf{Asymmetry of Evidence}: No amount of positive evidence can conclusively verify a universal claim, but a single counterexample can falsify it.
+  \item \textbf{Tentativeness of Knowledge}: Scientific knowledge is provisional, always subject to revision in light of new evidence.
+\end{itemize}
+
+This directly connects to hypothesis testing. We adopt a skeptical position (the null hypothesis) and seek evidence strong enough to reject it—not to ``prove'' the alternative, but to show the null cannot reasonably account for the data.
+
+\subsection*{Connecting Concepts}
+In Popperian terms:
+\begin{itemize}
+  \item The null hypothesis ($H_0$) stands in as a conjecture to be tested.
+  \item The act of rejecting $H_0$ is akin to falsifying a theoretical claim.
+  \item The persistence of $H_0$ across multiple studies increases its robustness, but never ``proves'' it true.
+\end{itemize}
+
+\section*{6. Summary}
+Hypothesis testing operationalizes Popper’s philosophy by providing a structured method to challenge assumptions. As researchers, our role is not to confirm beliefs but to challenge them with data, embracing uncertainty and the limits of what we can know.
+
+\end{document}

@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{tikz} % Added for drawing the diagram
+\usetikzlibrary{calc}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\title{Connecting Sample Variance to Euclidean Distance}
+\author{POL201.01}
+\date{}
+\maketitle
+
+\section{The Pythagorean Theorem in Two Dimensions}
+
+Before we explore the connection between variance and distance, let’s recall the classic Pythagorean theorem. 
+
+In a 2D plane, given a right triangle with legs of lengths \(a\) and \(b\), and a hypotenuse of length \(c\), the Pythagorean theorem states:
+
+\begin{equation}
+    c^2 = a^2 + b^2.
+\end{equation}
+
+This theorem is the foundation of the Euclidean distance formula, which measures the straight-line distance between two points. Specifically, if we have two points \(A = (x_1, x_2)\) and \(B = (y_1, y_2)\) their Euclidean distance is given by:
+
+\begin{equation}
+    d(A, B) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 }.
+\end{equation}
+
+%------------------- Begin TikZ Diagram -------------------
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  % Draw coordinate axes
+  \draw[->] (-0.5,0) -- (5,0) node[right] {$x$};
+  \draw[->] (0,-0.5) -- (0,5) node[above] {$y$};
+  
+  % Define example points A and B (coordinates are chosen for illustration)
+  \coordinate (A) at (1.5,3.5);
+  \coordinate (B) at (4,1);
+  
+  % Draw points A and B
+  \filldraw[blue] (A) circle (2pt) node[above left] {$A(x_1,x_2)$};
+  \filldraw[red] (B) circle (2pt) node[below right] {$B(y_1,y_2)$};
+  
+  % Compute the projection point C to form a right triangle.
+  % Here C has the x-coordinate of B and the y-coordinate of A.
+  \coordinate (C) at (4,3.5);
+  
+  % Draw the legs of the triangle (dashed lines)
+  \draw[dashed] (A) -- (C) -- (B);
+  
+  % Draw the hypotenuse (thick line)
+  \draw[thick] (A) -- (B) node[midway, above, sloped] {$d(A,B)$};
+  
+  % Draw a small square at point C to denote the right angle
+  \draw (C) rectangle ++(-0.3,-0.3);
+  
+  % Optionally, label the lengths of the legs (absolute differences)
+  \node at ($(A)!0.5!(C)$) [above] {$|x_1-y_1|$};
+  \node at ($(C)!0.5!(B)$) [right] {$|x_2-y_2|$};
+\end{tikzpicture}
+\end{center}
+%------------------- End TikZ Diagram -------------------
+
+\section{Extending to Higher Dimensions}
+
+In a space with multiple points, the Euclidean distance between two points \(A = (x_1, x_2, \dots, x_n)\) and \(B = (y_1, y_2, \dots, y_n)\) is given by:
+
+\begin{equation}
+    d(A, B) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \dots + (x_n - y_n)^2}.
+\end{equation}
+
+This formula generalizes the Pythagorean theorem to more than two dimensions.
+
+\section{Connecting Distance to Sample Variance}
+
+Now, consider a set of data points \(X_1, X_2, \dots, X_n\). We compare these to another point where each coordinate equals the sample mean:
+
+\begin{equation}
+    \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i.
+\end{equation}
+
+The Euclidean distance between the point \((X_1, X_2, \dots, X_n)\) and the point \((\bar{X}, \bar{X}, \dots, \bar{X})\) is:
+
+\begin{equation}
+    d = \sqrt{(X_1 - \bar{X})^2 + (X_2 - \bar{X})^2 + \dots + (X_n - \bar{X})^2}.
+\end{equation}
+
+Squaring both sides gives:
+
+\begin{equation}
+    d^2 = (X_1 - \bar{X})^2 + (X_2 - \bar{X})^2 + \dots + (X_n - \bar{X})^2 = \sum_{i=1}^{n} (X_i - \bar{X})^2.
+\end{equation}
+
+The sample variance is defined as:
+
+\begin{equation}
+    s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2. \\ 
+\end{equation}
+
+Comparing with our squared distance formula, we see that:
+
+\begin{equation}
+    s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2 =  \frac{d^2}{n-1}.
+\end{equation}
+
+\section{Extending the Intuition to the Sample Standard Deviation}
+
+Now we can take the square root on both sides of the equation to get the sample standard deviation.
+
+\begin{equation}
+    s = \sqrt{\frac{d^2}{n-1}} = \frac{d}{\sqrt{n-1}}  .
+\end{equation}
+
+Geometrically, this indicates that the sample standard deviation represents the typical Euclidean distance of the data points from the sample mean (after adjusting for the sample size), providing a direct measure of spread in the original units. This provides an intuitive geometric interpretation of variance: \emph{it measures the spread of points around their average in terms of squared distance}. 
+
+Moreover, since the sample standard deviation is the square root of the variance, it directly represents the typical Euclidean distance from the sample mean, offering an easily interpretable measure of dispersion in the same units as the data.
+
+
+\section*{Bessel's Correction}
+
+
+Bessel's correction is a factor used to adjust the calculation of the sample variance to make it an unbiased estimator of the population variance. When computing variance from a sample, using the formula:
+
+\begin{equation}
+    s_N^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \bar{x})^2,
+\end{equation}
+
+underestimates the true population variance. This underestimation arises because the sample mean \( \bar{x} \) is itself computed from the sample and serves as an estimate of the population mean \( \mu \). Since \( \bar{x} \) is determined using the same data points whose variance we are trying to measure, it introduces a constraint: the sum of the deviations from the sample mean must always be zero,
+
+\begin{equation}
+    \sum_{i=1}^{N} (x_i - \bar{x}) = 0.
+\end{equation}
+
+This dependency reduces the degrees of freedom available to estimate variance because once \( N-1 \) data points are known, the last one is determined. As a result, the computed variance using \( N \) in the denominator systematically underestimates the true variance. To correct this, we divide by \( N-1 \) instead of \( N \), yielding:
+
+\begin{equation}
+    s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2.
+\end{equation}
+
+Alternatively, starting with the biased estimator:
+
+\begin{equation}
+    \sigma_N^2 = \frac{1}{N} \sum_{i=1}^{N} x_i^2 - \bar{x}^2,
+\end{equation}
+
+multiplying by the correction factor \( \frac{N}{N-1} \) gives the unbiased sample variance:
+
+\begin{equation}
+    s^2 = \frac{N}{N-1} \left( \frac{1}{N} \sum_{i=1}^{N} x_i^2 - \bar{x}^2 \right).
+\end{equation}
+
+Bessel's correction ensures that the expected value of the sample variance equals the true population variance, making it an unbiased estimator.
+
+\section{Understanding Bessel's Correction Without Degrees of Freedom}
+
+Suppose that to estimate the population variance \( \sigma^2 \) from a sample \( X_1, \dots, X_N \), we define the uncorrected sample variance:
+
+\begin{equation}
+    S^2 = \frac{1}{N} \sum_{i=1}^{N} (X_i - \bar{X})^2.
+\end{equation}
+
+We compute its expectation by expanding the squared term:
+
+\begin{equation}
+    (X_i - \bar{X})^2 = (X_i - \mu - (\bar{X} - \mu))^2.
+\end{equation}
+
+Expanding the square and summing over all \( i \),
+
+\begin{equation}
+    \sum_{i=1}^{N} (X_i - \bar{X})^2 = \sum_{i=1}^{N} (X_i - \mu)^2 - 2 \sum_{i=1}^{N} (X_i - \mu)(\bar{X} - \mu) + \sum_{i=1}^{N} (\bar{X} - \mu)^2.
+\end{equation}
+
+Taking expectation,
+
+\begin{equation}
+    \mathbb{E} \left[ \sum_{i=1}^{N} (X_i - \bar{X})^2 \right] = N\sigma^2 - 2 \sigma^2 + \sigma^2 = (N-1) \sigma^2.
+\end{equation}
+
+Thus,
+
+\begin{equation}
+    \mathbb{E}[S^2] = \frac{N-1}{N} \sigma^2.
+\end{equation}
+
+To correct the bias, we define:
+
+\begin{equation}
+    s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (X_i - \bar{X})^2,
+\end{equation}
+
+which satisfies \( \mathbb{E}[s^2] = \sigma^2 \), making it an unbiased estimator.
+
+\subsection{The Real Source of Bias}
+The underestimation of variance arises due to two effects:
+\begin{enumerate}
+    \item \textbf{Correlation Between \( X_i \) and \( \bar{X} \):} Since \( \bar{X} \) is computed from the sample, each \( X_i \) is statistically dependent on it. This introduces a covariance term that reduces the variance estimate.
+    \item \textbf{Additional Uncertainty in \( \bar{X} \):} The sample mean \( \bar{X} \) itself is a random variable with variance \( \sigma^2/N \), contributing an extra term that systematically affects the expectation.
+\end{enumerate}
+
+The classic ``loss of one degree of freedom" explanation is misleading—what truly happens is that we effectively subtract one full variance contribution due to these two statistical effects. The factor \( \frac{N}{N-1} \) precisely corrects this bias, ensuring an unbiased estimate of \( \sigma^2 \).
+
+
+\end{document}

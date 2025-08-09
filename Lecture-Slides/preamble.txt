@@ -1,0 +1,110 @@
+\usepackage{amsmath}     % For advanced math typesetting
+\usepackage{amssymb}     % For additional math symbols
+\usepackage{bm}          % For bold math symbols
+\usepackage{tcolorbox}   % For colored boxes (used for custom definitions)
+\usepackage{graphicx}    % For including graphics
+\usepackage[export]{adjustbox}
+\usepackage{crop} % For cropping images
+\usepackage{svg}  % For including SVG files
+\usepackage{marvosym}    % For special symbols
+\usepackage{xcolor}      % For color definitions
+\usepackage{hyperref}    % For creating hyperlinks
+\usepackage{array}       % For extended array and tabular features
+\usepackage{booktabs}    % For improved table formatting
+\usepackage{tabulary}    % For tables with adjustable column widths
+\usepackage{caption}     % For customizing captions (if needed)
+\usepackage{changepage}
+
+\usepackage{tikz}        % For creating graphics programmatically
+\usetikzlibrary{trees, positioning, shapes, arrows.meta} % Added arrows.meta for better arrowheads if needed
+\usepackage{calc}        % For arithmetic operations with counters and dimensions
+\usepackage{pgfplots}    % For creating plots
+\usepgfplotslibrary{colorbrewer} % Nice color sets, see see http://colorbrewer2.org/	
+\pgfplotsset{compat = 1.18, cycle list/Set1-8}  % Set compatibility mode for pgfplots | % initialize Set1-4 from colorbrewer (we're comparing 4 classes)
+% Tikz is loaded automatically by pgfplots
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+\usepackage{pgfplotstable} % provides \pgfplotstabletranspose
+
+\usepackage{filecontents}  % To create files on the fly
+
+% Define a custom color
+\definecolor{moonstoneblue}{rgb}{0.45, 0.66, 0.76}
+
+% Set color for the title in the beamer slides
+\setbeamercolor{title}{fg=moonstoneblue!170}
+% Set color for the frame title in the beamer slides
+\setbeamercolor{frametitle}{fg=moonstoneblue!170}
+% Set color for structural elements in the beamer slides
+\setbeamercolor{structure}{fg=moonstoneblue}
+
+% Define custom icons for different levels of bullet points in itemize
+\setbeamertemplate{itemize item}{$\bullet$} % Top-level bullet
+\setbeamertemplate{itemize subitem}{\scriptsize\textendash} % Second-level bullet
+\setbeamertemplate{itemize subsubitem}{\tiny\raisebox{0.5ex}{\resizebox{!}{1.2ex}{\HollowBox}}} % Third-level bullet
+
+% Custom footline with slide numbers only
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}%
+      \insertframenumber{} / \inserttotalframenumber % Show current slide number / total slides
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% Removes navigation symbols from the bottom of the slides
+\setbeamertemplate{navigation symbols}{} 
+
+% Define the wrapper function for non-numbered footnotes
+\newcommand{\nonumberfootnote}[1]{
+  \begingroup
+  \renewcommand{\thefootnote}{} % Remove footnote number
+  \footnotetext{#1} % Insert the footnote text
+  \addtocounter{footnote}{-1} % Adjust the footnote counter
+  \endgroup
+}
+
+% Define a custom box style for definitions using tcolorbox
+\tcbset{
+    mydefinition/.style={
+        colback=moonstoneblue!20, colframe=moonstoneblue!90, % Background and frame color
+        fonttitle=\bfseries, % Bold font for the title
+        boxrule=0.1mm, % Thickness of the box frame
+        width=0.75\textwidth, % Width of the box
+        before=\centering, % Center the box
+        boxsep=1.5mm, % Separation between the content and the box frame
+        left=0mm, right=0mm, top=0mm, bottom=0mm, % Margins within the box
+    }
+}
+
+% Command to create a definition box
+\newcommand{\definitionbox}[3][0.9\textwidth]{%
+    \begin{tcolorbox}[mydefinition, title=#2, width=#1]
+        #3
+    \end{tcolorbox}
+}
+
+% Set up hyperlink colors
+\hypersetup{
+    colorlinks=true, % Enable colored links
+    linkcolor=blue,   % Color for internal links (e.g., table of contents, references)
+    citecolor=green,  % Color for citations
+    filecolor=magenta,% Color for file links
+    urlcolor=blue      % Color for external hyperlinks
+}
+
+% Create the custom command \myemph for emphasized text with specific color
+\newcommand{\myemph}[1]{\textbf{\textcolor{moonstoneblue}{#1}}}
+
+% Define the transition slide command
+\newcommand{\transitionslide}[1]{
+    \begin{frame}[plain]
+          \addtocounter{framenumber}{-1}
+        \centering
+        \vspace{1cm}
+        \Huge
+        \textcolor{moonstoneblue!150}{\textbf{#1}}
+    \end{frame}
+}

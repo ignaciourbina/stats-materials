@@ -1,0 +1,50 @@
+
+
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Proportions as Rescaled Binomial Variables}
+\author{}
+\date{}
+\maketitle
+
+\section*{Key Idea}
+
+A sample proportion is simply a rescaled binomial random variable.
+
+\section*{Explanation}
+
+Let $X$ be a binomial random variable:
+\[
+X \sim \text{Binomial}(n, p)
+\]
+The sample proportion is defined as:
+\[
+\hat{p} = \frac{X}{n}
+\]
+
+\begin{itemize}
+    \item \textbf{Same randomness:} The randomness of $\hat{p}$ is entirely due to $X$.
+    \item \textbf{Support:} $X$ takes values in $\{0, 1, \dots, n\}$; $\hat{p}$ takes values in $\left\{0, \frac{1}{n}, \dots, 1\right\}$.
+    \item \textbf{Distribution:}
+\[
+    \Pr(\hat{p} = k/n) = \Pr(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+\]
+    \item \textbf{Mean and Variance:}
+\[
+    \mathbb{E}[\hat{p}] = p, \qquad \text{Var}(\hat{p}) = \frac{p(1-p)}{n}
+\]
+\end{itemize}
+
+\section*{Conclusion}
+
+Since $\hat{p}$ is obtained by scaling $X$ by $1/n$, the sample proportion is simply a rescaled binomial variable. Note: 
+\begin{itemize}
+    \item $E((1/n)X)=(1/n) np=p$.
+    \item $V((1/n)X)=(1/n)^2 V(X) = (1/n)^2 (np(1-p))=(1/n)p(1-p)$
+\end{itemize}
+
+\end{document}
+

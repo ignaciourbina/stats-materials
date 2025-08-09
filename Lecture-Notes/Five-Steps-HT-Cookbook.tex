@@ -1,0 +1,155 @@
+% =============================================================
+% Hypothesis Testing Framework — Comprehensive Reference Sheet
+% =============================================================
+% Author: (your name / course)
+% -------------------------------------------------------------
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\title{Hypothesis‐Testing Framework Across Common Inference Scenarios}
+\date{}
+
+\begin{document}
+\maketitle
+
+% -------------------------------------------------------------
+% GLOBAL OUTLINE
+% -------------------------------------------------------------
+\section*{Overview: Six Essential Steps}
+\begin{enumerate}
+  \item \textbf{State the Hypotheses} ($H_0$ vs $H_A$) and specify one‐ or two‐tailed direction.
+  \item \textbf{Select Significance Level} $\alpha$ (probability of Type I error).
+  \item \textbf{Verify Assumptions and Conditions}: independence, sample‐size rules, normality/CLT, equal variances if required.
+  \item \textbf{Compute the Test Statistic (TS)} assuming the null hypothesis is true: $$TS = \frac{(\text{estimate}-\text{null})}{\text{SE}_{H_0}}  $$
+  \item \textbf{Find Critical Value(s) or Compute \emph{p}‐Value}: tailor to one vs two tails.
+  \item \textbf{Decision and Contextual Interpretation}: compare TS with critical value (rejection region criteria) or \emph{p} with $\alpha$; state practical conclusion.
+\end{enumerate}
+
+\bigskip\hrule\bigskip
+
+% -------------------------------------------------------------
+% CASE 1 — PROPORTIONS
+% -------------------------------------------------------------
+\section*{Case 1: Proportion Tests}
+\subsection*{1A. One Proportion $Z$‐\textbf{Test}}
+\begin{description}
+  \item[Hypotheses] $H_0\!: p=p_0~~\quad H_A\!: p \neq p_0$ (two‐tailed) \emph{or} $p>p_0$ / $p<p_0$ (one‐tailed).
+  \item[Conditions] Simple random sample; independence; \emph{success–failure rule}: $np_0\ge15$ and $n(1-p_0)\ge15$.
+  \item[Test Statistic] \[ Z = \dfrac{\hat p - p_0}{\sqrt{p_0(1-p_0)/n}}. \]
+  \item[Critical Value] From $Z\sim N(0,1)$: two‐tailed $\rightarrow \pm z_{1-\alpha/2}$; \newline right‐tail $\rightarrow z_{1-\alpha} \quad$; left‐tail $\rightarrow -z_{1-\alpha}$.
+  \item[\emph{p}‐Value] Two‐tail test $\rightarrow p=2\times[1-CDF_z(|Z_{\text{obs}}|)]$; right-tail test $\rightarrow p=1-CDF_z(Z_{\text{obs}})$; left-tail test  $\rightarrow p=CDF_z(Z_{\text{obs}})$.\footnote{The $Z_{\text{obs}}$ is the observed test statistic given the null hypothesis, the sample statistic, and the sample size.}
+\end{description}
+
+\subsection*{1B. Two Proportions (Independent Samples) $Z$‐\textbf{Test}}
+\begin{description}
+  \item[Hypotheses] $H_0\!: p_1-p_2=\Delta_0$ (often $\Delta_0=0$). $H_A$ two‐tailed or one‐tailed.
+  \item[Conditions] Two Simple Random Samples (SRSs) or randomized groups; independence within and between groups; for each sample: $n_i\hat p_i, n_i(1-\hat p_i)\ge15$.
+  \item[Test Statistic]
+  \begin{align*}
+    &\textbf{(i) }\Delta_0=p_1-p_2=0:~~ Z = \frac{\hat p_1-\hat p_2}{\sqrt{\hat p_{\text{pool}}(1-\hat p_{\text{pool}})(\tfrac1{n_1}+\tfrac1{n_2})}},\\
+    &\textbf{(ii) }\Delta_0\neq0:~~ Z = \frac{(\hat p_1-\hat p_2)-\Delta_0}{\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}}.
+  \end{align*}
+\end{description}
+
+\bigskip\hrule\bigskip
+
+% -------------------------------------------------------------
+% CASE 2 — MEANS WITH LARGE SAMPLES (Z‐TESTS)
+% -------------------------------------------------------------
+\section*{Case 2: Means with Large Samples ($n\ge30$) — $Z$‐Tests}
+\subsection*{2A. One Mean (Large Sample)}
+\begin{description}
+  \item[Hypotheses] $H_0\!: \mu=\mu_0$; $H_A$ two‐tailed or one‐tailed.
+  \item[Conditions] SRS; independence; sample size $n\ge30$ so CLT applies (approximate normality of $\bar x$).
+  \item[Test Statistic] \[ Z \approx \dfrac{\bar x-\mu_0}{s/\sqrt n}, \] where $s$ is the sample standard deviation (uses $Z$ distribution when $n$ is large).
+  \item[Critical Value] From $N(0,1)$: two‐tailed $\pm z_{1-\alpha/2}$; right‐tail $z_{1-\alpha}$; left‐tail $-z_{1-\alpha}$.
+  \item[\emph{p}‐Value] Two‐tail test $\rightarrow p=2\times[1-CDF_z(|Z_{\text{obs}}|)]$; right-tail test $\rightarrow p=1-CDF_z(Z_{\text{obs}})$; left-tail test  $\rightarrow p=CDF_z(Z_{\text{obs}})$.
+\end{description}
+
+\subsection*{2B. Two Independent Means (Both Large Samples)}
+\begin{description}
+  \item[Hypotheses] $H_0\!: \mu_1-\mu_2=\Delta_0$ (commonly $\Delta_0=0$).
+  \item[Conditions] Two independent SRSs; $n_1,n_2\ge30$; independence within and between samples.
+  \item[Test Statistic] \[ Z \approx \dfrac{(\bar x_1-\bar x_2)-\Delta_0}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}} = \dfrac{(\bar x_1-\bar x_2)-(\mu_1-\mu_2)}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}}. \]
+  \item[Critical Value] From $N(0,1)$: two‐tailed $\pm z_{1-\alpha/2}$; right‐tail $z_{1-\alpha}$; left‐tail $-z_{1-\alpha}$.
+  \item[\emph{p}‐Value] Two‐tail test $\rightarrow p=2\times[1-CDF_z(|Z_{\text{obs}}|)]$; right-tail test $\rightarrow p=1-CDF_z(Z_{\text{obs}})$; left-tail test  $\rightarrow p=CDF_z(Z_{\text{obs}})$.
+\end{description}
+
+\bigskip\hrule\bigskip
+
+% -------------------------------------------------------------
+% CASE 3 — MEANS WITH SMALL SAMPLES (t‐TESTS)
+% -------------------------------------------------------------
+\section*{Case 3: Means with Small Samples ($t$‐Tests, $\sigma$ Unknown)}
+\subsection*{3A. One Mean — One‐Sample $t$‐Test}
+\begin{description}
+    \item[Hypotheses] $H_0\!: \mu=\mu_0$.
+    \item[Conditions] SRS; independence; population of observations approximately normal (check plots) because $n<30$.
+    \item[Test Statistic] \[ t = \dfrac{\bar x-\mu_0}{s/\sqrt n}, \quad df = n-1. \]
+    \item[Critical Value] 
+          \begin{itemize}
+            \item Two-tailed: reject if $|t_{\text{obs}}| > t_{\,df,\;1-\alpha/2}$.
+            \item Right-tailed: reject if $t_{\text{obs}} > t_{\,df,\;1-\alpha}$.
+            \item Left-tailed: reject if $t_{\text{obs}} < -t_{\,df,\;1-\alpha}$.
+          \end{itemize}
+    \item[\emph{p}‐Value]
+          \begin{itemize}
+            \item Two-tailed: $p = 2\,[1 - CDF_{t_{df}}(|t_{\text{obs}}|)]$.
+            \item Right-tailed: $p = 1 - CDF_{t_{df}}(t_{\text{obs}})$.
+            \item Left-tailed: $p = CDF_{t_{df}}(t_{\text{obs}})$.
+          \end{itemize}
+\end{description}
+
+\subsection*{3B. Paired Samples — Paired $t$‐Test}
+\begin{description}
+  \item[Setup] Natural pairs; differences $d_i=x_{i,1}-x_{i,2}$.
+  \item[Hypotheses] $H_0\!: \mu_d=\Delta_0$ (typically 0).
+  \item[Conditions] Pairs independent; distribution of $d_i$ approximately normal or $n_{\text{pairs}}\ge30$.
+  \item[Test Statistic] \[ t = \dfrac{\bar d-\Delta_0}{s_d/\sqrt n}, \quad df = n-1. \]
+\end{description}
+
+\subsection*{3C. Two Independent Means — Two‐Sample $t$‐Tests}
+\begin{description}
+  \item[Options] \textbf{Welch} (unequal variances, default) or \textbf{Pooled} (equal variances assumed).
+  \item[Hypotheses] $H_0\!: \mu_1-\mu_2=\Delta_0$.
+  \item[Conditions] Two independent SRSs; independence within groups; each population roughly normal.
+  \item[Welch] \[ t = \dfrac{(\bar x_1-\bar x_2)-\Delta_0}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}}, \]
+    $df \approx \dfrac{(s_1^2/n_1+s_2^2/n_2)^2}{\tfrac{(s_1^2/n_1)^2}{n_1-1}+\tfrac{(s_2^2/n_2)^2}{n_2-1}}$.
+  \item[Pooled] \[ s_p^2 = \dfrac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}, \quad t = \dfrac{(\bar x_1-\bar x_2)-\Delta_0}{s_p\sqrt{\tfrac1{n_1}+\tfrac1{n_2}}}, \quad df=n_1+n_2-2. \]
+\end{description}
+
+\bigskip\hrule\bigskip
+
+% -------------------------------------------------------------
+% QUICK DECISION TABLE
+% -------------------------------------------------------------
+\section*{Quick‐Reference Decision Rules}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Scenario} & \textbf{Reject $H_0$ if (critical value)} & \textbf{Reject $H_0$ if (\emph{p}‐value)} \\\hline
+Two‐tailed & $|\text{TS}|>z_{1-\alpha/2}$ or $|\text{TS}|>t_{df,1-\alpha/2}$ & $p\le\alpha$ \\
+Right‐tailed & $\text{TS}>z_{1-\alpha}$ or $\text{TS}>t_{df,1-\alpha}$ & $p\le\alpha$ \\
+Left‐tailed & $\text{TS}< -z_{1-\alpha}$ or $\text{TS}< -t_{df,1-\alpha}$ & $p\le\alpha$ \\\hline
+\end{tabular}
+\end{center}
+
+\bigskip\hrule\bigskip
+
+% -------------------------------------------------------------
+% INTERPRETATION GUIDELINES
+% -------------------------------------------------------------
+\section*{Interpreting Results}
+\begin{itemize}
+  \item \textbf{Reject $H_0$}: There is \emph{statistically significant} evidence for $H_A$ at level $\alpha$.
+  \item \textbf{Fail to reject $H_0$}: Evidence insufficient to support $H_A$.
+  \item Always report: test, TS, df (if $t$), \emph{p}-value, and context.
+\end{itemize}
+
+\end{document}

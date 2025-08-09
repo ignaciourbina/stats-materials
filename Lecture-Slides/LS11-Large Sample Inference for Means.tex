@@ -1,0 +1,454 @@
+\documentclass[handout]{beamer}
+\input{Lecture-Slides/preamble.txt}
+
+
+% Title Information
+
+\title{Introduction to Statistical Methods in Political Science}
+\subtitle{Lecture 11: Large-Sample Inference for Means}
+\author{Ignacio Urbina \texorpdfstring{\\ \vspace{0.3em}}{ } \scriptsize \textcolor{gray}{Ph.D. Candidate in Political Science}}
+\date{}
+
+%--------------------------------------------------------------------------
+\begin{document}
+\frame{\titlepage}
+
+\section{Confidence Intervals for Means}
+
+% Transition slide: Confidence Intervals
+\transitionslide{Confidence Intervals for Means}
+
+
+\begin{frame}
+\frametitle{Motivation: From Proportions to Means}
+Last week, we focused on inference for \textbf{population proportions ($p$)}.
+\begin{itemize}
+\item Confidence intervals and hypothesis tests for $p$ using large-sample Z-procedures.
+\end{itemize}
+Now, we shift to \textbf{quantitative (continuous) data} where the parameter is the \textbf{population mean ($\mu$)}.
+\begin{itemize}
+\item Examples: Average height, mean income, time.
+\end{itemize}
+\textbf{Goal:} Develop inference methods for $\mu$ using CLT and the sampling distribution of $\bar{x}$.
+\end{frame}
+
+\subsection{Confidence Interval: One Mean}
+
+\begin{frame}
+\frametitle{Foundation: The Central Limit Theorem (Recap)}
+For large samples ($n \ge 30$), the sampling distribution of $\bar{x}$ is approximately normal:
+\[ \bar{x} \sim N\left(\mu, \frac{\sigma^2}{n}\right) \]
+\begin{itemize}
+\item Approximate normality holds regardless of the original population distribution.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Handling Unknown $\sigma$ \& The Z-Statistic}
+When $\sigma$ is unknown, we estimate it using the sample standard deviation $s$ (plug-in principle).
+The resulting test statistic:
+\[ Z = \frac{\bar{x} - \mu}{s/\sqrt{n}} \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Large-Sample CI for $\mu$: Formula \& Structure}
+Confidence Interval formula:
+\[ \bar{x} \pm z_{1-\frac{\alpha}{2}} \left(\frac{s}{\sqrt{n}}\right) \]
+Structure:
+\begin{itemize}
+\item Point Estimate: $\bar{x}$
+\item Margin of Error: $z_{1-\frac{\alpha}{2}} \times \dfrac{s}{\sqrt{n}}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Margin of Error for $\mu$ CI}
+Depends on:
+\begin{enumerate}
+\item Critical Value $z_{1-\frac{\alpha}{2}}$
+\item Standard Error $SE = \dfrac{s}{\sqrt{n}}$
+\end{enumerate}
+Thus, the Margin of Error (ME) is:
+\[ ME = z_{1-\frac{\alpha}{2}} \times SE \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Interpretation of a Confidence Interval for $\mu$}
+Example: 95\% CI = (5.2, 6.8)
+Correct Interpretation:
+\begin{itemize}
+\item \textbf{"We are 95\% confident that $\mu$ lies within (5.2, 6.8)."}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: CI for Average Commute Time (Problem Statement)}
+\textbf{Problem:} What is the average daily commute time for workers in a city? \newline
+\textbf{Data:} $n=100$ workers, sample mean commute time $\bar{x}=32.5$ minutes, sample standard deviation $s=7.0$ minutes. \newline
+\textbf{Task:} Construct a 95\% confidence interval for the true mean commute time.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: CI for Average Commute Time (Calculation)}
+Given:
+\begin{itemize}
+\item $n = 100$, $\bar{x} = 32.5$, $s = 7.0$
+\item 95\% confidence level ($\alpha=0.05$) $\Rightarrow z_{1-\frac{\alpha}{2}} = z_{0.975}= 1.96$
+\end{itemize}
+Standard error:
+\[ SE = \frac{7.0}{\sqrt{100}} = 0.7 \]
+Margin of error:
+\[ ME = 1.96 \times 0.7 = 1.372 \]
+Confidence Interval:
+\[ (32.5 - 1.372,\ 32.5 + 1.372) = (31.128,\ 33.872) \]
+\end{frame}
+
+\subsection{Confidence Interval: Two Means}
+
+\begin{frame}
+\frametitle{Foundation: Distribution of $\bar{x}_1 - \bar{x}_2$ (Recap)}
+For large independent samples:
+\[ \bar{x}_1 - \bar{x}_2 \sim N\left(\mu_1 - \mu_2, \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}\right) \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Handling Unknown Variances \& The Z-Statistic (Two Means)}
+Estimate population variances with sample variances:
+\[ s_1^2 \quad \text{and} \quad s_2^2 \]
+Standard error for $\bar{x}_1 - \bar{x}_2$:
+\[ SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} \]
+Use $z$-statistic for large samples.
+\end{frame}
+
+\begin{frame}
+\frametitle{Large-Sample CI for $\mu_1 - \mu_2$: Formula \& Structure}
+Confidence Interval:
+\[ (\bar{x}_1 - \bar{x}_2) \pm z_{1-\frac{\alpha}{2}} \times SE \]
+\[ SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Interpretation of CI for $\mu_1 - \mu_2$}
+\begin{itemize}
+\item Positive Interval: $\mu_1 > \mu_2$
+\item Interval Contains 0: No significant difference
+\item Negative Interval: $\mu_1 < \mu_2$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: CI for Comparing Study Methods (Problem Statement)}
+\textbf{Problem:} Do two different study methods lead to different average exam scores among university students? \newline
+\textbf{Data:} Method 1 ($n_1=50$, $\bar{x}_1=85.2$, $s_1=8.5$); Method 2 ($n_2=60$, $\bar{x}_2=81.5$, $s_2=9.1$). \newline
+\textbf{Task:} Construct a 99\% confidence interval for $\mu_1 - \mu_2$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: CI for Comparing Study Methods (Calculation)}
+Given:
+\begin{itemize}
+\item $n_1=50$, $\bar{x}_1=85.2$, $s_1=8.5$
+\item $n_2=60$, $\bar{x}_2=81.5$, $s_2=9.1$
+\item 99\% confidence level ($\alpha=0.01$) $\Rightarrow z_{1-\frac{\alpha}{2}} = z_{0.995} = 2.576$
+\end{itemize}
+Standard error:
+\[ SE = \sqrt{\frac{8.5^2}{50} + \frac{9.1^2}{60}} \approx 1.68 \]
+Margin of error:
+\[ ME = 2.576 \times 1.68 \approx 4.33 \]
+Confidence Interval:
+\[ (85.2 - 81.5) \pm 4.33 = 3.7 \pm 4.33 \]
+\[ (-0.63,\ 8.03) \]
+\end{frame}
+
+\section{Hypothesis Testing for Means}
+
+% Transition slide: Hypothesis Testing
+\transitionslide{Hypothesis Testing for Means}
+
+
+\begin{frame}
+\frametitle{Motivation: Hypothesis Tests for Means}
+Apply hypothesis testing to population \textbf{means ($\mu$)}:
+\begin{itemize}
+\item Steps: Hypotheses, $\alpha$, Test Statistic, Decision, Conclusion
+\end{itemize}
+\end{frame}
+
+\subsection{Hypothesis Test: One Mean (Two-Sided)}
+
+\begin{frame}
+\frametitle{Example: Average Hours of Sleep (Problem Statement)}
+\textbf{Problem:} Do college students sleep an average of 7 hours per night? \newline
+\textbf{Data:} $n=64$, $\bar{x}=6.8$ hours, $s=0.6$ hours. \newline
+\textbf{Task:} Test $H_0: \mu = 7$ against $H_a: \mu \neq 7$ at $\alpha=0.05$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: Average Hours of Sleep (Calculation)}
+Calculate standard error:
+\[ SE = \frac{0.6}{\sqrt{64}} = 0.075 \]
+Test statistic:
+\[ Z = \frac{6.8-7.0}{0.075} = -2.67 \]
+Critical value for a test with $\alpha=0.05$: $\pm1.96$.\newline 
+Since $|-2.67| > 1.96$, reject $H_0$.
+\end{frame}
+
+\subsection{Hypothesis Test: Two Means (One-Sided)}
+
+\begin{frame}
+\frametitle{Example: New Drug Effectiveness (Problem Statement)}
+\textbf{Problem:} Is a new drug more effective at reducing blood pressure than the current standard drug? \newline
+\textbf{Data:} Drug 1 ($n_1=120$, $\bar{x}_1=15.5$, $s_1=5.0$); Drug 2 ($n_2=100$, $\bar{x}_2=13.8$, $s_2=4.5$). \newline
+\textbf{Task:} Test $H_0: \mu_1 - \mu_2 = 0$ vs. $H_a: \mu_1 - \mu_2 > 0$ at $\alpha=0.01$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: New Drug Effectiveness (Calculation)}
+Calculate standard error:
+\[ SE = \sqrt{\frac{5.0^2}{120} + \frac{4.5^2}{100}} \approx 0.641 \]
+Test statistic:
+\[ Z = \frac{15.5-13.8}{0.641} \approx 2.65 \]
+Critical value: $z_{0.99} \approx 2.33$.
+Since $2.65 > 2.33$, reject $H_0$.
+\end{frame}
+
+\subsection{Hypothesis Testing: Nonzero Null Values}
+
+\begin{frame}
+\frametitle{Hypothesis Tests with Nonzero Null Values}
+Previously, we tested $H_0: \mu = 0$ or $H_0: \mu_1 - \mu_2 = 0$.\newline
+Now, we allow the null hypothesis to state a nonzero value:
+\begin{itemize}
+\item $H_0: \mu = \mu_0$ where $\mu_0 \neq 0$
+\item $H_0: \mu_1 - \mu_2 = \Delta_0$ where $\Delta_0 \neq 0$
+\end{itemize}
+\textbf{Interpretation:} We are testing whether the population mean or the difference between two means equals a specific number.
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjusted Z-Statistic Formulas}
+\textbf{One Mean:}
+\[
+Z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
+\]
+where $\mu_0$ is the null hypothesized mean (not necessarily 0).\newline
+
+\textbf{Two Means:}
+\[
+Z = \frac{(\bar{x}_1 - \bar{x}_2) - \Delta_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+\]
+where $\Delta_0$ is the hypothesized difference (often 0, but not always).\newline
+
+\textbf{Note:} Subtract $\mu_0$ or $\Delta_0$ when forming the numerator.
+\end{frame}
+
+\subsection{Hypothesis Test: One Mean (Nonzero Null Value)}
+
+\begin{frame}
+\frametitle{Example: Average Calories Consumed (Problem Statement)}
+\textbf{Problem:} Do individuals consume an average of 2500 calories per day? \newline
+\textbf{Data:} $n=49$, $\bar{x}=2550$ calories, $s=150$ calories. \newline
+\textbf{Task:} Test $H_0: \mu = 2500$ against $H_a: \mu \neq 2500$ at $\alpha=0.05$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: Average Calories Consumed (Calculation)}
+Calculate standard error:
+\[
+SE = \frac{150}{\sqrt{49}} = 21.43
+\]
+Test statistic:
+\[
+Z = \frac{2550-2500}{21.43} \approx 2.33
+\]
+Critical value: $\pm1.96$. \newline
+Since $2.33 > 1.96$, reject $H_0$.
+\end{frame}
+
+\subsection{Hypothesis Testing: Two Means (Nonzero Difference)}
+
+\begin{frame}
+\frametitle{Hypothesis Tests for Two Means: Nonzero Difference}
+In many situations, we want to test whether the difference between two population means equals a value other than zero.
+
+Examples:
+\begin{itemize}
+\item Testing if a new product improves scores by 5 points compared to an old product.
+\item Checking if two treatments differ by a clinically significant margin (e.g., 2 mmHg in blood pressure).
+\end{itemize}
+\textbf{Null hypothesis:} $H_0: \mu_1 - \mu_2 = \Delta_0$ where $\Delta_0 \neq 0$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Adjusted Z-Statistic: Two Means}
+For large independent samples, the test statistic becomes:
+\[
+Z = \frac{(\bar{x}_1 - \bar{x}_2) - \Delta_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+\]
+where:
+\begin{itemize}
+\item $\Delta_0$ is the hypothesized difference between means.
+\item $SE = \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}$ is the standard error.
+\end{itemize}
+\textbf{Key change:} Subtract $\Delta_0$ from the observed difference $(\bar{x}_1 - \bar{x}_2)$ in the numerator.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: Comparing Manufacturing Processes (Problem Statement)}
+\textbf{Problem:} Is there a difference of 5 units in mean output between two manufacturing processes? \newline
+\textbf{Data:} Process 1 ($n_1=40$, $\bar{x}_1=105$, $s_1=10$); Process 2 ($n_2=50$, $\bar{x}_2=98$, $s_2=12$). \newline
+\textbf{Task:} Test $H_0: \mu_1 - \mu_2 = 5$ against $H_a: \mu_1 - \mu_2 \neq 5$ at $\alpha=0.05$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: Comparing Manufacturing Processes (Calculation)}
+Calculate standard error:
+\[
+SE = \sqrt{\frac{10^2}{40} + \frac{12^2}{50}} \approx 2.32
+\]
+Test statistic:
+\[
+Z = \frac{(105-98) - 5}{2.32} \approx 0.43
+\]
+Critical value: $\pm1.96$. \newline
+Since $0.43 < 1.96$, fail to reject $H_0$.
+\end{frame}
+
+%...................................................................
+\section{Large Sample Inference with Paired Samples}
+
+% Transition slide: 
+\transitionslide{Large Sample Inference with Paired Samples}
+
+
+\begin{frame}
+\frametitle{Paired Samples: When and Why?}
+\textbf{Paired data} arise when observations are naturally matched:
+\begin{itemize}
+    \item Before-and-after measurements (e.g., pre- and post-treatment)
+    \item Measurements on the same individual under two conditions. Hence, before and after data \emph{are not independent}.
+\end{itemize}
+\textbf{Key idea:} Reduce the two measurements to a single difference score:
+\[ d_i = x_{i,1} - x_{i,2} \]
+Then apply inference methods to the sample of differences. Key assumption: \emph{Independence across individuals}.
+\end{frame}
+
+\begin{frame}
+\frametitle{Paired Samples: CI and Hypothesis Test}
+\small 
+\begin{columns}[t]
+    % Left column: Confidence Interval
+    \begin{column}{0.48\textwidth}
+    \textbf{Confidence Interval for $\mu_d$}
+
+    \vspace{0.5em}
+    For large samples of paired differences ($n \ge 30$), apply CLT:
+    \[
+    \bar{d} \sim N\left(\mu_d, \frac{s_d^2}{n}\right)
+    \]
+
+    \vspace{0.3em}
+    CI formula:
+    \[
+    \bar{d} \pm z_{1-\frac{\alpha}{2}} \times \frac{s_d}{\sqrt{n}} 
+    \]
+
+    \vspace{0.3em}
+    \begin{itemize}
+        \item $\bar{d}$: Mean of differences
+        \item $s_d$: Std. dev. of differences
+        \item $z_{1-\frac{\alpha}{2}}$: Critical value
+    \end{itemize}
+    \end{column}
+
+    % Right column: Hypothesis Test
+    \begin{column}{0.48\textwidth}
+    \textbf{Hypothesis Test for $\mu_d$}
+
+    \vspace{0.5em}
+    Test the null hypothesis:
+    \[
+    H_0: \mu_d = \mu_{d,0} \quad \text{vs.} \quad H_a: \mu_d \neq \mu_{d,0}
+    \]
+
+    \vspace{0.3em}
+    Z-statistic:
+    \[
+    Z = \frac{\bar{d} - \mu_{d,0}}{s_d / \sqrt{n}}
+    \]
+
+    \vspace{0.3em}
+    \begin{itemize}
+        \item Compare $Z$ to critical value or use $p$-value
+        \item Reject $H_0$ if evidence is strong
+    \end{itemize}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Example: Effect of a Sleep Intervention}
+\small 
+\textbf{Problem:} Does a cognitive-behavioral sleep intervention improve sleep duration among adults with mild insomnia? 
+
+\textbf{Study Design:} A sample of $n = 200$ individuals participated in a 4-week cognitive-behavioral therapy (CBT) program targeting sleep hygiene, routines, and stress reduction. Each participant recorded their average nightly sleep duration \textit{before and after} the program. \newline
+
+\textbf{Data:} Mean difference $\bar{d} = 0.75$ hours, $s_d = 1.2$ hours, $n=200$. \newline
+\textbf{Task:} Construct a 95\% confidence interval for the mean increase in sleep duration, $\mu_d$. \pause
+\[
+SE = \frac{1.2}{\sqrt{200}} \approx 0.085,\quad z_{0.975} = 1.96
+\]
+\[
+ME = 1.96 \times 0.085 \approx 0.17,\quad CI = (0.75 \pm 0.17) = (0.58,\ 0.92)
+\]
+\textbf{Conclusion:} We are 95\% confident the CBT program increased sleep duration by 0.58 to 0.92 hours per night.
+\end{frame}
+
+
+
+
+%...................................................................
+\section{Summary}
+% Transition slide: Summary
+
+\transitionslide{Summary: Key Formulas and Concepts}
+
+
+\begin{frame}
+\frametitle{Summary Table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{3.5}
+\resizebox{.95\textwidth}{!}{%
+\begin{tabular}{|p{0.2\textwidth}|c|c|p{0.26\textwidth}|}
+\hline
+\textbf{Scenario} & \textbf{Confidence Interval (CI)} & \textbf{Hypothesis Test (Z-Statistic)} & \textbf{Notes} \\
+\hline
+\textbf{One Mean ($\mu$)} & $\bar{x} \pm z_{1-\frac{\alpha}{2}} \dfrac{s}{\sqrt{n}}$ & $Z = \dfrac{\bar{x} - \mu_0}{s/\sqrt{n}}$ & $\mu_0$ can be 0 or nonzero \\
+\hline
+\textbf{Two Means ($\mu_1 - \mu_2$)} & $(\bar{x}_1-\bar{x}_2) \pm z_{1-\frac{\alpha}{2}} \sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$ & $Z = \dfrac{(\bar{x}_1-\bar{x}_2) - \Delta_0}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}}$ & $\Delta_0$ can be 0 or nonzero \\
+\hline
+\textbf{Paired Samples ($\mu_d$)} & $\bar{d} \pm z_{1-\frac{\alpha}{2}} \dfrac{s_d}{\sqrt{n}}$ & $Z = \dfrac{\bar{d} - \mu_{d,0}}{s_d/\sqrt{n}}$ & Analyze differences $d_i = x_{i,1} - x_{i,2}$. \\
+\hline
+\end{tabular}
+}
+\end{table}
+\scriptsize 
+\textbf{Important:}
+\begin{itemize}
+\item Subtract $\mu_0$, $\Delta_0$, or $\mu_{d,0}$ when performing a hypothesis test.
+\item $\mu_d=0$ equals no difference for the average individual difference.
+\item For confidence intervals, center at the sample statistic.
+\item $z_{1-\frac{\alpha}{2}}$ depends on the confidence level (e.g., 1.96 for 95\%).
+\end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
+
+

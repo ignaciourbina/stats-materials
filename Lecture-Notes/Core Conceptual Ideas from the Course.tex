@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\title{\vspace{-2cm}Fundamental Ideas from the Course: \\ \large Introduction to Statistical Methods in Political Science}
+\author{Instructor: Ignacio Urbina}
+\date{}
+
+\begin{document}
+\maketitle
+\setstretch{1.2}
+
+\section*{First Half: Introduction to Statistical Inference, Descriptive Stats, Probability, Random Variables, and Sampling Distributions}
+
+\subsection*{1. What is the fundamental goal of statistical inference as introduced in this course?}
+Statistical inference is the process of using data obtained from a sample to draw informed conclusions about a larger population. The central question it addresses is the extent to which observations in a sample reflect genuine patterns in the population versus being merely the result of random chance in the sampling process.
+
+\subsection*{2. Why is it problematic to simply accept the results from a single sample as definitive truth about a population?}
+A single sample is just one possible outcome from a multitude of potential samples that could be drawn from the same population. Due to the inherent randomness in sampling, a single sample might not perfectly represent the population. Therefore, taking its results at face value without considering this randomness could lead to inaccurate generalizations.
+
+\subsection*{3. How does the concept of a random variable help us bridge the gap between a single sample and inferences about a population?}
+Any data point within a sample can be viewed as an observed value of an underlying random variable, which represents a numerical outcome of a random process within the population. This framing allows us to connect the concrete data we have to the abstract idea of the population that generated it. By studying the properties of these random variables (like their probability distribution), we can begin to understand the underlying population characteristics.
+
+\subsection*{4. What are descriptive statistics, and what role did they play in the first part of the course?}
+Descriptive statistics are tools used to summarize and understand the characteristics of a given sample. This includes measures of central tendency (mean, median, mode), spread (standard deviation, IQR, range), and position (quantiles, percentiles), as well as visualizations like histograms and boxplots. In the first part of the course, the focus was on mastering these tools to effectively describe and gain initial insights from the sample data at hand before moving towards making inferences about the broader population.
+
+\subsection*{5. How does probability theory lay the groundwork for statistical inference?}
+Probability theory provides the fundamental language and rules for understanding and quantifying uncertainty. Concepts like outcomes, sample spaces, events, and the rules governing their probabilities allow us to reason rigorously about chance and the likelihood of different occurrences. This probabilistic framework is essential for moving beyond simply describing a sample to making informed judgments about the likelihood of observing certain patterns if we were to sample repeatedly from the population.
+
+\subsection*{6. What is a random variable, and why is it considered a key concept for statistical modeling?}
+A random variable is a numerical outcome of a random process. It allows us to model randomness quantitatively, assigning probabilities to different numerical outcomes. Random variables can be discrete or continuous and are described by probability mass functions (PMFs) or probability density functions (PDFs), respectively. They are fundamental because they allow us to use the algebra of numbers to represent and analyze random phenomena, forming the basis for more advanced statistical models and inference techniques.
+
+\subsection*{7. What is the expected value of a random variable, and how does it relate to population parameters?}
+The expected value of a random variable is a formal definition of the population mean—the central tendency of the entire population distribution. It is calculated as a weighted average of all possible values of the random variable, where the weights are their respective probabilities (for discrete variables) or through integration using the PDF (for continuous variables). Unlike the sample mean, which is calculated from a specific sample, the expected value is a theoretical quantity defined by the distribution of the random variable and represents a key population parameter we often aim to estimate.
+
+\subsection*{8. How does understanding data as realizations of random variables enable us to address the uncertainty inherent in sampling?}
+By viewing each data point as a realization of a random variable, we recognize that our observed sample is just one of many possible outcomes. This perspective allows us to think about the distribution of sample statistics (like the sample mean or proportion) across all potential samples. Using probability theory and concepts like expected value and variance, we can mathematically model how these statistics are likely to behave under certain assumptions about the data-generating process. This theoretical understanding of sampling variation is crucial for quantifying the uncertainty in our estimates and making principled inferences about the population based on a single sample.
+
+\end{document}

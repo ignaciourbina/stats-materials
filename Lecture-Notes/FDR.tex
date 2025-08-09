@@ -1,0 +1,634 @@
+% ====================================================================
+% False Discovery Rate — A First-Principles Book Chapter (Expanded)
+% Author: <Your Name>
+% ====================================================================
+% NOTES
+% -----
+%  * This version significantly expands upon the original chapter for
+%    greater accessibility to readers with varied backgrounds.
+%  * Every statistical term is introduced and explained upon first use.
+%  * The file is intentionally verbose to serve as a self-contained
+%    teaching chapter you can compile directly with pdfLaTeX.
+%  * You may still trim sections or reorganise as desired.
+% --------------------------------------------------------------------
+
+% !TEX TS-program = pdflatex
+\documentclass[12pt]{book}
+
+% --------------------------------------------------------------------
+% Preamble — packages (Standard setup, retained from original)
+% --------------------------------------------------------------------
+\usepackage[utf8]{inputenc}       % UTF-8 support
+\usepackage[T1]{fontenc}        % Good font encoding
+\usepackage[margin=1in]{geometry} % Page layout
+\usepackage{lmodern}              % Latin Modern fonts (bold/italic sans-serif)
+\usepackage{microtype}            % Better kerning
+\usepackage{amsmath,amssymb,amsfonts} % Math environments
+\usepackage{mathtools}            % Extensions to amsmath
+\usepackage{booktabs}             % Professional tables
+\usepackage{graphicx}             % Include graphics
+\usepackage{caption}              % Control captions
+\usepackage{subcaption}           % Sub-figures
+\usepackage{enumitem}             % Customised lists
+\usepackage{color,xcolor}         % Colour definitions
+\usepackage{hyperref}             % Hyperlinks in PDF
+\usepackage{fancyhdr}             % Fancy headers/footers
+\usepackage{doi}                  % DOI formatting
+\usepackage{siunitx}              % Units & numbers
+\usepackage{setspace}             % Line spacing
+\usepackage{csquotes}             % Quotation handling
+\usepackage{etoolbox}             % Programming tools
+\usepackage{lipsum}               % For placeholder text in proof section
+
+% --------------------------------------------------------------------
+% Hyperref setup (Retained from original)
+% --------------------------------------------------------------------
+\hypersetup{
+  colorlinks      = true,
+  linkcolor       = blue,
+  citecolor       = blue,
+  urlcolor        = blue,
+  pdfauthor       = {Your Name},
+  pdftitle        = {False Discovery Rate: A First-Principles Approach (Expanded)},
+  pdfsubject      = {Multiple Testing},
+  pdfkeywords     = {False Discovery Rate, Multiple Comparisons, Benjamini–Hochberg, Statistical Error, Hypothesis Testing}
+}
+
+% --------------------------------------------------------------------
+% Header / footer style (Retained from original)
+% --------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------
+% Custom commands & notation helpers (Retained from original)
+% --------------------------------------------------------------------
+\newcommand{\E}{\mathbb{E}}              % Expectation operator
+\newcommand{\Var}{{Var}}    % Variance operator
+\newcommand{\Prob}{\mathbb{P}}           % Probability operator
+\newcommand{\FDR}{{FDR}}    % False Discovery Rate symbol
+\newcommand{\FWER}{{FWER}}  % Familywise Error Rate symbol
+\newcommand{\pvalue}{$p$-value}          % Inline p-value text
+\newcommand{\qvalue}{$q$-value}          % Inline q-value text
+\newcommand{\Hnull}{H_0}                 % Null Hypothesis symbol
+\newcommand{\Halt}{H_1}                  % Alternative Hypothesis symbol
+
+% --------------------------------------------------------------------
+% Document metadata (Updated title slightly)
+% --------------------------------------------------------------------
+\title{False Discovery Rate\\\vspace{0.4em}\large A First-Principles Approach\\\vspace{0.2em}\normalsize (Expanded for Accessibility)}
+\author{Your Name}
+\date{\today}
+
+% ====================================================================
+% BEGIN DOCUMENT
+% ====================================================================
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+% --------------------------------------------------------------------
+% Preface — Expanded explanation
+% --------------------------------------------------------------------
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+Modern scientific inquiry, from genomics to astrophysics to web analytics, often involves testing thousands, or even millions, of hypotheses simultaneously. Consider searching for genes associated with a disease, pixels in a brain scan showing activation, or website designs that increase user engagement. In these scenarios, the classical methods of statistical hypothesis testing, designed for single tests, encounter a significant challenge: the \emph{multiple comparisons problem}. Performing many tests inflates the chance of making erroneous discoveries purely by chance.
+
+This chapter provides a detailed, self-contained derivation of a key framework for addressing this challenge: \emph{False Discovery Rate} (\FDR) control. We begin from the foundational concepts of statistical error and build intuition step-by-step. Our aim is to make the material accessible not only to statisticians but also to researchers and students in various fields who encounter large-scale testing problems. We assume only a basic familiarity with probability concepts (like expectation and independence) and the core ideas of hypothesis testing. All specialized statistical terms and symbols are introduced and explained \emph{before} they are used.
+
+\vspace{1em}
+Our journey starts by revisiting the fundamental concept of \emph{Type I error} in the context of a single hypothesis test. We then explore precisely why performing multiple tests dramatically increases the probability of making such errors if not properly accounted for. This leads us to discuss the traditional, stringent approach of controlling the \emph{Familywise Error Rate} (\FWER), the probability of making even a single false discovery. While rigorous, FWER control can be overly conservative in exploratory research, potentially causing us to miss real effects.
+
+Recognizing the need for a more balanced approach, especially in large datasets where finding *some* true effects is the primary goal, we introduce the False Discovery Rate. We carefully define the \FDR\ as the expected \emph{proportion} of incorrect rejections among all rejected hypotheses. We then present the seminal Benjamini–Hochberg (BH) procedure, a practical and powerful algorithm for controlling the \FDR. We will derive its properties under the assumption of independent tests and discuss its implications. Finally, we touch upon important extensions of the BH procedure and provide practical examples of its implementation in common statistical software.
+
+This expanded chapter aims to equip you with a solid conceptual and practical understanding of FDR control, enabling you to apply and interpret these methods confidently in your own work.
+
+\mainmatter
+
+% --------------------------------------------------------------------
+% Chapter 1 — Foundations (Expanded)
+% --------------------------------------------------------------------
+\chapter{Foundations of Statistical Error}
+\label{chap:foundations}
+
+\section{Hypothesis Testing Refresher: The Core Logic}
+At its heart, much of statistical inference revolves around making decisions based on data in the presence of uncertainty. \emph{Hypothesis testing} provides a formal framework for this process. It's like a structured argument where we evaluate evidence from our data against a specific claim or assumption about the world.
+
+Typically, we start with two competing hypotheses:
+\begin{itemize}
+    \item The \textbf{Null Hypothesis ($\Hnull$)}: This usually represents a default state, a statement of "no effect," "no difference," or the status quo. For example, $\Hnull$ might state that a new drug has no effect compared to a placebo, or that the average heights of two groups are the same. It's the hypothesis we initially assume to be true and seek evidence against.
+    \item The \textbf{Alternative Hypothesis ($\Halt$)}: This represents what we might suspect or hope to be true – that there *is* an effect, a difference, or a relationship. For example, $\Halt$ might state that the new drug *is* effective, or that the average heights of the two groups are different.
+\end{itemize}
+Our goal is not to definitively prove $\Halt$, but rather to assess whether the observed data provides strong enough evidence to \emph{reject} $\Hnull$ in favor of $\Halt$.
+
+To do this, we use a \textbf{test statistic}. This is a value calculated from our sample data (e.g., the difference in average recovery times between the drug and placebo groups). The key idea is to determine the probability distribution of this test statistic \emph{if the null hypothesis ($\Hnull$) were actually true}. This "null distribution" tells us what kinds of test statistic values we'd expect to see just by random chance if there's truly no effect.
+
+We then compare our actually observed test statistic to this null distribution. If the observed value is very unusual or "extreme" under the assumption that $\Hnull$ is true (i.e., it falls far out in the tails of the null distribution), we start doubting the validity of $\Hnull$.
+
+How unusual is "unusual enough"? This is where the \textbf{significance level}, denoted by $\boldsymbol{\alpha}$, comes in. Before conducting the test, we set a threshold $\alpha$ (commonly 0.05 or 5\%). This $\alpha$ represents the probability of making a specific type of error:
+
+\textbf{Type I Error}: Rejecting the null hypothesis ($\Hnull$) when it is, in fact, true. This is often called a "false positive" or a "false discovery." We mistakenly claim an effect or difference exists when it doesn't.
+
+The significance level $\alpha$ is precisely the maximum probability of committing a Type I error that we are willing to tolerate for a single test. If the probability of observing our data (or more extreme data) under $\Hnull$ is less than $\alpha$, we declare the result "statistically significant" and reject $\Hnull$.
+
+Think of it like a smoke alarm ($\Hnull$: there is no fire). A Type I error is the alarm going off when there's no fire (you rejected $\Hnull$ incorrectly). Setting $\alpha$ low (e.g., 0.01) makes the alarm less sensitive, reducing false alarms (Type I errors), but potentially increasing the chance of missing a real fire (a Type II error: failing to reject $\Hnull$ when it's false). Setting $\alpha$ higher (e.g., 0.10) makes the alarm more sensitive, catching more fires but also causing more false alarms. The standard $\alpha = 0.05$ is a conventional balance.
+
+\subsection{Definition of a \texorpdfstring{$p$}{p}-value: Quantifying the Evidence}
+\label{sec:pvalue}
+Instead of just making a binary reject/don't reject decision based on whether our test statistic crosses a predefined critical value corresponding to $\alpha$, we often calculate a \textbf{\pvalue}. The \pvalue{} provides a more nuanced measure of the strength of evidence against the null hypothesis ($\Hnull$).
+
+Formally, a \pvalue{} is the probability, calculated \emph{assuming the null hypothesis ($\Hnull$) is true}, of observing a test statistic value at least as extreme (i.e., as far from what $\Hnull$ predicts) as the value actually computed from our sample data.
+
+Let $T$ be our test statistic (e.g., a $t$-score, $z$-score, $F$-ratio) and let $t_{\text{obs}}$ be the specific value of the statistic calculated from our observed data. For a typical one-sided test where larger values of $T$ provide more evidence against $\Hnull$, the \pvalue{} is:
+\begin{equation}
+  p = \Prob_{\Hnull}\bigl( T \ge t_{\text{obs}} \bigr).
+  \label{eq:pvalue_def}
+\end{equation}
+This reads: "The probability, under the assumption that $\Hnull$ is true, of getting a test statistic $T$ greater than or equal to the one we actually observed, $t_{\text{obs}}$." (For two-sided tests, we consider extremeness in both directions).
+
+A small \pvalue{} (e.g., $p < 0.05$) means that observing data as extreme as ours (or more extreme) would be very unlikely \emph{if the null hypothesis were true}. This low probability leads us to question the validity of the null hypothesis. It suggests that our data is inconsistent with $\Hnull$, providing evidence in favor of the alternative hypothesis ($\Halt$). Conversely, a large \pvalue{} (e.g., $p > 0.05$) means that our observed data is quite plausible under the null hypothesis; we don't have strong evidence to reject $\Hnull$.
+
+\textbf{Crucial Interpretation Note:} A \pvalue{} is \emph{not} the probability that the null hypothesis is true. It's a statement about the probability of the data (or more extreme data) given the null hypothesis. It quantifies the incompatibility of the data with the null hypothesis.
+
+The common practice is to compare the calculated \pvalue{} to the pre-chosen significance level $\alpha$. If $p \le \alpha$, we reject $\Hnull$; otherwise, we fail to reject $\Hnull$. The \pvalue{} itself, however, conveys more information than a simple reject/fail-to-reject decision, indicating the strength of the evidence against $\Hnull$.
+
+\section{The Multiple Comparisons Problem: Why More Tests Mean More Errors}
+The framework described above works well when we are conducting a single, pre-planned hypothesis test. However, challenges arise when we perform many tests simultaneously, a common scenario in fields like genomics (testing thousands of genes), neuroimaging (testing thousands of brain voxels), or A/B testing (testing multiple website variations).
+
+Let's consider what happens if we conduct $m$ independent hypothesis tests, and for each test, we use the standard significance level $\alpha = 0.05$. Suppose, for the sake of argument, that \emph{all} the null hypotheses are actually true (i.e., there are no real effects to find).
+
+For any single test, the probability of correctly \emph{not} rejecting $\Hnull$ is $1 - \alpha = 1 - 0.05 = 0.95$.
+Since the tests are independent, the probability of correctly not rejecting \emph{any} of the $m$ true null hypotheses is $(1 - \alpha)^m = (0.95)^m$.
+
+The probability of making \emph{at least one} Type I error (at least one false positive) across the entire family of $m$ tests is therefore:
+\begin{equation}
+  \label{eq:fwer_deriv}
+  \Prob(\text{At least one Type I error}) = 1 - \Prob(\text{No Type I errors}) = 1 - (1-\alpha)^{m}.
+\end{equation}
+This quantity is known as the \textbf{Familywise Error Rate (FWER)}. It represents the probability of making one or more false discoveries when considering the entire set of tests as a single "family."
+
+Let's see how the FWER grows as the number of tests ($m$) increases, keeping $\alpha = 0.05$:
+\begin{itemize}
+    \item For $m=1$, $\FWER = 1 - (1-0.05)^1 = 0.05$. (As expected for a single test)
+    \item For $m=10$, $\FWER = 1 - (0.95)^{10} \approx 1 - 0.599 = 0.401$. (A 40\% chance of at least one false positive!)
+    \item For $m=50$, $\FWER = 1 - (0.95)^{50} \approx 1 - 0.077 = 0.923$. (Over 92\% chance!)
+    \item For $m=1000$, $\FWER = 1 - (0.95)^{1000} \approx 1 - 7 \times 10^{-23} \approx 1$. (It's virtually certain you'll have false positives).
+\end{itemize}
+
+Equation~\eqref{eq:fwer_deriv}, often written simply as:
+\begin{equation}
+  \label{eq:fwer}
+  \FWER = 1 - (1-\alpha)^{m}.
+\end{equation}
+clearly demonstrates the \textbf{multiple comparisons problem} (or multiple testing problem): if you perform many tests using the standard per-test significance level $\alpha$, the probability of getting at least one statistically significant result purely by chance (a false positive) rapidly approaches 1. This severely undermines the credibility of any discoveries made without adjusting for the number of tests performed.
+
+\begin{figure}[ht]
+  \centering
+  % NOTE: You need to have the file 'example_fwer_growth.pdf' in the same directory
+  % or provide the correct path for this to compile. A placeholder is used here.
+  % \includegraphics[width=0.6\textwidth]{example_fwer_growth.pdf}
+  \framebox[0.6\textwidth]{\rule{0pt}{5cm} Placeholder for FWER growth plot}
+  \caption[Growth of FWER with number of tests]{Growth of the Familywise Error Rate (\FWER) with the number of independent tests $m$, when each test is conducted at significance level $\alpha=0.05$. The probability of making at least one false discovery quickly increases towards 1.}
+  \label{fig:fwer_growth}
+\end{figure}
+
+Therefore, when multiple tests are conducted, simply reporting results based on the individual $p \le \alpha$ criterion is misleading and statistically unsound. We need methods to control the overall error rate across the family of tests.
+
+% --------------------------------------------------------------------
+% Chapter 2 — Controlling \FWER (Expanded)
+% --------------------------------------------------------------------
+\chapter{Controlling the Familywise Error Rate}
+\label{chap:fwer_control}
+
+Given the problem highlighted in Chapter~\ref{chap:foundations} – that performing multiple tests inflates the overall Type I error rate – the most historically common approach has been to control the \textbf{Familywise Error Rate (FWER)}. The goal of FWER control is to ensure that the probability of making \emph{even one} false discovery across the entire set of $m$ tests remains below a specified level, typically $\alpha$ (e.g., 0.05). This is a very stringent form of error control.
+
+\section{The Bonferroni Method: Simple but Strict}
+The simplest and most widely known method for controlling the FWER is the \textbf{Bonferroni correction}. Its logic is straightforward: if we want the overall probability of *any* false positive across $m$ tests to be at most $\alpha$, we should make it much harder to declare significance for each individual test.
+
+Specifically, the Bonferroni method requires that we declare an individual test $i$ significant only if its \pvalue{}, $p_i$, satisfies:
+\begin{equation}
+    p_i \le \frac{\alpha}{m}
+\end{equation}
+where $\alpha$ is the desired FWER level (e.g., 0.05) and $m$ is the total number of tests performed. Essentially, we use a much smaller, adjusted significance threshold for each individual test.
+
+\textbf{Why does this work?} The guarantee comes from a simple probability inequality called the \emph{union bound} (or Boole's inequality). Let $E_i$ be the event of making a Type I error on the $i$-th test (assuming $\Hnull_i$ is true). We want to control $\Prob(\text{at least one } E_i \text{ occurs}) = \Prob(E_1 \cup E_2 \cup \dots \cup E_m)$. The union bound states that for any set of events, the probability of their union is less than or equal to the sum of their individual probabilities:
+\begin{equation}
+    \Prob(E_1 \cup E_2 \cup \dots \cup E_m) \le \sum_{i=1}^{m} \Prob(E_i)
+\end{equation}
+If we set the significance level for each test $i$ to $\alpha_{\text{adj}} = \alpha/m$, then $\Prob(E_i) \le \alpha/m$ (it's exactly $\alpha/m$ if $\Hnull_i$ is true, and 0 if $\Hnull_i$ is false). Therefore, the FWER is bounded:
+\begin{equation}
+    \FWER = \Prob(\text{at least one Type I error}) \le \sum_{i=1}^{m} \Prob(E_i) \le \sum_{i=1}^{m} \frac{\alpha}{m} = m \times \frac{\alpha}{m} = \alpha.
+\end{equation}
+Thus, by using the adjusted threshold $\alpha/m$ for each test, the overall FWER is guaranteed to be no more than $\alpha$.
+
+\subsection{Pros and Cons of Bonferroni}
+\begin{itemize}[wide]
+  \item \textbf{Pro: Simplicity and Generality.} The Bonferroni correction is extremely easy to understand and apply. Crucially, its validity does \emph{not} depend on any assumptions about the dependence structure between the tests (e.g., whether the \pvalue s are independent or correlated). It always controls the FWER.
+  \item \textbf{Con: Extreme Conservatism, Loss of Power.} The major drawback of the Bonferroni method is its conservatism, especially when the number of tests ($m$) is large. Dividing $\alpha$ by a large $m$ results in a very tiny significance threshold for each test. For instance, with $m=10,000$ tests and $\alpha=0.05$, the Bonferroni threshold becomes $0.05 / 10000 = 0.000005$. Only extremely small \pvalue s will meet this criterion. This means the method has very low \textbf{statistical power} – the ability to detect true effects when they exist (i.e., correctly reject false null hypotheses). Many genuine discoveries might be missed because their \pvalue s, while perhaps small (e.g., 0.001), fail to clear the exceedingly high bar set by Bonferroni. This loss of power is often unacceptable in exploratory research where finding promising leads is important.
+\end{itemize}
+
+\section{The Sidak Correction: A Slight Refinement (Under Independence)}
+An alternative method, known as the \textbf{Sidak correction}, provides a slightly less conservative way to control the FWER, but it requires the assumption that the $m$ tests are \emph{independent}.
+
+Recall from Equation~\eqref{eq:fwer} that under independence, the exact FWER when using a per-test level $\alpha_{\text{indiv}}$ is $1 - (1-\alpha_{\text{indiv}})^m$. To control the FWER at level $\alpha$, we want to find the $\alpha_{\text{indiv}}$ such that:
+\begin{equation}
+    1 - (1-\alpha_{\text{indiv}})^m = \alpha
+\end{equation}
+Solving for $\alpha_{\text{indiv}}$, we get:
+\begin{align}
+    (1-\alpha_{\text{indiv}})^m &= 1 - \alpha \\
+    1-\alpha_{\text{indiv}} &= (1 - \alpha)^{1/m} \\
+    \alpha_{\text{indiv}} &= 1 - (1-\alpha)^{1/m}
+\end{align}
+This gives the Sidak adjusted significance threshold:
+\begin{equation}
+  \alpha_{\text{Sidak}} = 1 - (1-\alpha)^{1/m}.
+\end{equation}
+A test $i$ is declared significant if $p_i \le \alpha_{\text{Sidak}}$.
+
+It can be shown that $\alpha_{\text{Sidak}}$ is always slightly larger than the Bonferroni threshold $\alpha/m$ (though the difference is small unless $m$ is very small or $\alpha$ is large). For example, with $m=10$ and $\alpha=0.05$:
+\begin{itemize}
+    \item Bonferroni threshold: $0.05 / 10 = 0.005$
+    \item Sidak threshold: $1 - (1-0.05)^{1/10} \approx 1 - (0.95)^{0.1} \approx 1 - 0.99488 \approx 0.00512$
+\end{itemize}
+So, Sidak is marginally more powerful (less conservative) than Bonferroni when tests are independent. However, it still suffers from the same fundamental issue: it aims to prevent \emph{any} false positives. This stringent control inevitably leads to a significant loss of power when $m$ is large. Furthermore, its validity rests on the independence assumption, which may not hold in many real-world applications (e.g., gene expression levels can be correlated).
+
+The limitations of FWER control methods like Bonferroni and Sidak motivated the search for alternative approaches that offer a better balance between controlling errors and making discoveries, particularly in the context of large-scale hypothesis testing. This leads us to the concept of the False Discovery Rate.
+
+% --------------------------------------------------------------------
+% Chapter 3 — False Discovery Rate (Expanded)
+% --------------------------------------------------------------------
+\chapter{The False Discovery Rate: A Different Perspective on Error}
+\label{chap:FDR}
+
+In many scientific contexts, especially exploratory ones involving thousands of tests (like screening genes, brain regions, or financial assets), the ultra-strict goal of preventing \emph{any} false positives (FWER control) might be counterproductive. We might be willing to tolerate a small fraction of false discoveries if it allows us to detect substantially more true effects. This is the core idea behind the \textbf{False Discovery Rate (FDR)}. Instead of controlling the probability of making *at least one* error, FDR control aims to control the expected \emph{proportion} of errors among the discoveries we make.
+
+\section{Defining the False Discovery Rate}
+To understand FDR, let's consider the outcomes of $m$ hypothesis tests. We can summarize the results in a contingency table:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+                     & \textbf{Declared Non-Significant} & \textbf{Declared Significant} & \textbf{Total} \\
+\midrule
+\textbf{$\Hnull$ is True}    & U (True Negatives)        & V (False Positives / Type I Errors) & $m_0$ \\
+\textbf{$\Hnull$ is False}   & T (False Negatives / Type II Errors) & S (True Positives)        & $m_1$ \\
+\midrule
+\textbf{Total}               & $m-R$                     & $R$ (Total Discoveries)       & $m$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Here:
+\begin{itemize}
+    \item $m$ is the total number of hypotheses tested.
+    \item $m_0$ is the number of hypotheses for which the null hypothesis is actually true.
+    \item $m_1$ is the number of hypotheses for which the null hypothesis is actually false ($m = m_0 + m_1$).
+    \item $R$ is the total number of hypotheses rejected (declared significant, our "discoveries").
+    \item $V$ is the number of true null hypotheses that were incorrectly rejected (False Positives / Type I errors).
+    \item $S$ is the number of false null hypotheses that were correctly rejected (True Positives / True Discoveries).
+    \item $U$ is the number of true null hypotheses that were correctly not rejected (True Negatives).
+    \item $T$ is the number of false null hypotheses that were incorrectly not rejected (False Negatives / Type II errors).
+\end{itemize}
+Note that $R = V + S$. The values $m_0$ and $m_1$ are typically unknown, while $R$ is observable from our testing procedure. $V, S, U, T$ are also unobservable directly, as they depend on the unknown truth status of each $\Hnull$.
+
+The FWER focuses entirely on the event $V \ge 1$. The FDR takes a different approach.
+
+First, we define the \textbf{False Discovery Proportion (FDP)}. This is the proportion of rejected hypotheses (discoveries) that are actually false positives. It's defined for a specific outcome of the $m$ tests:
+\begin{equation}
+  \text{FDP} = \begin{cases} \frac{V}{R} & \text{if } R > 0 \\ 0 & \text{if } R = 0 \end{cases}
+  \label{eq:fdp_def}
+\end{equation}
+This can be written more compactly as:
+\begin{equation}
+  \text{FDP} = \frac{V}{\max(R,1)}. \label{eq:fdp}
+\end{equation}
+The FDP is the realized proportion of errors among the tests we declared significant. Since $V$ and $R$ are random variables (they depend on the data), the FDP is also a random variable.
+
+The \textbf{False Discovery Rate (FDR)} is the \emph{expected value} of the False Discovery Proportion:
+\begin{equation}
+  \FDR = \E[\text{FDP}] = \E\left[ \frac{V}{\max(R,1)} \right]. \label{eq:fdr}
+\end{equation}
+The FDR represents the average FDP over repetitions of the entire experiment. Controlling the FDR at level $q$ (e.g., $q=0.05$ or $q=0.10$) means ensuring that, \emph{on average}, no more than $q \times 100\%$ of the declared discoveries are false positives.
+
+\subsection{Why Control \FDR\ Instead of \FWER?}
+The shift from FWER to FDR represents a conceptual change in the error control philosophy, particularly suited for large-scale multiple testing scenarios:
+
+\begin{itemize}
+    \item \textbf{Increased Power:} Controlling the proportion of false discoveries (FDR) is generally a less stringent criterion than controlling the probability of making even one false discovery (FWER). This relaxation allows for procedures that are substantially more powerful, meaning they are better able to detect true effects (increase $S$) that would be missed by overly conservative FWER methods like Bonferroni. This is crucial in exploratory analyses where the goal is often to generate a list of promising candidates for further investigation.
+    \item \textbf{Meaningful Interpretation:} In contexts with thousands of tests, discovering hundreds of significant results is common. Knowing that the FWER is controlled at 0.05 (meaning we're 95\% confident there are *no* errors in the list) might be less useful than knowing that the FDR is controlled at 0.10 (meaning we expect about 10\% of the discoveries in our list to be false positives). The latter provides a direct interpretation of the likely reliability of the set of findings.
+    \item \textbf{Adaptability:} FDR control naturally adapts to the amount of signal in the data. If many hypotheses are truly false ($m_1$ is large), FDR procedures tend to reject more hypotheses compared to FWER procedures, capitalizing on the abundance of true effects.
+\end{itemize}
+
+In essence, FDR control accepts that in large-scale testing, making *some* false discoveries might be an acceptable trade-off for achieving substantially higher power to find true effects. It focuses on ensuring the overall quality and reliability of the set of discoveries made, rather than guaranteeing perfection.
+
+\section{The Benjamini–Hochberg (BH) Procedure: A Practical Way to Control FDR}
+\label{sec:BH}
+In 1995, Yoav Benjamini and Yosef Hochberg introduced a simple yet powerful procedure that guarantees control of the FDR under certain conditions. It has become a cornerstone of modern multiple testing correction.
+
+Here's how the BH procedure works:
+
+\begin{description}[style=nextline,leftmargin=2.5cm]
+  \item[Input:] A set of $m$ \pvalue s obtained from $m$ hypothesis tests: $p_1, p_2, \dots, p_m$.
+  \item[Goal:] Control the \FDR{} at a target level $q$ (e.g., $q=0.05$ or $q=0.10$). This $q$ is sometimes called the nominal FDR level.
+  \item[Steps:]
+    \begin{enumerate}[label=\arabic*.,wide]
+      \item \textbf{Sort the \pvalue s:} Arrange the \pvalue s in ascending order: $p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}$. Let $H_{(i)}$ be the null hypothesis corresponding to the \pvalue{} $p_{(i)}$.
+      \item \textbf{Find the Threshold Index:} Compare each sorted \pvalue{} $p_{(i)}$ to a linearly increasing threshold based on its rank $i$. Find the largest index $k$ (where $1 \le k \le m$) such that:
+        \begin{equation}
+          p_{(k)} \le \frac{k}{m} \times q. \label{eq:bh_condition}
+        \end{equation}
+        If no such $k$ exists (i.e., even $p_{(1)} > (1/m)q$), then set $k=0$.
+      \item \textbf{Reject Hypotheses:} If $k>0$, reject all null hypotheses $H_{(1)}, H_{(2)}, \dots, H_{(k)}$ corresponding to the \pvalue s $p_{(1)}, p_{(2)}, \dots, p_{(k)}$. If $k=0$, reject no hypotheses.
+    \end{enumerate}
+\end{description}
+
+\textbf{Intuition behind the threshold $(k/m)q$:} The term $k/m$ represents the proportion of tests whose \pvalue s are less than or equal to $p_{(k)}$. If all null hypotheses were true, we'd expect the \pvalue s to be uniformly distributed between 0 and 1. In that case, we'd expect about $p_{(k)} \times m$ \pvalue s to be less than or equal to $p_{(k)}$. The BH procedure essentially looks for the point $k$ where the observed \pvalue{} $p_{(k)}$ is small relative to its rank proportion $k/m$, specifically $p_{(k)} / (k/m) \le q$. This comparison helps identify a cutoff point below which the \pvalue s are collectively smaller than expected by chance under the null, suggesting an enrichment of true alternative hypotheses. By rejecting all hypotheses up to rank $k$, the procedure ensures that the expected proportion of false discoveries among these $k$ rejections is controlled at level $q$.
+
+\subsection{Theoretical Guarantee of the BH Procedure}
+The remarkable property of the BH procedure is its theoretical guarantee regarding FDR control. Benjamini and Hochberg (1995) proved that:
+
+\emph{If the $m$ tests corresponding to the true null hypotheses have \pvalue s that are independent,} then the BH procedure applied with nominal level $q$ ensures that:
+\begin{equation}
+  \FDR = \E\left[ \frac{V}{\max(R,1)} \right] \le \frac{m_0}{m} q \le q. \label{eq:bh_control}
+\end{equation}
+where $m_0$ is the (unknown) number of true null hypotheses.
+
+Later work by Benjamini and Yekutieli (2001) showed that this control also holds under a condition called \emph{positive regression dependency on subsets} (PRDS), which is a more general type of positive dependence often plausible in biological and other applications. It does \emph{not} necessarily hold under arbitrary dependence structures.
+
+This guarantee means that by following the simple steps above, researchers can confidently report their list of discoveries (the rejected hypotheses) with an assurance about the expected proportion of false positives within that list, provided the independence or PRDS assumption is reasonably met. A more detailed sketch of the proof is provided in Appendix~\ref{appendix:BHproof}.
+
+% --------------------------------------------------------------------
+% Chapter 4 — Worked Example (Expanded)
+% --------------------------------------------------------------------
+\chapter{Worked Example: Analyzing a Gene Expression Study}
+\label{chap:example}
+
+Let's illustrate the application and interpretation of the Benjamini–Hochberg (BH) procedure with a common scenario in bioinformatics: identifying differentially expressed genes from a microarray or RNA-seq experiment.
+
+\section{Scenario and Data Description}
+Imagine a study designed to discover which genes change their activity levels in response to a new drug treatment compared to a control (placebo) condition. Researchers measure the expression levels (e.g., mRNA abundance) for a large number of genes simultaneously.
+
+\begin{itemize}
+    \item \textbf{Number of Tests ($m$):} Suppose the experiment measures expression for $m=10{,}000$ different genes. Each gene represents a separate hypothesis to be tested.
+    \item \textbf{Hypotheses:} For each gene $i$ (from 1 to 10,000), the null hypothesis ($\Hnull_i$) is that the drug has no effect on the average expression level of gene $i$ compared to the control group. The alternative hypothesis ($\Halt_i$) is that the drug *does* alter the average expression level.
+    \item \textbf{Data Collection:} Let's assume the researchers collected data from $n=5$ biological replicates in the treatment group and $n=5$ replicates in the control group.
+    \item \textbf{Statistical Test:} For each gene $i$, a statistical test is performed to compare the expression levels between the two groups. A common choice is the two-sample $t$-test, which assesses the difference in means relative to the variability within the groups. This test yields a \pvalue{}, $p_i$, for each gene. A small $p_i$ suggests evidence against $\Hnull_i$ (i.e., evidence for differential expression for gene $i$).
+\end{itemize}
+After performing these 10,000 individual $t$-tests, we obtain a list of \pvalue s: $p_1, p_2, \dots, p_{10\,000}$. Simply declaring genes with $p_i \le 0.05$ as significant would lead to a high number of false positives due to the multiple comparisons problem (as discussed in Chapter~\ref{chap:foundations}). We need a correction method. Let's apply the BH procedure to control the FDR.
+
+\section{Applying the BH Procedure at FDR Level \texorpdfstring{$q=0.10$}{q=0.10}}
+We decide that we are willing to tolerate a list of significant genes where, on average, about 10\% of them might be false positives. Therefore, we choose a target FDR level of $q = 0.10$.
+
+\textbf{Step 1: Sort the \pvalue s.}
+We take our list of 10,000 \pvalue s and sort them in ascending order:
+$p_{(1)} \le p_{(2)} \le \dots \le p_{(10\,000)}$.
+
+\textbf{Step 2: Find the Threshold Index $k$.}
+We now compare each sorted \pvalue{} $p_{(i)}$ to the BH threshold $(i/m)q = (i/10000) \times 0.10$. We look for the largest rank $k$ for which $p_{(k)} \le (k/10000) \times 0.10$.
+
+Let's visualize this process. Imagine plotting the sorted \pvalue s $p_{(i)}$ against their rank $i$ (from 1 to 10,000). We also plot the BH threshold line $y = (i/m)q = 0.00001 \times i$. This line starts at $0.00001$ for $i=1$ and increases linearly to $0.10$ for $i=10,000$.
+
+\begin{figure}[ht]
+  \centering
+  % NOTE: You need to have the file 'bh_threshold_plot.pdf' in the same directory
+  % or provide the correct path for this to compile. A placeholder is used here.
+  % \includegraphics[width=0.65\textwidth]{bh_threshold_plot.pdf}
+  \framebox[0.65\textwidth]{\rule{0pt}{5cm} Placeholder for BH threshold plot}
+  \caption[Illustration of the BH procedure decision rule]{Illustration of the Benjamini–Hochberg (BH) decision rule. The sorted observed \pvalue s ($p_{(i)}$, shown as dots) are plotted against their rank ($i$). The upward sloping line represents the BH threshold $(i/m)q$. The largest $k$ for which the dot $p_{(k)}$ falls on or below the line determines the cutoff. All hypotheses with ranks $1, \dots, k$ are rejected.}
+  \label{fig:bh_plot}
+\end{figure}
+
+We search for the highest rank $k$ where the \pvalue{} dot $p_{(k)}$ lies on or below the threshold line. Suppose, after examining the sorted \pvalue s, we find that the largest rank satisfying the condition $p_{(k)} \le (k/10000) \times 0.10$ is $k=428$. This means:
+\begin{itemize}
+    \item $p_{(428)} \le (428/10000) \times 0.10 = 0.00428$
+    \item $p_{(429)} > (429/10000) \times 0.10 = 0.00429$ (or $k=m$ if $p_{(m)}$ satisfies the condition)
+\end{itemize}
+
+\textbf{Step 3: Reject Hypotheses.}
+Since we found $k=428$, the BH procedure tells us to reject the null hypotheses corresponding to the first 428 sorted \pvalue s: $H_{(1)}, H_{(2)}, \dots, H_{(428)}$.
+
+\textbf{Interpretation:}
+We declare these $R=428$ genes as "differentially expressed" between the treatment and control groups. The BH procedure guarantees that, under the assumption of independence (or PRDS) of the \pvalue s from the true null hypotheses, the expected proportion of false positives among these 428 declared genes is no more than our chosen level $q=0.10$.
+
+In practical terms, we report this list of 428 genes as candidates significantly affected by the drug. We acknowledge that we expect roughly $10\%$ (around 43 genes) in this list might be false discoveries, but we have substantially increased our power to detect real biological effects compared to using a strict FWER control like Bonferroni, which might have yielded very few, if any, significant genes. This list of 428 genes can then be prioritized for further validation experiments or downstream biological analysis.
+
+% --------------------------------------------------------------------
+% Chapter 5 — Extensions and Advanced Topics (Expanded)
+% --------------------------------------------------------------------
+\chapter{Extensions and Advanced Topics in FDR Control}
+\label{chap:extensions}
+
+The original Benjamini–Hochberg (BH) procedure provides a foundational approach to FDR control. However, subsequent research has developed extensions and related concepts to address specific challenges like dependence between tests or to further improve power under certain conditions. Here we briefly introduce some key developments.
+
+\section{The Benjamini–Yekutieli (BY) Procedure for Arbitrary Dependence}
+A critical assumption for the standard BH procedure's guarantee (Equation~\ref{eq:bh_control}) is that the \pvalue s corresponding to the true null hypotheses are independent or exhibit a specific type of positive dependence (PRDS). What if the tests are dependent in a more complex or unknown way? For example, expression levels of genes in the same biological pathway might be highly correlated, leading to dependent \pvalue s.
+
+Benjamini and Yekutieli (2001) derived a modification of the BH procedure that provably controls the FDR at level $q$ under \emph{any} arbitrary dependence structure among the \pvalue s. This provides a robust guarantee but comes at the cost of reduced power compared to the original BH procedure (when BH's assumptions hold).
+
+The \textbf{Benjamini–Yekutieli (BY) procedure} follows the same steps as BH (sort \pvalue s, find largest $k$, reject $H_{(1)}, \dots, H_{(k)}$), but uses a more stringent threshold condition:
+\begin{equation}
+  p_{(k)} \le \frac{k}{m \times c(m)} \times q, \label{eq:by_condition}
+\end{equation}
+where $c(m)$ is a correction factor that depends on the number of tests $m$. The most common form uses:
+\begin{equation}
+  c(m) = \sum_{i=1}^{m} \frac{1}{i}.
+\end{equation}
+This sum is the $m$-th \emph{harmonic number}, which grows slowly (approximately $\ln(m) + \gamma$, where $\gamma \approx 0.577$ is the Euler-Mascheroni constant).
+
+Because $c(m) \ge 1$ (and grows with $m$), the threshold $(k / (m \times c(m))) q$ used in the BY procedure is smaller (more conservative) than the BH threshold $(k/m)q$. This increased conservatism ensures FDR control even under arbitrary dependence, but it will generally lead to rejecting fewer hypotheses than the BH procedure. The BY procedure is valuable when dependence is suspected and a conservative guarantee is paramount.
+
+\section{Storey's \texorpdfstring{$q$}{q}-value: Estimating \texorpdfstring{$\pi_0$}{pi0} for More Power}
+The BH procedure controls $\FDR \le (m_0/m) q \le q$. The factor $m_0/m$ is the proportion of tests for which the null hypothesis is actually true. Let's denote this proportion as $\boldsymbol{\pi_0}$. If $\pi_0$ is substantially less than 1 (meaning many hypotheses are actually false, i.e., there's a lot of real signal), the BH procedure can be somewhat conservative because its guarantee scales with $\pi_0$.
+
+John Storey (2002, 2003) proposed an approach that aims to gain power by first estimating $\pi_0$ from the data itself. The distribution of \pvalue s often provides clues about $\pi_0$. Under the null hypothesis, \pvalue s are expected to be uniformly distributed between 0 and 1. \pvalue s corresponding to false null hypotheses tend to cluster near zero. If many nulls are true ($\pi_0$ is large), the overall distribution of \pvalue s will look relatively flat, especially for larger \pvalue s. If many nulls are false ($\pi_0$ is small), there will be a peak of \pvalue s near zero and a lower density elsewhere.
+
+Storey's method uses the observed distribution of \pvalue s (often focusing on the larger \pvalue s, assumed to come mostly from true nulls) to estimate $\hat{\pi}_0$. This estimate is then incorporated into an adjusted procedure.
+
+Furthermore, Storey defined the \textbf{\qvalue}. For a specific hypothesis test $i$ with \pvalue{} $p_i$, its \qvalue{}, $q_i$, is defined as the minimum FDR level at which we would reject $H_i$. More formally, it can be interpreted as the expected proportion of false positives among all tests declared significant with \pvalue s less than or equal to $p_i$.
+\begin{equation}
+    q_i = \min_{t \ge p_i} \left\{ \FDR(\text{reject if } p \le t) \right\}
+\end{equation}
+Calculating \qvalue s typically involves estimating $\pi_0$ and then applying a procedure similar to BH. Reporting \qvalue s provides a direct measure of FDR significance for each individual test, analogous to how \pvalue s measure standard significance. Researchers can then reject all hypotheses with $q_i \le q_{\text{desired}}$ to control the FDR at level $q_{\text{desired}}$. When $\pi_0 < 1$, using \qvalue s (which implicitly estimate and use $\pi_0$) can be more powerful than the standard BH procedure.
+
+\section{Local FDR: A Bayesian Perspective}
+While the (global) FDR controls the average proportion of false positives among the *set* of all rejected hypotheses, sometimes we are interested in the probability that a *specific* rejected hypothesis is actually a false positive. This leads to the concept of the \textbf{local false discovery rate (lfdr)}, pioneered by Bradley Efron.
+
+The lfdr for a test yielding a specific test statistic value $t$ (or \pvalue{} $p$) is defined as the posterior probability that the null hypothesis is true, given the observed statistic:
+\begin{equation}
+    \text{lfdr}(t) = \Prob(\Hnull \text{ is true} \mid T=t)
+\end{equation}
+This quantity requires a Bayesian perspective, incorporating prior probabilities and the distributions of the test statistic under both the null and alternative hypotheses. Efron developed empirical Bayes methods to estimate the lfdr directly from the observed distribution of all test statistics (or \pvalue s) in the multiple testing setup, without needing to specify subjective priors.
+
+The lfdr provides a test-specific measure of confidence. A low lfdr for a particular test suggests it is highly likely to be a true discovery. While related to the global FDR, the lfdr offers a different, more localized interpretation of significance in the multiple testing context. Calculating and interpreting lfdr often involves more sophisticated statistical modeling (e.g., mixture models) compared to the BH procedure.
+
+These extensions – BY for dependence, Storey's \qvalue s for potentially higher power via $\pi_0$ estimation, and Efron's lfdr for test-specific posterior probabilities – illustrate the richness and ongoing development of methods for handling multiple comparisons effectively.
+
+% --------------------------------------------------------------------
+% Chapter 6 — Software Implementation (Expanded slightly)
+% --------------------------------------------------------------------
+\chapter{Software Implementation}
+\label{chap:software}
+
+Applying FDR control procedures like Benjamini–Hochberg is straightforward using standard statistical software packages. Below are examples using R and Python, demonstrating how to obtain BH-adjusted \pvalue s (often referred to as \qvalue s in this context, though distinct from Storey's formal definition unless specified).
+
+\section{R Example}
+The base R `stats` package includes the `p.adjust` function, which implements various multiple testing corrections.
+
+\begin{verbatim}
+# Sample vector of p-values
+p_values <- c(0.001, 0.20, 0.04, 0.0005, 0.13)
+
+# Apply Benjamini-Hochberg correction
+# The 'method = "BH"' argument specifies the procedure.
+# It's equivalent to 'method = "fdr"'.
+bh_adjusted_p_values <- p.adjust(p_values, method = "BH")
+
+# Print the original and adjusted p-values
+print("Original p-values:")
+print(p_values)
+print("BH-adjusted p-values (q-values):")
+print(bh_adjusted_p_values)
+
+# To find which tests are significant at FDR <= 0.05:
+significant_bh <- p_values[bh_adjusted_p_values <= 0.05]
+print("P-values significant at FDR <= 0.05 (BH):")
+print(significant_bh)
+# Or simply:
+print("Indices significant at FDR <= 0.05 (BH):")
+print(which(bh_adjusted_p_values <= 0.05))
+\end{verbatim}
+
+The output `bh_adjusted_p_values` contains, for each original \pvalue, the smallest FDR level $q$ at which that test would be rejected by the BH procedure. To control FDR at, say, 0.05, you would select all tests where the adjusted \pvalue{} is $\le 0.05$.
+
+\section{Python Example}
+In Python, the `statsmodels` library provides robust tools for multiple testing correction via the `multipletests` function.
+
+\begin{verbatim}
+import numpy as np
+from statsmodels.stats.multitest import multipletests
+
+# Sample vector of p-values as a NumPy array
+p_values = np.array([0.001, 0.20, 0.04, 0.0005, 0.13])
+
+# Apply Benjamini-Hochberg correction
+# method='fdr_bh' specifies the procedure.
+# alpha=0.05 specifies the target FDR level for the reject array.
+reject, bh_adjusted_p_values, _, _ = multipletests(p_values,
+                                                   alpha=0.05,
+                                                   method='fdr_bh')
+
+# Print the results
+print("Original p-values:")
+print(p_values)
+print("BH-adjusted p-values (q-values):")
+print(bh_adjusted_p_values)
+print("Reject null hypothesis (FDR <= 0.05)?")
+print(reject) # Boolean array indicating significance at alpha=0.05
+
+# Indices of significant tests
+significant_indices = np.where(reject)[0]
+print("Indices significant at FDR <= 0.05 (BH):")
+print(significant_indices)
+\end{verbatim}
+
+Similar to the R output, `bh_adjusted_p_values` gives the adjusted values. The `reject` array directly tells you which tests are significant at the specified `alpha` level (interpreted as the target FDR $q$ here).
+
+These functions make implementing FDR control a routine part of data analysis pipelines involving multiple hypothesis tests. Always consult the specific documentation for the functions you use to understand the exact algorithm implemented (e.g., whether it's standard BH or incorporates $\pi_0$ estimation).
+
+% --------------------------------------------------------------------
+% Chapter 7 — Conclusion (Expanded)
+% --------------------------------------------------------------------
+\chapter{Conclusion: Embracing Principled Discovery in the Age of Big Data}
+\label{chap:conclusion}
+
+The challenge of multiple hypothesis testing is not merely a statistical nuisance; it is a fundamental issue that arises naturally in modern data-driven science. As we gain the ability to measure and analyze systems at unprecedented scales – sequencing entire genomes, monitoring vast networks, testing numerous web features – the risk of being drowned in a sea of false positives generated by chance alone becomes immense.
+
+Historically, the primary response was stringent control of the Familywise Error Rate (FWER), demanding high confidence that \emph{no} errors are made among the declared discoveries. While valuable for confirmatory research where the cost of a single false positive is extremely high, FWER control methods like the Bonferroni correction often prove too conservative for exploratory analyses. In fields grappling with massive datasets, insisting on zero false positives can severely limit our ability to uncover potentially valuable leads and genuine effects, effectively throwing the baby out with the bathwater.
+
+The development of the False Discovery Rate (FDR) framework, particularly the practical Benjamini–Hochberg procedure, marked a significant conceptual shift. By focusing on controlling the expected \emph{proportion} of false discoveries among all reported discoveries, FDR offers a principled and powerful compromise. It acknowledges the reality that in large-scale screening, some false positives may be inevitable and tolerable, provided their rate is controlled. This allows researchers to retain much greater statistical power to identify true effects compared to FWER methods.
+
+Understanding FDR is crucial for both practitioners and consumers of modern research. It allows researchers to design more powerful exploratory studies and report their findings with a clear, interpretable guarantee about the reliability of the discovered set. For readers, understanding FDR helps in critically evaluating claims based on large numbers of tests, recognizing that a list of "significant" findings likely contains a controlled fraction of false positives.
+
+While the basic BH procedure is widely applicable, the field continues to evolve with methods addressing complexities like dependence (BY procedure), enhancing power by estimating the proportion of true nulls (Storey's \qvalue s), and providing test-specific confidence measures (local FDR). The choice of method depends on the specific goals of the study, the assumptions one is willing to make, and the desired balance between controlling errors and maximizing discovery.
+
+In conclusion, False Discovery Rate control provides an indispensable tool for navigating the statistical challenges of high-dimensional data. It enables researchers to pursue discovery rigorously and efficiently, ensuring that the findings reported from large-scale analyses are not just numerous, but also statistically credible.
+
+\appendix
+
+% --------------------------------------------------------------------
+% Appendix — BH Proof (Expanded slightly with more context)
+% --------------------------------------------------------------------
+\chapter{Proof Sketch of Benjamini–Hochberg FDR Control Under Independence}
+\label{appendix:BHproof}
+
+This appendix provides a sketch of the proof that the Benjamini–Hochberg (BH) procedure controls the False Discovery Rate (FDR) at the desired level $q$ when the \pvalue s corresponding to the true null hypotheses are independent. The full proof involves careful handling of expectations and indicator variables.
+
+\section{Setup and Definitions}
+Let $H_1, \dots, H_m$ be the $m$ null hypotheses tested, yielding \pvalue s $p_1, \dots, p_m$.
+Let $I_0$ be the set of indices $i$ for which $H_i$ is true, and let $m_0 = |I_0|$ be the number of true null hypotheses (unknown).
+Let $p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}$ be the sorted \pvalue s.
+Let $k$ be the largest index such that $p_{(k)} \le (k/m)q$. The BH procedure rejects $H_{(1)}, \dots, H_{(k)}$.
+Let $R = k$ be the total number of rejected hypotheses (if $k=0$, $R=0$).
+Let $V$ be the number of rejected hypotheses that are actually true nulls (false positives). $V = |\{ i \in I_0 \mid H_i \text{ is rejected} \}|$.
+
+We want to show that $\FDR = \E[V / \max(R, 1)] \le (m_0/m)q \le q$.
+
+\section{Key Idea: Focusing on True Nulls}
+The proof cleverly focuses on the behavior of the \pvalue s corresponding to the true null hypotheses. Under the assumption that $H_i$ is true, its corresponding \pvalue{} $p_i$ follows a Uniform(0, 1) distribution (or is stochastically larger than Uniform(0,1) if tests are discrete).
+
+Consider a specific true null hypothesis $H_i$ (i.e., $i \in I_0$). What is the probability that it gets rejected by the BH procedure? $H_i$ is rejected if its \pvalue{} $p_i$ is less than or equal to the threshold $p_{(k)}$. The procedure is defined such that $p_{(k)} \le (k/m)q \le (R/m)q$.
+So, $H_i$ is rejected if $p_i \le p_{(k)}$.
+
+Benjamini and Hochberg's key insight involves constructing a specific decision rule for each true null $H_i$ and showing that the probability of rejecting $H_i$ under this rule is controlled. They define a "step-up" procedure and relate its properties back to the original BH procedure.
+
+\section{Simplified Argument Outline (Illustrative, not fully rigorous)}
+A less formal way to see the intuition involves looking at the expectation of $V$.
+Let $V_i = \mathbf{1}\{H_i \text{ is true and rejected}\}$ be an indicator variable. Then $V = \sum_{i \in I_0} V_i$.
+$\E[V] = \sum_{i \in I_0} \E[V_i] = \sum_{i \in I_0} \Prob(H_i \text{ is rejected})$.
+
+The crucial step in the formal proof (using properties of order statistics and the independence of true null \pvalue s) demonstrates that for any true null $H_i$:
+$\Prob(H_i \text{ is rejected by BH}) \le \frac{\alpha_i}{m} q$, where $\alpha_i$ is the probability related to the rank of $p_i$. Summing these probabilities carefully leads to:
+$\E[V] \le \frac{m_0}{m} q \times \E[R]$ (This step requires careful justification).
+
+Now consider the definition $\FDR = \E[V/R]$ (ignoring the $\max(R,1)$ for simplicity here). If we could write $\E[V/R] \approx \E[V] / \E[R]$, then the result $\FDR \le (m_0/m)q$ would follow. The formal proof uses a martingale argument or properties of expectations of ratios to establish the bound correctly, handling the $\max(R,1)$ denominator properly.
+
+\section{Proof Details}
+(The complete, rigorous derivation requires several technical steps involving conditional expectations and properties of order statistics under independence. It is beyond the scope of this sketch but can be found in the original Benjamini & Hochberg (1995) paper or advanced statistical texts on multiple testing.)
+
+% Example placeholder for detailed proof structure (if one were included)
+% \begin{enumerate}
+%     \item Define relevant indicator variables and stopping times.
+%     \item Use the independence of p-values for true nulls.
+%     \item Apply properties of uniform order statistics.
+%     \item Construct a related testing procedure or use a martingale approach.
+%     \item Bound the expectation $\E[V/R]$.
+%     \item Conclude $\FDR \le (m_0/m)q$.
+% \end{enumerate}
+% \lipsum[1-2] % Placeholder text
+
+The key takeaway is that the linear threshold $(k/m)q$ is precisely calibrated to ensure that, on average, the proportion of false discoveries among those tests falling below the threshold is controlled at the desired level $q$, assuming independence of the true null \pvalue s.
+
+% --------------------------------------------------------------------
+% Bibliography (Retained from original)
+% --------------------------------------------------------------------
+\backmatter
+\begin{thebibliography}{9}
+\bibitem{BH1995} Y.~Benjamini and Y.~Hochberg (1995). ``Controlling the False Discovery Rate: a Practical and Powerful Approach to Multiple Testing.'' \emph{Journal of the Royal Statistical Society Series B}, 57(1), 289–300. \doi{10.1111/j.2517-6161.1995.tb02031.x}
+\bibitem{BY2001} Y.~Benjamini and D.~Yekutieli (2001). ``The Control of the False Discovery Rate in Multiple Testing under Dependency.'' \emph{Annals of Statistics}, 29(4), 1165–1188.
+\bibitem{Storey2002} J.~D. Storey (2002). ``A direct approach to false discovery rates.'' \emph{Journal of the Royal Statistical Society Series B}, 64(3), 479–498.
+\bibitem{Storey2003} J.~D. Storey and R. Tibshirani (2003). ``Statistical significance for genomewide studies.'' \emph{Proceedings of the National Academy of Sciences}, 100(16), 9440-9445.
+\bibitem{Efron2001} B. Efron, R. Tibshirani, J. D. Storey, and V. Tusher (2001). ``Empirical Bayes analysis of a microarray experiment.'' \emph{Journal of the American Statistical Association}, 96(456), 1151-1160.
+\bibitem{Efron2010} B. Efron (2010). \emph{Large-Scale Inference: Empirical Bayes Methods for Estimation, Testing, and Prediction}. Cambridge University Press.
+\end{thebibliography}
+
+\end{document}

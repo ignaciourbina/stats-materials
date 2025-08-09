@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+
+% Preamble packages
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title{Computing the Sample Variance}
+\author{Lecture Notes}
+\date{\today}
+
+\begin{document}
+
+% Title page
+
+
+% Introduction frame
+\section{Overview}
+In some situations, you might have the following summary statistics:
+\begin{itemize}
+    \item \(\sum_{i=1}^{N} x_i^2\): the sum of the squares of the observations,
+    \item \(\bar{x}\): the sample mean, and
+    \item \(N\): the sample size.
+\end{itemize}
+We will show that you can compute the sample variance \(s^2\) using these quantities with the formula:
+\[
+s^2 = \frac{\sum_{i=1}^{N} x_i^2 - N\,\bar{x}^2}{N-1}.
+\]
+
+
+% Derivation frame
+\section{Derivation of the Formula}
+Start with the definition of the sample variance:
+\[
+s^2 = \frac{1}{N-1}\sum_{i=1}^{N} \left(x_i - \bar{x}\right)^2.
+\]
+\bigskip
+
+\textbf{Step 1.} Expand the squared term:
+\[
+\sum_{i=1}^{N} \left(x_i - \bar{x}\right)^2 
+= \sum_{i=1}^{N} \left(x_i^2 - 2x_i\bar{x} + \bar{x}^2\right).
+\]
+\bigskip
+
+\textbf{Step 2.} Separate the sum:
+\[
+\sum_{i=1}^{N} x_i^2 - 2\bar{x}\sum_{i=1}^{N} x_i + N\,\bar{x}^2.
+\]
+Since the sum of the observations is
+\[
+\sum_{i=1}^{N} x_i = N\,\bar{x},
+\]
+the expression simplifies to:
+\[
+\sum_{i=1}^{N} x_i^2 - 2N\bar{x}^2 + N\,\bar{x}^2 
+= \sum_{i=1}^{N} x_i^2 - N\,\bar{x}^2.
+\]
+\bigskip
+
+\textbf{Step 3.} Substitute back into the variance formula:
+\[
+s^2 = \frac{\sum_{i=1}^{N} x_i^2 - N\,\bar{x}^2}{N-1}.
+\]
+
+
+% Example frame
+\section{Example Calculation}
+Suppose we have a sample with the following summary statistics:
+\begin{itemize}
+    \item \(\displaystyle \sum_{i=1}^{3} x_i^2 = 14,\)
+    \item \(\bar{x} = 2,\) and
+    \item \(N = 3.\)
+\end{itemize}
+
+Then, the sample variance is computed as:
+\[
+s^2 = \frac{14 - 3\,(2^2)}{3-1}
+= \frac{14 - 12}{2}
+= \frac{2}{2} = 1.
+\]
+Thus, the sample variance is \(1\).
+
+% Summary frame
+\section{Summary}
+If you know:
+\begin{itemize}
+    \item \(\sum_{i=1}^{N} x_i^2\), 
+    \item the sample mean \(\bar{x}\), and 
+    \item the sample size \(N\),
+\end{itemize}
+you can compute the sample variance using the formula:
+\[
+s^2 = \frac{\sum_{i=1}^{N} x_i^2 - N\,\bar{x}^2}{N-1}.
+\]
+This \emph{computational formula} is especially useful when these summary statistics are readily available.
+
+
+\end{document}

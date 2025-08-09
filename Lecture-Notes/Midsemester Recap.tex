@@ -1,0 +1,201 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[english]{babel}
+\usepackage{dirtytalk}
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+
+
+\title{Midsemester Recap - POL201.01: Intro to Stats Methods in Political Science.}
+\author{Instructor: Ignacio Urbina}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-3em}
+
+\section*{What Are We Doing? Where Are We Going With All of This?}
+
+In the first week of the course, we introduced the core idea of \textbf{statistical inference}. Broadly speaking, statistical inference is the process of using data from a sample to make informed conclusions about a larger population. 
+
+To make this idea more concrete, consider a typical public opinion headline: 
+
+\begin{quote}
+    \textit{``A slight majority of Americans approve of how the president is handling the economy (52\% vs. 48\%).''}
+\end{quote}
+
+Suppose this result comes from a survey conducted on a sample of 1,200 individuals. The key statistical inference question here is: 
+
+\begin{quote}
+    \textit{To what extent should we believe that this observed difference reflects a real difference in the population — and not simply a result of randomness in the sampling process?}
+\end{quote}
+
+If we were to draw another random sample of 1,200 people under the same conditions, would we get the same result? What if we repeated this process multiple times? Would the 52\% hold up?
+
+\vspace{0.5em}
+This is a critical question. As researchers and analysts, we often want to make generalizations about a population — people's preferences, opinions, behaviors, etc. But it would be naïve to take the result from a single sample at face value as ``the truth'' about the whole population. At the same time, it is usually unfeasible (or outright impossible) to collect many identical samples under identical conditions. In most real-world scenarios, we just have one dataset — one sample.
+
+So the central challenge becomes this:
+
+\begin{quote}
+    \textbf{Even with just one sample, is there something we can do to assess the uncertainty in our result? Is there a principled way to quantify how much randomness might be driving our conclusions?}
+\end{quote}
+
+The answer is yes. That is exactly the purpose of statistical inference. And that is the central goal of a course like ours.
+
+\section*{What We've Covered So Far}
+
+The path toward statistical inference begins by laying a solid conceptual and mathematical foundation. Here’s a summary of what we've built together in the first half of the semester:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item We began by learning vocabulary and key terms — how to describe variables, distinguish between numerical and categorical types, and understand what a dataset represents in terms of populations, samples, and measurements.
+    
+    \item We discussed how the presence of \textbf{randomness} forces us to think carefully about the uncertainty in any quantity we compute from sample data. Even something as basic as the sample mean carries uncertainty because it is based on one particular sample, not the full population.
+    
+    \item Before attempting to make conclusions about populations, we first focused on understanding and describing our sample. This led us to \textbf{descriptive statistics} — tools to summarize the distribution of a variable using measures of center (mean, median, mode), spread (standard deviation, IQR, range), and position (quantiles, percentiles). We also looked at visualizations like histograms, bar plots, and boxplots to gain intuition about data distributions.
+    
+    \item To begin moving toward inference, we introduced the idea of a \textbf{random process}. We defined basic concepts like outcomes, sample spaces, and events. These ideas gave us a framework to talk about uncertainty more precisely.
+    
+    \item From there, we studied the basic rules and definitions of classical \textbf{probability theory}. We learned about disjoint and independent events, complementary events, unions and intersections, and the fundamental addition and multiplication rules. This probabilistic language allows us to reason rigorously about chance.
+    
+    \item Then we made a key conceptual shift: from thinking about discrete outcomes or events, to thinking about \textbf{numeric quantities that arise from random processes}. This led us to define the concept of a \textbf{random variable}.
+    
+    \item A random variable is a numerical outcome of a random process. It allows us to model randomness quantitatively. We learned to distinguish between \textbf{discrete} and \textbf{continuous} random variables, to define their probability (PMF for a discrete) or density (PDF, for a continuous) functions, and to compute probabilities using these functions.
+    
+    \item Random variables are especially powerful because they let us generalize our reasoning and leverage the algebra of numbers. It is often easier and more flexible to work with numeric representations of randomness than with sets and events. Random variables form the backbone of statistical modeling.
+\end{itemize}
+
+\section*{So What? Why Random Variables?}
+
+At this point, it’s worth pausing to ask: why did we take this somewhat abstract turn into the world of random variables? Why not just focus on the data we actually observe?
+
+The answer is both simple and profound.
+
+\begin{quote}
+    \textbf{Any dataset — that is, the collection of values recorded for observations in a sample — can be thought of as a single realization from a collection of random variables.}
+\end{quote}
+
+That is, the data you have in hand is just one of many possible outcomes that could have occurred, depending on which individuals were sampled and what values they reported. Each data point — each $x_i$ in your dataset — can be viewed as an observed value of some underlying random variable $X$.
+
+This framing is powerful. It lets us connect the concrete data in front of us to the abstract idea of a \emph{population generating that data}. It allows us to define — and study — important population-level properties: the probability distribution of the random variable, and its associated quantities like the mean and variance.
+
+This is where the next stage of the course — the study of \textbf{expectations} — enters the picture.
+
+\section*{Our Sample Data as Realizations of Random Variables}
+
+Consider again a public opinion survey — say, a poll reporting that 52\% of Americans approve of how the president is handling the economy, based on a sample of 1,200 adults. At first glance, this seems like a straightforward result: a majority approves.
+
+But statistics forces us to ask a deeper question: \textit{is this difference (52\% vs. 48\%) meaningful, or could it have occurred just by chance due to the randomness in our sampling process?}
+
+\vspace{0.5em}
+\noindent
+To unpack this, we need to consider that:
+\begin{itemize}
+    \item The sample data is only \textit{one} realization — one draw — from a larger set of possible samples.
+    \item Each sample proportion we could have gotten is a different possible outcome of a random process.
+\end{itemize}
+
+\vspace{0.5em}
+This is where the concept of \textbf{random variables} comes in. In our case, we can define a random variable $X$ that represents the approval status of a randomly selected individual ($x_i$):
+\[
+x_i =
+\begin{cases}
+1 & \text{if the individual approves} \\
+0 & \text{if the individual disapproves}
+\end{cases}
+\]
+
+\vspace{0.5em}
+If we collect data from 1,200 people, we can define the sample proportion of approval, $\hat{p}$, as:
+\[
+\hat{p} = \frac{1}{n} \sum_{i=1}^{n} x_i
+\]
+Here, each $x_i$ is a Bernoulli random variable, and $\hat{p}$ is their average — itself a \textbf{random variable} with a distribution!
+
+\subsection*{Why This Matters}
+
+Understanding the distribution of $\hat{p}$ — its center (expected value) and spread (standard error) — allows us to quantify the uncertainty due to sampling.
+
+If we can describe how $\hat{p}$ behaves across all possible random samples of 1,200 people, we can begin to answer our central inferential question:
+
+\begin{quote}
+\textit{Is 52\% far enough from 50\% that we can be confident this difference isn't just due to sampling randomness?}
+\end{quote}
+
+This approach is the heart of statistical inference. Random variables help us move from individual data points to generalizable patterns — and ultimately to making informed, quantitative statements about the population.
+
+\section*{From Sample Points to Population Quantities}
+
+Once we accept that each data point collected in a survey or experiment can be thought of as the realization of a random variable, a powerful conceptual shift occurs:
+
+\begin{quote}
+    \textit{Our dataset is not just a collection of numbers — it is a realization of a stochastic process, governed by underlying probability distributions.}
+\end{quote}
+
+That is, every individual value $x_i$ in our data is the observed outcome of a random variable $X$. When we analyze this dataset, we are — implicitly or explicitly — trying to say something about the \emph{population distribution} these $X$'s come from.
+
+\subsection*{The Distribution of a Random Variable}
+
+For a discrete random variable $X$, the distribution is captured by its \textbf{probability mass function} (PMF), denoted $p_X(x)$ — a function that assigns a probability to each possible value $x$ in the range of $X$.
+
+For continuous random variables, we use the \textbf{probability density function} (PDF), $f_X(x)$, which instead assigns density (a measure of scaled relative likelihood) over intervals of values.
+
+\subsection*{Expectation: Defining Population Quantities}
+
+Here’s where our study of expectations comes in. The \textbf{expected value} of a random variable gives us a formal definition of the \textbf{population mean} — the central tendency of the entire \emph{population distribution}, not just the average of a single sample.
+
+\begin{itemize}
+    \item For a discrete random variable $X$, the expectation is defined as:
+    \[
+    \mathbb{E}[X] = \sum_{x \in \mathcal{X}} x \cdot p_X(x)
+    \]
+    \item For a continuous random variable $X$:
+    \[
+    \mathbb{E}[X] = \int_{-\infty}^{\infty} x \cdot f_X(x) \, dx
+    \]
+\end{itemize}
+
+This expected value $\mu = \mathbb{E}[X]$ is what we formally mean by the \textbf{population mean}. It is not a guess or an estimate — it is a theoretical quantity defined directly by the distribution of $X$.
+
+\subsection*{Population Variance}
+
+In a similar way, the \textbf{population variance} of $X$ is defined as:
+\[
+\mathrm{Var}(X) = \mathbb{E}[(X - \mu)^2]
+\]
+This captures how much the values of $X$ deviate, on average, from the population mean. Again, this is a property of the random variable — not of any single dataset — and depends entirely on its PMF or PDF (for a discrete or continuous RV, respectively).
+
+\begin{quote}
+    \textit{Expectation is the bridge between probability theory and statistical inference.}
+\end{quote}
+
+Everything we aim to estimate in applied statistics — averages, spreads, proportions — are ultimately expectations taken over the distribution of the underlying random variables. 
+
+By framing data as realizations of random variables, we gain access to the machinery of probability theory. This allows us to define and interpret key \textbf{population parameters} — such as the mean and variance — with mathematical precision. 
+
+\subsection*{Why This Matters}
+
+Once we understand our data as outcomes of random variables, we can begin to ask deeper questions — not just about \textit{what} we observed in one sample, but about how the process of sampling itself behaves across many possible repetitions. We can begin to model how statistics (like the sample mean) would vary across repeated samples, even if we never actually collect more data.
+
+\textbf{This is the core challenge of statistical inference:} we want to reason about the uncertainty that comes from sampling, while typically having access to only one sample. So, how do we bridge that gap? \textit{We do it by introducing mathematical theory.}
+
+We adopt modeling assumptions about the data-generating process. We describe the behavior of our variables using probability distributions. And we rely on powerful mathematical results — expectations, laws of large numbers, central limit theorems — to tell us how sample statistics are likely to behave under those assumptions. It is this structure that allows us to move from a single observed sample to general conclusions about populations. 
+
+\begin{quote}
+    \textit{The theory of random variables gives us the tools to think about sampling variation, even when we only observe one sample.}
+\end{quote}
+
+This mathematical framework — built on assumptions, definitions, and theorems — is what makes statistical inference possible. It allows us to construct estimators for population quantities, and it allows us to quantify the uncertainty in those estimators, without needing to observe the full population or repeat the sampling experiment many times.
+
+
+
+\end{document}

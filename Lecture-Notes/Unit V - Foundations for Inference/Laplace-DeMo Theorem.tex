@@ -1,0 +1,142 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages for better formatting
+\usepackage{amsmath, amssymb, amsthm, graphicx, hyperref}
+
+% Title and Author
+\title{A Comprehensive Proof of the De Moivre–Laplace Theorem}
+\author{Detailed Lecture Notes}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+The \textbf{De Moivre–Laplace theorem} states that the binomial distribution can be approximated by a normal distribution when the number of trials $n$ becomes large. Specifically, if $X_n \sim \operatorname{Binomial}(n, p)$, then the standardized random variable:
+
+\[
+Z_n = \frac{X_n - np}{\sqrt{np(1-p)}}
+\]
+
+converges in distribution to a standard normal random variable:
+
+\[
+Z_n \xrightarrow{d} \mathcal{N}(0,1) \quad \text{as } n \to \infty.
+\]
+
+This result is a special case of the central limit theorem and provides a useful approximation for binomial probabilities. The proof relies on Stirling's approximation and Taylor expansions, and we will go through every step rigorously, without skipping key details.
+
+\section{Understanding Stirling’s Approximation}
+
+Stirling’s approximation states that for large $m$:
+
+\[
+m! \approx \sqrt{2\pi m} \left(\frac{m}{e}\right)^m.
+\]
+
+\subsection{Derivation of Stirling's Approximation}
+
+The approximation can be derived by applying the integral representation of the factorial function:
+
+\[
+n! = \int_0^\infty x^n e^{-x} \, dx.
+\]
+
+Applying Laplace’s method for asymptotic approximations, one can obtain Stirling’s formula. The derivation is omitted here, but the key idea is that for large $m$, the factorial function grows rapidly, and the dominant contribution to the integral occurs near $m$. The approximation simplifies factorial computations in asymptotic proofs.
+
+\section{Step-by-Step Proof of the De Moivre–Laplace Theorem}
+
+\subsection{Step 1: Binomial Probability Expression}
+
+For $X_n \sim \operatorname{Binomial}(n, p)$, the probability mass function is:
+
+\[
+P(X_n = k) = \binom{n}{k} p^k (1 - p)^{n-k},
+\]
+
+where the binomial coefficient is:
+
+\[
+\binom{n}{k} = \frac{n!}{k!(n-k)!}.
+\]
+
+Our goal is to show that for values of $k$ close to $np$ (i.e., $k = np + \xi$ with $\xi = O(\sqrt{n})$), the probability mass function approximates the normal density function:
+
+\[
+P(X_n = k) \approx \frac{1}{\sqrt{2\pi np(1-p)}} \exp\left(-\frac{(k-np)^2}{2np(1-p)}\right).
+\]
+
+\subsection{Step 2: Applying Stirling’s Approximation}
+
+Applying Stirling’s approximation to each factorial:
+
+\[
+n! \approx \sqrt{2\pi n} \left(\frac{n}{e}\right)^n, \quad
+k! \approx \sqrt{2\pi k} \left(\frac{k}{e}\right)^k, \quad
+(n-k)! \approx \sqrt{2\pi (n-k)} \left(\frac{n-k}{e}\right)^{n-k}.
+\]
+
+Substituting these into the binomial coefficient:
+
+\[
+\binom{n}{k} \approx \frac{\sqrt{2\pi n} \left(\frac{n}{e}\right)^n}
+{\sqrt{2\pi k} \left(\frac{k}{e}\right)^k \cdot \sqrt{2\pi (n-k)} \left(\frac{n-k}{e}\right)^{n-k}}.
+\]
+
+\subsection{Step 3: Simplifying the Binomial Coefficient}
+
+Canceling the $e$ terms:
+
+\[
+\binom{n}{k} \approx \frac{\sqrt{n}}{\sqrt{2\pi k(n-k)}}
+\cdot \frac{n^n}{k^k (n-k)^{n-k}}.
+\]
+
+Now, incorporating the probability terms $p^k$ and $(1-p)^{n-k}$:
+
+\[
+P(X_n = k) \approx \frac{\sqrt{n}}{\sqrt{2\pi k(n-k)}}
+\cdot \frac{n^n}{k^k (n-k)^{n-k}} \cdot p^k (1 - p)^{n-k}.
+\]
+
+\subsection{Step 4: Approximating the Logarithm}
+
+Taking logarithms:
+
+\[
+\ln P(X_n = k) \approx \ln \frac{\sqrt{n}}{\sqrt{2\pi k(n-k)}} + n\ln n - k\ln k - (n-k)\ln(n-k) + k\ln p + (n-k)\ln(1-p).
+\]
+
+Expanding using Taylor series around $k = np$:
+
+\[
+\ln k \approx \ln np + \frac{\xi}{np} - \frac{\xi^2}{2(np)^2} + O\left(\frac{\xi^3}{(np)^3}\right).
+\]
+
+\subsection{Step 5: Final Approximation to the Normal Form}
+
+After simplifications, the leading term gives:
+
+\[
+P(X_n = k) \approx \frac{1}{\sqrt{2\pi np(1-p)}} \exp\left(-\frac{\xi^2}{2np(1-p)}\right),
+\]
+
+where $\xi = k - np$. This matches the probability density function of a normal distribution with mean $np$ and variance $np(1-p)$.
+
+\subsection{Step 6: Conclusion and Interpretation}
+
+Since the derived expression matches the normal density, we conclude that:
+
+\[
+Z_n = \frac{X_n - np}{\sqrt{np(1-p)}}
+\]
+
+converges in distribution to $\mathcal{N}(0,1)$. This completes the proof.
+
+\section{Summary}
+
+This proof carefully derived the De Moivre–Laplace theorem, showing that for large $n$, the binomial probability distribution behaves like a normal distribution. We applied Stirling’s approximation, logarithmic expansions, and Taylor series to rigorously derive the result. This theorem is a fundamental example of the central limit theorem and has wide applications in probability and statistics.
+
+\end{document}

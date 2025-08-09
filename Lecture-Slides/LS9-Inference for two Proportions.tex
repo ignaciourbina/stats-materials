@@ -1,0 +1,478 @@
+\documentclass[handout]{beamer} % Use the beamer class for presentations, 'handout' option to suppress \pause
+
+\input{Lecture-Slides/preamble.txt}
+
+% Define the transition slide command
+\newcommand{\transitionslide}[1]{
+    \begin{frame} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[plain]
+        \centering
+        \vspace{1cm}
+        \Huge
+        \textcolor{moonstoneblue!150}{\textbf{#1}}
+    \end{frame}
+}
+
+% Title and Author Info
+\title{Introduction to Statistical Methods in Political Science}
+\subtitle{Lecture 9: Inference for Two Proportions}
+\author{Ignacio Urbina \texorpdfstring{\\ \vspace{0.3em}}{ } \scriptsize \textcolor{gray}{Ph.D. Candidate in Political Science}}
+\date{}
+
+\begin{document}
+
+% Title Slide
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Motivation: Inference for Categorical Differences}
+  \begin{itemize}
+    \item Categorical variables represent data sorted into distinct groups or categories.
+    \item Often, we are interested in comparing proportions of a categorical outcome between two groups.
+    \item Example: In a survey, respondents might be grouped by region to see if a higher proportion of people in one region favor a particular policy option compared to another.
+    \item These comparisons help answer questions such as:
+      \begin{itemize}
+        \item Does the proportion of people supporting stricter environmental regulations differ between urban and rural areas?
+        \item Is there a difference in preferred government spending options between younger and older age groups?
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% Slide: Introduction to Comparing Proportions
+\begin{frame}{Introduction to Comparing Proportions}
+  \begin{itemize}
+    \item In statistics, we often compare two independent groups to understand differences in proportions.
+    \item Examples include comparing vaccination rates between cities or customer satisfaction across products.
+    \item Proportions are used in medicine, marketing, public health, and social sciences.
+    \item These comparisons help identify significant differences in behaviors, treatments, or characteristics.
+  \end{itemize}
+\end{frame}
+
+% Slide: Example Scenarios
+\begin{frame}{Example Scenarios}
+  \begin{itemize}
+    \item Medical studies: Comparing success rates of medications.
+    \item Marketing: Evaluating customer satisfaction between products.
+    \item Social sciences: Analyzing behavior differences between demographic groups.
+  \end{itemize}
+\end{frame}
+
+% Slide: Example: Public Opinion
+\begin{frame}{Example: Public Opinion}
+  One common application of comparing two sample proportions is in analyzing public opinion across different demographic groups:
+  \begin{itemize}
+    \item Consider two groups: those under 30 and those over 60.
+    \item Survey both groups to assess their support for the current president.
+    \item Let $\hat{p}_1$ be the proportion of support among those under 30 and $\hat{p}_2$ among those over 60.
+  \end{itemize}
+  This analysis helps us understand how support varies with age, crucial for policy making and election strategies.
+\end{frame}
+
+% Slide: Example: Psychological Experiment
+\begin{frame}{Example: Psychological Experiment}
+  In psychological research, comparing sample proportions evaluates the effect of different treatments:
+  \begin{itemize}
+    \item Study testing two interventions on anxiety reduction.
+    \item One group receives cognitive behavioral therapy (CBT); another receives mindfulness-based stress reduction (MBSR).
+    \item Let $\hat{p}_1$ be the proportion reporting significant anxiety reduction with CBT, and $\hat{p}_2$ with MBSR.
+  \end{itemize}
+  This comparison provides insights into which intervention is more effective.
+\end{frame}
+
+% Slide: Notation and Definitions
+\begin{frame}{Notation and Definitions}
+  \begin{itemize}
+    \item Let $p_1$ and $p_2$ represent the population proportions for two independent groups.
+    \item $\hat{p}_1$ and $\hat{p}_2$ are the sample proportions from each group.
+    \item Sample sizes: $n_1$ for Group 1 and $n_2$ for Group 2.
+  \end{itemize}
+\end{frame}
+
+% Slide: Introduction to Sample Proportions
+\begin{frame}{Introduction to Sample Proportions}
+  Consider two independent samples where:
+  \begin{itemize}
+    \item Sample 1: $n_1$ observations with proportion $\hat{p}_1$.
+    \item Sample 2: $n_2$ observations with proportion $\hat{p}_2$.
+  \end{itemize}
+  We are interested in the statistic $\hat{p}_1 - \hat{p}_2$, the difference between two sample proportions.
+  \begin{itemize}
+    \item Our goal is to estimate the difference $p_1 - p_2$ and determine if it is significantly different from zero.
+    \item This analysis helps assess if observed differences could be due to chance or represent a true population difference.
+  \end{itemize}
+\end{frame}
+
+% Slide: Review of Expectations and Variances
+\begin{frame}{Review of Expectations and Variances}
+  \textbf{Expectations:}
+  \begin{itemize}
+    \item For random variables $X$ and $Y$, and constants $a, b$:
+    \[
+    E(aX + bY) = aE(X) + bE(Y)
+    \]
+  \end{itemize}
+  \textbf{Variances:}
+  \begin{itemize}
+    \item For independent random variables $X$ and $Y$, and constants $a, b$:
+    \[
+    \text{Var}(aX + bY) = a^2\text{Var}(X) + b^2\text{Var}(Y)
+    \]
+  \end{itemize}
+\end{frame}
+
+% Slide: Expectation of the Statistic
+\begin{frame}{Expectation of the Statistic}
+  Using linearity of expectations:
+  \[
+  E(\hat{p}_1 - \hat{p}_2) = E(\hat{p}_1) - E(\hat{p}_2) = p_1 - p_2
+  \]
+  Where $p_1$ and $p_2$ are the true population proportions.
+\end{frame}
+
+% Slide: Variance of the Statistic
+\begin{frame}{Variance of the Statistic}
+  For independent random variables:
+  \[
+  \text{Var}(\hat{p}_1 - \hat{p}_2) = \text{Var}(\hat{p}_1) + \text{Var}(\hat{p}_2)
+  \]
+  Given:
+  \[
+  \text{Var}(\hat{p}_1) = \frac{p_1(1 - p_1)}{n_1}, \quad \text{Var}(\hat{p}_2) = \frac{p_2(1 - p_2)}{n_2}
+  \]
+  Thus:
+  \[
+  \text{Var}(\hat{p}_1 - \hat{p}_2) = \frac{p_1(1 - p_1)}{n_1} + \frac{p_2(1 - p_2)}{n_2}
+  \]
+\end{frame}
+
+% Slide: Standard Error of the Statistic
+\begin{frame}{Standard Error of the Statistic}
+  \[
+  SE(\hat{p}_1 - \hat{p}_2) = \sqrt{\text{Var}(\hat{p}_1 - \hat{p}_2)}
+  \]
+  Substituting the variances:
+  \[
+  SE(\hat{p}_1 - \hat{p}_2) = \sqrt{\frac{p_1(1 - p_1)}{n_1} + \frac{p_2(1 - p_2)}{n_2}}
+  \]
+\end{frame}
+
+% Slide: Sampling Distribution of Difference in Proportions
+\begin{frame}{Sampling Distribution of Difference in Proportions}
+  \begin{itemize}
+    \item The distribution of $\hat{p}_1 - \hat{p}_2$ is approximately normal for large sample sizes.
+    \item Under the Central Limit Theorem:
+    \[
+    \hat{p}_1 - \hat{p}_2 \approx N\left(p_1 - p_2, \frac{p_1(1 - p_1)}{n_1} + \frac{p_2(1 - p_2)}{n_2}\right)
+    \]
+    \item This allows us to perform hypothesis testing and construct confidence intervals.
+  \end{itemize}
+\end{frame}
+
+% Slide: Derivation of the Sampling Distribution
+\begin{frame}{Derivation of the Sampling Distribution}
+  \begin{itemize}
+    \item Variance of a sample proportion $\hat{p}$: $\text{Var}(\hat{p}) = \frac{p(1-p)}{n}$
+    \item Variance of the difference:
+    \[
+    \text{Var}(\hat{p}_1 - \hat{p}_2) = \frac{p_1(1 - p_1)}{n_1} + \frac{p_2(1 - p_2)}{n_2}
+    \]
+    \item Standard error (SE):
+    \[
+    SE = \sqrt{\text{Var}(\hat{p}_1 - \hat{p}_2)}
+    \]
+  \end{itemize}
+\end{frame}
+
+% Slide: Confidence Interval for Difference in Proportions
+\begin{frame}{Confidence Interval for Difference in Proportions}
+  \begin{itemize}
+    \item Confidence interval:
+    \[
+    (\hat{p}_1 - \hat{p}_2) \pm z^* \times SE
+    \]
+    \item Where:
+    \[
+    SE = \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}
+    \]
+    \item $z^*$ is the critical value for the desired confidence level (e.g., $1.96$ for 95\% confidence).
+  \end{itemize}
+\end{frame}
+
+% Slide: Constructing the Confidence Interval - Part 1
+\begin{frame}{Constructing the Confidence Interval}
+  \begin{enumerate}
+    \item Calculate sample proportions: $\hat{p}_1$ and $\hat{p}_2$.
+    \item Compute the standard error (SE):
+    \[
+    SE = \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}
+    \]
+    \item Determine critical value $z^*$ for the desired confidence level.
+    \item Multiply $z^*$ by SE to find the margin of error (MOE).
+    \item Construct the confidence interval:
+    \[
+    (\hat{p}_1 - \hat{p}_2) \pm MOE
+    \]
+  \end{enumerate}
+\end{frame}
+
+
+
+% Slide: Applied Example - Vaccination Rates - Setup
+\begin{frame}{Applied Example: Comparing Vaccination Rates - Setup}
+  \begin{itemize}
+    \item Sample data:
+    \begin{itemize}
+      \item Group 1: $n_1 = 400$, $\hat{p}_1 = 0.30$
+      \item Group 2: $n_2 = 500$, $\hat{p}_2 = 0.25$
+    \end{itemize}
+    \item We will calculate the standard error and confidence interval.
+  \end{itemize}
+\end{frame}
+
+% Slide: Applied Example - Vaccination Rates - Calculation
+\begin{frame}{Applied Example: Comparing Vaccination Rates - Calculation}
+  \begin{itemize}
+    \item Calculate SE:
+    \[
+    SE = \sqrt{\frac{0.30 \times 0.70}{400} + \frac{0.25 \times 0.75}{500}} \approx 0.032
+    \]
+    \item 95\% Confidence Interval:
+    \[
+    (0.30 - 0.25) \pm 1.96 \times 0.032
+    \]
+    \[
+    0.05 \pm 0.063 \implies [-0.013, 0.113]
+    \]
+  \end{itemize}
+\end{frame}
+
+% Slide: Interpretation of Example Results
+\begin{frame}{Interpretation of Example Results}
+  \begin{itemize}
+    \item Confidence interval includes zero ($-0.013$ to $0.113$), suggesting no significant difference.
+    \item If the interval excluded zero, it would indicate a statistically significant difference.
+  \end{itemize}
+\end{frame}
+
+% Slide: Common Misconceptions
+\begin{frame}{Common Misconceptions}
+  \begin{itemize}
+    \item \textbf{Misconception 1}: A confidence interval that includes zero proves there is no difference between the two population proportions.
+      \begin{itemize}
+        \item \textbf{Reality}: It simply suggests we lack sufficient evidence of a difference at the specified confidence level.
+      \end{itemize}
+    \item \textbf{Misconception 2}: A wider confidence interval means the difference is less likely.
+      \begin{itemize}
+        \item \textbf{Reality}: A wider interval indicates greater uncertainty, often due to smaller sample sizes.
+      \end{itemize}
+    \item \textbf{Misconception 3}: A 95\% confidence level means the interval has a 95\% chance of containing the true difference.
+      \begin{itemize}
+        \item \textbf{Reality}: A 95\% confidence level means that, in the long run, 95\% of intervals from multiple independent samples of the same size will contain the true difference.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+% Slide: Summary and Key Takeaways
+\begin{frame}{Summary and Key Takeaways}
+  \begin{itemize}
+    \item Inference for difference in proportions helps compare two independent groups.
+    \item Large samples allow the sampling distribution to be approximately normal.
+    \item Confidence intervals offer a range of plausible values for the true difference.
+    \item The examples illustrated the application and interpretation of these concepts.
+  \end{itemize}
+\end{frame}
+
+% Slide: Introduction to Hypothesis Testing for Difference in Proportions
+\begin{frame}{Hypothesis Testing for Difference in Proportions}
+  \begin{itemize}
+    \item Beyond estimating the confidence interval, we often want to test whether the observed difference between two proportions is statistically significant.
+    \item Hypothesis testing allows us to determine if there is enough evidence to support a claim about the difference in population proportions.
+    \item Common applications include testing the effectiveness of a new treatment compared to a control or comparing preferences between two groups.
+  \end{itemize}
+\end{frame}
+
+% Slide: Formulating Hypotheses
+\begin{frame}{Formulating Hypotheses}
+  \begin{itemize}
+    \item \textbf{Null Hypothesis ($H_0$)}: Assumes no difference between the population proportions.
+    \[
+    H_0: p_1 - p_2 = 0
+    \]
+    \item \textbf{Alternative Hypothesis ($H_a$)}: Proposes that there is a difference.
+    \[
+    \text{Two-tailed test: } H_a: p_1 - p_2 \neq 0
+    \]
+    \[
+    \text{One-tailed test: } H_a: p_1 - p_2 > 0 \text{ or } p_1 - p_2 < 0
+    \]
+    \item The choice between one-tailed and two-tailed tests depends on the research question.
+  \end{itemize}
+\end{frame}
+
+% Slide: Test Statistic
+\begin{frame}{Test Statistic}
+  \begin{itemize}
+    \item The test statistic measures how far the sample difference is from the null hypothesis, relative to the standard error.
+    \item Under $H_0$, the test statistic is:
+    \[
+    z = \frac{(\hat{p}_1 - \hat{p}_2) - 0}{SE_0}
+    \]
+    \item Where $SE_0$ is the standard error calculated under the assumption that $H_0$ is true.
+  \end{itemize}
+\end{frame}
+
+% Slide: Standard Error Under Null Hypothesis
+\begin{frame}{Standard Error Under Null Hypothesis}
+  \begin{itemize}
+    \item Under $H_0: p_1 = p_2 = p$, we pool the sample proportions to estimate the common population proportion $p$.
+    \item The pooled sample proportion $\hat{p}$ is:
+    \[
+    \hat{p} = \frac{x_1 + x_2}{n_1 + n_2}
+    \]
+    \item Where $x_1$ and $x_2$ are the number of successes in each sample.
+    \item The standard error under $H_0$ is:
+    \[
+    SE_0 = \sqrt{\hat{p}(1 - \hat{p})\left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+    \]
+  \end{itemize}
+\end{frame}
+
+% Slide: Calculating the Test Statistic
+\begin{frame}{Calculating the Test Statistic}
+  \begin{enumerate}
+    \item Compute the pooled sample proportion $\hat{p}$:
+    \[
+    \hat{p} = \frac{x_1 + x_2}{n_1 + n_2}
+    \]
+    \item Calculate the standard error $SE_0$ under $H_0$:
+    \[
+    SE_0 = \sqrt{\hat{p}(1 - \hat{p})\left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+    \]
+    \item Compute the test statistic $z$:
+    \[
+    z = \frac{(\hat{p}_1 - \hat{p}_2)}{SE_0}
+    \]
+  \end{enumerate}
+\end{frame}
+
+% Slide: Decision Rule and p-value
+\begin{frame}{Decision Rule and p-value}
+  \begin{itemize}
+    \item \textbf{Decision Rule}:
+      \begin{itemize}
+        \item Compare the test statistic $z$ to critical values from the standard normal distribution.
+        \item For a two-tailed test at $\alpha = 0.05$, reject $H_0$ if $|z| > 1.96$.
+      \end{itemize}
+    \item \textbf{p-value}:
+      \begin{itemize}
+        \item The p-value is the probability of observing a test statistic as extreme as, or more extreme than, the one calculated, assuming $H_0$ is true.
+        \item For a two-tailed test:
+        \[
+        p\text{-value} = 2 \times P(Z > |z|)
+        \]
+      \end{itemize}
+    \item \textbf{Conclusion}:
+      \begin{itemize}
+        \item If the p-value is less than $\alpha$, reject $H_0$.
+        \item Otherwise, fail to reject $H_0$.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% Slide: Applied Example: Hypothesis Testing - Setup
+\begin{frame}{Applied Example: Hypothesis Testing - Setup}
+  \begin{itemize}
+    \item Continuing the vaccination rate example:
+      \begin{itemize}
+        \item Group 1: $n_1 = 400$, $\hat{p}_1 = 0.30$, $x_1 = 120$
+        \item Group 2: $n_2 = 500$, $\hat{p}_2 = 0.25$, $x_2 = 125$
+      \end{itemize}
+    \item Test whether there is a significant difference in vaccination rates between the two groups at the 5\% significance level.
+    \item Formulate hypotheses:
+      \[
+      H_0: p_1 - p_2 = 0 \quad \text{vs.} \quad H_a: p_1 - p_2 \neq 0
+      \]
+  \end{itemize}
+\end{frame}
+
+% Slide: Applied Example: Hypothesis Testing - Calculations
+\begin{frame}{Applied Example: Hypothesis Testing - Calculations}
+  \begin{enumerate}
+    \item Compute pooled proportion:
+    \[
+    \hat{p} = \frac{x_1 + x_2}{n_1 + n_2} = \frac{120 + 125}{400 + 500} = \frac{245}{900} \approx 0.272
+    \]
+    \item Calculate standard error under $H_0$:
+    \begin{align*}
+        SE_0 &= \sqrt{0.272 \times 0.728 \left( \frac{1}{400} + \frac{1}{500} \right)} \\
+        & \approx  \sqrt{0.198 \times 0.0045} \approx 0.0299
+    \end{align*}
+
+    \item Compute test statistic:
+    \[
+    z = \frac{0.30 - 0.25}{0.0299} \approx \frac{0.05}{0.0299} \approx 1.675
+    \]
+  \end{enumerate}
+\end{frame}
+
+% Slide: Applied Example: Decision and Conclusion
+\begin{frame}{Applied Example: Decision and Conclusion}
+  \begin{itemize}
+    \item Critical value for two-tailed test at $\alpha = 0.05$ is $z_{\alpha/2} = 1.96$.
+    \item Since $|z| = 1.675 < 1.96$, we fail to reject $H_0$.
+    \item \textbf{p-value}:
+    \begin{align*}
+         p\text{-value} &= 2 \times P(Z > 1.675)  \\
+            &= 2 \times (1 - \Phi(1.675)) \\
+            & \approx 2 \times 0.04697 = 0.094
+    \end{align*}
+
+    \item Since $p\text{-value} = 0.094 > 0.05$, we fail to reject $H_0$.
+    \item \textbf{Conclusion}:
+      \begin{itemize}
+        \item There is insufficient evidence at the 5\% significance level to conclude a difference in vaccination rates between the two groups.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% Slide: Interpretation of Example Results
+\begin{frame}{Interpretation of Example Results}
+  \begin{itemize}
+    \item Although the sample proportions differ (30\% vs. 25\%), the difference is not statistically significant at the 5\% level.
+    \item This suggests that the observed difference could be due to random sampling variability.
+    \item It's important to consider sample sizes and variability when interpreting results.
+  \end{itemize}
+\end{frame}
+
+% Slide: Common Misconceptions
+\begin{frame}{Common Misconceptions}
+  \begin{itemize}
+    \item \textbf{Misconception 1}: A non-significant result means there is no difference.
+      \begin{itemize}
+        \item \textbf{Reality}: It means we do not have sufficient evidence to conclude a difference exists.
+      \end{itemize}
+    \item \textbf{Misconception 2}: A small p-value indicates a large effect size.
+      \begin{itemize}
+        \item \textbf{Reality}: The p-value measures evidence against $H_0$, not the magnitude of the effect.
+      \end{itemize}
+    \item \textbf{Misconception 3}: Failing to reject $H_0$ proves $H_0$ is true.
+      \begin{itemize}
+        \item \textbf{Reality}: We can never prove $H_0$; we can only fail to reject it.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% Slide: Summary and Key Takeaways
+\begin{frame}{Summary and Key Takeaways}
+  \begin{itemize}
+    \item Hypothesis testing for the difference in proportions assesses whether an observed difference is statistically significant.
+    \item The test involves calculating a test statistic under the assumption that the null hypothesis is true.
+    \item Understanding the standard error and using the pooled proportion are critical steps.
+    \item The p-value helps determine the strength of evidence against the null hypothesis.
+    \item Always interpret results in context and be cautious of common misconceptions.
+  \end{itemize}
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,278 @@
+\documentclass[handout]{beamer} % Use the beamer class for presentations, 'handout' option to suppress \pause
+
+% It's good practice to keep preamble settings in a separate file or define them here.
+% Assuming preamble.txt contains necessary packages like amsmath, graphicx, theme settings, etc.
+% Ensure packages like amsmath are loaded for math commands like \bar, \mu, \sigma, \approx, \frac, \sqrt, \sum
+\usepackage{amsmath} % Example: Ensure amsmath is loaded
+\usepackage{amssymb} % For symbols like \le
+
+\input{Lecture-Slides/preamble.txt} % Make sure this path is correct relative to your .tex file or include preamble here
+
+\title{Introduction to Statistical Methods in Political Science}
+\subtitle{Lecture 10: Sampling Distributions for Estimators of Continuous Variables}
+\author{Ignacio Urbina \texorpdfstring{\\ \vspace{0.3em}}{ } \scriptsize \textcolor{gray}{Ph.D. Candidate in Political Science}}
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document Body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Title frame
+\frame{\titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SLIDES: Single Mean Sampling Distribution
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Sampling Distribution of the Sample Mean \(\bar{x}\)}
+Our goal is often to estimate the unknown population mean \(\mu\) using the sample mean \(\bar{x}\) calculated from a random sample \(X_1, ..., X_n\).
+
+\pause
+The sample mean \(\bar{x} = \frac{1}{n}\sum_{i=1}^{n} X_i\) is itself a random variable, as its value depends on the particular sample drawn.
+
+\pause
+The \textbf{sampling distribution of \(\bar{x}\)} describes the probability distribution of the possible values of \(\bar{x}\) if we were to repeatedly draw samples of size \(n\) from the same population.
+
+\pause
+Key properties of this distribution are its mean \(E(\bar{x})\) and its variance \(\text{Var}(\bar{x})\) (or standard error \(SE(\bar{x})\)).
+\end{frame}
+
+\begin{frame}
+\frametitle{Case 1: Normal Population (Known \(\sigma^2\))} % Shortened title
+Assume the underlying population follows a normal distribution, \(X_i \sim N(\mu, \sigma^2)\), and the population variance \(\sigma^2\) is known.
+
+\pause
+\begin{itemize}
+    \item The sample mean \(\bar{x}\) is \textbf{exactly} normally distributed.
+    \item Mean of \(\bar{x}\): \(E(\bar{x}) = \mu\) (unbiased estimator).
+    \item Variance of \(\bar{x}\): \(\text{Var}(\bar{x}) = \frac{\sigma^2}{n}\).
+    \item Standard Error of \(\bar{x}\): \(SE(\bar{x}) = \sqrt{\frac{\sigma^2}{n}} = \frac{\sigma}{\sqrt{n}}\).
+\end{itemize}
+
+\pause
+Distribution:
+\[
+\bar{x} \sim N\left(\mu, \frac{\sigma^2}{n}\right)
+\]
+
+\pause
+Standardized Statistic (Z-score):
+\[
+Z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1)
+\]
+\end{frame}
+
+\begin{frame}
+\frametitle{Case 2: Large Sample Size (CLT)}
+What if the population distribution is not normal, or unknown?
+
+\pause
+\textbf{Central Limit Theorem (CLT):} If the sample size \(n\) is sufficiently large (\(n \ge 30\)), the sampling distribution of \(\bar{x}\) will be \textbf{approximately} normal, regardless of the shape of the population distribution.
+
+\pause
+\begin{itemize}
+    \item Mean of \(\bar{x}\): \(E(\bar{x}) = \mu\).
+    \item Variance of \(\bar{x}\): \(\text{Var}(\bar{x}) = \frac{\sigma^2}{n}\).
+\end{itemize}
+
+\pause
+Approximate Distribution:
+\[
+\bar{x} \approx N\left(\mu, \frac{\sigma^2}{n}\right) \quad \text{for large } n
+\]
+The CLT is fundamental because it allows us to use normal distribution methods for inference on \(\mu\) in many practical situations.
+\end{frame}
+
+\begin{frame}
+\frametitle{The Plug-In Principle (Large Sample)}
+Usually, the population variance \(\sigma^2\) is \textbf{unknown}.
+
+\pause
+\textbf{Plug-In Principle:} Estimate \(\sigma^2\) using the sample variance \(s^2\):
+\[
+s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2
+\]
+
+\pause
+Estimate the standard error of \(\bar{x}\) using \(s\):
+\[
+\text{Estimated } SE(\bar{x}) = \frac{s}{\sqrt{n}}
+\]
+
+\pause
+For \textbf{large samples} (\(n \ge 30\)), combining CLT and plug-in:
+\[
+Z = \frac{\bar{x} - \mu}{s/\sqrt{n}} \approx N(0, 1)
+\]
+This justifies Z-procedures for \(\mu\) with large samples when \(\sigma\) is unknown.
+\end{frame}
+
+\begin{frame}
+\frametitle{Case 3: Small Sample Size (Unknown \(\sigma^2\))}
+What if \(n\) is small (\(n < 30\)) \textbf{and} \(\sigma^2\) is unknown?
+
+\pause
+If we assume the population is \textbf{normal}, we use the \textbf{t-distribution}:
+\[
+t = \frac{\bar{x} - \mu}{s/\sqrt{n}} \sim t_{n-1}
+\]
+The t-distribution accounts for the extra uncertainty from estimating \(\sigma^2\) with \(s^2\).
+
+\pause
+\textit{Details of inference using the t-distribution for small samples will be covered separately.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SLIDES: Two Means Sampling Distribution
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Merged Motivational Examples
+\begin{frame}
+\frametitle{Why Compare Two Means? Examples}
+Comparing two sample means helps answer questions across various fields:
+
+\pause
+\begin{itemize}
+    \item \textbf{Business (Job Satisfaction):} Is average job satisfaction (\(\mu_1\)) in the IT industry different from that in finance (\(\mu_2\))? Compare sample means \( \bar{x}_1 \) and \( \bar{x}_2 \).
+    \pause
+    \item \textbf{Health Science (Physical Activity):} Does a high-intensity exercise regimen (\(\mu_1\)) lead to a greater mean decrease in cholesterol than a moderate-intensity one (\(\mu_2\))? Compare sample mean decreases \( \bar{x}_1 \) and \( \bar{x}_2 \).
+\end{itemize}
+\pause
+The goal is to use the sample difference \( \bar{x}_1 - \bar{x}_2 \) to infer about the population difference \( \mu_1 - \mu_2 \).
+\end{frame}
+
+% Introduction to Sample Means Frame
+\begin{frame}
+\frametitle{Setup for Comparing Two Means} % Shortened title
+Consider two \textbf{independent} samples:
+\begin{itemize}
+    \item Sample 1: Size \( n_1 \), mean \( \bar{x}_1 \), from population with mean \(\mu_1\), variance \(\sigma^2_1\).
+    \item Sample 2: Size \( n_2 \), mean \( \bar{x}_2 \), from population with mean \(\mu_2\), variance \(\sigma^2_2\).
+\end{itemize}
+\pause
+We focus on the sampling distribution of the statistic:
+\[
+\text{Difference in sample means: } \bar{x}_1 - \bar{x}_2
+\]
+\end{frame}
+
+% Review of Expectations and Variances Frame
+\begin{frame}
+\frametitle{Review: Properties of E and Var} % Shortened title
+Recall fundamental properties:
+\textbf{Expectations (Linearity):}
+\[
+E(aX + bY) = aE(X) + bE(Y)
+\]
+\pause
+\textbf{Variances (for Independent X, Y):}
+\[
+\text{Var}(aX + bY) = a^2\text{Var}(X) + b^2\text{Var}(Y)
+\]
+These rules are key to deriving the properties of \( \bar{x}_1 - \bar{x}_2 \).
+\end{frame}
+
+% Expectation of the Statistic Frame
+\begin{frame}
+\frametitle{Expectation of the Difference \( \bar{x}_1 - \bar{x}_2 \)}
+Using linearity of expectation (\(a=1, b=-1\)):
+\[
+E(\bar{x}_1 - \bar{x}_2) = E(\bar{x}_1) - E(\bar{x}_2)
+\]
+\pause
+Since \(E(\bar{x}_1) = \mu_1\) and \(E(\bar{x}_2) = \mu_2\):
+\[
+E(\bar{x}_1 - \bar{x}_2) = \mu_1 - \mu_2
+\]
+\pause
+The difference in sample means is an unbiased estimator of the difference in population means.
+\end{frame}
+
+% Merged Variance and Standard Error Frame
+\begin{frame}
+\frametitle{Variance and SE of the Difference \( \bar{x}_1 - \bar{x}_2 \)}
+Assuming the two samples are \textbf{independent}:
+\pause
+Using the variance rule (\(a=1, b=-1\)):
+\[
+\text{Var}(\bar{x}_1 - \bar{x}_2) = \text{Var}(\bar{x}_1) + \text{Var}(\bar{x}_2)
+\]
+\pause
+Substitute known variances of sample means:
+\[
+\text{Var}(\bar{x}_1 - \bar{x}_2) = \frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}
+\]
+\pause
+The Standard Error (SE) is the square root of the variance:
+\[
+SE(\bar{x}_1 - \bar{x}_2) = \sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}
+\]
+\end{frame}
+
+% Normal Approximation Frame
+\begin{frame}
+\frametitle{Sampling Distribution of \( \bar{x}_1 - \bar{x}_2 \) (Large Samples)}
+If \( n_1, n_2 \) are large (CLT), or populations normal (\(\sigma\)'s known):
+\begin{itemize}
+    \item \(\bar{x}_1 \approx N(\mu_1, \sigma^2_1/n_1)\)
+    \item \(\bar{x}_2 \approx N(\mu_2, \sigma^2_2/n_2)\)
+\end{itemize}
+\pause
+Since samples are independent, the difference is also (approx.) normal:
+\[
+\bar{x}_1 - \bar{x}_2 \approx N\left(\mu_1 - \mu_2, \frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}\right)
+\]
+\pause
+This allows Z-procedures for \( \mu_1 - \mu_2 \) in these cases.
+\end{frame}
+
+% Plug-In Principle Frame
+\begin{frame}
+\frametitle{The Plug-In Principle (Two Means, Large Samples)}
+When \(\sigma^2_1, \sigma^2_2\) unknown, but \(n_1, n_2\) large:
+Estimate SE using sample variances \(s^2_1, s^2_2\):
+\[
+\text{Estimated } SE(\bar{x}_1 - \bar{x}_2) = \sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}
+\]
+\pause
+The test statistic for \(H_0: \mu_1 - \mu_2 = \Delta_0\) (often \(\Delta_0 = 0\)):
+\[
+Z = \frac{ (\bar{x}_1 - \bar{x}_2) - \Delta_0 }{ \sqrt{ \frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}} } \approx N(0, 1)
+\]
+\end{frame}
+
+% Small Sample Size: t-Distribution Frame (Simplified)
+\begin{frame}
+\frametitle{Small Samples: t-Distribution (Two Means - Brief Mention)}
+If either \(n_1\) or \(n_2\) is small, \textbf{and} populations assumed normal, \textbf{and} \(\sigma^2_1, \sigma^2_2\) unknown:
+
+\pause
+Use the \textbf{t-distribution}. The statistic has the form:
+\[
+t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{\sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}}
+\]
+\pause
+Calculating the correct degrees of freedom (\(df^*\)) requires specific methods (e.g., Welch-Satterthwaite) unless variances are assumed equal.
+
+\pause
+\textit{Detailed procedures for the two-sample t-test will be covered separately.}
+\end{frame}
+
+% Notes Frame
+\begin{frame}[fragile]
+\frametitle{Summary and Key Assumptions} % Renamed title
+\begin{itemize}
+    \item \textbf{Sampling Distributions:} Describe the behavior of statistics (\(\bar{x}\), \(\bar{x}_1 - \bar{x}_2\)) over repeated sampling.
+    \item \textbf{CLT:} Crucial for large samples, allows using Normal approx. even for non-normal populations.
+    \item \textbf{Plug-in Principle:} Use sample variance(s) \(s^2\) when population variance(s) \(\sigma^2\) are unknown.
+    \item \textbf{Independence:} Formulas for \(\text{Var}(\bar{x}_1 - \bar{x}_2)\) require independent samples.
+    \item \textbf{Large vs. Small Samples:} Use Z-procedures (based on CLT/Normal) for large samples; use t-procedures (based on t-distribution, requires population normality assumption) for small samples when \(\sigma\)'s are unknown.
+    \item \textbf{Convergence:} For large \(n\), the t-distribution approaches the N(0,1) distribution.
+\end{itemize}
+\end{frame}
+
+\end{document}
+

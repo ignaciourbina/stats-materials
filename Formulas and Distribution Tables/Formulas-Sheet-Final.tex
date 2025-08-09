@@ -1,0 +1,72 @@
+\documentclass[letterpaper]{article} % 'letterpaper'
+\usepackage[top=0.3in, left=0.1in, right=0.1in, bottom=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{cellspace} % Added package for cell padding
+
+\setlength{\arrayrulewidth}{0.1pt}
+
+% Define minimum vertical padding for cells in S-columns
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+
+\begin{document}
+\pagenumbering{gobble}
+
+
+
+\begin{table}[ht!]
+\renewcommand{\arraystretch}{1.5} % Adjusted arraystretch as cellspace adds padding
+\centering
+% Changed p{} to S{m{}} for vertical centering and padding
+\begin{tabular}{|S{m{0.18\textwidth}}|S{m{0.35\textwidth}}|S{m{0.32\textwidth}}|}
+\hline
+\textbf{Name} & \textbf{Formula} & \textbf{Additional Notes} \\
+\hline
+Confidence Interval (CI) & $\displaystyle \text{CI} = \hat\theta \;\pm\;\text{MoE}$ & \small $\hat\theta$: point (sample) estimate (e.g., sample $\bar{x}$), MoE: margin of error \\
+\hline
+Margin of Error ($MoE$) & $\displaystyle \text{MoE} = \text{Critical Value } \times \text{SE}$ & \small Critical value is $z_{1-\alpha/2}$ or $t_{df, 1-\alpha/2}$. \newline $SE$: standard error of estimate. \newline Lower $\alpha \implies$ larger $MoE$. \\
+\hline
+SE (sample proportion) & $\displaystyle \mathrm{SE}(\hat p)=\sqrt{\frac{\hat p\,(1-\hat p)}{n}}$ & \small For CI use $\hat p$ in SE; for hypothesis testing use $p_0$ in SE; $n$: sample size \\
+\hline
+Test statistic (one proportion) & $\displaystyle Z=\frac{\hat p - p_0}{SE(p_0)}=\frac{\hat p - p_0}{\sqrt{p_0(1-p_0)/n}}$ & \small $p_0$: null value of $p$; for test use $p_0$ in SE. Large sample approx. valid when $n\hat p \geq 15$ and $n(1-\hat{p}) \geq 15$ ($Z$ procedures). \\
+\hline
+$SE(\hat{p}_1-\hat{p}_2)$ & $\displaystyle \mathrm{SE}(\hat p_1-\hat p_2)
+=\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$ & \small Unpooled SE. Use \emph{only} for CI (or hypothesis testing with $H_0: p_1-p_2=\Delta_0\neq0$). \\ % Clarified note
+\hline
+Test statistic (two prop., unpooled) & $\displaystyle Z = \frac{(\hat p_1 - \hat p_2) - \Delta_0}{\mathrm{SE}(\hat p_1 - \hat p_2)}$ & \small Use unpooled SE (row above)  \emph{only} for CI (or when testing $H_0: p_1-p_2 = \Delta_0 \neq 0$). \\
+\hline
+$SE_{H_0}(p_1-p_0)$ & $\displaystyle SE_{H_0}(p_1-p_0) = \sqrt{\hat p_{\text{pool}}(1-\hat p_{\text{pool}})\cdot\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}$ & \small Use pooled SE when testing $H_0: p_1-p_2 =0$. $\hat p_{\text{pool}} = \frac{x_1+x_2}{n_1+n_2}= \frac{n_1\hat{p}_1+n_2\hat{p}_2}{n_1+n_2}$.  \\
+\hline
+Test statistic (two prop., pooled) & $\displaystyle Z=\frac{(\hat p_1-\hat p_2)-0}{\sqrt{\hat p_{\text{pool}}(1-\hat p_{\text{pool}})\cdot\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}}$ & \small Pooled SE used only for $H_0:p_1-p_2=0$ (i.e., $\Delta_0=0$). $\hat p_{\text{pool}} = \frac{x_1+x_2}{n_1+n_2}= \frac{n_1\hat{p}_1+n_2\hat{p}_2}{n_1+n_2}.$ \\ % Renamed and clarified note
+\hline
+SE (sample mean) & $\displaystyle \mathrm{SE}(\bar X)=\frac{s}{\sqrt{n}}$ & \small $s$: sample standard deviation.  \\ % Combined large/small note
+\hline
+Test statistic (large $n$ \emph{use} $Z$ procedures; small $n$ \emph{use} $T$ procedures) & $\displaystyle Z=\frac{\bar x - \mu_0}{s/\sqrt{n}}\,$ (CLT), \quad $\displaystyle T=\frac{\bar x - \mu_0}{s/\sqrt{n}}$ & \small $\mu_0$: hypothesized population mean; Use $df=n-1$ for $t$ distribution if using $T$ procedures. Use CLT ($Z$ procedures) if $n\geq 30$.  \\
+\hline
+% Updated SE notation to use sample means
+SE ($\bar X_1-\bar X_2$, large $n$) & $\displaystyle \mathrm{SE}(\bar X_1-\bar X_2)
+=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$ & \small $\bar X_1$ and $\bar X_2$ come from independent samples. Use Z procedures if $n_1\geq 30$ and $n_2\geq 30$ (CLT). \\ % Added note about Z
+\hline
+Test statistic (two means, large $n$) & $\displaystyle Z=\frac{(\bar X_1-\bar X_2)-\Delta_0}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$ & \small $\Delta_0$: hypothesized difference in means (often $0$, meaning $\mu_1-\mu_2=0=\Delta_0$) \\
+\hline
+% Updated SE notation to use sample means
+SE ($\bar X_1-\bar X_2$, small $n$, pooled) & \small $\displaystyle \mathrm{SE}_{\text{pooled}}
+=\sqrt{S_p^2\Bigl(\frac{1}{n_1}+\frac{1}{n_2}\Bigr)}$, $S_p^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$ & \small  pooled variance for equal population variances assumption \\
+\hline
+Test statistic (two means, small $n$, pooled) & $\displaystyle T=\frac{(\bar X_1-\bar X_2)-\Delta_0}{\mathrm{SE}_{\text{pooled}}}$ & \small $\Delta_0$: hypothesized difference in means (often $0$, meaning $\mu_1-\mu_2=0=\Delta_0$); \newline Pooled $df=n_1+n_2-2$. \\
+\hline
+% Updated SE notation to use sample means
+SE ($\bar X_1-\bar X_2$, small $n$, Welch) & $\displaystyle \mathrm{SE}_{\text{Welch}}
+=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$ & \small no pooling, used when population variances assumed unequal \\
+\hline
+Test statistic (two means, small $n$, Welch) & \small $\displaystyle T=\frac{(\bar X_1-\bar X_2)-\Delta_0}{\mathrm{SE}_{\text{Welch}}}$, $\displaystyle df\approx \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}{\frac{(s_1^2/n_1)^2}{n_1-1} + \frac{(s_2^2/n_2)^2}{n_2-1}}$ & \small $\Delta_0$: hypothesized difference in means (often $0$, meaning $\mu_1-\mu_2=0=\Delta_0$); $df$ by Welch–Satterthwaite approx. \\
+\hline
+SE (paired samples) & $\displaystyle \mathrm{SE}(\bar d \,)=\frac{s_d}{\sqrt{n}}$ & \small $D_i=X_{1i}-X_{2i}$, $s_d$: \emph{sample} sd of differences. Use Z for large $n$, T for small $n$. \\ 
+\hline
+Test statistic (paired, large $n$ \emph{use} $Z$, small $n$ \emph{use} $T$) & $\displaystyle Z=\frac{\bar d - \mu_d}{s_d/\sqrt{n}}\,$ (CLT), \quad $\displaystyle T=\frac{\bar d - \mu_d}{s_d/\sqrt{n}}$ &  \small $\mu_d$: hypothesized mean difference (often $0$, meaning $\mu_d=0$). Use CLT if $n\geq 30$.  \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{document}

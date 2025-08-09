@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{hyperref}
+
+\title{Hypothesis Testing for a Population Proportion:\\ A Step-by-Step Guide with Theoretical Justification}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Purpose}
+
+This guide walks you through how to perform a hypothesis test for a population proportion. At each step, you'll not only see what to do, but also understand the statistical logic that justifies it. Concepts are introduced carefully, one at a time, so you can build your understanding from the ground up.
+
+\section*{Step-by-Step Procedure (with Theoretical Rationale)}
+
+\begin{enumerate}[label=\textbf{Step \arabic*:}, leftmargin=2.5em]
+
+\item \textbf{Choose a significance level $\alpha$.}
+
+Before testing any hypothesis, we must decide how much evidence we require to reject it. The \textit{significance level}, denoted $\alpha$, is a threshold that represents how much risk we're willing to take of making a false positive — that is, rejecting a hypothesis that is actually true.
+
+\textit{Theoretical rationale:} Setting $\alpha$ gives us control over the Type I error rate. It establishes a standard for how unusual a result must be, under the assumption that the null hypothesis is true, to be considered statistically significant.
+
+\vspace{0.5em}
+\item \textbf{Define the parameter of interest.}
+
+We begin by identifying what we are trying to learn about. In this case, we define $p$ as the true population proportion of interest — for example, the proportion of voters who support a policy.
+
+\textit{Theoretical rationale:} In statistical inference, we use sample data to make reasoned claims about unknown population parameters. Clearly specifying $p$ tells us what we are trying to estimate or test.
+
+\vspace{0.5em}
+\item \textbf{State the null and alternative hypotheses.}
+
+The \textit{null hypothesis}, denoted $H_0$, is the benchmark value we assume to be true unless the data provide strong evidence against it. The \textit{alternative hypothesis}, $H_A$, represents the competing claim we want to test.
+
+\begin{align*}
+H_0 &: p = p_0 \\
+H_A &: p < p_0, \quad p > p_0, \quad \text{or} \quad p \neq p_0
+\end{align*}
+
+\textit{Theoretical rationale:} Hypothesis testing compares two competing statements about the population. $H_0$ serves as the default claim, while $H_A$ expresses the specific deviation we're interested in testing.
+
+\vspace{0.5em}
+\item \textbf{Check if the normal approximation is valid.}
+
+Because the sampling distribution of a sample proportion is not exactly normal, we only use the normal model if:
+\[
+n \cdot p_0 \geq 15 \quad \text{and} \quad n \cdot (1 - p_0) \geq 15
+\]
+
+These are called the \textit{normality conditions}.
+
+\textit{Theoretical rationale:} The sample proportion $\hat{p}$ follows a binomial distribution. The Central Limit Theorem tells us this distribution becomes approximately normal when the sample size is large enough — specifically, when we expect at least 15 ``successes'' and 15 ``failures'' under $H_0$.
+
+\vspace{0.5em}
+\item \textbf{Compute the test statistic.}
+
+Once we have sample data, we compute the observed sample proportion $\hat{p}$, and use it to calculate the standardized test statistic:
+\[
+Z = \frac{\hat{p} - p_0}{\sqrt{ \dfrac{p_0(1 - p_0)}{n} }}
+\]
+
+\textit{Theoretical rationale:} If $H_0$ is true, then $\hat{p}$ has a known sampling distribution centered at $p_0$ with standard error $\sqrt{p_0(1 - p_0)/n}$. The $Z$-statistic measures how many standard errors our observed $\hat{p}$ is away from the null value.
+
+\vspace{0.5em}
+\item \textbf{Calculate the $p$-value.}
+
+The $p$-value is the probability of observing a sample result as extreme as (or more extreme than) ours, assuming $H_0$ is true. To find it, we use the standard normal distribution.
+
+\textit{Theoretical rationale:} If $H_0$ is true, then the $Z$-statistic follows a standard normal distribution. The $p$-value tells us how surprising our observed result is under that assumption.
+
+\vspace{0.5em}
+\item \textbf{Compare the $p$-value to $\alpha$ and make a decision.}
+
+\begin{itemize}
+  \item If $p$-value $\leq \alpha$: we reject $H_0$.
+  \item If $p$-value $> \alpha$: we fail to reject $H_0$.
+\end{itemize}
+
+\textit{Theoretical rationale:} We use the $p$-value to quantify evidence against $H_0$. If that evidence exceeds our pre-set threshold $\alpha$, we reject $H_0$ in favor of $H_A$.
+
+\vspace{0.5em}
+\item \textbf{State your conclusion in context.}
+
+Your final conclusion should interpret the result in real-world terms. For example: ``We reject the null hypothesis at the 5\% level. The data provide evidence that the support rate is greater than 50\%.''
+
+\textit{Theoretical rationale:} Statistical analysis always begins and ends in context. We use the result of the test to inform our substantive question about the population parameter $p$.
+
+\end{enumerate}
+
+\vspace{1em}
+\section*{Summary Insight}
+
+Hypothesis testing is not just a checklist — it's a logical framework grounded in probability. We simulate what the world would look like if $H_0$ were true, and then use sample evidence to evaluate whether that world is still plausible. Every step is about connecting our observed data to the theory of sampling distributions under uncertainty.
+
+\end{document}

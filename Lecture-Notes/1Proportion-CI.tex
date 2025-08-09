@@ -1,0 +1,389 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}   % For improved table formatting
+\usepackage{tabulary}   % For tables with adjustable column widths
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+\usepackage{enumitem}
+
+\usepackage{pgfplots} % For creating graphs and plots
+\pgfplotsset{compat=1.17} % Compatibility setting for pgfplots
+\usepackage{graphicx} % For including graphics
+\usepackage{float} % Helps to place figures and tables at precise locations
+\usepackage{caption}
+\usepackage{subcaption}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+% Setting up the margins:
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+
+\begin{document}
+
+\title{Derivation of Confidence Intervals for Proportions}
+\author{POL 201.01}
+\date{} %\date{\today}
+\maketitle
+
+\section*{Introduction}
+
+To fully understand the derivation of confidence intervals for proportions in large samples from first principles, we must start by laying down the foundational concepts in probability theory and statistical inference.
+
+\subsection*{Step 1: Understanding Random Variables and Probability Distributions}
+
+\subsubsection*{Definition: Random Variable}
+A random variable, \(X\), is a function from a sample space \(\Omega\) into the real numbers \(\mathbb{R}\), assigning a numerical value to each outcome in \(\Omega\).
+
+\subsection*{Example}
+
+Consider the weather conditions for each day of a week, where the outcomes can be Sunny (S), Cloudy (C), or Rainy (R). The sample space for the week can be represented as:
+\[
+\Omega = \{ (S, C, S, S, R, C, S), (C, C, S, R, R, C, C),  \ldots \}
+\]
+Each element of the sample space represents the weather condition for all seven days of the week.
+
+Now, let \(X\) represent the number of days in the week that are Sunny. In this case, \(X\) is a random variable that assigns a count of the sunny days to each element of the sample space. For instance, if the outcome for a given week is \((S, C, S, S, R, C, S)\), then \(X = 4\) because there are four sunny days.
+
+
+\subsubsection*{Definition: Probability Distribution}
+The probability distribution of a random variable \(X\) describes the probabilities of the possible values of \(X\). For a discrete random variable, it's often given by a probability mass function (PMF). For a continuous variable, it can be described by a probability density function (PDF).
+
+\subsubsection*{Example: PMF and CDF of Total Heads}
+
+Consider flipping two coins. The sample space for this experiment can be represented as:
+\[
+\Omega = \{ (H, H), (H, T), (T, H), (T, T) \}
+\]
+Each element of the sample space represents a possible outcome of flipping two coins, where `H' stands for Heads and `T' stands for Tails.
+
+Now, let \( X \) represent the number of heads obtained in the two flips. In this case, \( X \) can take on values 0, 1, or 2, depending on the outcome. For example, if the outcome is \((H, T)\), then \( X = 1 \) since there is one head.
+
+\textbf{PMF:}
+\[
+P(X = x) = 
+\begin{cases}
+    \frac{1}{4}, & \text{if } x = 0 \\
+    \frac{1}{2}, & \text{if } x = 1 \\
+    \frac{1}{4}, & \text{if } x = 2
+\end{cases}
+\]
+
+\textbf{CDF:}
+\[
+F_X(x) = 
+\begin{cases}
+    0, & \text{for } x < 0 \\
+    \frac{1}{4}, & \text{for } 0 \leq x < 1 \\
+    \frac{3}{4}, & \text{for } 1 \leq x < 2 \\
+    1, & \text{for } x \geq 2
+\end{cases}
+\]
+
+
+\subsection*{Step 2: The Bernoulli Distribution}
+
+When dealing with proportions, the underlying distribution of each trial is a Bernoulli distribution.
+
+\subsubsection*{Definition: Bernoulli Distribution}
+A random variable \(X \in \{0,1\}\) follows a Bernoulli distribution with parameter \(p\) (where \(0 \leq p \leq 1\)), denoted as \(X \sim \text{Bernoulli}(p)\), if:
+\[ P(X = 1) = p \quad \text{and} \quad P(X = 0) = 1 - p \]
+
+\subsubsection*{Properties:}
+\begin{itemize}
+    \item \textbf{Expectation}: \(E(X) = p\)
+    \item \textbf{Variance}: \(\text{Var}(X) = p(1-p)\)
+\end{itemize}
+
+\subsection*{Step 3: Binomial Distribution and the Law of Large Numbers}
+
+When you sum independent Bernoulli trials, the resulting distribution is a Binomial distribution.
+
+\subsubsection*{Definition: Binomial Distribution}
+Given \(n\) independent Bernoulli trials each with success probability \(p\), the random variable \(S_n = X_1 + X_2 + \ldots + X_n\), where \(X_i \sim \text{Bernoulli}(p)\), is said to follow a Binomial distribution, denoted as \(S_n \sim \text{Binomial}(n, p)\).
+
+\subsubsection*{Properties:}
+\begin{itemize}
+\item  \textbf{PMF}:\footnote{Recall that $\binom{n}{k} = \frac{n!}{k! (n-k)!}$, and it represents the number of ways to choose $k$ elements from a set of $n$ elements, which is commonly used in combinatorics} \(P(S_n = k) = \binom{n}{k} p^k (1-p)^{n-k}\) for \(k = 0, 1, 2, \ldots, n\)
+\item \textbf{Expectation}: \(E(S_n) = np\)
+\item \textbf{Variance}: \(\text{Var}(S_n) = np(1-p)\)
+\end{itemize}
+
+Note that since, for all \( X_i \in \{0, 1\} \), \( X_i \) follows a Bernoulli distribution. Think of \( X_i \) as a binary variable that equals 1 if some condition is met for observation \( i \), and 0 otherwise. For example, consider a scenario where we observe whether each individual in a survey owns a car. Here, \( X_i = 1 \) if individual \( i \) owns a car, and \( X_i = 0 \) otherwise.  Then, $\frac{S_n}{n} = \hat{p}$ represents the proportion of people that own a car in a sample of size $n$. Note, $\hat{p} =\frac{S_n}{n}= \frac{\sum_{\forall i}^{n}{X_i}}{n} =  \bar{X}_n $. This means that a proportion can be considered the average of the random variable $X_i  \in \{0, 1\} $ in a sample of size $n$. 
+
+
+\subsubsection*{Theorem: Law of Large Numbers}
+\emph{Theorem. Law of Large Numbers for the Sample Proportion.} Define a Bernoulli random variable \( X_i \in \{0, 1\} \), and the define \(p = S / n\) as the true proportion of observations in the population such that $X_i=1$. For a sample of independent and identically distributed $X_i$ (that is, $iid$ observations), as \(n \rightarrow \infty\), the sample mean \(\bar{X}_n = \frac{S_n}{n}\) converges almost surely to \(p\). \newline  
+
+In non-technical terms, the result means that as we observe more and more data (as the number of observations becomes very large), the average value we calculate from the data becomes increasingly closer to the true underlying value that we're trying to estimate. This happens with almost complete certainty, given enough $iid$ data.
+
+\subsection*{Step 4: Central Limit Theorem}
+
+This theorem is crucial for moving from a Binomial distribution to a normal approximation in large samples.
+
+\subsubsection*{Theorem: Central Limit Theorem (CLT)}
+Given a sample of $iid$ $X_i$, for large \(n\), \(S_n	=\sum_{i=1}^{n}X_i\) becomes approximately normally distributed. That is, the $Z$-normalized form \(\frac{S_n - np}{\sqrt{np(1-p)}}\) approximates \(Z \sim N(0, 1)\) (standard normal distribution).
+
+
+\subsubsection*{Sampling Distribution of Proportion}
+
+Suppose we have a binomial random variable \( S_n = \sum_{i=1}^n X_i \) which is the sum of \( n \) independent Bernoulli random variables \( X_i \), each with the same probability of success \( p \). We define the sample proportion as:
+\[ \hat{p} = \frac{S_n}{n} \]
+
+From the binomial distribution, we know that:
+\begin{itemize}
+    \item \( E(S_n) = np \) 
+    \item \( \text{Var}(S_n) = np(1-p) \)
+\end{itemize}
+
+
+\subsubsection*{Expectation and Variance of \( \hat{p} \)}
+Given \( \hat{p} = \frac{S_n}{n} \), we can calculate its expectation and variance:
+\begin{itemize}
+    \item \( E(\hat{p}) = \frac{1}{n} \cdot E(S_n) = \frac{1}{n} \cdot np = p \)
+    \item \( \text{Var}(\hat{p}) = \frac{1}{n^2} \cdot \text{Var}(S_n) = \frac{1}{n^2} \cdot np(1-p) = \frac{p(1-p)}{n} \)
+\end{itemize}
+
+Thus, \( \hat{p} \) is an unbiased estimator of \( p \), and its variance decreases as \( n \) increases, indicating more precise estimates for larger sample sizes. \newline
+
+Also, the standard error of $\hat{p}$ is defined as:
+\begin{itemize}
+    \item \( \sqrt{\text{Var}(\hat{p})} = SE(\hat{p}) = \sqrt{\frac{p(1-p)}{n}}  \)
+\end{itemize}
+
+Hence, the sampling variability of $\hat{p}$ decreases as the sample size $n$ increases.
+
+\subsubsection*{Normal Approximation}
+As \( n \) becomes large, we know from the Central Limit Theorem that \( S_n \) can be approximated by a normal distribution. Hence, the distribution of \( \hat{p} \) can also be approximated by a normal distribution because it is a linear transformation of \( S_n \).\footnote{As we reviewed in the lectures, a known theorem ensures that a linear transformation of a normal random variable also follows a normal distribution but with adjusted mean and variance.}
+
+Since:
+\[ S_n \approx N(np, np(1-p)) \quad \text{for large } n \]
+
+Applying the transformation \( \hat{p} = \frac{S_n}{n} \) to the normal approximation, we get:
+\[ \hat{p} \approx N\left(p, \frac{p(1-p)}{n}\right) \]
+
+In practice, when calculating confidence intervals, we often use \( \hat{p}(1-\hat{p}) \) in place of \( p(1-p) \) in the variance term of the approximation, since \( p \) is not known. Once we have an estimate of \( p \) using the sample proportion \(\hat{p}\), we can immediately define an estimate for the variance. Thus, when using the sampling distribution for the proportion, both the proportion and variance are estimated from a single value: the sample proportion \(\hat{p}\).
+
+\subsubsection*{Properties of the CLT approximate sampling distribution:}
+\begin{itemize}
+    \item \textbf{a) Symmetry:}
+        \begin{itemize}
+        \item \textbf{Central Limit Theorem (CLT) Implication:} As per the CLT, when sample size \( n \) is large, the sum (or average) of the independent, identically distributed random variables tends toward a normal distribution, regardless of the original distribution of these variables. This resultant distribution is symmetric about the mean.
+        \item \textbf{Standardization to Z-score:} Given this symmetry, the transformation
+        \[
+        Z = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}}
+        \]
+        results in a variable \( Z \) approximately following the standard normal distribution \( N(0,1) \), which is perfectly symmetric around 0 (its mean).
+        \end{itemize}
+    \item \textbf{b) Centered Around the True Population Mean (\( p \)):}
+        \begin{itemize}
+          \item \textbf{Expectation Interpretation:} For a large sample, by the law of large numbers and the CLT, the sample mean \( \hat{p} \) converges to the population mean \( p \). Hence, the sampling distribution of \( \hat{p} \) is centered around \( p \).
+        \end{itemize}
+\end{itemize}
+
+\subsection*{Step 5: Constructing the Confidence Interval}
+
+\subsubsection*{Intuition}
+
+A confidence interval (CI) provides a range of values within which we are fairly certain the true population parameter lies (e.g., proportion or mean). The goal of a CI is to give us an idea of how reliable our estimation of the population parameter is based on our sample data. Essentially, it helps us understand the level of uncertainty around our estimate and provides a window that likely captures the true value. Instead of simply providing one numeric estimate for the population parameter we seek to infer, a CI provides a set of plausible values for it.\footnote{In more technical terms, this means that instead of proposing a \emph{point estimate} the CI constructs a \footnote{set estimate} for the population parameter we seek to estimate.}
+
+Think of a confidence interval like a fishing net: after casting it into the ocean (collecting data), we pull it up with a range of different fish (possible estimates). A confidence interval tells us that, based on our sample, we can be fairly confident that the fish we're interested in—the true value—is somewhere inside our net \emph{most of the time}. It doesn't tell us exactly where, but it suggests a range of possible values with some degree of confidence.\footnote{A key conceptual point is that the procedure for constructing the upper and lower limits of a confidence interval (CI) is designed so that the interval captures the population parameter \emph{most of the time} across repeated samples. However, it does not indicate whether a specific confidence interval contains the population parameter. 
+
+By construction, the CI is always centered on the sample estimate derived from the available sample data. Although the CI does not guarantee that the population parameter lies within a given interval, its width has an intuitive interpretation. A narrow width (a small distance between the lower and upper bounds) suggests that the population parameter is being estimated with high precision. While any single CI represents just one possible realization, it remains our best available estimate. If the width is small, we can generally expect the procedure to precisely narrow the range of plausible values where the population parameter lies.}
+
+
+\subsubsection*{Confidence Interval Formula}
+Give the previous theorems, we know that, in large samples of $iid$ $X_i\sim Bernoulli (p)$, for an unknown population proportion \(p\), its estimator \(\hat{p} = \frac{S_n}{n}\) has an approximate normal distribution, thus, its $Z$-score transformation should follow a standard normal:
+\[ \frac{\hat{p}-p}{SE(\hat{p})} = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \approx Z \sim N(0,1) \]
+
+To calculate a 95\% confidence interval, we manipulate \textbf{the interval} in this approximation:
+\[ P(-1.96 \leq Z \leq 1.96) = 0.95 \]
+
+In non-technical terms, when we write the previous expression for calculating a confidence interval, we are essentially using the properties of the normal distribution to define a range in which we expect the true value of the proportion \( p \) to lie. Specifically, we are transforming the difference between our estimate \( \hat{p} \) and the true value \( p \) into a $Z$-standardized form using the standard error, which tells us how much variability we expect due to sampling.
+
+By stating that \( P(-1.96 \leq Z \leq 1.96) = 0.95 \), we are saying that, under the standard normal distribution, about 95\% of all possible outcomes of $Z$, i.e., the standardized deviation of $\hat{p}$ over $p$,  will fall within this range of  $\pm1.96$. Translating this back to our confidence interval, it means that we are about 95\% confident that our sample proportion is close enough to the true proportion that the true value lies within this calculated interval. This ties back to the intuitive goal of the confidence interval: providing a reasonable range where we expect the true population parameter to be, given our sample data.
+
+So, starting from$ -1.96 \leq Z \leq 1.96$, and after manipulating the inequalities to isolate $p$ in the center, we have:\footnote{See the appendix at the end for a rigorous derivation of the bounds for the confidence interval.}
+
+\[ \hat{p} - 1.96\sqrt{\frac{p(1-p)}{n}} \leq p \leq \hat{p} + 1.96\sqrt{\frac{p(1-p)}{n}}\]
+
+\[ \hat{p} - 1.96 \cdot SE(\hat{p}) \leq p \leq \hat{p} + 1.96 \cdot SE(\hat{p}) \]
+
+A common misconception about confidence intervals is the belief that the interval means there is a 95\% probability that the true population proportion \( p \) lies within the calculated bounds. This is incorrect because \( p \) is a fixed, unknown value—either inside the interval or not—making the probability of it being in any specific interval either 0\% or 100\%. \textbf{The correct interpretation of a 95\% confidence interval is that, if we were to take many samples and calculate a confidence interval from each, about 95\% of those intervals would contain the true \( p \)}. Therefore, the 95\% refers to the reliability of the method, not the probability of \( p \) lying within any single interval.
+
+\subsubsection*{Connection between Interval Coverage and Confidence:}
+
+Due to the symmetry and central nature of the distribution:
+\begin{itemize}
+  \item \textbf{Picking Critical Values:} The choice of \( z \)-values such as -1.96 and 1.96 corresponds to the quantiles of the standard normal distribution that capture the central 95\% of the distribution. These values reflect \( \alpha/2 \) and \( 1-\alpha/2 \) quantiles, for a total coverage area (or confidence level) of \( 1-\alpha \) (95\% in this context).
+  \item \textbf{Coverage Interpretation:}
+  \[
+  P(-1.96 \leq Z \leq 1.96) = P\left(\frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \leq 1.96\right) - P\left(\frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}} \leq -1.96\right) = 0.95
+  \]
+  suggests that the interval \([-1.96, 1.96]\) contains the standardized sample mean \(Z\) about 95\% of the time, under the assumption of repeated sampling.
+\end{itemize}
+
+
+\subsubsection*{Estimating the Standard Error and the Margin of Error}
+
+To calculate the confidence interval, we first need an estimate of the standard error (SE). The standard error is defined as:
+
+\[
+\text{SE} = \sqrt{\frac{p(1-p)}{n}}
+\]
+
+However, since the true value of \( p \) is not known, we use the sample proportion \( \hat{p} \) to estimate it, resulting in:
+
+\[
+\text{SE} \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+\]
+
+The margin of error (MOE) is then calculated by multiplying the estimated SE by the critical value from the standard normal distribution, which corresponds to the desired confidence level. For a 95\% confidence interval, the critical value is approximately 1.96:
+
+\[
+\text{MOE} = 1.96 \times \text{SE}
+\]
+
+Thus, the confidence interval is constructed by adding and subtracting the margin of error from the sample proportion \( \hat{p} \), giving us:
+
+\[
+\left[\hat{p} - \text{MOE}, \, \hat{p} + \text{MOE}\right]
+\]
+
+This interval provides an estimated range that we expect, with 95\% confidence, to contain the true population proportion \( p \).
+
+\subsection*{Interpretation}
+
+\textbf{Statistical Confidence:}
+\begin{itemize}
+  \item \textbf{Claim:} When constructing the interval 
+  \[\left[\hat{p} - 1.96\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + 1.96\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]\]
+  we claim with 95\% confidence that it contains the true population proportion \( p \). This is because this interval construction method, if repeated across many samples, would result in intervals containing \( p \) approximately 95\% of the time. This is not the probability of \( p \) being in one specific interval, but a general reliability measure of this interval estimation method.
+  \item \textbf{Interpretation of Confidence:} The statistical confidence thus relates to our trust in the method used to estimate \( p \), given the properties of the distribution shaped by the central limit theorem.
+\end{itemize}
+
+\newpage
+\appendix 
+
+
+\section*{Appendix: A Rigorous Derivation of the Confidence Interval for a Population Proportion}
+\subsection*{Set-Up and Notation}
+
+\begin{itemize}
+  \item We have a population proportion \(p\) that we wish to estimate (e.g., the proportion of individuals in a population for which a given condition is met).
+  \item We draw an i.i.d.\ sample of size \(n\) from the population; let \(S_n\) be the number of ``successes'' in this sample.
+  \item Define the sample proportion (or sample mean of Bernoulli trials) as
+  \[
+    \hat{p} \;=\; \frac{S_n}{n}.
+  \]
+\end{itemize}
+
+From the properties of a Binomial random variable \(S_n \sim \mathrm{Binomial}(n,p)\), we can conclude the following for $S_n/n$:
+\[
+  \mathbb{E}[\hat{p}] \;=\; p,
+  \quad
+  \operatorname{Var}(\hat{p}) \;=\; \frac{p(1-p)}{n}.
+\]
+
+\subsection*{Approximate Normality (Central Limit Theorem)}
+
+For large \(n\), the Central Limit Theorem (or the De Moivre--Laplace Theorem, a special case for binomial distributions) tells us that
+\[
+  \hat{p} \;\approx\; N\!\Bigl(p,\;\frac{p(1-p)}{n}\Bigr).
+\]
+Equivalently, the standardized statistic
+\[
+  Z \;=\; \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}}
+\]
+is approximately a standard normal random variable \(N(0,1)\).
+
+\textbf{Note on Large-Sample Conditions.} 
+The above approximation is reliable when \(n\) is large and \(p\) is not too close to 0 or 1. In practice, we replace the unknown \(p\) in the standard error by \(\hat{p}\). This leads to the so-called \emph{Wald confidence interval}. A common rule of thumb is that \(n\hat{p} \ge 10\) and \(n(1 - \hat{p}) \ge 10\) for the approximation to work reasonably well.
+
+\subsection*{Constructing the Confidence Interval}
+
+To obtain a \((1-\alpha) \times 100\%\) confidence interval for \(p\), we use the fact that
+\[
+  P\!\bigl(z_{\frac{\alpha}{2}} \,\le\, Z \,\le\, z_{1-\frac{\alpha}{2}}\bigr) \;\approx\; 1 - \alpha,
+\]
+where \(z_{\frac{\alpha}{2}}\) is the \(\alpha/2\) quantile of the standard normal distribution, and  \(z_{1-\frac{\alpha}{2}}\) is its \(1-\alpha/2\) quantile. In other words, \( \Pr(Z<z_{\frac{\alpha}{2}})=\alpha/2 \) and \( \Pr( Z < z_{1-\frac{\alpha}{2}} )=1-\alpha/2 \). Note that because of the symmetry of the standard normal distribution:
+\[
+\Pr(z_{\frac{\alpha}{2}})  = 1 - \Pr(z_{1-\frac{\alpha}{2}}) = \dfrac{\alpha}{2} \iff    z_{\frac{\alpha}{2}}  = - z_{1-\frac{\alpha}{2}} 
+\]
+Hence,
+\[
+  P\!\bigl(-z_{1-\frac{\alpha}{2}}  \,\le\, Z \,\le\, z_{1-\frac{\alpha}{2}} \bigr) \;\approx\; 1 - \alpha,
+\]
+
+For a 95\% confidence level, \(\alpha = 0.05\) and \(z_{1-\alpha/2} \approx 1.96\). Hence,
+\[
+  P\Bigl(-1.96 \;\le\;
+  \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}}
+  \;\le\; 1.96\Bigr)
+  \;\approx\; 0.95.
+\]
+
+\subsubsection*{Algebraic Steps to Isolate \(p\)}
+
+Starting from
+\[
+  -1.96 
+  \;\le\;
+  \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}}
+  \;\le\;
+  1.96,
+\]
+we multiply each part of this inequality by the denominator \(\sqrt{\frac{p(1-p)}{n}}.\)
+
+\textbf{However}, we do not know \(p\) exactly, so we replace \(p\) with \(\hat{p}\) in the standard error. We define
+\[
+  \text{SE}(\hat{p}) \;=\; \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
+\]
+Rewriting with this approximation yields
+\[
+  -1.96 \cdot \text{SE}(\hat{p})
+  \;\le\;
+  \hat{p} - p
+  \;\le\;
+  1.96 \cdot \text{SE}(\hat{p}).
+\]
+Then, we solve for \(p\) by subtracting \(\hat{p}\) and then multiplying the inequality by $(-1)$:
+\[
+  \hat{p} - 1.96  \cdot \text{SE}(\hat{p}) 
+  \;\le\;
+  p 
+  \;\le\;
+  \hat{p} + 1.96  \cdot \text{SE}(\hat{p}).
+\]
+Thus, our approximate 95\% confidence interval for the proportion \(p\) is
+\[
+  \Bigl[
+    \hat{p} - 1.96 \cdot \text{SE}(\hat{p}), \;
+    \hat{p} + 1.96 \cdot \text{SE}(\hat{p})
+  \Bigr],
+  \quad
+  \text{where}
+  \quad
+  \text{SE}(\hat{p}) 
+  \;=\;
+  \sqrt{\frac{\hat{p}\,(1-\hat{p})}{n}}.
+\]
+
+\subsection*{Interpretation of the Confidence Interval}
+
+\begin{itemize}
+  \item \textbf{Coverage.} The phrase ``95\% confidence'' means that if we were to repeat this sampling procedure many times (each time constructing a new interval), about 95\% of those intervals would contain the true parameter \(p\).
+  \item \textbf{Parameter vs.\ Random Sample.} The random element here is the \emph{interval} itself because it depends on the random sample through \(\hat{p}\). The parameter \(p\) is a fixed (unknown) constant.
+  \item \textbf{Approximation.} The interval is an approximation because we (i) replace \(p\) with \(\hat{p}\) in the standard error and (ii) rely on the normal approximation via the Central Limit Theorem.
+\end{itemize}
+
+
+\end{document}
+

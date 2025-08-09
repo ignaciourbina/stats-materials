@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Notes - Week 2 Lectures}
+\author{POL 201}
+\date{}
+\maketitle
+
+\section{Class Problem: Mean, Sample Size, and Outliers}
+The sample mean (\(\bar{X}\)) is a measure of central tendency and is calculated using the formula:
+
+\[
+\bar{X} = \frac{\sum_{i=1}^{N} X_i}{N}
+\]
+
+where:
+\begin{itemize}
+    \item \( \sum_{i=1}^{N} X_i \) is the sum of all observations in the sample,
+    \item \( N \) is the number of observations in the sample.
+\end{itemize}
+
+If a new data point \( X_{N+1} \) is added to the sample, the total number of observations increases to \( N+1 \), and the sum of all data points updates to:
+
+\[
+\text{New Sum} = \sum_{j=1}^{N+1} X_{j} = \text{Old Sum} + X_{N+1} =   \sum_{i=1}^{N} X_i + X_{N+1}
+\]
+
+Thus, the new mean \( \bar{X}_{\text{new}} \) is given by:
+
+\[
+\bar{X}_{\text{new}} = \frac{\sum_{j=1}^{N+1} X_{j} }{N+1} = \frac{\sum_{i=1}^{N} X_i + X_{N+1}}{N+1}
+\]
+
+Given the formula for the mean, we know that \( \sum X_i = N \bar{X} \), we substitute this into the equation:
+
+\[
+\bar{X}_{\text{new}} = \frac{N \bar{X} + X_{N+1}}{N+1}
+\]
+
+This formula allows us to efficiently update the mean without recalculating the entire sum from scratch.
+
+\subsection*{Problem Statement}
+\begin{itemize}
+    \item Consider a sample of size \( N_1 = 10 \) with a sample mean of \( \bar{X}_1 = 40,000 \).
+    \item Another sample has size \( N_2 = 1,000 \) with a sample mean of \( \bar{X}_2 = 42,500 \).
+    \item An additional data point \( X_{N+1} = 150,000 \) is added to both samples.
+    \item We determine how the mean changes in each case.
+\end{itemize}
+
+\subsection*{Step-by-Step Solution}
+
+\subsubsection*{For Sample 1 (\(N_1 = 10\))}
+\[
+\bar{X}_{\text{new,1}} = \frac{10 \times 40,000 + 150,000}{10+1}
+\]
+\[
+= \frac{400,000 + 150,000}{11}
+\]
+\[
+= \frac{550,000}{11} = 50,000
+\]
+
+\subsubsection*{For Sample 2 (\(N_2 = 1000\))}
+\[
+\bar{X}_{\text{new,2}} = \frac{1000 \times 42,500 + 150,000}{1000+1}
+\]
+\[
+= \frac{42,500,000 + 150,000}{1001}
+\]
+\[
+= \frac{42,650,000}{1001} \approx 42,607.39
+\]
+
+\subsection*{Conclusion}
+Adding an extra data point has a larger effect on smaller samples. In the first case, the mean increased by 10,000, whereas in the second case, the increase was only about 107.39. This highlights the principle that larger samples are more stable and less sensitive to outliers.
+
+%---------------------------------------------------------------------------%
+\section{Class Problem: Categorical Ordinal Data, Relative Frequencies, and Weighted Mean}
+\subsection*{Problem Statement}
+
+In ATP Wave 116, one of the questions posed to participants was:
+
+\begin{quote}
+\emph{``How confident are you that votes cast by absentee or mail-in ballot across the United States will be counted as voters intend in the elections this November?"}
+\end{quote}
+
+Respondents were asked to select one of four confidence levels, which are categorical and ordinal in nature. The responses (excluding ``No answer") were recorded and are shown below along with their absolute frequencies:
+
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Confidence Level} & \textbf{Absolute Frequency} \\
+\hline
+Not at all confident & 407 \\
+Not too confident & 611 \\
+Somewhat confident & 967 \\
+Very confident & 534 \\
+\hline
+\end{tabular}
+\end{center}
+
+To analyze the survey data, the absolute frequencies were converted to relative frequencies. Using this data, our goals are:
+\begin{enumerate}
+    \item Compute the cumulative frequencies using the relative frequencies.
+    \item Compute the weighted mean to determine the average confidence level expressed by respondents.
+\end{enumerate}
+
+\subsection*{Solution}
+
+The table below provides the response categories along with their absolute and relative frequencies:
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Confidence Level} & \textbf{Absolute Frequency} & \textbf{Relative Frequency} (\( f_i \)) \\
+\hline
+Not at all confident & 407 & 0.162 \\
+Not too confident & 611 & 0.243 \\
+Somewhat confident & 967 & 0.384 \\
+Very confident & 534 & 0.212 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Part 1: Compute the Cumulative Frequencies}
+
+The cumulative frequency at each step is obtained by summing the relative frequencies from the top down. The calculations are shown below:
+
+\[
+F_1 = f_1 = 0.162
+\]
+
+\[
+F_2 = f_1 + f_2 = 0.162 + 0.243 = 0.405
+\]
+
+\[
+F_3 = f_1 + f_2 + f_3 = 0.162 + 0.243 + 0.384 = 0.789
+\]
+
+\[
+F_4 = f_1 + f_2 + f_3 + f_4 = 0.162 + 0.243 + 0.384 + 0.212 = 1.000
+\]
+
+Thus, the cumulative frequencies are:
+
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Confidence Level} & \textbf{Cumulative Frequency} (\(F_i\)) \\
+\hline
+Not at all confident & 0.162 \\
+Not too confident & 0.405 \\
+Somewhat confident & 0.789 \\
+Very confident & 1.000 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Part 2: Compute the Weighted Mean}
+
+The weighted mean accounts for the fact that different confidence levels carry different relative frequencies. We assign ordinal values to each confidence level:
+\begin{itemize}
+    \item Not at all confident = 1
+    \item Not too confident = 2
+    \item Somewhat confident = 3
+    \item Very confident = 4
+\end{itemize}
+
+The weighted mean formula is:
+
+\[
+\bar{X}_w = \sum_{i=1}^{k} f_i \times x_i
+\]
+
+Substituting the values:
+
+\[
+\bar{X}_w = (0.162 \times 1) + (0.243 \times 2) + (0.384 \times 3) + (0.212 \times 4)
+\]
+
+Performing the calculations step by step:
+
+\[
+0.162 \times 1 = 0.162
+\]
+
+\[
+0.243 \times 2 = 0.486
+\]
+
+\[
+0.384 \times 3 = 1.152
+\]
+
+\[
+0.212 \times 4 = 0.848
+\]
+
+Summing these values:
+
+\[
+\bar{X}_w = 0.162 + 0.486 + 1.152 + 0.848 = 2.648
+\]
+
+\subsection*{Conclusion}
+
+\begin{itemize}
+    \item The cumulative frequencies provide a running total of the relative frequencies, indicating the proportion of responses up to each confidence level.
+    \item The weighted mean of the confidence levels is \textbf{2.648}, meaning that, on average, respondents report a confidence level between ``Not too confident" and ``Somewhat confident."
+\end{itemize}
+
+
+\end{document}

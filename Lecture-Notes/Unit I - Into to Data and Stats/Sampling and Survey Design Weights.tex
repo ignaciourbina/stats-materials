@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\title{Survey Weights in Two-Stage Sampling Designs}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+In general, \textbf{survey weights} reflect the inverse of an individual’s probability of being selected into the sample. This document covers survey weights in both \textbf{two-stage cluster sampling} and \textbf{two-stage stratified sampling} designs.
+
+\section{Two-Stage Cluster Sampling}
+
+\subsection{Stage 1: Select Clusters}
+Suppose there are \( M \) total clusters in the population, and you randomly select \( m \) of them. If each cluster is equally likely to be chosen, then the probability that a specific cluster \( i \) is selected is
+\[
+p_i = \frac{m}{M}.
+\]
+
+\subsection{Stage 2: Select Individuals Within Each Selected Cluster}
+Let cluster \( i \) contain \( N_i \) individuals, and you draw a sample of \( n_i \) individuals. If this selection is simple random sampling within cluster \( i \), then each individual in that cluster has probability
+\[
+q_i = \frac{n_i}{N_i}
+\]
+of being chosen (given that cluster \( i \) was selected in the first place).
+
+\section{Computing the Weights}
+
+\subsection{Overall Selection Probability}
+The overall selection probability for an individual \( j \) in cluster \( i \) is given by:
+\[
+\text{Prob}(\text{select } j) = p_i \times q_i.
+\]
+
+\subsection{Survey Weight}
+The survey weight for that individual is the inverse of the selection probability:
+\[
+w_{ij} = \frac{1}{p_i \times q_i}.
+\]
+
+\section{Common Special Case}
+If each cluster has the same number of individuals (say \( N \) each), and you select the same sample size \( n \) per cluster, and all clusters are equally likely to be chosen, then the weight simplifies to:
+\[
+w_{ij} = \frac{M}{m} \times \frac{N}{n}.
+\]
+
+\section{Practical Considerations}
+In practice:
+\begin{itemize}
+    \item If different clusters have different probabilities of selection, you must use each cluster’s actual selection probability \( p_i \).
+    \item Similarly, if different numbers of individuals are sampled from each cluster, use each cluster’s actual within-cluster sampling probability \( q_i \).
+    \item Many surveys refine these \textit{base weights} with additional adjustments (e.g., for non-response or post-stratification), but the fundamental step always starts with the \textbf{inverse of selection probability}.
+\end{itemize}
+
+\section{Two-Stage Stratified Sampling}
+
+A \textbf{two-stage stratified sampling} design differs from cluster sampling in that the population is divided into mutually exclusive strata, and independent samples are drawn within each stratum.
+
+\subsection{Stage 1: Select Primary Sampling Units (PSUs) Within Each Stratum}
+Suppose the population is divided into \( H \) strata, with stratum \( h \) containing \( M_h \) primary sampling units (PSUs). If we select \( m_h \) PSUs from stratum \( h \), and each PSU has equal probability of selection, then the probability that PSU \( i \) in stratum \( h \) is selected is:
+\[
+p_{hi} = \frac{m_h}{M_h}.
+\]
+
+\subsection{Stage 2: Select Individuals Within Each Selected PSU}
+Let PSU \( i \) in stratum \( h \) contain \( N_{hi} \) individuals. If we sample \( n_{hi} \) individuals randomly from PSU \( i \), the probability of selecting a specific individual in that PSU is:
+\[
+q_{hi} = \frac{n_{hi}}{N_{hi}}.
+\]
+
+\section{Computing the Weights in Stratified Sampling}
+
+\subsection{Overall Selection Probability}
+The overall selection probability for an individual \( j \) in PSU \( i \) of stratum \( h \) is:
+\[
+\text{Prob}(\text{select } j) = p_{hi} \times q_{hi}.
+\]
+
+\subsection{Survey Weight}
+The corresponding survey weight is:
+\[
+w_{hij} = \frac{1}{p_{hi} \times q_{hi}}.
+\]
+
+\section{Common Special Case}
+If all strata have the same number of PSUs (\( M_h = M \)), and the same number of PSUs (\( m_h = m \)) are sampled per stratum, and within each PSU the same number of individuals are sampled (\( n_{hi} = n \)), the weight simplifies to:
+\[
+w_{hij} = \frac{M}{m} \times \frac{N}{n}.
+\]
+
+\section{Practical Considerations in Stratified Sampling}
+\begin{itemize}
+    \item Strata may have different sampling fractions (\( m_h / M_h \)), so the selection probability must be calculated separately for each stratum.
+    \item Within a stratum, different PSUs may have different numbers of individuals (\( N_{hi} \)), requiring different within-PSU sampling probabilities.
+    \item As with cluster sampling, adjustments for non-response, post-stratification, or calibration are often applied to the base weights.
+\end{itemize}
+
+\end{document}

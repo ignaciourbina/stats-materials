@@ -1,0 +1,385 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{comment}
+
+\usepackage[a4paper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
+
+\title{The History of the Normal Distribution}
+\author{Based on Stahl, S. (2006). \emph{Mathematics Magazine}, 79(2), 96-113.}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The normal distribution (bell curve) is at the core of all work in statistics. The normal distribution is used in various fields, especially in social sciences. The history of the normal curve involves its invention for probability computations and its later recognition in describing data.
+
+\subsection{Classical Probability Density Function}
+The classical probability density function (pdf) of the normal distribution, as introduced in textbooks, is given by:
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{1}{2} \left(\frac{x - \mu}{\sigma}\right)^2 }
+\end{equation}
+where:
+\begin{itemize}
+    \item $\mu$ is the mean (center) of the distribution,
+    \item $\sigma$ is the standard deviation, controlling the spread of the distribution.
+    \item $\pi$ and $e$ are the irrational numbers Pi ($\approx  3.1415$) and Euler ($\approx  2.7182$), respectively.
+\end{itemize}
+
+For the \textbf{standard normal distribution}, we set $\mu = 0$ and $\sigma = 1$, leading to:
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}
+\end{equation}
+
+This function is symmetric about $x=0$ and has key properties such as:
+\begin{itemize}
+    \item The total area under the curve is 1, ensuring it is a valid probability density function.
+    \item It is bell-shaped, with most values clustering around the mean $\mu$.
+    \item The probability of finding a value within one standard deviation ($\mu \pm \sigma$) is approximately 68.27\%, within two standard deviations 95.45\%, and within three standard deviations 99.73\%.
+\end{itemize}
+
+\subsection{Graph of the Standard Normal Distribution}
+Below is a plot of the standard normal distribution:
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            domain=-4:4,
+            samples=100,
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            xtick={-3,-2,-1,0,1,2,3},
+            ytick=\empty,
+            enlargelimits=true,
+            clip=false,
+        ]
+        \addplot[blue, thick] {1/sqrt(2*pi) * exp(-x^2/2)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\section{Historical Development of the Normal Probability Density Function}
+
+The emergence of the normal distribution was not an isolated event but rather a gradual process involving contributions from several mathematicians over centuries. Initially rooted in probability theory, early studies by Pascal and Fermat focused on discrete probability, particularly binomial distributions. 
+
+Over time, the need to approximate binomial probabilities for large sample sizes led to deeper investigations into continuous distributions. The first major step toward the normal curve came with de Moivre’s approximation to the binomial distribution, laying the foundation for what would later become the probability density function. Laplace extended these ideas, formalizing the Central Limit Theorem, which explained the ubiquity of the normal distribution. 
+
+Gauss, motivated by astronomical observations, provided a rigorous justification for the normal curve through his least squares method, solidifying its place in statistics. Subsequent applications by Quetelet, Galton, and Pearson expanded its relevance beyond mathematics, embedding it into the social and natural sciences. Based on Stahl (2006), the following sections outline the key contributors and their roles in shaping the modern understanding of the normal distribution.
+
+\subsection{Blaise Pascal \& Pierre de Fermat (1654) – Origins of Probability Theory}
+\begin{itemize}
+    \item Established the foundation of probability theory through correspondence on gambling problems.
+    \item Introduced \textbf{binomial distributions}, setting the stage for later developments in probability.
+    \item Not directly involved with the normal distribution but laid the groundwork.
+    \item \textbf{Did not discover the pdf function.}
+\end{itemize}
+
+\subsection{Jacob Bernoulli (Late 17th Century) – Early Binomial Approximation}
+\begin{itemize}
+    \item Developed methods for estimating binomial sums.
+    \item His approximations did not yet involve the \textbf{exponential function}.
+    \item Contributed to probability theory, but not directly to the normal distribution.
+    \item \textbf{Did not discover the pdf function.}
+\end{itemize}
+
+\subsection{Abraham de Moivre (1733) – The First Normal Approximation}
+\begin{itemize}
+    \item Sought a way to approximate \textbf{binomial probabilities} for large sample sizes.
+    \item Derived the first explicit \textbf{approximation to the binomial distribution}, resembling the modern normal distribution. The following integral approximates the probability of getting between $n/2 - d$ and $n/2 + d$ successes over $n$ trials with $p=1/2$:
+    \begin{equation}
+    \sum_{|x-n/2| \leq d} {n \choose x} (1/2)^n = \sum_{n/2 - d \leq x \leq n/2 + d   } {n \choose x} (1/2)^n \approx  2  \int_0^{d/\sqrt{n}} \frac{1}{\sqrt{2\pi}} 2 e^{-2y^2}  dy
+    \end{equation}
+    \item A more general formulation of de Moivre's approximation theorem is usually presented as follows. The normal cumulative distribution function (CDF) is defined as:
+        \begin{equation}
+        \Phi(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{z} e^{-t^2/2} dt,
+        \end{equation}
+        the binomial summation is now approximated as:
+        \begin{equation}
+        \sum_{i \leq x \leq j} {n \choose x} p^x (1-p)^{n-x} \approx \Phi \left( \frac{j - np}{\sqrt{np(1-p)}} \right) - \Phi \left( \frac{i - np}{\sqrt{np(1-p)}} \right).
+        \end{equation}
+    \item This became the \textbf{normal approximation to the binomial distribution} still used today.\footnote{Modern textbooks use an updated and generalized version for the normal PDF.}
+    \item \textbf{de Moivre independently discovered an early form of the normal pdf function.}
+\end{itemize}
+
+\subsection{Pierre-Simon Laplace (1774, 1810) – Probability Theory \& Central Limit Theorem}
+\begin{itemize}
+    \item Laplace sought to model \textbf{measurement errors} in scientific observations, a longstanding challenge in astronomy and physics.
+    \item Proposed an \textbf{error curve} based on differential equations, though early versions were flawed.
+    \item Initially used a \textbf{piecewise logarithmic function} before transitioning to more refined models.
+    \item In \textbf{1810, formulated the Central Limit Theorem (CLT)},\footnote{The Central Limit Theorem (CLT) states that when we add up many small, independent random influences, their total behaves like a normal distribution, regardless of the original distributions of the individual influences. This explains why the normal distribution appears so often in nature and statistics.} proving that sums of independent errors converge to the normal distribution.
+    \item This justified why the normal curve appears in many contexts.
+    \item \textbf{Did not independently discover the normal pdf but significantly contributed to its justification.}
+\end{itemize}
+
+
+\subsection{Carl Friedrich Gauss (1809) – Justification of the Normal Distribution}
+\begin{itemize}
+    \item Used the \textbf{method of least squares} to estimate planetary orbits (notably Ceres).
+    \item Assumed that:
+    \begin{enumerate}
+        \item Small errors occur more frequently than large ones.
+        \item Positive and negative errors are equally likely.
+        \item The best estimate is the \textbf{mean} of multiple measurements.
+    \end{enumerate}
+    \item Derived the normal probability density function (pdf):
+    \begin{equation}
+    \phi(x) = \frac{h}{\sqrt{\pi}} e^{-h^2 x^2}
+    \end{equation}
+    \item His derivation was based on \textbf{maximum likelihood estimation}\footnote{Maximum likelihood estimation (MLE) is a method for finding the most plausible value of a parameter by choosing the value that makes the observed data most probable. In this context, Gauss assumed that errors followed a certain pattern and found the distribution that maximized the likelihood of seeing the actual measurement errors.} rather than the Central Limit Theorem.
+    \item \textbf{Independently discovered the normal pdf function.}
+\end{itemize}
+
+\subsection{Adolphe Quetelet (1846) – Social Sciences \& The “Average Man”}
+\begin{itemize}
+    \item Extended the normal distribution beyond measurement errors and applied it to \textbf{human characteristics}, such as height and chest girth.
+    \item Collected and analyzed \textbf{Scottish soldiers' chest girth measurements}, claiming they followed a normal distribution.
+    \item Introduced the concept of the \textbf{“average man”} (\textit{l’homme moyen}), an idealized individual whose characteristics were represented by the mean of observed human traits.
+    \item Treated deviations from the mean as \textbf{errors} in relation to this ideal form, similar to how measurement errors in astronomy were considered deviations from a true value.
+    \item Argued that various human traits, including intelligence and moral qualities, followed the normal distribution, reinforcing the idea that most people cluster around the average while extreme values are rare.
+    \item Compared human measurements to repeated estimates of the same value in astronomy, suggesting that variations in human traits were analogous to observational errors.
+    \item His dataset was later shown \textbf{not to be perfectly normal} using modern statistical tests. The chest girth data he cited contained errors, and its fit to the normal distribution was weaker than he claimed.
+    \item His work strongly influenced the development of \textbf{social physics}, a precursor to modern social statistics, and inspired later scholars such as Francis Galton.
+    \item Despite his contributions, his framework was later criticized for oversimplifying human variation, and his concept of the “average man” was misused in justifications for eugenics and rigid social classifications.
+    \item \textbf{Did not independently discover the pdf function but played a major role in its application to social sciences.}
+\end{itemize}
+
+\subsection{Sir Francis Galton (1869–1879) – Normal Distribution in Genetics}
+\begin{itemize}
+    \item Popularized the normal distribution in \textbf{heredity and intelligence studies}.
+    \item Advocated for its general application in natural and social sciences.
+    \item Provided an early qualitative explanation for \textbf{why the normal distribution appears in nature} using ideas resembling the Central Limit Theorem.
+    \item \textbf{Did not independently discover the pdf function.}
+\end{itemize}
+
+\subsection{Karl Pearson (1893) – Naming the “Normal” Curve}
+\begin{itemize}
+    \item First used the term \textbf{“normal distribution”} to avoid international priority disputes.
+    \item Popularized statistical methods, including regression and correlation, that relied on the normal distribution.
+    \item \textbf{Did not independently discover the pdf function.}
+\end{itemize}
+
+\section{Independent Discoveries of the Normal PDF Function}
+\begin{itemize}
+    \item \textbf{Abraham de Moivre (1733)} – Approximate normal curve for binomial distributions.
+    \item \textbf{Carl Friedrich Gauss (1809)} – Justified the normal curve using least squares estimation.
+    \item \textbf{Laplace (1810)} indirectly reinforced the normal curve through the Central Limit Theorem but did not explicitly derive it.
+\end{itemize}
+
+\section{References}
+
+\noindent \hangindent=1.5em \hangafter=1
+Stahl, S. (2006). The evolution of the normal distribution. \emph{Mathematics magazine}, 79(2), 96-113.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+\appendix
+\section{Generalization of De Moivre’s Approximation to Asymmetric Intervals}
+
+We begin with De Moivre’s classical approximation for a symmetric binomial sum:
+
+\begin{equation}
+\sum_{|x-n/2| \leq d} {n \choose x} (1/2)^n \approx \frac{4}{\sqrt{2\pi}} \int_0^{d/\sqrt{n}} e^{-2y^2} dy.
+\end{equation}
+
+Our goal is to generalize this result to an asymmetric interval \( x \in [i, j] \) instead of the symmetric range \( |x - n/2| \leq d \), and then show how can we use the standard normal distribution to compute $\Pr(x\in[i,j])$.
+
+\subsection*{Step 1: Reformulating the Summation Interval}
+
+The original interval condition can be rewritten as:
+
+\begin{equation}
+x - n/2 \leq d \quad \text{or} \quad x - n/2 \geq -d.
+\end{equation}
+
+This corresponds to the symmetric interval:
+
+\begin{equation}
+x \in \left[ n/2 - d, n/2 + d \right] \cap \mathbb{N}.
+\end{equation}
+
+In other words, we can express (5) as:
+\begin{equation}
+\sum_{n/2 - d \leq x \leq n/2 + d   } {n \choose x} (1/2)^n \approx \frac{4}{\sqrt{2\pi}} \int_0^{d/\sqrt{n}} e^{-2y^2} dy.
+\end{equation}
+
+
+Now, instead of the symmetric case, we generalize to an asymmetric interval:
+
+\begin{equation}
+x \in [i, j],
+\end{equation}
+
+where \( i \) and \( j \) are arbitrary bounds such that \( i \leq j \).
+
+\subsection*{Step 2: Transition to an Integral Approximation}
+
+From De Moivre’s original work, the probability mass function of the binomial distribution can be approximated by the normal density function:\footnote{We define $\mu=np$ and $\sigma=\sqrt{np(1-p)}$, and plug them into the normal distribution pdf. See \href{https://en.wikipedia.org/wiki/De\_Moivre–Laplace\_theorem}{Proof} for a proof of the De Moivre–Laplace theorem.}
+
+\begin{equation}
+{n \choose x} p^x (1-p)^{n-x} \approx \frac{1}{\sqrt{2\pi np(1-p)}} e^{-\frac{(x - np)^2}{2np(1-p)}} .
+\end{equation}
+
+The cumulative probability for the binomial sum is then given by the integral approximation:
+
+\begin{equation}
+\sum_{i \leq x \leq j} {n \choose x} p^x (1-p)^{n-x} \approx \int_{i}^{j} \frac{1}{\sqrt{2\pi np(1-p)}}  e^{-\frac{1}{2} \left(\frac{x - np}{\sqrt{np(1-p)}}\right)^2}dx.
+\end{equation}
+
+Using the change of variable:
+
+\begin{equation}
+z = \frac{x - np}{\sqrt{np(1-p)}}, \quad \quad  dz=\dfrac{1}{\sqrt{np(1-p)}}dx,
+\end{equation}
+
+which transforms \( x \) into the standard normal variable \( z \), the integral transforms into:
+
+\begin{equation}
+\sum_{i \leq x \leq j} {n \choose x} p^x (1-p)^{n-x} \approx \int_{(i - np)/\sqrt{np(1-p)}}^{(j - np)/\sqrt{np(1-p)}} \frac{1}{\sqrt{2\pi}} e^{-z^2/2} dz.
+\end{equation}
+
+\subsection*{Step 3: Expressing in Terms of the Normal CDF}
+
+Since the normal cumulative distribution function (CDF) is defined as:
+
+\begin{equation}
+N(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{z} e^{-t^2/2} dt,
+\end{equation}
+
+the binomial summation is now approximated as:
+
+\begin{equation}
+\sum_{i \leq x \leq j} {n \choose x} p^x (1-p)^{n-x} \approx N \left( \frac{j - np}{\sqrt{np(1-p)}} \right) - N \left( \frac{i - np}{\sqrt{np(1-p)}} \right).
+\end{equation}
+
+This result generalizes De Moivre’s approximation to an asymmetric summation interval, showing that the cumulative probability of a binomial distribution can be approximated using the standard normal CDF: \( N(z) \).
+
+\subsection*{Step 4: Practical Implications and Applications}
+
+The result we have derived provides an efficient way to approximate binomial probabilities without directly summing binomial terms, which can be computationally expensive for large . Instead, by leveraging the normal approximation, we can compute:
+
+\begin{equation}
+\Pr(i \leq X \leq j) \approx N \left( \frac{j - np}{\sqrt{np(1-p)}} \right) - N \left( \frac{i - np}{\sqrt{np(1-p)}} \right),
+\end{equation}
+
+where  represents the cumulative distribution function (CDF) of the standard normal distribution.
+
+This method is particularly useful in statistical hypothesis testing, quality control, and probabilistic modeling, where binomial probabilities need to be estimated efficiently.
+
+\subsection*{Example: Application to Quality Control}
+
+Consider a scenario where a factory produces items with a defect probability of $p=0.02$. Suppose we inspect a batch of $n=1000$ items and want to determine the probability of observing between 10 and 30 defective items. Using the binomial distribution directly is impractical, so we apply the normal approximation.
+
+Compute the mean and standard deviation:
+\begin{equation}
+\mu = np = 1000 \times 0.02 = 20,
+\end{equation}
+\begin{equation}
+\sigma = \sqrt{np(1-p)} = \sqrt{1000 \times 0.02 \times 0.98} \approx 4.427.
+\end{equation}
+
+Normalize the bounds:
+\begin{equation}
+z_1 = \frac{10 - 20}{4.427} \approx -2.26, \quad z_2 = \frac{30 - 20}{4.427} \approx 2.26.
+\end{equation}
+
+Use a standard normal table or computational tools to find the corresponding probabilities:
+\begin{equation}
+N(-2.26) \approx 0.0119, \quad N(2.26) \approx 0.9881.
+\end{equation}
+
+Compute the probability:
+\begin{equation}
+\Pr(10 \leq X \leq 30) \approx N(2.26) - N(-2.26) = 0.9881 - 0.0119 = 0.9762.
+\end{equation}
+
+Thus, there is approximately a 97.62\% probability of observing between 10 and 30 defective items in a batch of 1000.
+
+\section{De Moivre's Approximation as a Standard Normal CDF}
+
+We begin with the binomial sum:
+
+\begin{equation}
+\sum_{\lvert x - n/2\rvert \le d} {n \choose x} (1/2)^n.
+\end{equation}
+
+For large $n$, we approximate the binomial distribution $X \sim \text{Bin}(n, 1/2)$ with a normal distribution:
+
+\[
+X \approx N\left(\mu = \frac{n}{2}, \; \sigma^2 = n \cdot \frac{1}{2} \cdot \frac{1}{2}  \right),
+\]
+
+where $\mu=n/2$ and $\sigma = \sqrt{n}/2$. Under this approximation, we rewrite the probability:
+
+\begin{equation}
+P\left( -d \leq X - \frac{n}{2} \leq d \right)
+=
+P\left(  \frac{-d}{(\sqrt{n}/2)} \leq  \frac{X - \frac{n}{2}}{(\sqrt{n}/2)}   \leq \frac{d}{(\sqrt{n}/2)}  \right)
+\approx P\left( -\frac{2d}{\sqrt{n}} \leq Z \leq \frac{2d}{\sqrt{n}} \right),
+\end{equation}
+
+where $Z$ is the standard normal variable,
+
+\[
+Z = \frac{X - \mu}{\sigma} = \frac{X - (n/2)}{\sqrt{n}/2} = \frac{2}{\sqrt{n}}(X - n/2).
+\]
+
+Thus, we approximate the sum using an integral:
+
+\begin{equation}
+P\left( -\frac{2d}{\sqrt{n}} \leq Z \leq \frac{2d}{\sqrt{n}} \right) = \int_{-2d/\sqrt{n}}^{2d/\sqrt{n}} \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz.
+\end{equation}
+
+To simplify this integral, we introduce a change of variables ($z \rightarrow y$):
+
+\[
+z = 2y \quad \Rightarrow \quad dz = 2 dy.
+\]
+
+Applying this substitution,
+
+\[
+e^{-z^2/2} = e^{-2y^2},
+\]
+
+and transforming the limits,
+
+\[
+z = \pm \frac{2d}{\sqrt{n}} \quad\Rightarrow\quad  \pm\frac{2d}{\sqrt{n}} = 2 y \quad\Rightarrow\quad y = \pm \frac{d}{\sqrt{n}}.
+\]
+
+Thus, our integral transforms as follows:
+
+\begin{align}
+\int_{-2d/\sqrt{n}}^{2d/\sqrt{n}} \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \, dz
+&= \int_{-d/\sqrt{n}}^{d/\sqrt{n}} \frac{1}{\sqrt{2\pi}} e^{-2y^2} \cdot 2 \, dy \\
+&= \frac{2}{\sqrt{2\pi}} \int_{-d/\sqrt{n}}^{d/\sqrt{n}} e^{-2y^2} \, dy.
+\end{align}
+
+Since $e^{-2y^2}$ is an even function, we can simplify further:\footnote{An even function is any function such that $f(y)=f(-y)$. }
+
+\begin{equation}
+\frac{2}{\sqrt{2\pi}} \int_{-d/\sqrt{n}}^{d/\sqrt{n}} e^{-2y^2} \, dy
+= 2 \times \frac{2}{\sqrt{2\pi}} \int_{0}^{d/\sqrt{n}} e^{-2y^2} \, dy
+= \frac{4}{\sqrt{2\pi}} \int_{0}^{d/\sqrt{n}} e^{-2y^2} \, dy.
+\end{equation}
+
+Thus, we obtain the desired approximation:
+
+\begin{equation}
+\sum_{\lvert x - n/2\rvert \le d} {n \choose x} (1/2)^n 
+\approx \frac{4}{\sqrt{2\pi}} \int_{0}^{d/\sqrt{n}} e^{-2y^2} \, dy.
+\end{equation}
+
+\end{comment}
+
+
+\end{document}
+
