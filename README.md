@@ -70,4 +70,4 @@ The contents of this repository are licensed under a [Creative Commons Attributi
 
 ## 👨‍🏫 About the Author
 
-**Ignacio Urbina** is a Ph.D. Candidate in Political Science at Stony Brook University. For more information, please visit [personal website](https://ignacio-urbina.com).
+**Ignacio Urbina** is a Ph.D. Candidate in Political Science at Stony Brook University. For more information, please visit [personal website](https://ignacio-urbina.com)
